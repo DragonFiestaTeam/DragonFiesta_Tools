@@ -1,0 +1,7 @@
+using(ScriptAPI)
+{
+AddByte("id");
+AddField("ip",16);
+	AddUShort("port");
+	AddField("unq",64);
+}
