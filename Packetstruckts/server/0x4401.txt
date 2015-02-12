@@ -1,0 +1,12 @@
+using(ScriptAPI)
+{
+AddShort("QuestID");
+	DialogAction = AddByte("Action");
+	if(DialogAction == 0x02)
+	{
+		AddShort("QuestDialogID");
+		AddShort("DialogType");
+		AddShort("unk");
+		AddShort("NPCID");
+	}
+}
