@@ -13,7 +13,7 @@ namespace QuestDataAnalyser
         [Bindable(false)]
         internal ScriptAPI(StructureForm pStructure) { mStructure = pStructure; }
 
-        public void AddScript(string pName { mStructure.APIAddScript(pName); }
+        public void AddScript(string pName) { mStructure.APIAddScript(pName); }
         public long AddByte(string pName) { return mStructure.APIAddByte(pName); }
         public long AddSByte(string pName) { return mStructure.APIAddSByte(pName); }
         public long AddUShort(string pName) { return mStructure.APIAddUShort(pName); }

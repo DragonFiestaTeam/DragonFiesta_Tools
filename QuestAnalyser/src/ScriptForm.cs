@@ -22,7 +22,7 @@ namespace QuestDataAnalyser
 
         private void ScriptForm_Load(object pSender, EventArgs pArgs)
         {
-            mScriptEditor.Document.SetSyntaxFromEmbeddedResource(Assembly.GetExecutingAssembly(), "MapleShark.ScriptSyntax.txt");
+            mScriptEditor.Document.SetSyntaxFromEmbeddedResource(Assembly.GetExecutingAssembly(), "QuestDataAnalyser.ScriptSyntax.txt");
             if (File.Exists(mPath)) mScriptEditor.Open(mPath);
         }
 

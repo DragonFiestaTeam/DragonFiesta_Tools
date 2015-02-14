@@ -9,11 +9,11 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QuestDataAnalyser</RootNamespace>
-    <AssemblyName>FiestaShark</AssemblyName>
+    <AssemblyName>QuestAnalyser</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Fiesta.ico</ApplicationIcon>
-    <StartupObject>MapleShark.Program</StartupObject>
+    <StartupObject>QuestDataAnalyser.Program</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>

@@ -413,7 +413,7 @@ namespace ScriptNET.Runtime
         {
             get
             {
-                Stream configStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MapleShark.ScriptDotNet.RuntimeConfig.xml");
+                Stream configStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("QuestDataAnalyser.ScriptDotNet.RuntimeConfig.xml");
                 configStream.Seek(0, SeekOrigin.Begin);
                 return configStream;
             }

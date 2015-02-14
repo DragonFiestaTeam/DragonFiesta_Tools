@@ -15,7 +15,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {
                 if (_resourceManager == null)
-                    _resourceManager = new ResourceManager("MapleShark.Docking.Strings", typeof(ResourceHelper).Assembly);
+                    _resourceManager = new ResourceManager("QuestDataAnalyser.Docking.Strings", typeof(ResourceHelper).Assembly);
                 return _resourceManager;
             }
 
