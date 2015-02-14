@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace MapleShark
+namespace QuestDataAnalyser
 {
     internal static class Program
     {
@@ -17,13 +17,13 @@ namespace MapleShark
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-           _MainForm = new QuestAnalyserForm();
+           _MainForm = new AnalyserForm();
             Application.Run(_MainForm);
         }
 
-		internal static QuestAnalyserForm MainForm { get { return _MainForm; } }
+		internal static AnalyserForm MainForm { get { return _MainForm; } }
 
 
-		private static QuestAnalyserForm _MainForm;
+		private static AnalyserForm _MainForm;
 	}
 }

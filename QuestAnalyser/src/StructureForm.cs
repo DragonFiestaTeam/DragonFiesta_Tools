@@ -9,7 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MapleShark
+namespace QuestDataAnalyser
 {
 	public partial class StructureForm : DockContent
 	{
@@ -22,7 +22,7 @@ namespace MapleShark
 			InitializeComponent();
 		}
 
-		public QuestAnalyserForm MainForm { get { return ParentForm as QuestAnalyserForm; } }
+		public AnalyserForm MainForm { get { return ParentForm as AnalyserForm; } }
 		public TreeView Tree { get { return mTree; } }
 
 
@@ -30,31 +30,35 @@ namespace MapleShark
 		{
 			mTree.Nodes.Clear();
 			mSubNodes.Clear();
-			string qScript = @"QuestScript.txt";
 			mParsing = qr;
-			if (File.Exists(qScript))
-			{
-				try
-				{
-					StringBuilder scriptCode = new StringBuilder();
-					scriptCode.Append(File.ReadAllText(qScript));
-					if (File.Exists(qScript)) scriptCode.Append(File.ReadAllText(qScript));
-					Script script = Script.Compile(scriptCode.ToString());
-					script.Context.SetItem("ScriptAPI", new ScriptAPI(this));
-					script.Execute();
 
-				}
-				catch (Exception ex)
-				{
-					OutputForm output = new OutputForm("Script Error");
-					output.Append(ex.ToString());
-					output.Show(DockPanel, new Rectangle(MainForm.Location, new Size(400, 400)));
-				}
-			}
-
+            APIAddScript("Script.txt");
 			if (qr.Remaining > 0) mTree.Nodes.Add(new StructureNode("Undefined", qr.InnerBuffer, qr.Cursor, qr.Remaining));
 
 		}
+
+
+        internal void APIAddScript(string name)
+        {
+
+            try
+            {
+                StringBuilder scriptCode = new StringBuilder();
+                if (File.Exists(@"Scripts/"+name))
+                {
+                    scriptCode.Append(File.ReadAllText(@"Scripts/"+name));
+                    Script script = Script.Compile(scriptCode.ToString());
+                    script.Context.SetItem("ScriptAPI", new ScriptAPI(this));
+                    script.Execute();
+                }
+            }
+            catch (Exception ex)
+            {
+                OutputForm output = new OutputForm("Script Error");
+                output.Append(ex.ToString());
+                output.Show(DockPanel, new Rectangle(MainForm.Location, new Size(400, 400)));
+            }
+        }
 	
 		private TreeNodeCollection CurrentNodes { get { return mSubNodes.Count > 0 ? mSubNodes.Peek().Nodes : mTree.Nodes; } }
 		internal byte APIAddByte(string pName)

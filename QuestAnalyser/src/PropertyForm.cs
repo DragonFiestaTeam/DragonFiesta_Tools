@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MapleShark
+namespace QuestDataAnalyser
 {
     public partial class PropertyForm : DockContent
     {
@@ -17,7 +17,7 @@ namespace MapleShark
             InitializeComponent();
         }
 
-        public QuestAnalyserForm MainForm { get { return ParentForm as QuestAnalyserForm; } }
+        public AnalyserForm MainForm { get { return ParentForm as AnalyserForm; } }
         public PropertyGrid Properties { get { return mProperties; } }
 
         private void mProperties_Click(object sender, EventArgs e)

@@ -8,7 +8,7 @@
     <ProjectGuid>{01F7E3B6-B831-4D44-8B44-095768212822}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MapleShark</RootNamespace>
+    <RootNamespace>QuestDataAnalyser</RootNamespace>
     <AssemblyName>FiestaShark</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -129,7 +129,9 @@
     <Compile Include="Docking\DockPanel.AutoHideWindow.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Docking\DockPanel.cs" />
+    <Compile Include="Docking\DockPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Docking\DockPanel.DockDragHandler.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -246,8 +248,8 @@
     <EmbeddedResource Include="PropertyForm.resx">
       <DependentUpon>PropertyForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuestAnalyserForm.resx">
-      <DependentUpon>QuestAnalyserForm.cs</DependentUpon>
+    <EmbeddedResource Include="AnalyserForm.resx">
+      <DependentUpon>AnalyserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScriptDotNet\IronyLibrary\Microsoft\MathResources.resx">
       <SubType>Designer</SubType>
@@ -260,11 +262,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="QuestAnalyserForm.cs">
+    <Compile Include="AnalyserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QuestAnalyserForm.Designer.cs">
-      <DependentUpon>QuestAnalyserForm.cs</DependentUpon>
+    <Compile Include="AnalyserForm.Designer.cs">
+      <DependentUpon>AnalyserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="QuestStream.cs" />
     <Compile Include="ScriptAPI.cs" />

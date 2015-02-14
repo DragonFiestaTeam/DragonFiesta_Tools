@@ -9,7 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MapleShark
+namespace QuestDataAnalyser
 {
     public partial class ScriptForm : DockContent
     {
@@ -34,7 +34,7 @@ namespace MapleShark
         private void mSaveButton_Click(object pSender, EventArgs pArgs)
         {
             if (mScriptEditor.Document.Text.Length == 0) File.Delete(mPath);
-            else mScriptEditor.Save(mPath);
+            else mScriptEditor.Save(mPath); Program.MainForm.RefreshData();
             Close();
         }
     }

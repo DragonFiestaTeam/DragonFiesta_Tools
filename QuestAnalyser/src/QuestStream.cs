@@ -4,18 +4,18 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MapleShark
+namespace QuestDataAnalyser
 {
 	public class QuestStream
 	{
 		private byte[] mBuffer = null;
 		private int mCursor = 0;
-		private ushort Version;
+		
 
 		public QuestStream(byte[] pBuffer)
 		{
             mBuffer = pBuffer;
-			ReadUShort(out Version);
+			
 		}
 
 		public byte[] InnerBuffer { get { return mBuffer; } }
@@ -23,8 +23,8 @@ namespace MapleShark
 		public int Length { get { return mBuffer.Length; } }
 		public int Remaining { get { return mBuffer.Length - mCursor; } }
 
-		public int pVersion { get { return Version; } }
 		public void Rewind() { mCursor = 0; }
+
 
 		public bool ReadByte(out byte pValue)
 		{

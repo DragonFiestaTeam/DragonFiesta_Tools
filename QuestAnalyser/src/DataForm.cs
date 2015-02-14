@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MapleShark
+namespace QuestDataAnalyser
 {
     public partial class DataForm : DockContent
     {
@@ -11,7 +11,7 @@ namespace MapleShark
             InitializeComponent();
         }
 
-        public QuestAnalyserForm MainForm { get { return ParentForm as QuestAnalyserForm; } }
+        public AnalyserForm MainForm { get { return ParentForm as AnalyserForm; } }
         public HexBox HexBox { get { return mHex; } }
 
         private void mHex_SelectionLengthChanged(object pSender, EventArgs pArgs)

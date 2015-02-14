@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MapleShark
+namespace QuestDataAnalyser
 {
 	public partial class LabelForm : DockContent
 	{
@@ -16,7 +16,7 @@ namespace MapleShark
 		{
 			InitializeComponent();
 		}
-		public QuestAnalyserForm MainForm { get { return ParentForm as QuestAnalyserForm; } }
+		public AnalyserForm MainForm { get { return ParentForm as AnalyserForm; } }
 		public void SetLenght(int lenght)
 		{
 			label2.Text = lenght.ToString();

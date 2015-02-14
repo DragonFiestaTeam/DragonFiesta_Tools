@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MapleShark
+namespace QuestDataAnalyser
 {
     public sealed class StructureSegment
     {

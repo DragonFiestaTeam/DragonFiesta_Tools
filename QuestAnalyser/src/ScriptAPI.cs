@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace MapleShark
+namespace QuestDataAnalyser
 {
     public sealed class ScriptAPI
     {
@@ -13,7 +13,7 @@ namespace MapleShark
         [Bindable(false)]
         internal ScriptAPI(StructureForm pStructure) { mStructure = pStructure; }
 
-
+        public void AddScript(string pName { mStructure.APIAddScript(pName); }
         public long AddByte(string pName) { return mStructure.APIAddByte(pName); }
         public long AddSByte(string pName) { return mStructure.APIAddSByte(pName); }
         public long AddUShort(string pName) { return mStructure.APIAddUShort(pName); }
@@ -30,6 +30,6 @@ namespace MapleShark
         public void StartNode(string pName) { mStructure.APIStartNode(pName); }
         public void EndNode(bool pExpand) { mStructure.APIEndNode(pExpand); }
         public void Write(string pPath, string pLine) { using (StreamWriter writer = File.AppendText(pPath)) writer.WriteLine(pLine); }
-   //     public long Remaining() { return mStructure.APIRemaining(); }
+        public long Remaining() { return mStructure.APIRemaining(); }
     }
 }

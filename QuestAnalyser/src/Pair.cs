@@ -1,4 +1,4 @@
-﻿namespace MapleShark
+﻿namespace QuestDataAnalyser
 {
     public sealed class Pair<T1, T2>
     {

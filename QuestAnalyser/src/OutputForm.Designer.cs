@@ -1,4 +1,4 @@
-﻿namespace MapleShark
+﻿namespace QuestDataAnalyser
 {
     partial class OutputForm
     {
