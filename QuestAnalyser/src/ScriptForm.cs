@@ -13,7 +13,7 @@ namespace QuestDataAnalyser
 {
     public partial class ScriptForm : DockContent
     {
-        private string mPath = @"QuestScript.txt";
+        private string mPath = @"Scripts/QuestScript.txt";
 
         public ScriptForm()
         {

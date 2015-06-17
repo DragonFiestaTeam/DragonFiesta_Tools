@@ -32,7 +32,7 @@ namespace QuestDataAnalyser
 			mSubNodes.Clear();
 			mParsing = qr;
 
-            APIAddScript("Script.txt");
+            APIAddScript("QuestScript.txt");
 			if (qr.Remaining > 0) mTree.Nodes.Add(new StructureNode("Undefined", qr.InnerBuffer, qr.Cursor, qr.Remaining));
 
 		}
