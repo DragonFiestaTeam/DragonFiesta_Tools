@@ -91,21 +91,25 @@
             // 
             // ScriptForm
             // 
+            this.AccessibleRole = System.Windows.Forms.AccessibleRole.Document;
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 273);
+            this.ControlBox = false;
             this.Controls.Add(this.mScriptEditor);
             this.Controls.Add(this.mSaveButton);
-            this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft)
-                        | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
-                        | WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
-                        | WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
+            this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HideOnClose = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ScriptForm";
-            this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Float;
+            this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Hidden;
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Script";
             this.Load += new System.EventHandler(this.ScriptForm_Load);

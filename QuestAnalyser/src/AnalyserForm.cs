@@ -10,9 +10,9 @@ namespace QuestDataAnalyser
 		private DataForm mDataForm = new DataForm();
 		private StructureForm mStructureForm = new StructureForm();
 		private PropertyForm mPropertyForm = new PropertyForm();
-		private ScriptForm mScriptForm = new ScriptForm();
+        public ScriptForm mScriptForm;
 		private LabelForm mLabelForm = new LabelForm();
-		private bool mLoad;
+	
 		public DataForm pDataForm { get { return mDataForm; } }
 		public StructureForm StructureForm { get { return mStructureForm; } }
 		public PropertyForm PropertyForm { get { return mPropertyForm; } }
@@ -46,29 +46,28 @@ namespace QuestDataAnalyser
 		{
 			openFileDialog1.FileName = "QuestData";
 			openFileDialog1.Filter = "Fiesta QuestData |*.shn";
-			if (openFileDialog1.ShowDialog() == DialogResult.OK)
-			{
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
                 RefreshData();
 
-			}
-		
-			mDataForm.Show(mDockPanel);
-			mLabelForm.Show(mDockPanel);
-			mStructureForm.Show(mDockPanel);
-			mPropertyForm.Show(mDockPanel);
-			DockPane rightPane1 = new DockPane(mStructureForm, DockState.DockRight, true);
-			DockPane rightPane2 = new DockPane(mPropertyForm, DockState.DockRight, true);
-			rightPane1.Show();
-			rightPane2.Show();
 
-            if (!Directory.Exists("Scripts"))
-            {
-                Directory.CreateDirectory("Scripts");
+
+                mDataForm.Show(mDockPanel);
+                mLabelForm.Show(mDockPanel);
+                mStructureForm.Show(mDockPanel);
+                mPropertyForm.Show(mDockPanel);
+                DockPane rightPane1 = new DockPane(mStructureForm, DockState.DockRight, true);
+                DockPane rightPane2 = new DockPane(mPropertyForm, DockState.DockRight, true);
+                rightPane1.Show();
+                rightPane2.Show();
+
+                if (!Directory.Exists("Scripts"))
+                {
+                    Directory.CreateDirectory("Scripts");
+                }
+                dataToolStripMenuItem.Visible = false;
+                scriptToolStripMenuItem.Visible = true;
             }
-			dataToolStripMenuItem.Visible = false;
-			scriptToolStripMenuItem.Visible = true;
-			refreshToolStripMenuItem.Visible = true;
-			closeToolStripMenuItem.Visible = true;
 		}
 
 		private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,11 +75,13 @@ namespace QuestDataAnalyser
 			Application.Exit();
 		}
 
-		
+     
 		private void scriptToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-	
-			pScript.Show();
+
+                this.mScriptForm = new ScriptForm();
+                mScriptForm.Show();
+           // pScript.Show();
 		}
 
 		private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -92,10 +93,12 @@ namespace QuestDataAnalyser
 		{
 
 		}
+       
 
         public void RefreshData()
         {
-
+            if(File.Exists(openFileDialog1.FileName))
+            {
             byte[] pData = File.ReadAllBytes(openFileDialog1.FileName);
             ushort version = BitConverter.ToUInt16(pData, 0);
             Buffer.BlockCopy(pData, 2, pData, 0, pData.Length - 2); //remove version :)
@@ -107,8 +110,9 @@ namespace QuestDataAnalyser
             mLabelForm.SetFileName(openFileDialog1.SafeFileName);
             mLabel.SetVersion(version);
             mLabel.SetLenght(pData.Length);
-
+            }
         }
+
 		public long GetHexBoxSelectetLenght()
 		{
 			return mDataForm.HexBox.SelectionLength;

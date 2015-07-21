@@ -45,8 +45,6 @@
             WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient7 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.mDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
@@ -58,8 +56,6 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dataToolStripMenuItem,
-            this.refreshToolStripMenuItem,
-            this.closeToolStripMenuItem,
             this.scriptToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -74,22 +70,6 @@
             this.dataToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.dataToolStripMenuItem.Text = "Open";
             this.dataToolStripMenuItem.Click += new System.EventHandler(this.dataToolStripMenuItem_Click);
-            // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Visible = false;
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Visible = false;
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // scriptToolStripMenuItem
             // 
@@ -172,7 +152,7 @@
             this.hexBox1.Size = new System.Drawing.Size(343, 23);
             this.hexBox1.TabIndex = 0;
             // 
-            // QuestAnalyserForm
+            // AnalyserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -181,7 +161,7 @@
             this.Controls.Add(this.hexBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "QuestAnalyserForm";
+            this.Name = "AnalyserForm";
             this.Text = "QuestAnalyserForm";
             this.Load += new System.EventHandler(this.QuestAnalyserForm_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -195,10 +175,8 @@
 
 		private System.Windows.Forms.HexBox hexBox1;
 		private System.Windows.Forms.MenuStrip menuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-		private WeifenLuo.WinFormsUI.Docking.DockPanel mDockPanel;
+        private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
+		public WeifenLuo.WinFormsUI.Docking.DockPanel mDockPanel;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.ToolStripMenuItem scriptToolStripMenuItem;
 	}

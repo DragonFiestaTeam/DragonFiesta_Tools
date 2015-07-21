@@ -33,9 +33,17 @@ namespace QuestDataAnalyser
 
         private void mSaveButton_Click(object pSender, EventArgs pArgs)
         {
-            if (mScriptEditor.Document.Text.Length == 0) File.Delete(mPath);
-            else mScriptEditor.Save(mPath); Program.MainForm.RefreshData();
-            Close();
+            if (mScriptEditor.Document.Text.Length == 0)
+            {
+                File.Delete(mPath);
+            }
+            else
+            {
+                mScriptEditor.Save(mPath);
+                Program.MainForm.RefreshData();
+                Program.MainForm.mScriptForm.Close();
+            }
+     
         }
     }
 }
