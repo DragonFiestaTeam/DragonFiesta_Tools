@@ -31,8 +31,15 @@ namespace QuestDataAnalyser
 			mTree.Nodes.Clear();
 			mSubNodes.Clear();
 			mParsing = qr;
-
-            APIAddScript("QuestScript.txt");
+            try
+            {
+                APIAddScript("QuestScript.txt");
+            }
+            catch (Exception ex)
+            {
+                OutputForm output = new OutputForm("Script Error");
+                output.Append(ex.ToString());
+            }
 			if (qr.Remaining > 0) mTree.Nodes.Add(new StructureNode("Undefined", qr.InnerBuffer, qr.Cursor, qr.Remaining));
 
 		}
@@ -66,42 +73,43 @@ namespace QuestDataAnalyser
 			byte value;
 			if (!mParsing.ReadByte(out value)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - 1, 1));
-			return 0;
+			return value;
 		}
 		internal sbyte APIAddSByte(string pName)
 		{
 			sbyte value;
 			if (!mParsing.ReadSByte(out value)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - 1, 1));
-			return 0;
+			return value;
 		}
 		internal ushort APIAddUShort(string pName)
 		{
 			ushort value;
 			if (!mParsing.ReadUShort(out value)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - 2, 2));
-			return 0;
+			return value;
 		}
 		internal short APIAddShort(string pName)
 		{
 			short value;
 			if (!mParsing.ReadShort(out value)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - 2, 2));
-			return 0;
+
+			return value;
 		}
 		internal uint APIAddUInt(string pName)
 		{
 			uint value;
 			if (!mParsing.ReadUInt(out value)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - 4, 4));
-			return 0;
+			return value;
 		}
 		internal int APIAddInt(string pName)
 		{
 			int value;
 			if (!mParsing.ReadInt(out value)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - 4, 4));
-			return 0;
+			return value;
 		}
 
 		internal float APIAddFloat(string pName)
@@ -109,21 +117,21 @@ namespace QuestDataAnalyser
 			float value;
 			if (!mParsing.ReadFloat(out value)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - 4, 4));
-			return 0;
+			return value;
 		}
 		internal long APIAddLong(string pName)
 		{
 			long value;
 			if (!mParsing.ReadLong(out value)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - 8, 8));
-			return 0;
+			return value;
 		}
 		internal double APIAddDouble(string pName)
 		{
 			double value;
 			if (!mParsing.ReadDouble(out value)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - 8, 8));
-			return 0;
+			return value;
 		}
 		internal string APIAddString(string pName)
 		{
@@ -146,6 +154,7 @@ namespace QuestDataAnalyser
 			if (!mParsing.ReadBytes(buffer)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - pLength, pLength));
 		}
+        
 		internal void APIAddComment(string pComment)
 		{
 			CurrentNodes.Add(new StructureNode(pComment, mParsing.InnerBuffer, mParsing.Cursor, 0));
