@@ -223,6 +223,12 @@
     <Compile Include="LabelForm.Designer.cs">
       <DependentUpon>LabelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewScriptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewScriptForm.Designer.cs">
+      <DependentUpon>NewScriptForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OutputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LabelForm.resx">
       <DependentUpon>LabelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewScriptForm.resx">
+      <DependentUpon>NewScriptForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PropertyForm.resx">
       <DependentUpon>PropertyForm.cs</DependentUpon>
@@ -440,6 +449,9 @@
     </Compile>
     <Compile Include="ScriptForm.Designer.cs">
       <DependentUpon>ScriptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMenuItem.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="StructureForm.cs">
       <SubType>Form</SubType>

@@ -19,7 +19,11 @@ namespace QuestDataAnalyser
         {
             InitializeComponent();
         }
-
+        public ScriptForm(string path)
+        {
+            mPath = path;
+            InitializeComponent();
+        }
         private void ScriptForm_Load(object pSender, EventArgs pArgs)
         {
             mScriptEditor.Document.SetSyntaxFromEmbeddedResource(Assembly.GetExecutingAssembly(), "QuestDataAnalyser.ScriptSyntax.txt");

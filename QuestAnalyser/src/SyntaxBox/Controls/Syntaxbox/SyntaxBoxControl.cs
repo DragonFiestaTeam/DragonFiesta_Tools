@@ -1758,7 +1758,7 @@ namespace Alsing.Windows.Forms
 
             swr.Close();
         }
-
+        
         public void Open(string filename)
         {
             if (Document == null)

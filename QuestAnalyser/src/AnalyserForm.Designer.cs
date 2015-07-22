@@ -46,6 +46,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addSrciptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.mDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.hexBox1 = new System.Windows.Forms.HexBox();
@@ -73,11 +77,45 @@
             // 
             // scriptToolStripMenuItem
             // 
+            this.scriptToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainToolStripMenuItem,
+            this.addSrciptToolStripMenuItem,
+            this.removeScriptToolStripMenuItem,
+            this.editScriptToolStripMenuItem});
             this.scriptToolStripMenuItem.Name = "scriptToolStripMenuItem";
             this.scriptToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.scriptToolStripMenuItem.Text = "Script";
             this.scriptToolStripMenuItem.Visible = false;
-            this.scriptToolStripMenuItem.Click += new System.EventHandler(this.scriptToolStripMenuItem_Click);
+            this.scriptToolStripMenuItem.MouseHover += new System.EventHandler(this.scriptToolStripMenuItem_MouseHover);
+            // 
+            // mainToolStripMenuItem
+            // 
+            this.mainToolStripMenuItem.Name = "mainToolStripMenuItem";
+            this.mainToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mainToolStripMenuItem.Text = "MainScript";
+            this.mainToolStripMenuItem.Click += new System.EventHandler(this.mainToolStripMenuItem_Click);
+            // 
+            // addSrciptToolStripMenuItem
+            // 
+            this.addSrciptToolStripMenuItem.Name = "addSrciptToolStripMenuItem";
+            this.addSrciptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addSrciptToolStripMenuItem.Text = "AddSrcipt";
+            this.addSrciptToolStripMenuItem.Click += new System.EventHandler(this.addSrciptToolStripMenuItem_Click);
+            // 
+            // removeScriptToolStripMenuItem
+            // 
+            this.removeScriptToolStripMenuItem.Name = "removeScriptToolStripMenuItem";
+            this.removeScriptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeScriptToolStripMenuItem.Text = "RemoveScript";
+            this.removeScriptToolStripMenuItem.MouseHover += new System.EventHandler(this.removeScriptToolStripMenuItem_MouseHover);
+            // 
+            // editScriptToolStripMenuItem
+            // 
+            this.editScriptToolStripMenuItem.Name = "editScriptToolStripMenuItem";
+            this.editScriptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editScriptToolStripMenuItem.Text = "EditScript";
+            this.editScriptToolStripMenuItem.MouseLeave += new System.EventHandler(this.editScriptToolStripMenuItem_MouseLeave);
+            this.editScriptToolStripMenuItem.MouseHover += new System.EventHandler(this.editScriptToolStripMenuItem_MouseHover);
             // 
             // openFileDialog1
             // 
@@ -179,5 +217,9 @@
 		public WeifenLuo.WinFormsUI.Docking.DockPanel mDockPanel;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.ToolStripMenuItem scriptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mainToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addSrciptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeScriptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editScriptToolStripMenuItem;
 	}
 }
