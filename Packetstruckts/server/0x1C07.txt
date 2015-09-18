@@ -1,7 +1,8 @@
 using(ScriptAPI)
 {
 	AddUShort("mapobjectID");
-	AddField("CharacterName",16);
+	Count = AddByte("ObjectCouunt");
+	AddField("CharacterName",20);
 	AddInt("PosX");
 	AddInt("PosY");
 	AddByte("Rotation");

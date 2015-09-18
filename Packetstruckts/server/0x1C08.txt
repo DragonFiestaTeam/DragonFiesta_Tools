@@ -7,6 +7,6 @@ using(ScriptAPI)
 	AddInt("PosY");
 	AddByte("Rot");
 	AddByte("Type");
-	AddField("BuffArray",110);
+	AddField("BuffArray",131);
 	
 }

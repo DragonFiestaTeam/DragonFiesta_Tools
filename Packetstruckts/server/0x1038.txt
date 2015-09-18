@@ -1,7 +1,7 @@
 using(ScriptAPI)
 {
 	AddInt("ID");
-	AddField("NAME",16);
+	AddField("NAME",20);
 	AddByte("Slot");
 	AddByte("level");
 	AddLong("EXP");
