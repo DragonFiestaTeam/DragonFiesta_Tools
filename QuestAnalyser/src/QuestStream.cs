@@ -128,7 +128,33 @@ namespace QuestDataAnalyser
 			mCursor += pLength;
 			return true;
 		}
-
+        /*	pValue = 0;
+			if (mCursor + 1 > mBuffer.Length) return false;
+			pValue = mBuffer[mCursor++];
+			return true;*/
+        public bool ReadNulledString(out string pValue,out int pindex)
+        {
+            try
+            {
+                byte[] data = new byte[256];
+                pindex = 0;
+                byte b;
+                while ((ReadByte(out b)) && b != 0)
+                {
+                    if (data.Length == pindex) Array.Resize(ref data, data.Length * 2);
+                    data[pindex++] = b;
+                }
+                pValue = Encoding.ASCII.GetString(data, 0, pindex);
+                
+                return true;
+            }
+            catch
+            {
+                pindex = 0;
+                pValue = "";
+                return false;
+            }
+        }
 		public bool ReadPaddedString(out string pValue, int pLength)
 		{
 			pValue = "";

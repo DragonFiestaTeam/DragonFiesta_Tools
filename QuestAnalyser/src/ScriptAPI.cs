@@ -26,6 +26,7 @@ namespace QuestDataAnalyser
         public string AddString(string pName) { return mStructure.APIAddString(pName); }
         public string AddPaddedString(string pName, int pLength) { return mStructure.APIAddPaddedString(pName, pLength); }
         public void AddField(string pName, int pLength) { mStructure.APIAddField(pName, pLength); }
+        public void AddNulledString(string pName) { mStructure.APINulledString(pName); }
         public void AddComment(string pComment) { mStructure.APIAddComment(pComment); }
     
         public void StartNode(string pName) { mStructure.APIStartNode(pName); }

@@ -154,8 +154,15 @@ namespace QuestDataAnalyser
 			if (!mParsing.ReadBytes(buffer)) throw new Exception("Insufficient packet data");
 			CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - pLength, pLength));
 		}
-        
-		internal void APIAddComment(string pComment)
+        internal void APINulledString(string pName)
+        {
+            string value;
+            int index;
+            if (!mParsing.ReadNulledString(out value,out index)) throw new Exception("Insufficient packet data");
+            CurrentNodes.Add(new StructureNode(pName, mParsing.InnerBuffer, mParsing.Cursor - index - 1, index));
+
+        }
+        internal void APIAddComment(string pComment)
 		{
 			CurrentNodes.Add(new StructureNode(pComment, mParsing.InnerBuffer, mParsing.Cursor, 0));
 		}
