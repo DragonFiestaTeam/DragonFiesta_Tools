@@ -1,6 +1,6 @@
 using (ScriptAPI)
 {
-	AddUShort("mapid");
+	AddUShort("CharID Or MapID");
 	AddLong("exp");
 	AddLong("NextExpForLevel");
 	
