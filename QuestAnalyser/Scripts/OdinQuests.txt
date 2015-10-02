@@ -3,26 +3,27 @@ using(ScriptAPI)
 count = AddUShort("QuestCount");
 for(i=0; i<count; i++)
 {
-QuestLenght = AddUShort("QuestLenght");
+QuestLenght = AddUInt("QuestLenght");
 	
 StartNode("QuestInfo");
-AddShort("unk");
 AddShort("QuestID");
 AddShort("TitleID");
 AddShort("DecryptionID");
-AddField("unk",7);	
+AddField("unk",2);
+AddByte("Repeat?");
+AddField("unk",3);
+AddByte("NeedLevel");	
 AddByte("MinLevel");
 AddByte("MaxLevel");
-AddByte("unk");
+AddByte("Enable");
 AddShort("StartingNPC");
 AddField("unk",24);
 AddShort("PreQuest");
 AddField("unk",2);
 AddByte("MultiQuest");
 AddByte("NeedClass");
-AddField("unk",15);
-AddByte("NeedLevel");
-AddField("unk",6);
+AddField("unk",22);
+
 EndNode(0);
 		
 
