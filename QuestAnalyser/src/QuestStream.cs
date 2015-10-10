@@ -155,6 +155,10 @@ namespace QuestDataAnalyser
                 return false;
             }
         }
+        public void DropMessage(string msg)
+        {
+            MessageBox.Show(msg);
+        }
 		public bool ReadPaddedString(out string pValue, int pLength)
 		{
 			pValue = "";

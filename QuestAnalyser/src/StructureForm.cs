@@ -44,7 +44,7 @@ namespace QuestDataAnalyser
 
 		}
 
-
+      
         internal void APIAddScript(string name)
         {
 
@@ -97,6 +97,10 @@ namespace QuestDataAnalyser
 
 			return value;
 		}
+        internal void APIDropMessage(string pMSG)
+        {
+            mParsing.DropMessage(pMSG);
+        }
 		internal uint APIAddUInt(string pName)
 		{
 			uint value;

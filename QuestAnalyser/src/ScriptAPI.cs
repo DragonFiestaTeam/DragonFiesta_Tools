@@ -28,7 +28,7 @@ namespace QuestDataAnalyser
         public void AddField(string pName, int pLength) { mStructure.APIAddField(pName, pLength); }
         public void AddNulledString(string pName) { mStructure.APINulledString(pName); }
         public void AddComment(string pComment) { mStructure.APIAddComment(pComment); }
-    
+        public void AddMessage(string msg) { mStructure.APIDropMessage(msg); }
         public void StartNode(string pName) { mStructure.APIStartNode(pName); }
         public void EndNode(bool pExpand) { mStructure.APIEndNode(pExpand); }
         public void Write(string pPath, string pLine) { using (StreamWriter writer = File.AppendText(pPath)) writer.WriteLine(pLine); }
