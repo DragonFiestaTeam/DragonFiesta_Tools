@@ -14,12 +14,12 @@ for(i=0; i<count; i++)
 	
 	AddField("GateName",12);
 			
-			AddField("unk",119);
+			AddField("unk",121);
 	
 	}
 	else
 		{
-			AddField("buff2",131);
+			AddField("buff2",133);
 		}
 	}
 }
