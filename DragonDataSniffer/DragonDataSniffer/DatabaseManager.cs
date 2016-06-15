@@ -7,18 +7,30 @@ using System.Collections;
 using System.Globalization;
 using System.Data;
 
+[TunnelModule(InitializationStage.Metadata)]
 public static class DatabaseManager
 {
     private static string Connectionstring;
 
-    public static void Initialize()
+    [InitializerMethod]
+    public static bool Initialize()
     {
-        Log.WriteLine(LogLevel.Info, "Initializing database connections...");
-        Connectionstring = BuildConnectionString();//TODO CREATE
-                                                   //test
-        using (var con = GetConnection()) { con.Close(); }
+        try
+        {
+            Log.WriteLine(LogLevel.Info, "Initializing database connections...");
+            Connectionstring = BuildConnectionString();//TODO CREATE
+                                                       //test
+            using (var con = GetConnection()) { con.Close(); }
 
-        Log.WriteLine(LogLevel.Info, "Database connections initialized successfully.{0}", Environment.NewLine);
+            Log.WriteLine(LogLevel.Info, "Database connections initialized successfully.{0}", Environment.NewLine);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Log.WriteLine(LogLevel.Exception, "DatabaseManager exception: {0}", ex.ToString());
+            return false;
+        }
+
     }
     private static string BuildConnectionString()
     {

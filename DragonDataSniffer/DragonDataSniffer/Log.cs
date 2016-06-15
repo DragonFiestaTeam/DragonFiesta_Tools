@@ -27,7 +27,7 @@ using System.IO;
         public static short FlushCount { get; set; }
         public static void WriteLine(LogLevel pLogLevel, string pFormat, params object[] pArgs)
         {
-            if (pLogLevel == LogLevel.Debug && !IsDebug) return;
+           // if (pLogLevel == LogLevel.Debug && !IsDebug) return;
             string header = "[" + DateTime.Now + "] (" + pLogLevel + ") ";
             string buffer = string.Format(pFormat, pArgs);
 

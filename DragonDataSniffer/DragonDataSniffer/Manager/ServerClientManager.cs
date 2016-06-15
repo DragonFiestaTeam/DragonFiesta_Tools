@@ -7,12 +7,15 @@ namespace DragonDataSniffer.Manager
     [TunnelModule(InitializationStage.Clients)]
     public class ServerClientManager
     {
+        private Dictionary<ClientType,string> IPAdressByType { get; set; }
         private Dictionary<ClientType,ServerClient> ClientList { get; set; }
         public static ServerClientManager Instance { get; private set; }
 
         public ServerClientManager()
         {
             ClientList = new Dictionary<ClientType, ServerClient>();
+            IPAdressByType = new Dictionary<ClientType, string>();
+            AddIPByType(ClientType.Login, Config.Instance.ConnectIP);
         }
         [InitializerMethod]
         public static bool Load()
@@ -36,6 +39,25 @@ namespace DragonDataSniffer.Manager
 
             return false;
         }
+        public bool AddIPByType(ClientType pType, string IP)
+        {
+            if (IPAdressByType.ContainsKey(pType))
+            {
+                IPAdressByType[pType] = IP; //Update ip for next connect
+                return true;
+            }
+            else
+            {
+                IPAdressByType.Add(pType, IP);
+                return true;
+            }
+        }
+
+        public bool GetIPByType(ClientType pType, out string IP)
+        {
+            return IPAdressByType.TryGetValue(pType, out IP);
+        }
+
         public bool AddClient(ServerClient pClient, ClientType pClientType)
         {
             if (!ClientList.ContainsKey(pClientType))

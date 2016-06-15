@@ -8,24 +8,20 @@ namespace DragonDataSniffer.Network.ServerHandler
 {
     public sealed class Handler2
     {
-        //this is incorrect, somehow?
-        [ServerPacketHandler(SH2Type.SetXorKeyPosition)]
+        [ServerPacketHandler(Handler2Type._Header,Handler2Type.SetXorKeyPosition)]
         public static void On_ReadXorPos(ServerClient client, FiestaPacket packet)
         {
-            ushort XorPos;
-            if (!packet.TryReadUInt16(out XorPos))
+            short XorPos;
+            if (!packet.TryReadInt16(out XorPos))
             {
-                client.Dispose();
+                client.OnDisconnect();
             }
-
-            client.cClient.XorPosition = XorPos;
+      
+            client.cClient.Crypto = new FiestaCryptoProvider(XorPos);
+            client.Crypto = new FiestaCryptoProvider(XorPos);
+            client.cClient.SendPacket(packet);
             client.cClient.Start();
-            using (var p = new FiestaPacket(7, 2))
-            {
-                p.WriteUInt16(XorPos);
-                client.cClient.SendPacket(p);
-            }
-          
+
         }
     }
 }

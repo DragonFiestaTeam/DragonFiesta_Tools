@@ -22,7 +22,7 @@ namespace DragonDataSniffer
             }
 
 
-            if(!GameClientAcceptor.Load(Config.Instance.TunnelPort,ClientType.Login))
+            if (!GameAcceptorManager.Instance.StartAcceptor(ClientType.Login, Config.Instance.TunnelPort))
             {
 
             }

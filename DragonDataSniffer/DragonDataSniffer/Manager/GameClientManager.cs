@@ -29,6 +29,19 @@ namespace DragonDataSniffer.Manager
                 return false;
             }
         }
+        public void DropMessage(string text)
+        {
+            GameClient pClient;
+            if (GetClientByType(ClientType.Zone, out pClient))
+            {
+                using (var packet = new FiestaPacket(Handler8Type._Header, Handler8Type.GMNote))
+                {
+                    packet.WriteByte((byte)text.Length);
+                    packet.WriteString(text, text.Length);
+                    pClient.SendPacket(packet);
+                }
+            }
+        }
         public bool GetClientByType(ClientType pType, out GameClient pClient)
         {
             if (ClientList.TryGetValue(pType, out pClient))
