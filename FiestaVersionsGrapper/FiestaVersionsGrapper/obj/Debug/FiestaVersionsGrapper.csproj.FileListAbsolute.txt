@@ -1,0 +1,9 @@
+c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\bin\Debug\FiestaVersionsGrapper.exe.config
+c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\bin\Debug\FiestaVersionsGrapper.exe
+c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\bin\Debug\FiestaVersionsGrapper.pdb
+c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.csprojResolveAssemblyReference.cache
+c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.Form1.resources
+c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.Properties.Resources.resources
+c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.csproj.GenerateResource.Cache
+c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.exe
+c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.pdb
