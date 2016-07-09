@@ -1,0 +1,29 @@
+using(ScriptAPI)
+{
+AddUShort("8480 = SUCCESS");
+count = AddByte("GameSettingsCounts");
+if(count <= 28)
+{
+for(i=0; i<count; i++)
+{
+Type = AddByte("Type");
+	
+state = AddByte("enable");
+
+			AddField("TODO USE switch",0);			
+
+			if(Type != 24 || Type != 25 || Type != 26 || Type != 21)
+		
+			{
+
+				AddByte("unk");
+			}
+			if(state == 1)
+			{
+				AddByte("UpdateOk?");
+			}
+}
+	
+}
+
+}

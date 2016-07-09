@@ -1,0 +1,12 @@
+using(ScriptAPI)
+{
+AddUShort("8474 = Succes!");
+	count = AddUShort("Count");
+for(i=0; i<count; i++)
+    {
+
+	AddUShort("StateType?");
+	AddByte("RubyCubeGameState");
+	AddField("KeyChar",1);
+	}
+}

@@ -1,6 +1,6 @@
 using(ScriptAPI)
 {
-AddByte("id");
+AddByte("State");
 AddField("ip",16);
 	AddUShort("port");
 	AddInt("AccID");

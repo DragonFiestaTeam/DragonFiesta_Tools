@@ -1,0 +1,8 @@
+using(ScriptAPI)
+{
+AddField("AccountName",256);
+AddField("unk",4);
+AddField("Md5Password",32);
+AddField("unk",4);
+AddField("Orginal?",20);
+}

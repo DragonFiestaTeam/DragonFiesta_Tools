@@ -1,0 +1,10 @@
+using(ScriptAPI)
+{
+AddByte("bool");
+AddByte("Unk << 16;");
+AddByte("unk");
+ResultCode = AddInt("6147");
+AddByte("MaxBars");
+AddByte("Showbars (0x00 = show 1 bar)");
+AddInt("State << 24");
+}

@@ -1,3 +1,19 @@
 using(ScriptAPI)
 {
+	count = AddUShort("UpdateCount");
+for(i=0; i<count; i++)
+    {
+	AddUShort("StateType?");
+    state =	AddByte("RubyCubeGameState");
+  	AddField("KeyChar",1);
+	if(state == 2 | state == 3)
+	{
+	AddField("Craps can not be stopped.",0);
+	}
+	else if(state == 1)
+	{
+		AddField("If you finish the game now, the money is lost.",0);
+	}
+	
+	}
 }
