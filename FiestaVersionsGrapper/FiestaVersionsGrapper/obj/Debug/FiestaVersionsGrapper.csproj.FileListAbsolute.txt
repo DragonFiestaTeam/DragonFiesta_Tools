@@ -7,3 +7,12 @@ c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\Fies
 c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.csproj.GenerateResource.Cache
 c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.exe
 c:\users\gothic\documents\visual studio 2015\Projects\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.pdb
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\FiestaVersionsGrapper\FiestaVersionsGrapper\bin\Debug\FiestaVersionsGrapper.exe.config
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.exe
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.pdb
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\FiestaVersionsGrapper\FiestaVersionsGrapper\bin\Debug\FiestaVersionsGrapper.exe
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\FiestaVersionsGrapper\FiestaVersionsGrapper\bin\Debug\FiestaVersionsGrapper.pdb
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.csprojResolveAssemblyReference.cache
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.Form1.resources
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.Properties.Resources.resources
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\FiestaVersionsGrapper\FiestaVersionsGrapper\obj\Debug\FiestaVersionsGrapper.csproj.GenerateResource.Cache

@@ -29,7 +29,7 @@ namespace FiestaVersionsGrapper
                 string file = BinDialog.FileName;
 
                 HashBox.Text = Md5Crypto.GetMD5HashFromFile(file).ToLower();
-                ClientDateBox.Text = File.GetCreationTime(file).ToString("yyyyMMddHHmmss");
+                ClientDateBox.Text = File.GetCreationTime(file).ToString("yyyy-MM-dd:HH:mm.ss");
             }
         }
 
