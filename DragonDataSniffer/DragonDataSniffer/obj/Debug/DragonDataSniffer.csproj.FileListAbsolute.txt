@@ -16,3 +16,9 @@ C:\Users\gothic\Desktop\dragondatasniffer\DragonDataSniffer\obj\Debug\DragonData
 C:\Users\gothic\Desktop\dragondatasniffer\DragonDataSniffer\bin\Debug\DragonDataSniffer.exe
 C:\Users\gothic\Desktop\dragondatasniffer\DragonDataSniffer\bin\Debug\DragonDataSniffer.pdb
 C:\Users\gothic\Desktop\dragondatasniffer\DragonDataSniffer\obj\Debug\DragonDataSniffer.csprojResolveAssemblyReference.cache
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\DragonDataSniffer\DragonDataSniffer\bin\Debug\DragonDataSniffer.exe.config
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\DragonDataSniffer\DragonDataSniffer\obj\Debug\DragonDataSniffer.exe
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\DragonDataSniffer\DragonDataSniffer\obj\Debug\DragonDataSniffer.pdb
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\DragonDataSniffer\DragonDataSniffer\bin\Debug\DragonDataSniffer.exe
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\DragonDataSniffer\DragonDataSniffer\bin\Debug\DragonDataSniffer.pdb
+C:\Users\Gothic\Desktop\DragonFiesta_Tools\DragonDataSniffer\DragonDataSniffer\obj\Debug\DragonDataSniffer.csprojResolveAssemblyReference.cache

@@ -8,7 +8,7 @@ namespace DragonDataSniffer.Network.ServerHandler
         [ServerPacketHandler(Handler6Type._Header, Handler6Type.ZoneIP)]
         public static void On_ReadZoneServerIP(ServerClient client, FiestaPacket packet)
         {
-            ushort MapID, Port, unk;
+            ushort MapID, Port, sessionid;
 
             int X, Y;
             string IP;
@@ -18,7 +18,7 @@ namespace DragonDataSniffer.Network.ServerHandler
                 || !packet.TryReadInt32(out Y)
                 || !packet.TryReadString(out IP, 16)
                 || !packet.TryReadUInt16(out Port)
-                || !packet.TryReadUInt16(out unk))
+                || !packet.TryReadUInt16(out sessionid))
             {
                 client.OnDisconnect();
                 return;
@@ -27,19 +27,21 @@ namespace DragonDataSniffer.Network.ServerHandler
             GameAcceptorManager.Instance.StopAcceptorByType(ClientType.Zone);
             GameAcceptorManager.Instance.StartAcceptor(ClientType.Zone, Port);
 
-            using (var m = new FiestaPacket(Handler6Type._Header, Handler6Type.ZoneIP))
-            {
-                m.WriteUInt16(MapID);
-                m.WriteInt32(X);
-                m.WriteInt32(Y);
-                m.WriteString(Config.Instance.TunnelIP, 16);
-                m.WriteUInt16(Port);
-                m.WriteUInt16(unk);
-                client.cClient.SendPacket(m);
+      
+                
+                using (var m = new FiestaPacket(Handler6Type._Header, Handler6Type.ZoneIP))
+                {
+                    m.WriteUInt16(MapID);
+                    m.WriteInt32(X);
+                    m.WriteInt32(Y);
+                    m.WriteString(Config.Instance.TunnelIP, 16);
+                    m.WriteUInt16(Port);
+                    m.WriteUInt16((ushort)(sessionid));
+                    client.cClient.SendPacket(m);
 
+                }
+              
             }
-
-        }
 
         [ServerPacketHandler(Handler4Type._Header, Handler4Type.GameServerIP)]
         public static void On_ReadGameServerIP(ServerClient client, FiestaPacket packet)
