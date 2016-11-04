@@ -1,0 +1,6 @@
+using(ScriptAPI)
+{
+AddInt("CharacterID");
+	count = AddByte("QuestCount");
+
+}

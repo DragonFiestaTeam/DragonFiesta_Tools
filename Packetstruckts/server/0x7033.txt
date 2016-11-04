@@ -4,7 +4,7 @@ count = AddUShort("UpdateCount");
 	
 for(i=0; i<count; i++)
 {
-	AddUShort("StateType?");
+	AddUShort("KeyId");
 	AddByte("RubyCubeGameState");
 	AddField("KeyChar",1);
 }

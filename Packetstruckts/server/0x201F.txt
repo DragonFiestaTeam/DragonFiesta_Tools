@@ -1,0 +1,8 @@
+using(ScriptAPI)
+{
+AddByte("unk");
+AddField("CharName",16);
+AddByte("unk");
+	AddByte("unk");
+	AddByte("unk");
+}

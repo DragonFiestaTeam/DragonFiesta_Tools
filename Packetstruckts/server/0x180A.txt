@@ -5,7 +5,6 @@ using(ScriptAPI)
 	AddInt("Y");
 	AddField("IP",16);
 	AddUShort("Port");
-	AddByte("Unk1");
-	AddByte("Unk2");
+AddUShort("GameCode");
 	
 }

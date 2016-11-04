@@ -1,0 +1,17 @@
+using (ScriptAPI)
+{
+AddField("Question",129);
+AddUShort("MapObjectID");
+AddInt("PosX");
+AddInt("PosY");
+AddUShort("Distance");
+Count = AddByte("ButtonCount");
+
+for(i=0; i< Count; i++)
+{
+AddByte("Index");
+AddField("ButtonName",32);
+}
+	
+
+}

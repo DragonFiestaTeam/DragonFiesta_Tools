@@ -6,7 +6,14 @@ using(ScriptAPI)
 	AddInt("PosX");
 	AddInt("PosY");
 	AddByte("Rot");
-	AddByte("Type");
-	AddField("BuffArray",131);
+	    Gate = AddByte("IsGATE2");
+		if(Gate == 1)
+		{
+          	AddField("GateName",12);
+			AddField("unk",122);	}
+	else
+		{
+			AddField("buff2",133);
+		}
 	
 }

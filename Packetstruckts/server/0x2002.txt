@@ -1,0 +1,6 @@
+using(ScriptAPI)
+{
+AddByte("unk");
+AddUShort("ObjID");	
+lenght = AddByte("Lenght");
+}

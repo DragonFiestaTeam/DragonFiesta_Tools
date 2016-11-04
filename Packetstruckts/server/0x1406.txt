@@ -1,0 +1,10 @@
+using(ScriptAPI)
+{
+AddInt("CharacterId");
+AddByte("Unk");
+AddField("CharacterName",16);
+AddInt("unk");
+AddShort("Level");
+AddByte("Slot");
+AddField("MapName",12);
+}

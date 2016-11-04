@@ -2,5 +2,5 @@ using(ScriptAPI)
 {
 AddUShort("AccID");
 	AddField("CharName",20);
-	AddField("ClientHash",1568);
+	AddField("ClientHash",1600);
 }
