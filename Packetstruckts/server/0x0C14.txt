@@ -1,53 +1,60 @@
-using (ScriptAPI) {
-AddUShort("randomid");
-count = AddByte("charcount");
-for(i=0; i<count; i++)
-        {
-AddUInt("charid");
-AddField("Name",20);
-AddUShort("lvl");
-AddByte("slot");
-AddPaddedString("mapname",      12);
-AddByte("namechange?");
-AddInt("randomseed");   
-        
-AddByte("job");
-AddByte("Hair");
-AddByte("Haircolor");
-AddByte("Face");
-        
-AddUShort("helm");
-AddUShort("weapon");
-AddUShort("non");
-AddUShort("none");
-AddUShort("armor");
-AddUShort("unk");
-AddUShort("pants");
-AddUShort("boots");
-AddUShort("custumepants");
-AddUShort("customamor");
-AddField("unk",6);
-AddUShort("glasses");
-AddUShort("custohelmr");
-AddField("unk",2);      
-AddUShort("customwaffe");
-AddUShort("Wing");
-AddField("unk",2);
-AddUShort("tail");
-AddUShort("pet");
-
-		
-        
-AddByte("upgradesbytes");
-AddByte("unk");
-AddByte("unk");
-        
-AddByte("unk");
-AddByte("unk");
-AddPaddedString("mapname",      0x0C);  
-        AddInt("pos");
-        AddInt("pos");
-        AddUShort("lol");
-AddField("unk",13);
-                        };
+using (ScriptAPI) 
+{
+    AddUShort("randomid");
+    count = AddByte("charcount");
+    for(i=0; i<count; i++)
+    {
+	    AddUInt("ID");
+	    AddField("Name",20);    
+	    AddUShort("Level");
+	    AddByte("Slot");
+		AddPaddedString("Mapname",12);	
+        AddByte("namechange?");
+        AddInt("randomseed"); 
+			       
+	    AddByte("JobGender");
+	    AddByte("Hair");
+	    AddByte("Haircolor");
+	    AddByte("Face");    
+			   
+	    AddUShort("Helm");
+	    AddUShort("Weapon 1");	
+	    AddUShort("Weapon 2");
+		AddUShort("Armor");
+		AddUShort("Shield");	
+	    AddUShort("Pants");
+	    AddUShort("Boots");
+	    AddUShort("Custome Boots");
+	    AddUShort("Custome Pants");
+	    AddUShort("Custome Armor");
+	    AddUShort("Custome Hat");
+	    AddUShort("Custome Pet");
+	    AddUShort("Custome Glasses");
+	    AddUShort("Custome Weapon 1");
+	    AddUShort("Custome Weapon 2");
+	    AddUShort("Custome Back");      
+	    AddUShort("Custome Armor 2");
+	    AddUShort("Custome Tail"); 
+	    AddUShort("Custome Pet");
+	    AddUShort("Unk"); 
+	     
+	    AddByte("unk");
+	    AddByte("unk");     
+	    AddByte("unk");
+	
+		AddField("unk",4);	
+			
+	    AddPaddedString("mapname",12);  
+	    AddInt("pos");
+	    AddInt("pos");
+			
+	    AddUInt("Unk");
+		AddByte("unk");
+			
+	    AddUInt("Unk");
+		AddByte("unk");
+			
+		AddUInt("Unk");
+		AddByte("unk");	
+    }
 }

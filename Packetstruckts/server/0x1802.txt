@@ -26,11 +26,11 @@ using (ScriptAPI)
 	AddLong("BaseDmgMin");
 	AddLong("BaseDmgMax");
 	
-	AddLong("Verteidigung");
+	AddLong("Defense");
 	
-	AddLong("Zielgenauigkeit");
+	AddLong("Accuracy");
 	
-	AddLong("Ausweichen");
+	AddLong("Evasive");
 	
 	AddLong("BaseMagicDmgMin");
 	AddLong("BaseMagicDmgMax");
