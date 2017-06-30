@@ -1,6 +1,6 @@
 using (ScriptAPI)
 {
-	AddUShort("CharID Or MapID");
+	AddUShort("CharID?");
 	AddLong("exp");
 	AddLong("NextExpForLevel");
 	
@@ -14,56 +14,41 @@ using (ScriptAPI)
 	AddUInt("FullDEX");
 	
 	AddUInt("BaseINT");
-	AddUInt("FullINT");
+	AddUInt("FullINT");	
 	
+    AddField("unk",8);
+		
+	AddUInt("BaseKon");
+	AddUInt("FullKon");
 	
-	AddUInt("wizdom?");
-	AddUShort("unk");
-	AddUShort("unk");
+	AddUInt("unk");
 	
+	AddLong("BaseDmgMin");
+	AddLong("BaseDmgMax");
 	
-	AddUInt("BaseSPR");
-	AddUInt("FullSPR");
+	AddLong("Verteidigung");
 	
-	AddUInt("BaseDmgMin");
-	AddUInt("BaseDmgMax");
+	AddLong("Zielgenauigkeit");
 	
-	AddUInt("BasemagicDmgMin");
-	AddUInt("BasemagicDmgMax");
+	AddLong("Ausweichen");
 	
-	AddUInt("BaseDef");
-	AddUInt("increased def (e.g. buffs)");
+	AddLong("BaseMagicDmgMin");
+	AddLong("BaseMagicDmgMax");
 	
-	AddUInt("BaseAiam");
-	AddUInt("increasedAiam");
-	
-	AddUInt("BaseEvasion");
-	AddUInt("increasedEvasion");
-	
-	AddUInt("increaseddmgmin");
-	AddUInt("increaseddmgmax");
-	AddUInt("increasedmagicdmgmin");
-	AddUInt("increasedmagicdmgmax");
-	AddUInt("normalmagicdef");
-	AddUInt("increased magicdef");
-	
-	AddInt("unk");
-	AddInt("unk");
-	AddInt("unk");
-	AddInt("unk");
-	
+	AddUInt("MagicDefense");
+    AddField("unk",16);
 	
 	AddUInt("MaxHP");
 	AddUInt("MaxSP");
 	
-	AddInt("unk");
+	AddInt("LightPower");
 	AddInt("unk");
 	
-	AddUInt("MaxSPStones");
+	AddUInt("MaxHPStones");
 	AddUInt("MaxSPStones");
 	
 	AddField("buffs",64);
 	
 	AddInt("PosX");
-	AddInt("PosY");
+	AddInt("PosY");	
 }
