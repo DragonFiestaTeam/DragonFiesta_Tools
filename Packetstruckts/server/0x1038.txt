@@ -14,8 +14,7 @@ using(ScriptAPI)
 	AddInt("Fame");
 	AddLong("Money");
 
-	AddField("MapName",12);
-	
+	AddField("MapName",12);	
 	
 	AddInt("PosX");
 	AddInt("PosY");

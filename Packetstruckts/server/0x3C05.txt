@@ -1,0 +1,9 @@
+using (ScriptAPI)
+{
+	AddInt("unk");
+	AddInt("MaxHPStones");
+	AddInt("PriceHPStone");
+	AddInt("unk");
+	AddInt("MaxSPStones");
+	AddInt("PriceSPStone");
+}

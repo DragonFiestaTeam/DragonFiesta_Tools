@@ -1,0 +1,11 @@
+using(ScriptAPI)
+{
+    AddByte("IsTarget");
+	AddShort("EntryID");
+	AddInt("HP");
+	AddInt("MaxHP");
+	AddInt("SP");
+	AddInt("MaxSP");
+	AddByte("Level");
+	AddShort("Counter");
+}
