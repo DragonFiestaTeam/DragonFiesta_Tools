@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
-using System.Xml.Serialization;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+
 namespace QuestDataSQLConverter.Settings
 {
     public class XmlSerializer<T>
     {
-
-        public static bool Load(string path,out T pObj)
+        public static bool Load(string path, out T pObj)
         {
             pObj = default(T);
             if (!File.Exists(path)) return false;
@@ -25,24 +25,25 @@ namespace QuestDataSQLConverter.Settings
             }
             catch
             {
-               MessageBox.Show("Error reading settings.");
+                MessageBox.Show("Error reading settings.");
                 return false;
             }
         }
+
         public void Write(string path)
         {
             try
             {
                 if (File.Exists(path)) File.Delete(path);
 
-                    XmlSerializer x = new XmlSerializer(typeof(T));
-                    StreamWriter writer = new StreamWriter(path);
-                    x.Serialize(writer, this);
+                XmlSerializer x = new XmlSerializer(typeof(T));
+                StreamWriter writer = new StreamWriter(path);
+                x.Serialize(writer, this);
                 writer.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error write settings."+ex.ToString()+"");
+                MessageBox.Show("Error write settings." + ex.ToString() + "");
             }
         }
     }

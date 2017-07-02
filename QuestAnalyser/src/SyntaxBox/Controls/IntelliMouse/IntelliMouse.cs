@@ -13,8 +13,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using ScrollEventArgs=Alsing.Windows.Forms.IntelliMouse.ScrollEventArgs;
-using ScrollEventHandler=Alsing.Windows.Forms.IntelliMouse.ScrollEventHandler;
+using ScrollEventArgs = Alsing.Windows.Forms.IntelliMouse.ScrollEventArgs;
+using ScrollEventHandler = Alsing.Windows.Forms.IntelliMouse.ScrollEventHandler;
 
 namespace Alsing.Windows.Forms.CoreLib
 {
@@ -29,7 +29,6 @@ namespace Alsing.Windows.Forms.CoreLib
         protected const int WM_MBUTTONUP = 0x0208;
         protected const int WM_MOUSELEAVE = 0x02A3;
         protected const int WM_RBUTTONDOWN = 0x0204;
-
 
         protected bool Active;
         protected IContainer components;
@@ -47,21 +46,23 @@ namespace Alsing.Windows.Forms.CoreLib
             get
             {
                 if (_CurrentParent != null)
-                    return (Control) _CurrentParent.Target;
+                    return (Control)_CurrentParent.Target;
                 return null;
             }
             set { _CurrentParent = new WeakReference(value); }
         }
 
-        #endregion
+        #endregion GENERAL DECLARATIONS
 
         #region EVENTS
 
         public event EventHandler BeginScroll = null;
+
         public event EventHandler EndScroll = null;
+
         public event ScrollEventHandler Scroll = null;
 
-        #endregion
+        #endregion EVENTS
 
         #region PUBLIC PROPERTY IMAGE
 
@@ -69,7 +70,6 @@ namespace Alsing.Windows.Forms.CoreLib
         protected PictureBox picImage;
         protected RegionHandler regionHandler1;
         protected Timer tmrFeedback;
-
 
         public Bitmap Image
         {
@@ -81,7 +81,7 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY IMAGE
 
         #region PUBLIC PROPERTY TRANSPARENCYKEY
 
@@ -97,19 +97,19 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY TRANSPARENCYKEY
 
         #region CONSTRUCTOR
 
         public IntelliMouseControl()
         {
             InitializeComponent();
-//			SetStyle(ControlStyles.Selectable,false);			
-//			this.Image = (Bitmap)this.picImage.Image;
-//			this.Visible =false;
+            //			SetStyle(ControlStyles.Selectable,false);
+            //			this.Image = (Bitmap)this.picImage.Image;
+            //			this.Visible =false;
         }
 
-        #endregion
+        #endregion CONSTRUCTOR
 
         #region DISPOSE
 
@@ -120,7 +120,7 @@ namespace Alsing.Windows.Forms.CoreLib
             {
                 Console.WriteLine("disposing intellimouse");
             }
-            catch {}
+            catch { }
 #endif
             if (disposing)
             {
@@ -132,7 +132,7 @@ namespace Alsing.Windows.Forms.CoreLib
             base.Dispose(disposing);
         }
 
-        #endregion
+        #endregion DISPOSE
 
         #region FINALIZE
 
@@ -143,54 +143,54 @@ namespace Alsing.Windows.Forms.CoreLib
             {
                 Console.WriteLine("finalizing intellimouse");
             }
-            catch {}
+            catch { }
 #endif
         }
 
-        #endregion
+        #endregion FINALIZE
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         protected void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            var resources = new System.Resources.ResourceManager(typeof (IntelliMouseControl));
-            this.tmrFeedback = new Timer();
-            this.picImage = new System.Windows.Forms.PictureBox();
-            this.regionHandler1 = new Alsing.Windows.Forms.CoreLib.RegionHandler(this.components);
-            // 
+            components = new System.ComponentModel.Container();
+            var resources = new System.Resources.ResourceManager(typeof(IntelliMouseControl));
+            tmrFeedback = new Timer();
+            picImage = new System.Windows.Forms.PictureBox();
+            regionHandler1 = new Alsing.Windows.Forms.CoreLib.RegionHandler(components);
+            //
             // tmrFeedback
-            // 
-            this.tmrFeedback.Enabled = true;
-            this.tmrFeedback.Interval = 10;
-            this.tmrFeedback.Tick += new System.EventHandler(this.tmrFeedback_Tick);
-            // 
+            //
+            tmrFeedback.Enabled = true;
+            tmrFeedback.Interval = 10;
+            tmrFeedback.Tick += new System.EventHandler(tmrFeedback_Tick);
+            //
             // picImage
-            // 
-            this.picImage.Image = ((System.Drawing.Bitmap) (resources.GetObject("picImage.Image")));
-            this.picImage.Location = new System.Drawing.Point(17, 17);
-            this.picImage.Name = "picImage";
-            this.picImage.TabIndex = 0;
-            this.picImage.TabStop = false;
-            // 
+            //
+            picImage.Image = ((System.Drawing.Bitmap)(resources.GetObject("picImage.Image")));
+            picImage.Location = new System.Drawing.Point(17, 17);
+            picImage.Name = "picImage";
+            picImage.TabIndex = 0;
+            picImage.TabStop = false;
+            //
             // regionHandler1
-            // 
-            this.regionHandler1.Control = null;
-            this.regionHandler1.MaskImage = null;
-            this.regionHandler1.TransparencyKey = System.Drawing.Color.FromArgb(((System.Byte) (255)),
-                                                                                ((System.Byte) (0)),
-                                                                                ((System.Byte) (255)));
-            // 
+            //
+            regionHandler1.Control = null;
+            regionHandler1.MaskImage = null;
+            regionHandler1.TransparencyKey = System.Drawing.Color.FromArgb(((System.Byte)(255)),
+                                                                                ((System.Byte)(0)),
+                                                                                ((System.Byte)(255)));
+            //
             // IntelliMouseControl
-            // 
-            this.ParentChanged += new System.EventHandler(this.IntelliMouseControl_ParentChanged);
+            //
+            ParentChanged += new System.EventHandler(IntelliMouseControl_ParentChanged);
         }
 
-        #endregion
+        #endregion Component Designer generated code
 
         protected void CreateRegion()
         {
@@ -204,7 +204,7 @@ namespace Alsing.Windows.Forms.CoreLib
                 CreateRegion();
 
             Size = new Size(Image.Width, Image.Height);
-            Location = new Point(x - Image.Width/2, y - Image.Height/2);
+            Location = new Point(x - Image.Width / 2, y - Image.Height / 2);
             ActivationPoint.X = x;
             ActivationPoint.Y = y;
             BringToFront();
@@ -256,7 +256,7 @@ namespace Alsing.Windows.Forms.CoreLib
                 {
                     Deactivate();
                     var p = new Point(e.X + Left, e.Y + Top);
-                    NativeMethods.SendMessage(Parent.Handle, WM_LBUTTONDOWN, 0, p.Y*0x10000 + p.X);
+                    NativeMethods.SendMessage(Parent.Handle, WM_LBUTTONDOWN, 0, p.Y * 0x10000 + p.X);
                 }
             }
         }
@@ -273,8 +273,8 @@ namespace Alsing.Windows.Forms.CoreLib
                 {
                     int x = e.X;
                     int y = e.Y;
-                    x -= Image.Width/2;
-                    y -= Image.Height/2;
+                    x -= Image.Width / 2;
+                    y -= Image.Height / 2;
                     SetCursor(x, y);
                     NativeMethods.SendMessage(Handle, WM_MBUTTONDOWN, 0, 0);
                 }
@@ -310,7 +310,7 @@ namespace Alsing.Windows.Forms.CoreLib
 
         protected void tmrFeedback_Tick(object sender, EventArgs e)
         {
-            var a = new ScrollEventArgs {DeltaX = CurrentDelta.X, DeltaY = CurrentDelta.Y};
+            var a = new ScrollEventArgs { DeltaX = CurrentDelta.X, DeltaY = CurrentDelta.Y };
             onScroll(a);
         }
 

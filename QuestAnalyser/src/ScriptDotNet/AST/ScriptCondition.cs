@@ -2,46 +2,47 @@
 
 using Irony.Compiler;
 using ScriptNET.Runtime;
-#endregion
+
+#endregion using
 
 namespace ScriptNET.Ast
 {
-  /// <summary>
-  /// Script Array Constructor Expression
-  /// </summary>
-  internal class ScriptCondition : ScriptAst
-  {
-    private ScriptExpr conditionExpression;
-
     /// <summary>
-    /// Returns condition
+    /// Script Array Constructor Expression
     /// </summary>
-    public ScriptExpr Expression
+    internal class ScriptCondition : ScriptAst
     {
-      get
-      {
-        return conditionExpression;
-      }
-      set
-      {
-        conditionExpression = value;
-      }
-    }
+        private ScriptExpr conditionExpression;
 
-    public ScriptCondition(AstNodeArgs args)
-        : base(args)
-    {
-      conditionExpression = (ScriptExpr)ChildNodes[0];
-    }
+        /// <summary>
+        /// Returns condition
+        /// </summary>
+        public ScriptExpr Expression
+        {
+            get
+            {
+                return conditionExpression;
+            }
+            set
+            {
+                conditionExpression = value;
+            }
+        }
 
-    public override void Evaluate(IScriptContext context)
-    {     
-      conditionExpression.Evaluate(context);
-      
+        public ScriptCondition(AstNodeArgs args)
+            : base(args)
+        {
+            conditionExpression = (ScriptExpr)ChildNodes[0];
+        }
+
+        public override void Evaluate(IScriptContext context)
+        {
+            conditionExpression.Evaluate(context);
+
 #if DEBUG
-      if (!(context.Result is bool))
-        throw new ScriptException("Condition expression evaluates non boolean value");      
+            if (!(context.Result is bool))
+                throw new ScriptException("Condition expression evaluates non boolean value");
 #endif
+        }
     }
-  }
 }

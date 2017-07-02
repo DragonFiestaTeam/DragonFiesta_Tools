@@ -8,24 +8,23 @@
 // *
 // *
 
+using Alsing.Windows;
+using Alsing.Windows.Forms;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
-using Alsing.Windows;
-using Alsing.Windows.Forms;
 
 namespace Alsing.Drawing
 {
     public static class DrawingTools
     {
-
         public static Color MixColors(Color c1, Color c2, double mix)
         {
             double d = mix;
-            return Color.FromArgb((int) (c1.R*(1 - d) + c2.R*d), (int) (c1.G*(1 - d) + c2.G*d),
-                                  (int) (c1.B*(1 - d) + c2.B*d));
+            return Color.FromArgb((int)(c1.R * (1 - d) + c2.R * d), (int)(c1.G * (1 - d) + c2.G * d),
+                                  (int)(c1.B * (1 - d) + c2.B * d));
         }
 
         private static void DrawBorder(Border3DStyle Style, Color BorderColor, Graphics g, Rectangle r)
@@ -67,8 +66,8 @@ namespace Alsing.Drawing
             }
         }
 
-        private static void DrawSunkenOuterBorder(Graphics g, Brush dark, Rectangle r, Brush light) {
-
+        private static void DrawSunkenOuterBorder(Graphics g, Brush dark, Rectangle r, Brush light)
+        {
             g.FillRectangle(dark, r.Left, r.Top, r.Width, 1);
             g.FillRectangle(dark, r.Left, r.Top, 1, r.Height);
 
@@ -76,7 +75,8 @@ namespace Alsing.Drawing
             g.FillRectangle(light, r.Left + 1, r.Bottom - 1, r.Width - 1, 1);
         }
 
-        private static void RaisedInnerBorder(Graphics g, Brush dark, Rectangle r, Brush light) {
+        private static void RaisedInnerBorder(Graphics g, Brush dark, Rectangle r, Brush light)
+        {
             g.FillRectangle(light, r.Left, r.Top, r.Width - 1, 1);
             g.FillRectangle(light, r.Left, r.Top, 1, r.Height - 1);
 
@@ -84,7 +84,8 @@ namespace Alsing.Drawing
             g.FillRectangle(dark, r.Left, r.Bottom - 1, r.Width, 1);
         }
 
-        private static void DrawRaisedBorder(Graphics g, Brush dark, Rectangle r, Brush darkdark, Brush light, Brush normal) {
+        private static void DrawRaisedBorder(Graphics g, Brush dark, Rectangle r, Brush darkdark, Brush light, Brush normal)
+        {
             g.FillRectangle(normal, r.Left, r.Top, r.Width - 1, 1);
             g.FillRectangle(normal, r.Left, r.Top, 1, r.Height - 1);
             g.FillRectangle(light, r.Left + 1, r.Top + 1, r.Width - 2, 1);
@@ -96,7 +97,8 @@ namespace Alsing.Drawing
             g.FillRectangle(dark, r.Left + 1, r.Bottom - 2, r.Width - 2, 1);
         }
 
-        private static void DrawSunkenBorder(Graphics g, Brush dark, Rectangle r, Brush darkdark, Brush light, Brush normal) {
+        private static void DrawSunkenBorder(Graphics g, Brush dark, Rectangle r, Brush darkdark, Brush light, Brush normal)
+        {
             g.FillRectangle(dark, r.Left, r.Top, r.Width, 1);
             g.FillRectangle(dark, r.Left, r.Top, 1, r.Height);
             g.FillRectangle(darkdark, r.Left + 1, r.Top + 1, r.Width - 2, 1);
@@ -108,11 +110,13 @@ namespace Alsing.Drawing
             g.FillRectangle(normal, r.Left + 2, r.Bottom - 2, r.Width - 3, 1);
         }
 
-        private static SolidBrush GetNormalBrush(Color BorderColor) {
+        private static SolidBrush GetNormalBrush(Color BorderColor)
+        {
             return new SolidBrush(BorderColor);
         }
 
-        private static SolidBrush GetLightBrush(Color BorderColor) {
+        private static SolidBrush GetLightBrush(Color BorderColor)
+        {
             return BorderColor.GetBrightness() > 0.6 ? new SolidBrush(MixColors(BorderColor, Color.White, 1)) : new SolidBrush(MixColors(BorderColor, Color.White, 0.5));
         }
 
@@ -128,26 +132,25 @@ namespace Alsing.Drawing
             return dark;
         }
 
-
         public static void DrawBorder(BorderStyle2 Style, Color BorderColor, Graphics g, Rectangle r)
         {
             switch (Style)
             {
                 case BorderStyle2.Dotted:
                     {
-                        r.Width --;
-                        r.Height --;
+                        r.Width--;
+                        r.Height--;
                         g.DrawRectangle(new Pen(SystemColors.Control), r);
-                        var p = new Pen(BorderColor) {DashStyle = DashStyle.Dot};
+                        var p = new Pen(BorderColor) { DashStyle = DashStyle.Dot };
                         g.DrawRectangle(p, r);
                         break;
                     }
                 case BorderStyle2.Dashed:
                     {
-                        r.Width --;
-                        r.Height --;
+                        r.Width--;
+                        r.Height--;
                         g.DrawRectangle(new Pen(SystemColors.Control), r);
-                        var p = new Pen(BorderColor) {DashStyle = DashStyle.Dash};
+                        var p = new Pen(BorderColor) { DashStyle = DashStyle.Dash };
                         g.DrawRectangle(p, r);
 
                         break;
@@ -162,8 +165,8 @@ namespace Alsing.Drawing
                     }
                 case BorderStyle2.FixedSingle:
                     {
-                        r.Width --;
-                        r.Height --;
+                        r.Width--;
+                        r.Height--;
                         g.DrawRectangle(new Pen(BorderColor), r);
                         break;
                     }
@@ -253,7 +256,7 @@ namespace Alsing.Drawing
 
         public static void DrawDesignTimeLine(Graphics g, int x1, int y1, int x2, int y2)
         {
-            var p = new Pen(SystemColors.ControlDarkDark) {DashOffset = 10, DashStyle = DashStyle.Dash};
+            var p = new Pen(SystemColors.ControlDarkDark) { DashOffset = 10, DashStyle = DashStyle.Dash };
             g.DrawLine(p, x1, y1, x2, y2);
             p.Dispose();
         }
@@ -283,7 +286,7 @@ namespace Alsing.Drawing
         public static void DrawTransparentImage(Graphics g, Image Image, int X, int Y, float TransparencyFactor)
         {
             var ia = new ImageAttributes();
-            var cm = new ColorMatrix {Matrix33 = TransparencyFactor, Matrix00 = 1.0F, Matrix11 = 1.0F, Matrix22 = 1.0F};
+            var cm = new ColorMatrix { Matrix33 = TransparencyFactor, Matrix00 = 1.0F, Matrix11 = 1.0F, Matrix22 = 1.0F };
 
             ia.SetColorMatrix(cm);
             g.DrawImage(Image, new Rectangle(X, Y, Image.Width, Image.Height), 0, 0, Image.Width, Image.Height,
@@ -292,9 +295,9 @@ namespace Alsing.Drawing
 
         public static void DrawDesignTimeBorder(Graphics g, Rectangle rect)
         {
-            rect.Width --;
-            rect.Height --;
-            var p = new Pen(SystemColors.ControlDarkDark) {DashStyle = DashStyle.Dash};
+            rect.Width--;
+            rect.Height--;
+            var p = new Pen(SystemColors.ControlDarkDark) { DashStyle = DashStyle.Dash };
             g.DrawRectangle(p, rect);
             p.Dispose();
         }
@@ -319,13 +322,12 @@ namespace Alsing.Drawing
             ControlPaint.FillReversibleRectangle(new Rectangle(x, height + 2 + y, 7, 2), c);
         }
 
-
         public static Bitmap DrawControl(Control control)
         {
             var b = new Bitmap(control.Width, control.Height);
             Graphics g = Graphics.FromImage(b);
             IntPtr hdc = g.GetHdc();
-            Alsing.Windows.NativeMethods.SendMessage(control.Handle, (int)WindowMessage.WM_PRINT, (int)hdc,
+            Windows.NativeMethods.SendMessage(control.Handle, (int)WindowMessage.WM_PRINT, (int)hdc,
                                                (int)(WMPrintFlags.PRF_CLIENT | WMPrintFlags.PRF_ERASEBKGND));
             g.ReleaseHdc(hdc);
             g.Dispose();
@@ -337,13 +339,12 @@ namespace Alsing.Drawing
         {
             Graphics g = Graphics.FromImage(b);
             IntPtr hdc = g.GetHdc();
-            int i = Alsing.Windows.NativeMethods.SendMessage(control.Handle, (int)WindowMessage.WM_PRINT, (int)hdc,
-                                              (int) (WMPrintFlags.PRF_CLIENT | WMPrintFlags.PRF_ERASEBKGND));
+            int i = Windows.NativeMethods.SendMessage(control.Handle, (int)WindowMessage.WM_PRINT, (int)hdc,
+                                              (int)(WMPrintFlags.PRF_CLIENT | WMPrintFlags.PRF_ERASEBKGND));
             g.ReleaseHdc(hdc);
             g.Dispose();
             return i != 0;
         }
-
 
         public static void DrawSortArrow(int x, int y, Graphics g, bool Ascending)
         {

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Collections.Concurrent;
 using System.Threading;
 
@@ -16,7 +14,6 @@ namespace DragonDataSniffer
         private Thread main;
         private int sleep = 1;
 
-
         public Worker()
         {
             main = new Thread(Work);
@@ -29,8 +26,10 @@ namespace DragonDataSniffer
         {
             try
             {
-                Instance = new Worker();
-                Instance.sleep = 1;
+                Instance = new Worker()
+                {
+                    sleep = 1
+                };
                 return true;
             }
             catch { return false; }
@@ -41,14 +40,11 @@ namespace DragonDataSniffer
             callbacks.Enqueue(pCallback);
         }
 
-
-
         private void Work()
         {
-            Action action;
-            while (this.IsRunning)
+            while (IsRunning)
             {
-                while (callbacks.TryDequeue(out action))
+                while (callbacks.TryDequeue(out Action action))
                 {
                     action();
                 }

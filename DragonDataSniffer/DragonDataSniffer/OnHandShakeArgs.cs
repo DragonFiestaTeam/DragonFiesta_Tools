@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DragonDataSniffer
 {
@@ -12,6 +8,7 @@ namespace DragonDataSniffer
         {
             XorPos = pXorPos;
         }
+
         public short XorPos { get; private set; }
     }
 }

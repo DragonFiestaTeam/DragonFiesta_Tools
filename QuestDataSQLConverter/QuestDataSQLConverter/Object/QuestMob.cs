@@ -5,42 +5,45 @@ namespace QuestDataSQLConverter.Object
 {
     public class QuestMob
     {
-        public ushort ID { get; private set; }
-        public bool IsNPC { get; private set; }
-        public bool IsEnabled { get; private set; }
+        public byte IsEnabled { get; private set; }
+        public ushort MobID { get; private set; }
+        public byte IsKillable { get; private set; }
+        public byte Amount { get; private set; }
 
-        public bool IsToKill { get; private set; }
-        public bool AmountToKill { get; private set; }
 
-        public void SaveSQL(ushort qID)
+        public void SaveSQL(int qID)
         {
-            string SQL = "INSERT INTO QuestMob (QuestID,IsNPC,IsEnabled,IsToKill,AmountToKIll,MobID) VALUES"
-                + "('" + qID + "','" + (Convert.ToByte(IsNPC) + "','" + Convert.ToByte(IsEnabled) + "','" + Convert.ToByte(IsToKill) + "','" + Convert.ToByte(AmountToKill) + "','" + ID + "')");
+
+            string SQL = "INSERT INTO QuestMob (QuestID,IsEnabled,MobID,IsKillable,Amount) VALUES"
+                + "('" + qID + "','" + (Convert.ToByte(IsEnabled) + "','" + MobID + "','" + Convert.ToByte(IsKillable) + "','" + Amount + "')");
             DatabaseManager.RunSQL(SQL);
         }
+
         public static bool Read(QuestStream pStream, out QuestMob pMob)
         {
-            bool pIsEnabled;
-            bool pIsNPC;
-            ushort MobID;
-            bool pIsToKill;
-            bool pAmountToKill;
             pMob = null;
-            if(!pStream.TryReadBoolean(out pIsEnabled)) { return false; }
-            if (!pStream.TryReadBoolean(out pIsNPC)) { return false; }
-            if(!pStream.TryReadUInt16(out MobID)) { return false;  }
-            if (!pStream.TryReadBoolean(out pIsToKill)) { return false; }
-            if (!pStream.TryReadBoolean(out pAmountToKill)) { return false; }
+            if (!pStream.TryReadByte(out byte pIsEnabled)) { return false; }
+
+            if (!pStream.ReadSkip(1)) { return false; }
+
+            if (!pStream.TryReadUInt16(out ushort MobID)) { return false; }
+
+            if (!pStream.TryReadByte(out byte pIsKillable)) { return false; }
+
+            if (!pStream.TryReadByte(out byte pAmount)) { return false; }
+
+            if (!pStream.ReadSkip(1)) { return false; }
+
+            if (!pStream.ReadSkip(1)) { return false; }
+
 
             pMob = new QuestMob
             {
                 IsEnabled = pIsEnabled,
-                IsNPC = pIsNPC,
-                ID = MobID,
-                IsToKill = pIsToKill,
-                AmountToKill = pAmountToKill,
+                MobID = MobID,
+                IsKillable = pIsKillable,
+                Amount = pAmount
             };
-            
 
             return true;
         }

@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections;
-using System.Globalization;
+using System.Collections.Generic;
 using System.Data;
-using SHNtoMySQLConverter;
+using System.Globalization;
+using System.Text;
 
 namespace SHNtoMySQLConverter.Database
 {
     public class DatabaseHelper : SHNtoMySQLConverter.Connection.DatabaseHelper
     {
         public string conns { get; set; }
-        #region Querys
-        #endregion
+
+
 
         #region .ctor
 
@@ -24,7 +22,7 @@ namespace SHNtoMySQLConverter.Database
             conns = connectionString;
         }
 
-        #endregion
+        #endregion .ctor
 
         public static void Initialize(string connstring, string connectionname)
         {
@@ -32,6 +30,7 @@ namespace SHNtoMySQLConverter.Database
             //Log.WriteLine(LogLevel.Info, connectionname + " Connection Initialize");
             Instance = new DatabaseHelper(connectionString);
         }
+
         public int KillSleepingConnections(int iMinSecondsToExpire)
         {
             string strSQL = "show processlist";
@@ -141,7 +140,6 @@ namespace SHNtoMySQLConverter.Database
                     SqlCmd.ExecuteNonQuery();
 
                     return true;
-
                 }
                 catch (MySqlException ex)
                 {
@@ -151,17 +149,15 @@ namespace SHNtoMySQLConverter.Database
                 }
             }
         }
+
         public byte[] GetBlob(MySqlCommand pCommand)
         {
             byte[] retvalue;
             try
             {
-
                 pCommand.Connection = this.GetConnection();
                 pCommand.Prepare();
                 retvalue = (byte[])pCommand.ExecuteScalar();
-
-
             }
             catch (Exception ex)
             {
@@ -173,7 +169,6 @@ namespace SHNtoMySQLConverter.Database
 
         public MySqlDataReader CreateReader(string query)
         {
-
             Log.WriteLine(LogLevel.Info, query);
             try
             {
@@ -185,12 +180,9 @@ namespace SHNtoMySQLConverter.Database
             }
             catch (MySqlException ex)
             {
-
                 Log.WriteLine(LogLevel.Exception, ex.Message.ToString());
                 return null;
-
             }
-
         }
 
         public static DatabaseHelper Instance { get; private set; }

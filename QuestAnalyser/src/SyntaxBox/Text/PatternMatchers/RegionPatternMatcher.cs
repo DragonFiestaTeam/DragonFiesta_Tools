@@ -33,7 +33,7 @@ namespace Alsing.Text.PatternMatchers
 
         public override string[] DefaultPrefixes
         {
-            get { return new[] {StartChar.ToString()}; }
+            get { return new[] { StartChar.ToString() }; }
         }
 
         public char StartChar { get; set; }
@@ -58,7 +58,6 @@ namespace Alsing.Text.PatternMatchers
 
                 length++;
             }
-
 
             return 0;
         }

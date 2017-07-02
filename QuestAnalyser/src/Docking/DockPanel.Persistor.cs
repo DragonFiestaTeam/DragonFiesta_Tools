@@ -1,12 +1,10 @@
 using System;
 using System.ComponentModel;
-using System.Windows.Forms;
 using System.Drawing;
-using WeifenLuo.WinFormsUI.Docking;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
-using System.Globalization;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -24,6 +22,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             private struct DockPanelStruct
             {
                 private double m_dockLeftPortion;
+
                 public double DockLeftPortion
                 {
                     get { return m_dockLeftPortion; }
@@ -31,6 +30,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private double m_dockRightPortion;
+
                 public double DockRightPortion
                 {
                     get { return m_dockRightPortion; }
@@ -38,6 +38,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private double m_dockTopPortion;
+
                 public double DockTopPortion
                 {
                     get { return m_dockTopPortion; }
@@ -45,6 +46,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private double m_dockBottomPortion;
+
                 public double DockBottomPortion
                 {
                     get { return m_dockBottomPortion; }
@@ -52,6 +54,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private int m_indexActiveDocumentPane;
+
                 public int IndexActiveDocumentPane
                 {
                     get { return m_indexActiveDocumentPane; }
@@ -59,6 +62,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private int m_indexActivePane;
+
                 public int IndexActivePane
                 {
                     get { return m_indexActivePane; }
@@ -69,6 +73,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             private struct ContentStruct
             {
                 private string m_persistString;
+
                 public string PersistString
                 {
                     get { return m_persistString; }
@@ -76,6 +81,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private double m_autoHidePortion;
+
                 public double AutoHidePortion
                 {
                     get { return m_autoHidePortion; }
@@ -83,6 +89,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private bool m_isHidden;
+
                 public bool IsHidden
                 {
                     get { return m_isHidden; }
@@ -90,6 +97,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private bool m_isFloat;
+
                 public bool IsFloat
                 {
                     get { return m_isFloat; }
@@ -100,6 +108,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             private struct PaneStruct
             {
                 private DockState m_dockState;
+
                 public DockState DockState
                 {
                     get { return m_dockState; }
@@ -107,6 +116,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private int m_indexActiveContent;
+
                 public int IndexActiveContent
                 {
                     get { return m_indexActiveContent; }
@@ -114,6 +124,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private int[] m_indexContents;
+
                 public int[] IndexContents
                 {
                     get { return m_indexContents; }
@@ -121,6 +132,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private int m_zOrderIndex;
+
                 public int ZOrderIndex
                 {
                     get { return m_zOrderIndex; }
@@ -131,6 +143,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             private struct NestedPane
             {
                 private int m_indexPane;
+
                 public int IndexPane
                 {
                     get { return m_indexPane; }
@@ -138,6 +151,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private int m_indexPrevPane;
+
                 public int IndexPrevPane
                 {
                     get { return m_indexPrevPane; }
@@ -145,6 +159,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private DockAlignment m_alignment;
+
                 public DockAlignment Alignment
                 {
                     get { return m_alignment; }
@@ -152,6 +167,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private double m_proportion;
+
                 public double Proportion
                 {
                     get { return m_proportion; }
@@ -162,6 +178,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             private struct DockWindowStruct
             {
                 private DockState m_dockState;
+
                 public DockState DockState
                 {
                     get { return m_dockState; }
@@ -169,6 +186,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private int m_zOrderIndex;
+
                 public int ZOrderIndex
                 {
                     get { return m_zOrderIndex; }
@@ -176,6 +194,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private NestedPane[] m_nestedPanes;
+
                 public NestedPane[] NestedPanes
                 {
                     get { return m_nestedPanes; }
@@ -186,6 +205,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             private struct FloatWindowStruct
             {
                 private Rectangle m_bounds;
+
                 public Rectangle Bounds
                 {
                     get { return m_bounds; }
@@ -193,6 +213,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private int m_zOrderIndex;
+
                 public int ZOrderIndex
                 {
                     get { return m_zOrderIndex; }
@@ -200,6 +221,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 private NestedPane[] m_nestedPanes;
+
                 public NestedPane[] NestedPanes
                 {
                     get { return m_nestedPanes; }
@@ -511,7 +533,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             public static void LoadFromXml(DockPanel dockPanel, Stream stream, DeserializeDockContent deserializeContent, bool closeStream)
             {
-
                 if (dockPanel.Contents.Count != 0)
                     throw new InvalidOperationException(Strings.DockPanel_LoadFromXml_AlreadyInitialized);
 

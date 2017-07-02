@@ -1,32 +1,33 @@
-﻿using System;
-using System.Net;
-using System.Linq;
-using System.Net.Sockets;
+﻿using DragonDataSniffer.Object;
+using System;
 using System.Collections.Concurrent;
+using System.Net;
+using System.Net.Sockets;
 using System.Threading;
-using DragonDataSniffer.Object;
 
 namespace DragonDataSniffer.Network
 {
-    public class  ClientBase : IDisposable {
-		public Socket Socket { get; internal set; }
+    public class ClientBase : IDisposable
+    {
+        public Socket Socket { get; internal set; }
         public IPAddress IP { get; private set; }
-        public ClientType pType { get; set; }//using to identy client
-        public Character pCharacter { get; internal set; }
+        public ClientType PType { get; set; }//using to identy client
+        public Character PCharacter { get; internal set; }
         public UInt16 Port { get; private set; }
 
         public event EventHandler<PacketReceivedEventArgs> PacketReceived;
+
         public event EventHandler<EventArgs> Disconnected;
-       
+
         public bool IsDisposed
         {
             get { return (isDisposedInt > 0); }
         }
+
         private Int32 isDisposedInt;
+
         //receive
         public const Int32 MaxReceiveBuffer = 16384;
-     
-      
 
         public FiestaCryptoProvider Crypto = null;
         public byte[] receiveBuffer;
@@ -37,36 +38,36 @@ namespace DragonDataSniffer.Network
         private UInt16 packetLength;
         private byte[] packetBuffer;
         private Int32 packetIndex;
-       
+
         //send
         public ConcurrentQueue<byte[]> sendBuffer;
+
         private Int32 isSendingInt;
 
         public ClientBase()
         {
-
             receiveBuffer = new byte[MaxReceiveBuffer];
             sendBuffer = new ConcurrentQueue<byte[]>();
         }
+
         public ClientBase(Socket pSocket, ClientType pClientType)
         {
             Socket = pSocket;
-           pType = pClientType;
+            PType = pClientType;
             var addr = (IPEndPoint)pSocket.RemoteEndPoint;
             IP = addr.Address;
             Port = (UInt16)addr.Port;
             receiveBuffer = new byte[MaxReceiveBuffer];
             sendBuffer = new ConcurrentQueue<byte[]>();
-
         }
-      
+
         public void Dispose()
         {
             if (IsDisposed)
             {
                 return;
             }
-    
+
             if (Socket != null)
             {
                 Socket.Close();
@@ -80,9 +81,9 @@ namespace DragonDataSniffer.Network
             PacketReceived = null;
             isDisposedInt = 1;
         }
+
         ~ClientBase()
         {
-           
             Dispose();
         }
 
@@ -111,11 +112,11 @@ namespace DragonDataSniffer.Network
             }
             catch (Exception ex)
             {
-
-                Log.WriteLine(LogLevel.Exception,ex.ToString());
+                Log.WriteLine(LogLevel.Exception, ex.ToString());
                 OnDisconnect();
             }
         }
+
         private void EndReceive(object sender, SocketAsyncEventArgs args)
         {
             if (IsDisposed)
@@ -145,7 +146,6 @@ namespace DragonDataSniffer.Network
                     Buffer.BlockCopy(remaining, 0, data, 0, remaining.Length);
                     Buffer.BlockCopy(receiveBuffer, 0, data, remaining.Length, transfered);
 
-
                     //reset remaining bytes
                     remaining = null;
                 }
@@ -156,14 +156,12 @@ namespace DragonDataSniffer.Network
                     Buffer.BlockCopy(receiveBuffer, 0, data, 0, transfered);
                 }
 
-
                 //handle all bytes
                 var dataIndex = 0;
                 while (data.Length > dataIndex)
                 {
                     //get left bytes
                     var bytesLeft = (data.Length - dataIndex);
-
 
                     //parse packet length
                     if (!headerParsed)
@@ -180,7 +178,6 @@ namespace DragonDataSniffer.Network
                             return;
                         }
 
-
                         headerLength = 1;
                         packetLength = data[dataIndex];
 
@@ -190,20 +187,16 @@ namespace DragonDataSniffer.Network
                             packetLength = BitConverter.ToUInt16(data, (dataIndex + 1));
                         }
 
-
                         //update indexes
                         dataIndex += headerLength;
                         bytesLeft -= headerLength;
-
 
                         //create packet buffer
                         packetBuffer = new byte[packetLength];
                         packetIndex = 0;
 
-
                         //we got our len
                         headerParsed = true;
-
 
                         //check if there are any bytes left for handling
                         if (bytesLeft < 1)
@@ -264,6 +257,7 @@ namespace DragonDataSniffer.Network
                 BeginReceive();
             }
         }
+
         private void BeginSend()
         {
             if (IsDisposed)
@@ -273,13 +267,11 @@ namespace DragonDataSniffer.Network
 
             try
             {
-                byte[] buffer;
-                if (sendBuffer.TryPeek(out buffer))
+                if (sendBuffer.TryPeek(out byte[] buffer))
                 {
                     var args = new SocketAsyncEventArgs();
                     args.Completed += EndSend;
                     args.SetBuffer(buffer, 0, buffer.Length);
-
 
                     if (!Socket.SendAsync(args))
                     {
@@ -297,6 +289,7 @@ namespace DragonDataSniffer.Network
                 OnDisconnect();
             }
         }
+
         private void EndSend(object sender, SocketAsyncEventArgs args)
         {
             if (IsDisposed)
@@ -314,9 +307,8 @@ namespace DragonDataSniffer.Network
                     return;
                 }
 
-
-                byte[] buffer; // can be sent as state object to args
-                if (sendBuffer.TryPeek(out buffer))
+                // can be sent as state object to args
+                if (sendBuffer.TryPeek(out byte[] buffer))
                 {
                     //check if all bytes were send
                     if (buffer.Length == transfered)
@@ -373,7 +365,7 @@ namespace DragonDataSniffer.Network
                 OnDisconnect();
             }
         }
-       
+
         public void SendPacket(FiestaPacket pPacket)
         {
             if (this is GameClient)
@@ -386,10 +378,8 @@ namespace DragonDataSniffer.Network
             }
         }
 
-
         public void OnDisconnect()
         {
-
             if (Disconnected != null && !IsDisposed)
             {
                 Disconnected(this, new EventArgs());
@@ -398,4 +388,3 @@ namespace DragonDataSniffer.Network
         }
     }
 }
-

@@ -1,30 +1,26 @@
 #region using
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
 
 using Irony.Compiler;
 using ScriptNET.Runtime;
-#endregion
+using System;
+
+#endregion using
 
 namespace ScriptNET.Ast
 {
-  /// <summary>
-  /// 
-  /// </summary>
-  internal class ScriptAstTemplate : ScriptAst
-  {
-    public ScriptAstTemplate(AstNodeArgs args)
-      : base(args)
+    /// <summary>
+    ///
+    /// </summary>
+    internal class ScriptAstTemplate : ScriptAst
     {
+        public ScriptAstTemplate(AstNodeArgs args)
+          : base(args)
+        {
+        }
 
+        public override void Evaluate(IScriptContext context)
+        {
+            throw new NotSupportedException();
+        }
     }
-
-    public override void Evaluate(IScriptContext context)
-    {
-      throw new NotSupportedException();
-    }
-
-  }
 }

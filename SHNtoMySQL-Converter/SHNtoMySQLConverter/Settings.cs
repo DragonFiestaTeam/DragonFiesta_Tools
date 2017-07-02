@@ -14,11 +14,10 @@
     along with Zepheus Emulator.  If not, see <http://www.gnu.org/licenses/>.  */
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using SHNtoMySQLConverter;
+using System.Linq;
 
 namespace SHNtoMySQLConverter
 {
@@ -30,9 +29,11 @@ namespace SHNtoMySQLConverter
         private static readonly Settings instance = new Settings();
         public static string Comments { get { return comments; } }
         private static string comments = string.Empty;
+
         // TS: This is otherwise known as a dictionary:
         //private static List<KeyValuePair<object, object>> Properties;
         private readonly Dictionary<string, object> properties;
+
         private bool isInitialized;
         public static Random Random { get; private set; }
 
@@ -44,7 +45,7 @@ namespace SHNtoMySQLConverter
 
         /// <summary>
         /// Automatically loads settings from config file
-        /// </summary>        
+        /// </summary>
 
         public static bool Initialize()
         {
@@ -90,10 +91,12 @@ namespace SHNtoMySQLConverter
         {
             return Convert.ToInt32(instance.properties[key]);
         }
+
         public static uint GetUInt32(string key)
         {
             return Convert.ToUInt32(instance.properties[key]);
         }
+
         /// <summary>
         /// Gets an Int16 type variable from the file
         /// </summary>
@@ -124,7 +127,7 @@ namespace SHNtoMySQLConverter
             return instance.properties[key].ToString();
         }
 
-        #endregion
+        #endregion Get methods
 
         /// <summary>
         /// Reads the file and parse it into a List of Key Vaule Pairs.

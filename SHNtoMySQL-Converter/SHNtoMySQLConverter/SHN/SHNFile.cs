@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
+﻿using SHNtoMySQLConverter.Encryption;
+using System;
 using System.Data;
+using System.IO;
+using System.Text;
 using System.Threading;
-using SHNtoMySQLConverter.Encryption;
-
 
 namespace SHNtoMySQLConverter.SHN
 {
     public delegate void DOnSaveFinished(SHNFile file);
+
     public delegate void DOnSaveError(SHNFile file, string error);
 
     public class SHNFile : DataTable
@@ -24,6 +22,7 @@ namespace SHNtoMySQLConverter.SHN
         public uint DefaultRecordLength { get; private set; }
 
         public event DOnSaveError OnSaveError;
+
         public event DOnSaveFinished OnSaveFinished;
 
         private bool isSaving = false;
@@ -37,7 +36,6 @@ namespace SHNtoMySQLConverter.SHN
 
         public SHNFile()
         {
-
         }
 
         public void Load()
@@ -73,7 +71,7 @@ namespace SHNtoMySQLConverter.SHN
         public bool Save(string path)
         {
             if (isSaving) return false;
-            new Thread(delegate()
+            new Thread(delegate ()
             {
                 InternalSave(path);
             }).Start();
@@ -143,32 +141,40 @@ namespace SHNtoMySQLConverter.SHN
                         case 16:
                             writer.Write((byte)row[colIndex]);
                             break;
+
                         case 2:
                             writer.Write((ushort)row[colIndex]);
                             break;
+
                         case 3:
                         case 11:
                         case 18:
                         case 27:
                             writer.Write((uint)row[colIndex]);
                             break;
+
                         case 5:
                             writer.Write((Single)row[colIndex]);
                             break;
+
                         case 9:
                         case 24:
                             writer.WritePaddedString((string)row[colIndex], column.Length);
                             break;
+
                         case 13:
                         case 21:
                             writer.Write((short)row[colIndex]);
                             break;
+
                         case 20:
                             writer.Write((sbyte)row[colIndex]);
                             break;
+
                         case 22:
                             writer.Write((int)row[colIndex]);
                             break;
+
                         case 26:
                             string tmp = (string)row[colIndex];
                             unkLength += (short)tmp.Length;
@@ -223,38 +229,48 @@ namespace SHNtoMySQLConverter.SHN
                         case 16:
                             values[j] = reader.ReadByte();
                             break;
+
                         case 2:
                             values[j] = reader.ReadUInt16();
                             break;
+
                         case 3:
                         case 11:
                         case 18:
                         case 27:
                             values[j] = reader.ReadUInt32();
                             break;
+
                         case 5:
                             values[j] = reader.ReadSingle();
                             break;
+
                         case 9:
                         case 24:
                             values[j] = reader.ReadPaddedString(((SHNColumn)this.Columns[j]).Length);
                             break;
+
                         case 13:
                         case 21:
                             values[j] = reader.ReadInt16();
                             break;
+
                         case 20:
                             values[j] = reader.ReadSByte();
                             break;
+
                         case 22:
                             values[j] = reader.ReadInt32();
                             break;
+
                         case 26:       // TODO: Should be read until first null byte, to support more than 1 this kind of column
                             values[j] = reader.ReadPaddedString((int)(RowLength - DefaultRecordLength + 1));
                             break;
-                        case 29:       
+
+                        case 29:
                             values[j] = reader.ReadPaddedString((int)(RowLength - DefaultRecordLength + 1));
                             break;
+
                         default:
                             throw new Exception("New column type found");
                     }

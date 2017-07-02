@@ -1,20 +1,12 @@
 ﻿using System;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
-using WeifenLuo.WinFormsUI.Docking;
 
 namespace QuestDataAnalyser
 {
     public partial class NewScriptForm : Form
     {
-
         public NewScriptForm()
         {
             InitializeComponent();
@@ -23,7 +15,6 @@ namespace QuestDataAnalyser
         private void NewScriptForm_Load(object sender, EventArgs e)
         {
             mScriptEditor.Document.SetSyntaxFromEmbeddedResource(Assembly.GetExecutingAssembly(), "QuestDataAnalyser.ScriptSyntax.txt");
-
         }
 
         private void button1_Click(object sender, System.EventArgs e)
@@ -48,10 +39,10 @@ namespace QuestDataAnalyser
             string FileText = mScriptEditor.Document.Text;
             string ScriptName = ScriptNameBox.Text;
 
-            StreamWriter file = new StreamWriter(@"Scripts/"+ScriptNameBox.Text+".txt");
+            StreamWriter file = new StreamWriter(@"Scripts/" + ScriptNameBox.Text + ".txt");
             file.Write(mScriptEditor.Document.Text);
             file.Close();
-            this.Close();
+            Close();
         }
     }
 }

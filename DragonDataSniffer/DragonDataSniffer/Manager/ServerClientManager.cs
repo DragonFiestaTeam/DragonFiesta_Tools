@@ -1,14 +1,14 @@
-﻿using System;
+﻿using DragonDataSniffer.Network;
+using System;
 using System.Collections.Generic;
-using DragonDataSniffer.Network;
 
 namespace DragonDataSniffer.Manager
 {
     [TunnelModule(InitializationStage.Clients)]
     public class ServerClientManager
     {
-        private Dictionary<ClientType,string> IPAdressByType { get; set; }
-        private Dictionary<ClientType,ServerClient> ClientList { get; set; }
+        private Dictionary<ClientType, string> IPAdressByType { get; set; }
+        private Dictionary<ClientType, ServerClient> ClientList { get; set; }
         public static ServerClientManager Instance { get; private set; }
 
         public ServerClientManager()
@@ -17,6 +17,7 @@ namespace DragonDataSniffer.Manager
             IPAdressByType = new Dictionary<ClientType, string>();
             AddIPByType(ClientType.Login, Config.Instance.ConnectIP);
         }
+
         [InitializerMethod]
         public static bool Load()
         {
@@ -32,13 +33,14 @@ namespace DragonDataSniffer.Manager
             }
         }
 
-        public bool GetClientByType(ClientType pType,out ServerClient pClient)
+        public bool GetClientByType(ClientType pType, out ServerClient pClient)
         {
             if (ClientList.TryGetValue(pType, out pClient))
                 return true;
 
             return false;
         }
+
         public bool AddIPByType(ClientType pType, string IP)
         {
             if (IPAdressByType.ContainsKey(pType))
@@ -67,6 +69,7 @@ namespace DragonDataSniffer.Manager
             }
             return false;
         }
+
         public bool RemovByType(ClientType pType)
         {
             return ClientList.Remove(pType);

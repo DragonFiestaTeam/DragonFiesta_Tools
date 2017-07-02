@@ -8,10 +8,10 @@
 // *
 // *
 
+using Alsing.SourceCode;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Alsing.SourceCode;
 
 namespace Alsing.Windows.Forms.SyntaxBox
 {
@@ -91,7 +91,6 @@ namespace Alsing.Windows.Forms.SyntaxBox
         public Row Row;
     }
 
-
     /// <summary>
     /// Describes in what area a mouse event occured on a row
     /// </summary>
@@ -101,14 +100,17 @@ namespace Alsing.Windows.Forms.SyntaxBox
         /// Represents the gutter margin
         /// </summary>
         GutterArea,
+
         /// <summary>
         /// Represents the LineNumber section
         /// </summary>
         LineNumberArea,
+
         /// <summary>
         /// Represents the area where the folding symbols are shown
         /// </summary>
         FoldingArea,
+
         /// <summary>
         /// Represents the actual text part of a row
         /// </summary>

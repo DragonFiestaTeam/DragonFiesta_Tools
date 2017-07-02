@@ -8,8 +8,8 @@
 // *
 // *
 
-using System;
 using Alsing.Text.PatternMatchers;
+using System;
 
 namespace Alsing.Text
 {
@@ -27,7 +27,7 @@ namespace Alsing.Text
             textLookup = new char[65536];
             for (int i = 0; i < 65536; i++)
             {
-                textLookup[i] = (char) i;
+                textLookup[i] = (char)i;
             }
             textLookup['\t'] = ' ';
 
@@ -52,23 +52,19 @@ namespace Alsing.Text
             }
         }
 
-        #endregion //END PUBLIC PROPERTY SEPARATORS
-
-        
-
-        
+        #endregion PUBLIC PROPERTY SEPARATORS
 
         //this is wicked fast
         //do not refactor extract methods from this if you want to keep the speed
         public MatchResult Match(string text, int startIndex)
         {
-            if(string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(text);
 
-            var lastMatch = new MatchResult {Text = text};
+            var lastMatch = new MatchResult { Text = text };
             int textLength = text.Length;
 
-            for (int currentIndex = startIndex; currentIndex < textLength; currentIndex ++)
+            for (int currentIndex = startIndex; currentIndex < textLength; currentIndex++)
             {
                 //call any prefixless patternmatchers
 
@@ -84,7 +80,7 @@ namespace Alsing.Text
                         if (patternMatchIndex > 0 && patternMatchIndex > lastMatch.Length)
                         {
                             bool leftIsSeparator = currentIndex == 0 ? true : separatorCharLookup[text[currentIndex - 1]];
-                            bool rightIsSeparator = (currentIndex+patternMatchIndex) == textLength ? true : separatorCharLookup[text[currentIndex + patternMatchIndex]];
+                            bool rightIsSeparator = (currentIndex + patternMatchIndex) == textLength ? true : separatorCharLookup[text[currentIndex + patternMatchIndex]];
 
                             if (!patternMatcherReference.NeedSeparators || (leftIsSeparator && rightIsSeparator))
                             {
@@ -99,7 +95,7 @@ namespace Alsing.Text
                     }
                 }
 
-                #endregion
+                #endregion HasExpressions
 
                 //lookup the first token tree node
                 TokenTreeNode node = nodes[text[currentIndex]];
@@ -110,7 +106,6 @@ namespace Alsing.Text
 
                     continue;
                 }
-
 
                 for (int matchIndex = currentIndex + 1; matchIndex <= textLength; matchIndex++)
                 {
@@ -128,7 +123,7 @@ namespace Alsing.Text
                             if (patternMatchIndex > 0 && patternMatchIndex > lastMatch.Length)
                             {
                                 bool leftIsSeparator = currentIndex == 0 ? true : separatorCharLookup[text[currentIndex - 1]];
-                                bool rightIsSeparator = (currentIndex+patternMatchIndex+matchIndex) == textLength ? true : separatorCharLookup[text[currentIndex + patternMatchIndex+matchIndex]];
+                                bool rightIsSeparator = (currentIndex + patternMatchIndex + matchIndex) == textLength ? true : separatorCharLookup[text[currentIndex + patternMatchIndex + matchIndex]];
 
                                 if (!patternMatcherReference.NeedSeparators || (leftIsSeparator && rightIsSeparator))
                                 {
@@ -143,7 +138,7 @@ namespace Alsing.Text
                         }
                     }
 
-                    #endregion
+                    #endregion HasExpressions
 
                     #region IsEndNode
 
@@ -164,7 +159,7 @@ namespace Alsing.Text
                         }
                     }
 
-                    #endregion
+                    #endregion IsEndNode
 
                     //try fetch a node at this index
                     node = node.GetNextNode(textLookup[text[matchIndex]]);
@@ -181,7 +176,7 @@ namespace Alsing.Text
 
             if (lastMatch.Found)
                 return lastMatch;
- 
+
             //no match was found
             return MatchResult.NoMatch;
         }

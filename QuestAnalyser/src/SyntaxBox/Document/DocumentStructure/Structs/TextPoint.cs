@@ -22,12 +22,12 @@ namespace Alsing.SourceCode
         private int y;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TextPoint() { }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
@@ -38,7 +38,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int X
         {
@@ -51,7 +51,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Y
         {

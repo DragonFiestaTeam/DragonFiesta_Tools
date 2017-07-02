@@ -13,31 +13,31 @@ using System.Collections;
 namespace Alsing.SourceCode
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed class PatternListList : IEnumerable
     {
         private readonly ArrayList mGroups = new ArrayList();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsKeyword;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool IsOperator;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SpanDefinition Parent;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public PatternListList() {}
+        public PatternListList() { }
 
         public PatternListList(SpanDefinition parent)
         {
@@ -45,11 +45,11 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PatternList this[int index]
         {
-            get { return (PatternList) mGroups[index]; }
+            get { return (PatternList)mGroups[index]; }
 
             set { mGroups[index] = value; }
         }
@@ -57,7 +57,7 @@ namespace Alsing.SourceCode
         #region IEnumerable Members
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IEnumerator GetEnumerator()
@@ -65,10 +65,10 @@ namespace Alsing.SourceCode
             return mGroups.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable Members
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="Group"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Clear()
         {

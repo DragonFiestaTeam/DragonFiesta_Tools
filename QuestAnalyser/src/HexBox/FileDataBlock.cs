@@ -1,11 +1,9 @@
-using System;
-
 namespace System.Windows.Forms
 {
     internal sealed class FileDataBlock : DataBlock
     {
-        long _length;
-        long _fileOffset;
+        private long _length;
+        private long _fileOffset;
 
         public FileDataBlock(long fileOffset, long length)
         {

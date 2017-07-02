@@ -8,10 +8,10 @@
 // *
 // *
 
+using Alsing.Windows;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Alsing.Windows;
 
 namespace Alsing.Drawing.GDI
 {
@@ -45,12 +45,11 @@ namespace Alsing.Drawing.GDI
             Create();
         }
 
-
         public GDISurface(int width, int height, Control CompatibleControl, bool BindControl)
         {
-            IntPtr hDCControk = Alsing.Windows.NativeMethods.ControlDC(CompatibleControl);
+            IntPtr hDCControk = Windows.NativeMethods.ControlDC(CompatibleControl);
             Init(width, height, hDCControk);
-            Alsing.Windows.NativeMethods.ReleaseDC(CompatibleControl.Handle, hDCControk);
+            Windows.NativeMethods.ReleaseDC(CompatibleControl.Handle, hDCControk);
 
             if (BindControl)
             {
@@ -65,12 +64,11 @@ namespace Alsing.Drawing.GDI
             get
             {
                 if (_Control != null)
-                    return (Control) _Control.Target;
+                    return (Control)_Control.Target;
                 return null;
             }
             set { _Control = new WeakReference(value); }
         }
-
 
         public IntPtr hDC
         {
@@ -85,24 +83,23 @@ namespace Alsing.Drawing.GDI
         public Color TextForeColor
         {
             //map get,settextcolor
-            get { return Alsing.Windows.NativeMethods.IntToColor(Alsing.Windows.NativeMethods.GetTextColor(mhDC)); }
-            set { Alsing.Windows.NativeMethods.SetTextColor(mhDC, Alsing.Windows.NativeMethods.ColorToInt(value)); }
+            get { return Windows.NativeMethods.IntToColor(Windows.NativeMethods.GetTextColor(mhDC)); }
+            set { Windows.NativeMethods.SetTextColor(mhDC, Windows.NativeMethods.ColorToInt(value)); }
         }
 
         public Color TextBackColor
         {
             //map get,setbkcolor
-            get { return Alsing.Windows.NativeMethods.IntToColor(Alsing.Windows.NativeMethods.GetBkColor(mhDC)); }
-            set { Alsing.Windows.NativeMethods.SetBkColor(mhDC, Alsing.Windows.NativeMethods.ColorToInt(value)); }
+            get { return Windows.NativeMethods.IntToColor(Windows.NativeMethods.GetBkColor(mhDC)); }
+            set { Windows.NativeMethods.SetBkColor(mhDC, Windows.NativeMethods.ColorToInt(value)); }
         }
-
 
         public bool FontTransparent
         {
             //map get,setbkmode
             //1=transparent , 2=solid
-            get { return Alsing.Windows.NativeMethods.GetBkMode(mhDC) < 2; }
-            set { Alsing.Windows.NativeMethods.SetBkMode(mhDC, value ? 1 : 2); }
+            get { return Windows.NativeMethods.GetBkMode(mhDC) < 2; }
+            set { Windows.NativeMethods.SetBkMode(mhDC, value ? 1 : 2); }
         }
 
         public GDIFont Font
@@ -112,24 +109,24 @@ namespace Alsing.Drawing.GDI
                 var tm = new GDITextMetric();
                 var fontname = new string(' ', 48);
 
-                Alsing.Windows.NativeMethods.GetTextMetrics(mhDC, ref tm);
-                Alsing.Windows.NativeMethods.GetTextFace(mhDC, 79, fontname);
+                Windows.NativeMethods.GetTextMetrics(mhDC, ref tm);
+                Windows.NativeMethods.GetTextFace(mhDC, 79, fontname);
 
                 var gf = new GDIFont
-                         {
-                             FontName = fontname,
-                             Bold = (tm.tmWeight > 400),
-                             Italic = (tm.tmItalic != 0),
-                             Underline = (tm.tmUnderlined != 0),
-                             Strikethrough = (tm.tmStruckOut != 0),
-                             Size = ((int) (((tm.tmMemoryHeight)/(double) tm.tmDigitizedAspectY)*72))
-                         };
+                {
+                    FontName = fontname,
+                    Bold = (tm.tmWeight > 400),
+                    Italic = (tm.tmItalic != 0),
+                    Underline = (tm.tmUnderlined != 0),
+                    Strikethrough = (tm.tmStruckOut != 0),
+                    Size = ((int)(((tm.tmMemoryHeight) / (double)tm.tmDigitizedAspectY) * 72))
+                };
 
                 return gf;
             }
             set
             {
-                IntPtr res = Alsing.Windows.NativeMethods.SelectObject(mhDC, value.hFont);
+                IntPtr res = Windows.NativeMethods.SelectObject(mhDC, value.hFont);
                 if (_OldFont == IntPtr.Zero)
                     _OldFont = res;
             }
@@ -139,20 +136,19 @@ namespace Alsing.Drawing.GDI
         {
             mWidth = width;
             mHeight = height;
-            mhDC = Alsing.Windows.NativeMethods.CreateCompatibleDC(hdc);
+            mhDC = Windows.NativeMethods.CreateCompatibleDC(hdc);
 
-            mhBMP = Alsing.Windows.NativeMethods.CreateCompatibleBitmap(hdc, width, height);
+            mhBMP = Windows.NativeMethods.CreateCompatibleBitmap(hdc, width, height);
 
-            IntPtr ret = Alsing.Windows.NativeMethods.SelectObject(mhDC, mhBMP);
+            IntPtr ret = Windows.NativeMethods.SelectObject(mhDC, mhBMP);
             _OldBmp = ret;
 
             if (mhDC == (IntPtr)0)
                 throw new OutOfMemoryException("hDC creation FAILED!!");
 
-            if (mhDC == (IntPtr) 0)
+            if (mhDC == (IntPtr)0)
                 throw new OutOfMemoryException("hBMP creation FAILED!!");
         }
-
 
         public Size MeasureString(string Text)
         {
@@ -163,7 +159,7 @@ namespace Alsing.Drawing.GDI
 
         public Size MeasureTabbedString(string Text, int tabsize)
         {
-            int ret = Alsing.Windows.NativeMethods.GetTabbedTextExtent(mhDC, Text, Text.Length, 1, ref tabsize);
+            int ret = Windows.NativeMethods.GetTabbedTextExtent(mhDC, Text, Text.Length, 1, ref tabsize);
             return new Size(ret & 0xFFFF, (ret >> 16) & 0xFFFF);
         }
 
@@ -175,13 +171,12 @@ namespace Alsing.Drawing.GDI
 
         public Size DrawTabbedString(string Text, int x, int y, int taborigin, int tabsize)
         {
-            int ret = Alsing.Windows.NativeMethods.TabbedTextOut(mhDC, x, y, Text, Text.Length, 1, ref tabsize, taborigin);
+            int ret = Windows.NativeMethods.TabbedTextOut(mhDC, x, y, Text, Text.Length, 1, ref tabsize, taborigin);
             return new Size(ret & 0xFFFF, (ret >> 16) & 0xFFFF);
         }
 
-
         //---------------------------------------
-        //render methods , 
+        //render methods ,
         //render to dc ,
         //render to control
         //render to gdisurface
@@ -189,9 +184,8 @@ namespace Alsing.Drawing.GDI
         public void RenderTo(IntPtr hdc, int x, int y)
         {
             //map bitblt
-            Alsing.Windows.NativeMethods.BitBlt(hdc, x, y, mWidth, mHeight, mhDC, 0, 0, (int)GDIRop.SrcCopy);
+            Windows.NativeMethods.BitBlt(hdc, x, y, mWidth, mHeight, mhDC, 0, 0, (int)GDIRop.SrcCopy);
         }
-
 
         public void RenderTo(GDISurface target, int x, int y)
         {
@@ -200,15 +194,15 @@ namespace Alsing.Drawing.GDI
 
         public void RenderTo(GDISurface target, int SourceX, int SourceY, int Width, int Height, int DestX, int DestY)
         {
-            Alsing.Windows.NativeMethods.BitBlt(target.hDC, DestX, DestY, Width, Height, hDC, SourceX, SourceY, (int)GDIRop.SrcCopy);
+            Windows.NativeMethods.BitBlt(target.hDC, DestX, DestY, Width, Height, hDC, SourceX, SourceY, (int)GDIRop.SrcCopy);
         }
 
         public void RenderToControl(int x, int y)
         {
-            IntPtr hdc = Alsing.Windows.NativeMethods.ControlDC(Control);
+            IntPtr hdc = Windows.NativeMethods.ControlDC(Control);
 
             RenderTo(hdc, x, y);
-            Alsing.Windows.NativeMethods.ReleaseDC(Control.Handle, hdc);
+            Windows.NativeMethods.ReleaseDC(Control.Handle, hdc);
         }
 
         //---------------------------------------
@@ -228,7 +222,7 @@ namespace Alsing.Drawing.GDI
             gr.right = width + x;
             gr.bottom = height + y;
 
-            Alsing.Windows.NativeMethods.FillRect(mhDC, ref gr, brush.hBrush);
+            Windows.NativeMethods.FillRect(mhDC, ref gr, brush.hBrush);
         }
 
         public void DrawFocusRect(int x, int y, int width, int height)
@@ -239,7 +233,7 @@ namespace Alsing.Drawing.GDI
             gr.right = width + x;
             gr.bottom = height + y;
 
-            Alsing.Windows.NativeMethods.DrawFocusRect(mhDC, ref gr);
+            Windows.NativeMethods.DrawFocusRect(mhDC, ref gr);
         }
 
         public void FillRect(Color color, int x, int y, int width, int height)
@@ -257,18 +251,18 @@ namespace Alsing.Drawing.GDI
             gr.right = width + x;
             gr.bottom = height + y;
 
-            Alsing.Windows.NativeMethods.InvertRect(mhDC, ref gr);
+            Windows.NativeMethods.InvertRect(mhDC, ref gr);
         }
 
         public void DrawLine(GDIPen pen, Point p1, Point p2)
         {
-            IntPtr oldpen = Alsing.Windows.NativeMethods.SelectObject(mhDC, pen.hPen);
+            IntPtr oldpen = Windows.NativeMethods.SelectObject(mhDC, pen.hPen);
             APIPoint gp;
             gp.x = 0;
             gp.y = 0;
-            Alsing.Windows.NativeMethods.MoveToEx(mhDC, p1.X, p1.Y, ref gp);
-            Alsing.Windows.NativeMethods.LineTo(mhDC, p2.X, p2.Y);
-            Alsing.Windows.NativeMethods.SelectObject(mhDC, oldpen);
+            Windows.NativeMethods.MoveToEx(mhDC, p1.X, p1.Y, ref gp);
+            Windows.NativeMethods.LineTo(mhDC, p2.X, p2.Y);
+            Windows.NativeMethods.SelectObject(mhDC, oldpen);
         }
 
         public void DrawLine(Color color, Point p1, Point p2)
@@ -307,32 +301,31 @@ namespace Alsing.Drawing.GDI
 
         public void Flush()
         {
-            Alsing.Windows.NativeMethods.GdiFlush();
+            Windows.NativeMethods.GdiFlush();
         }
 
         protected override void Destroy()
         {
             if (_OldBmp != IntPtr.Zero)
-                Alsing.Windows.NativeMethods.SelectObject(hDC, _OldBmp);
+                Windows.NativeMethods.SelectObject(hDC, _OldBmp);
 
             if (_OldFont != IntPtr.Zero)
-                Alsing.Windows.NativeMethods.SelectObject(hDC, _OldFont);
+                Windows.NativeMethods.SelectObject(hDC, _OldFont);
 
             if (_OldPen != IntPtr.Zero)
-                Alsing.Windows.NativeMethods.SelectObject(hDC, _OldPen);
+                Windows.NativeMethods.SelectObject(hDC, _OldPen);
 
             if (_OldBrush != IntPtr.Zero)
-                Alsing.Windows.NativeMethods.SelectObject(hDC, _OldBrush);
+                Windows.NativeMethods.SelectObject(hDC, _OldBrush);
 
-            if (mhBMP != (IntPtr) 0)
-                Alsing.Windows.NativeMethods.DeleteObject(mhBMP);
+            if (mhBMP != (IntPtr)0)
+                Windows.NativeMethods.DeleteObject(mhBMP);
 
-            if (mhDC != (IntPtr) 0)
-                Alsing.Windows.NativeMethods.DeleteDC(mhDC);
+            if (mhDC != (IntPtr)0)
+                Windows.NativeMethods.DeleteDC(mhDC);
 
-            mhBMP = (IntPtr) 0;
-            mhDC = (IntPtr) 0;
-
+            mhBMP = (IntPtr)0;
+            mhDC = (IntPtr)0;
 
             base.Destroy();
         }
@@ -342,7 +335,7 @@ namespace Alsing.Drawing.GDI
             APIPoint p;
             p.x = 0;
             p.y = 0;
-            Alsing.Windows.NativeMethods.SetBrushOrgEx(mhDC, x, y, ref p);
+            Windows.NativeMethods.SetBrushOrgEx(mhDC, x, y, ref p);
         }
     }
 }

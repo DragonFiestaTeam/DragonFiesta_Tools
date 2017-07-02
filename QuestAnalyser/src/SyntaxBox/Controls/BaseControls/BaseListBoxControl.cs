@@ -8,11 +8,11 @@
 // *
 // *
 
+using Alsing.Drawing;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Alsing.Drawing;
 
 namespace Alsing.Windows.Forms
 {
@@ -23,14 +23,13 @@ namespace Alsing.Windows.Forms
         private const int WS_EX_CLIENTEDGE = unchecked(0x00000200);
         private Color borderColor = Color.Black;
 
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private BorderStyle borderStyle;
 
         private Container components;
         private bool RunOnce = true;
-
 
         public BaseListBoxControl()
         {
@@ -50,7 +49,7 @@ namespace Alsing.Windows.Forms
         }
 
         [Category("Appearance - Borders"), Description("The border color")]
-        [DefaultValue(typeof (Color), "Black")]
+        [DefaultValue(typeof(Color), "Black")]
         public Color BorderColor
         {
             get { return borderColor; }
@@ -91,9 +90,9 @@ namespace Alsing.Windows.Forms
             {
                 if (borderStyle != value)
                 {
-                    if (!Enum.IsDefined(typeof (BorderStyle), value))
+                    if (!Enum.IsDefined(typeof(BorderStyle), value))
                     {
-                        throw new InvalidEnumArgumentException("value", (int) value, typeof (BorderStyle));
+                        throw new InvalidEnumArgumentException("value", (int)value, typeof(BorderStyle));
                     }
                     borderStyle = value;
                     UpdateStyles();
@@ -109,17 +108,16 @@ namespace Alsing.Windows.Forms
             set { base.BackgroundImage = value; }
         }
 
-
         [Browsable(false)]
         public int ClientWidth
         {
-            get { return WindowSize.Width - (BorderWidth*2); }
+            get { return WindowSize.Width - (BorderWidth * 2); }
         }
 
         [Browsable(false)]
         public int ClientHeight
         {
-            get { return WindowSize.Height - (BorderWidth*2); }
+            get { return WindowSize.Height - (BorderWidth * 2); }
         }
 
         [Browsable(false)]
@@ -176,14 +174,13 @@ namespace Alsing.Windows.Forms
                         }
                 }
 
-
                 return Height;
             }
         }
 
         public event EventHandler Load = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose(bool disposing)
@@ -207,16 +204,16 @@ namespace Alsing.Windows.Forms
 
         protected override unsafe void WndProc(ref Message m)
         {
-            if (m.Msg == (int) WindowMessage.WM_NCPAINT)
+            if (m.Msg == (int)WindowMessage.WM_NCPAINT)
             {
                 try
                 {
                     RenderBorder();
                 }
-                catch {}
+                catch { }
                 base.WndProc(ref m);
             }
-            else if (m.Msg == (int) WindowMessage.WM_SHOWWINDOW)
+            else if (m.Msg == (int)WindowMessage.WM_SHOWWINDOW)
             {
                 if (RunOnce)
                 {
@@ -231,21 +228,21 @@ namespace Alsing.Windows.Forms
                     base.WndProc(ref m);
                 }
             }
-            else if (m.Msg == (int) WindowMessage.WM_NCCREATE)
+            else if (m.Msg == (int)WindowMessage.WM_NCCREATE)
             {
                 base.WndProc(ref m);
             }
-            else if (m.Msg == (int) WindowMessage.WM_NCCALCSIZE)
+            else if (m.Msg == (int)WindowMessage.WM_NCCALCSIZE)
             {
-                if (m.WParam == (IntPtr) 0)
+                if (m.WParam == (IntPtr)0)
                 {
-                    var pRC = (APIRect*) m.LParam;
+                    var pRC = (APIRect*)m.LParam;
                     //pRC->left -=3;
                     base.WndProc(ref m);
                 }
-                else if (m.WParam == (IntPtr) 1)
+                else if (m.WParam == (IntPtr)1)
                 {
-                    var pNCP = (_NCCALCSIZE_PARAMS*) m.LParam;
+                    var pNCP = (_NCCALCSIZE_PARAMS*)m.LParam;
 
                     base.WndProc(ref m);
 
@@ -253,7 +250,6 @@ namespace Alsing.Windows.Forms
                     int l = pNCP->NewRect.left + BorderWidth;
                     int b = pNCP->NewRect.bottom - BorderWidth;
                     int r = pNCP->NewRect.right - BorderWidth;
-
 
                     pNCP->NewRect.top = t;
                     pNCP->NewRect.left = l;
@@ -275,12 +271,11 @@ namespace Alsing.Windows.Forms
 
             using (Graphics g = Graphics.FromHdc(hdc))
             {
-                DrawingTools.DrawBorder((BorderStyle2) (int) BorderStyle, BorderColor, g,
+                DrawingTools.DrawBorder((BorderStyle2)(int)BorderStyle, BorderColor, g,
                                         new Rectangle(0, 0, s.Width, s.Height));
             }
             NativeMethods.ReleaseDC(Handle, hdc);
         }
-
 
         protected override void OnEnter(EventArgs e)
         {

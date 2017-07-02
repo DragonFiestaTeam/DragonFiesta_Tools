@@ -17,7 +17,9 @@ namespace Alsing.SourceCode
     /// </summary>
     public class TextRange
     {
-        public TextRange() {}
+        public TextRange()
+        {
+        }
 
         public TextRange(int firstColumn, int firstRow, int lastColumn, int lastRow)
         {
@@ -74,7 +76,7 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY FIRSTROW
 
         #region PUBLIC PROPERTY FIRSTCOLUMN
 
@@ -90,7 +92,7 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY FIRSTCOLUMN
 
         #region PUBLIC PROPERTY LASTROW
 
@@ -106,7 +108,7 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY LASTROW
 
         #region PUBLIC PROPERTY LASTCOLUMN
 
@@ -122,6 +124,6 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY LASTCOLUMN
     }
 }

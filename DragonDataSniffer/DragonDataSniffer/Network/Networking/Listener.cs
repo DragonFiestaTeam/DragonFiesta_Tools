@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DragonDataSniffer.Network
 {
@@ -12,6 +9,7 @@ namespace DragonDataSniffer.Network
         public bool IsRunning { get; private set; }
         public Socket Socket { get; private set; }
         public int Port { get; private set; }
+
         public Listener(int port)
         {
             Port = port;

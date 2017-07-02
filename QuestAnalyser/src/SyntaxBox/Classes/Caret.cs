@@ -8,9 +8,9 @@
 // *
 // *
 
+using Alsing.SourceCode;
 using System;
 using System.Diagnostics;
-using Alsing.SourceCode;
 
 namespace Alsing.Windows.Forms.SyntaxBox
 {
@@ -69,7 +69,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
 
         // to what control does the caret belong??
 
-        #endregion
+        #endregion General Declarations
 
         #region Constructor(s)
 
@@ -83,7 +83,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
             Control = control;
         }
 
-        #endregion
+        #endregion Constructor(s)
 
         #region Helpers
 
@@ -112,7 +112,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 Position.X = xtr.Text.Length;
         }
 
-        #endregion
+        #endregion Helpers
 
         #region Movement Methods
 
@@ -179,7 +179,6 @@ namespace Alsing.Windows.Forms.SyntaxBox
             }
             catch
             {
-                
             }
             finally
             {
@@ -208,7 +207,6 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 Row r = Control.Document.VisibleRows[pos];
                 pos = r.Index;
 
-
                 Position.Y = pos;
 
                 //				for (int i=0;i<rows;i++)
@@ -220,7 +218,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
                     x = 0;
                 }
             }
-            catch {}
+            catch { }
             CropPosition();
             LogicalPosition = new TextPoint(x, Position.Y);
             CropPosition();
@@ -251,14 +249,14 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 //				for (int i=0;i<rows;i++)
                 //				{
                 //					this.Position.Y =  this.CurrentRow.NextVisibleRow.Index;
-                //					
+                //
                 //				}
                 if (CurrentRow.IsCollapsed)
                 {
                     x = 0;
                 }
             }
-            catch {}
+            catch { }
             finally
             {
                 CropPosition();
@@ -267,7 +265,6 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 CaretMoved(Select);
             }
         }
-
 
         /// <summary>
         /// Moves the caret down one row.
@@ -291,7 +288,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
                     x = 0;
                 }
             }
-            catch {}
+            catch { }
             finally
             {
                 CropPosition();
@@ -315,7 +312,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
             {
                 if (Position.X < CurrentRow.Expansion_StartChar)
                 {
-                    if (CurrentRow.Expansion_StartRow.Index == - 1)
+                    if (CurrentRow.Expansion_StartRow.Index == -1)
                         Debugger.Break();
                     Position.Y = CurrentRow.Expansion_StartRow.Index;
                     Position.X = CurrentRow.Expansion_StartRow.Expansion_EndChar;
@@ -347,7 +344,6 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 CaretMoved(Select);
             }
         }
-
 
         /// <summary>
         /// Moves the caret to the first non whitespace column at the active row
@@ -424,7 +420,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
             CaretMoved(Select);
         }
 
-        #endregion
+        #endregion Movement Methods
 
         #region Get Related info from Caret Position
 
@@ -457,7 +453,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
             return Control.Document.GetSegmentFromPos(Position);
         }
 
-        #endregion
+        #endregion Get Related info from Caret Position
 
         #region Set Position Methods/Props
 
@@ -485,7 +481,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 {
                     if (c == '\t')
                     {
-                        x += Control.TabSize - (x%Control.TabSize);
+                        x += Control.TabSize - (x % Control.TabSize);
                     }
                     else
                     {
@@ -511,7 +507,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
                         xx++;
                         if (c == '\t')
                         {
-                            x += Control.TabSize - (x%Control.TabSize);
+                            x += Control.TabSize - (x % Control.TabSize);
                         }
                         else
                         {
@@ -520,7 +516,6 @@ namespace Alsing.Windows.Forms.SyntaxBox
                         i++;
                     }
                 }
-
 
                 Position.Y = value.Y;
                 Position.X = xx;
@@ -537,6 +532,6 @@ namespace Alsing.Windows.Forms.SyntaxBox
             RememberXPos();
         }
 
-        #endregion
+        #endregion Set Position Methods/Props
     }
 }

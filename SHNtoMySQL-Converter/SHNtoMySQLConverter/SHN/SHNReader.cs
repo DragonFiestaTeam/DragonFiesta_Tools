@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
+﻿using System.IO;
 
 namespace SHNtoMySQLConverter.SHN
 {
@@ -11,7 +7,6 @@ namespace SHNtoMySQLConverter.SHN
         public SHNReader(Stream input)
             : base(input)
         {
-
         }
 
         public string ReadPaddedString(int length)

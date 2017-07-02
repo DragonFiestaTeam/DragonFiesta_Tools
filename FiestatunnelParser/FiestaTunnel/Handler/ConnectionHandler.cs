@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FiestaLib.Networking;
 using FiestaLib.Data;
 
@@ -15,12 +12,9 @@ namespace FiestaTunnel.Handler
             Packet packet = pPacket;
 
             Console.WriteLine("WorldTransfer");
-            byte worldserverstatus;
-            string worldserverip;
-            short worldport;
-            if (!packet.TryReadByte(out worldserverstatus) ||
-                !packet.TryReadString(out worldserverip, 16) ||
-                !packet.TryReadShort(out worldport))
+            if (!packet.TryReadByte(out byte worldserverstatus) ||
+!packet.TryReadString(out string worldserverip, 16) ||
+!packet.TryReadShort(out short worldport))
             {
                 Console.WriteLine("Error parsing world_ip packet.");
                 return;
@@ -39,10 +33,8 @@ namespace FiestaTunnel.Handler
 
 
             Console.WriteLine("GameTransfer.");
-            string gameip;
-            short gameport;
-            if (!packet.TryReadString(out gameip, 16) ||
-                !packet.TryReadShort(out gameport))
+            if (!packet.TryReadString(out string gameip, 16) ||
+!packet.TryReadShort(out short gameport))
             {
                 Console.WriteLine("Error parsing game_ip packet.");
                 return;
@@ -61,14 +53,11 @@ namespace FiestaTunnel.Handler
 
 
             Console.WriteLine("ZoneTransfer");
-            short mapid, zoneport;
-            int xmap, ymap;
-            string zoneip;
-            if (!packet.TryReadShort(out mapid) ||
-                !packet.TryReadInt(out xmap) ||
-                !packet.TryReadInt(out ymap) ||
-                !packet.TryReadString(out zoneip, 16) ||
-                !packet.TryReadShort(out zoneport))
+            if (!packet.TryReadShort(out short mapid) ||
+    !packet.TryReadInt(out int xmap) ||
+    !packet.TryReadInt(out int ymap) ||
+    !packet.TryReadString(out string zoneip, 16) ||
+    !packet.TryReadShort(out short zoneport))
             {
                 Console.WriteLine("Error reading zone transfer.");
                 return;

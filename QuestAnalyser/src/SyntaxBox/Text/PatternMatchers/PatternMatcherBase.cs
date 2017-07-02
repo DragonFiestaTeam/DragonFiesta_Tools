@@ -27,6 +27,6 @@ namespace Alsing.Text.PatternMatchers
             get { return null; }
         }
 
-        #endregion
+        #endregion IPatternMatcher Members
     }
 }

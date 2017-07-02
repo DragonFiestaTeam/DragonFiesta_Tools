@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DragonDataSniffer.Network
 {
@@ -17,7 +13,6 @@ namespace DragonDataSniffer.Network
             Header = header;
             Type = type;
         }
-
     }
 
     [AttributeUsage(AttributeTargets.Method)]
@@ -31,9 +26,8 @@ namespace DragonDataSniffer.Network
             Header = header;
             Type = type;
         }
-      //  public ClientPacketHandlerAttribute(Handler2Type type) : this(2, (byte)type) { }
-     //   public ClientPacketHandlerAttribute(Handler3Type type) : this(3, (byte)type) { }
+
+        //  public ClientPacketHandlerAttribute(Handler2Type type) : this(2, (byte)type) { }
+        //   public ClientPacketHandlerAttribute(Handler3Type type) : this(3, (byte)type) { }
     }
-
-
 }

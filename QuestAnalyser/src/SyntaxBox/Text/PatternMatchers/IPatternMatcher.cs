@@ -11,11 +11,12 @@
 namespace Alsing.Text.PatternMatchers
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public interface IPatternMatcher
     {
         string[] DefaultPrefixes { get; }
+
         int Match(string textToMatch, int matchAtIndex);
     }
 }

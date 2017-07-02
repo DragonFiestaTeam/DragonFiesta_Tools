@@ -8,9 +8,9 @@
 // *
 // *
 
+using Alsing.Windows;
 using System;
 using System.Drawing;
-using Alsing.Windows;
 
 namespace Alsing.Globalization
 {
@@ -31,7 +31,7 @@ namespace Alsing.Globalization
             SetFont(fontname, fontsize);
         }
 
-        #endregion
+        #endregion ctor
 
         #region PUBLIC PROPERTY FONT
 
@@ -56,30 +56,30 @@ namespace Alsing.Globalization
             font.ToLogFont(lf);
             lf.lfPitchAndFamily = FIXED_PITCH | FF_MODERN;
 
-            NativeMethods.SendMessage(hIMEWnd, (int) WindowMessage.WM_IME_CONTROL, IMC_SETCOMPOSITIONFONT, lf);
+            NativeMethods.SendMessage(hIMEWnd, (int)WindowMessage.WM_IME_CONTROL, IMC_SETCOMPOSITIONFONT, lf);
         }
 
         public void SetFont(string fontname, float fontsize)
         {
             var tFont = new LogFont
-                        {
-                            lfItalic = 0,
-                            lfStrikeOut = 0,
-                            lfUnderline = 0,
-                            lfWeight = 400,
-                            lfWidth = 0,
-                            lfHeight = ((int) (-fontsize*1.3333333333333)),
-                            lfCharSet = 1,
-                            lfPitchAndFamily = (FIXED_PITCH | FF_MODERN),
-                            lfFaceName = fontname
-                        };
+            {
+                lfItalic = 0,
+                lfStrikeOut = 0,
+                lfUnderline = 0,
+                lfWeight = 400,
+                lfWidth = 0,
+                lfHeight = ((int)(-fontsize * 1.3333333333333)),
+                lfCharSet = 1,
+                lfPitchAndFamily = (FIXED_PITCH | FF_MODERN),
+                lfFaceName = fontname
+            };
 
             LogFont lf = tFont;
 
-            NativeMethods.SendMessage(hIMEWnd, (int) WindowMessage.WM_IME_CONTROL, IMC_SETCOMPOSITIONFONT, lf);
+            NativeMethods.SendMessage(hIMEWnd, (int)WindowMessage.WM_IME_CONTROL, IMC_SETCOMPOSITIONFONT, lf);
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY FONT
 
         #region PUBLIC PROPERTY LOATION
 
@@ -92,14 +92,14 @@ namespace Alsing.Globalization
             {
                 _Loation = value;
 
-                var p = new APIPoint {x = value.X, y = value.Y};
+                var p = new APIPoint { x = value.X, y = value.Y };
 
-                var lParam = new COMPOSITIONFORM {dwStyle = CFS_POINT, ptCurrentPos = p, rcArea = new APIRect()};
+                var lParam = new COMPOSITIONFORM { dwStyle = CFS_POINT, ptCurrentPos = p, rcArea = new APIRect() };
 
-                NativeMethods.SendMessage(hIMEWnd, (int) WindowMessage.WM_IME_CONTROL, IMC_SETCOMPOSITIONWINDOW, lParam);
+                NativeMethods.SendMessage(hIMEWnd, (int)WindowMessage.WM_IME_CONTROL, IMC_SETCOMPOSITIONWINDOW, lParam);
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY LOATION
     }
 }

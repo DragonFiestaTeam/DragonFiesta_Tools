@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DragonDataSniffer.Data
+﻿namespace DragonDataSniffer.Data
 {
     public sealed class MapInfo
     {
@@ -25,7 +19,6 @@ namespace DragonDataSniffer.Data
             Type = (MapType)rResult.Read<byte>(rIndex, "MapType");
             IsInSide = rResult.Read<bool>(rIndex, "InSide");
             ViewRange = rResult.Read<uint>(rIndex, "ViewRange");
-
         }
     }
 }

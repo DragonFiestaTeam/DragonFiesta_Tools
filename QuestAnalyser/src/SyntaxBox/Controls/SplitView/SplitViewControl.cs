@@ -25,11 +25,10 @@ namespace Alsing.Windows.Forms.CoreLib
         private Control _UpperLeft;
         private Control _UpperRight;
 
-
         private SizeAction Action = 0;
         private Panel Center;
 
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private Container components;
@@ -48,16 +47,15 @@ namespace Alsing.Windows.Forms.CoreLib
         {
             // This call is required by the Windows.Forms Form Designer.
             SetStyle(ControlStyles.ContainerControl, true);
-//			this.SetStyle(ControlStyles.AllPaintingInWmPaint ,false);
-//			this.SetStyle(ControlStyles.DoubleBuffer ,false);
-//			this.SetStyle(ControlStyles.Selectable,true);
-//			this.SetStyle(ControlStyles.ResizeRedraw ,true);
-//			this.SetStyle(ControlStyles.Opaque ,true);			
-//			this.SetStyle(ControlStyles.UserPaint,true);
+            //			this.SetStyle(ControlStyles.AllPaintingInWmPaint ,false);
+            //			this.SetStyle(ControlStyles.DoubleBuffer ,false);
+            //			this.SetStyle(ControlStyles.Selectable,true);
+            //			this.SetStyle(ControlStyles.ResizeRedraw ,true);
+            //			this.SetStyle(ControlStyles.Opaque ,true);
+            //			this.SetStyle(ControlStyles.UserPaint,true);
             //SetStyle(ControlStyles.Selectable ,true);
 
             InitializeComponent();
-
 
             DoResize();
             ReSize(0, 0);
@@ -138,72 +136,72 @@ namespace Alsing.Windows.Forms.CoreLib
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.Vertical = new System.Windows.Forms.Panel();
-            this.Horizontal = new System.Windows.Forms.Panel();
-            this.Center = new System.Windows.Forms.Panel();
-            this.SuspendLayout();
-            // 
+            Vertical = new System.Windows.Forms.Panel();
+            Horizontal = new System.Windows.Forms.Panel();
+            Center = new System.Windows.Forms.Panel();
+            SuspendLayout();
+            //
             // Vertical
-            // 
-            this.Vertical.BackColor = System.Drawing.SystemColors.Control;
-            this.Vertical.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.Vertical.Name = "Vertical";
-            this.Vertical.Size = new System.Drawing.Size(4, 264);
-            this.Vertical.TabIndex = 0;
-            this.Vertical.Resize += new System.EventHandler(this.Vertical_Resize);
-            this.Vertical.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Vertical_MouseUp);
-            this.Vertical.DoubleClick += new System.EventHandler(this.Vertical_DoubleClick);
-            this.Vertical.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Vertical_MouseMove);
-            this.Vertical.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Vertical_MouseDown);
-            // 
+            //
+            Vertical.BackColor = System.Drawing.SystemColors.Control;
+            Vertical.Cursor = System.Windows.Forms.Cursors.VSplit;
+            Vertical.Name = "Vertical";
+            Vertical.Size = new System.Drawing.Size(4, 264);
+            Vertical.TabIndex = 0;
+            Vertical.Resize += new System.EventHandler(Vertical_Resize);
+            Vertical.MouseUp += new System.Windows.Forms.MouseEventHandler(Vertical_MouseUp);
+            Vertical.DoubleClick += new System.EventHandler(Vertical_DoubleClick);
+            Vertical.MouseMove += new System.Windows.Forms.MouseEventHandler(Vertical_MouseMove);
+            Vertical.MouseDown += new System.Windows.Forms.MouseEventHandler(Vertical_MouseDown);
+            //
             // Horizontal
-            // 
-            this.Horizontal.BackColor = System.Drawing.SystemColors.Control;
-            this.Horizontal.Cursor = System.Windows.Forms.Cursors.HSplit;
-            this.Horizontal.Name = "Horizontal";
-            this.Horizontal.Size = new System.Drawing.Size(320, 4);
-            this.Horizontal.TabIndex = 1;
-            this.Horizontal.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Horizontal_MouseUp);
-            this.Horizontal.DoubleClick += new System.EventHandler(this.Horizontal_DoubleClick);
-            this.Horizontal.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Horizontal_MouseMove);
-            this.Horizontal.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Horizontal_MouseDown);
-            // 
+            //
+            Horizontal.BackColor = System.Drawing.SystemColors.Control;
+            Horizontal.Cursor = System.Windows.Forms.Cursors.HSplit;
+            Horizontal.Name = "Horizontal";
+            Horizontal.Size = new System.Drawing.Size(320, 4);
+            Horizontal.TabIndex = 1;
+            Horizontal.MouseUp += new System.Windows.Forms.MouseEventHandler(Horizontal_MouseUp);
+            Horizontal.DoubleClick += new System.EventHandler(Horizontal_DoubleClick);
+            Horizontal.MouseMove += new System.Windows.Forms.MouseEventHandler(Horizontal_MouseMove);
+            Horizontal.MouseDown += new System.Windows.Forms.MouseEventHandler(Horizontal_MouseDown);
+            //
             // Center
-            // 
-            this.Center.BackColor = System.Drawing.SystemColors.Control;
-            this.Center.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.Center.Location = new System.Drawing.Point(146, 69);
-            this.Center.Name = "Center";
-            this.Center.Size = new System.Drawing.Size(24, 24);
-            this.Center.TabIndex = 2;
-            this.Center.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Center_MouseUp);
-            this.Center.DoubleClick += new System.EventHandler(this.Center_DoubleClick);
-            this.Center.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Center_MouseMove);
-            this.Center.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Center_MouseDown);
-            // 
+            //
+            Center.BackColor = System.Drawing.SystemColors.Control;
+            Center.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            Center.Location = new System.Drawing.Point(146, 69);
+            Center.Name = "Center";
+            Center.Size = new System.Drawing.Size(24, 24);
+            Center.TabIndex = 2;
+            Center.MouseUp += new System.Windows.Forms.MouseEventHandler(Center_MouseUp);
+            Center.DoubleClick += new System.EventHandler(Center_DoubleClick);
+            Center.MouseMove += new System.Windows.Forms.MouseEventHandler(Center_MouseMove);
+            Center.MouseDown += new System.Windows.Forms.MouseEventHandler(Center_MouseDown);
+            //
             // SplitViewControl
-            // 
-            this.BackColor = System.Drawing.Color.Magenta;
-            this.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            BackColor = System.Drawing.Color.Magenta;
+            Controls.AddRange(new System.Windows.Forms.Control[]
                                    {
-                                       this.Center,
-                                       this.Horizontal,
-                                       this.Vertical
+                                       Center,
+                                       Horizontal,
+                                       Vertical
                                    });
-            this.Size = new System.Drawing.Size(200, 200);
-            this.VisibleChanged += new System.EventHandler(this.SplitViewControl_VisibleChanged);
-            this.Enter += new System.EventHandler(this.SplitViewControl_Enter);
-            this.Leave += new System.EventHandler(this.SplitViewControl_Leave);
-            this.ResumeLayout(false);
+            Size = new System.Drawing.Size(200, 200);
+            VisibleChanged += new System.EventHandler(SplitViewControl_VisibleChanged);
+            Enter += new System.EventHandler(SplitViewControl_Enter);
+            Leave += new System.EventHandler(SplitViewControl_Leave);
+            ResumeLayout(false);
         }
 
-        #endregion
+        #endregion Component Designer generated code
 
         /// <summary>
         /// an event fired when the split view is resized.
@@ -238,12 +236,12 @@ namespace Alsing.Windows.Forms.CoreLib
                 HideTop(this, new EventArgs());
         }
 
-//		protected override void OnLoad(EventArgs e)
-//		{
-//			
-//		}
+        //		protected override void OnLoad(EventArgs e)
+        //		{
+        //
+        //		}
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose(bool disposing)
@@ -253,7 +251,7 @@ namespace Alsing.Windows.Forms.CoreLib
             {
                 Console.WriteLine("disposing splitview");
             }
-            catch {}
+            catch { }
 #endif
             if (disposing)
             {
@@ -266,7 +264,7 @@ namespace Alsing.Windows.Forms.CoreLib
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="e"></param>
         protected override void OnResize(EventArgs e)
@@ -292,7 +290,6 @@ namespace Alsing.Windows.Forms.CoreLib
                 //
                 //				Center.Location =new Point (CenterX,CenterY);
 
-
                 //ReSize (0,0);
                 ReSize2();
                 OnResizing();
@@ -309,14 +306,12 @@ namespace Alsing.Windows.Forms.CoreLib
                     OnHideLeft();
                 }
 
-
                 Horizontal.Width = Width;
                 Vertical.Height = Height;
                 Horizontal.SendToBack();
                 Vertical.SendToBack();
                 Horizontal.BackColor = SystemColors.Control;
                 Vertical.BackColor = SystemColors.Control;
-
 
                 //this.SendToBack ();
                 int RightLeft = Vertical.Left + Vertical.Width;
@@ -337,7 +332,6 @@ namespace Alsing.Windows.Forms.CoreLib
                     UpperRight.SetBounds(RightLeft, 0, RightWidth, UpperHeight);
                 }
 
-
                 if (LowerLeft != null)
                 {
                     LowerLeft.BringToFront();
@@ -352,9 +346,8 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="e"></param>
         protected override void OnControlAdded(ControlEventArgs e)
@@ -362,8 +355,9 @@ namespace Alsing.Windows.Forms.CoreLib
             DoResize();
         }
 
-
-        private void Vertical_Resize(object sender, EventArgs e) {}
+        private void Vertical_Resize(object sender, EventArgs e)
+        {
+        }
 
         private void Horizontal_MouseDown(object sender, MouseEventArgs e)
         {
@@ -436,7 +430,6 @@ namespace Alsing.Windows.Forms.CoreLib
                 int x = e.X;
                 int y = e.Y;
 
-
                 if (y + Horizontal.Top > Height - 4)
                     y = Height - 4 - Horizontal.Top;
                 if (y + Horizontal.Top < 0)
@@ -472,7 +465,6 @@ namespace Alsing.Windows.Forms.CoreLib
                 if (x + Vertical.Left < 0)
                     x = 0 - Vertical.Left;
 
-
                 if (!FirstTime)
                 {
                     start = PointToScreen(Location);
@@ -495,8 +487,8 @@ namespace Alsing.Windows.Forms.CoreLib
             if (Action == SizeAction.SizeA && e.Button == MouseButtons.Left)
             {
                 Point start;
-                int x = e.X - Center.Width/2;
-                int y = e.Y - Center.Height/2;
+                int x = e.X - Center.Width / 2;
+                int y = e.Y - Center.Height / 2;
 
                 // ROB: Added fix for graphics splatter when sizing both splitters.
                 if (y + Horizontal.Top > Height - 4)
@@ -509,7 +501,6 @@ namespace Alsing.Windows.Forms.CoreLib
                 if (x + Vertical.Left < 0)
                     x = 0 - Vertical.Left;
                 // END-ROB
-
 
                 if (!FirstTime)
                 {
@@ -533,17 +524,14 @@ namespace Alsing.Windows.Forms.CoreLib
                 start.Y += y + Horizontal.Location.Y;
                 ControlPaint.FillReversibleRectangle(new Rectangle(start.X, start.Y, Width, 3), SystemColors.ControlDark);
 
-
                 PrevPos = new Point(x, y);
             }
         }
-
 
         private void ReSize(int x, int y)
         {
             //if (x==0 && y==0)
             //	return;
-
 
             SuspendLayout();
 
@@ -556,12 +544,11 @@ namespace Alsing.Windows.Forms.CoreLib
             if (yy < 0)
                 yy = 0;
 
-            if (yy > Height - Horizontal.Height - SystemInformation.VerticalScrollBarWidth*3)
-                yy = Height - Horizontal.Height - SystemInformation.VerticalScrollBarWidth*3;
+            if (yy > Height - Horizontal.Height - SystemInformation.VerticalScrollBarWidth * 3)
+                yy = Height - Horizontal.Height - SystemInformation.VerticalScrollBarWidth * 3;
 
-
-            if (xx > Width - Vertical.Width - SystemInformation.VerticalScrollBarWidth*3)
-                xx = Width - Vertical.Width - SystemInformation.VerticalScrollBarWidth*3;
+            if (xx > Width - Vertical.Width - SystemInformation.VerticalScrollBarWidth * 3)
+                xx = Width - Vertical.Width - SystemInformation.VerticalScrollBarWidth * 3;
 
             if (xx != Vertical.Left)
                 Vertical.Left = xx;
@@ -569,9 +556,8 @@ namespace Alsing.Windows.Forms.CoreLib
             if (yy != Horizontal.Top)
                 Horizontal.Top = yy;
 
-
-            int CenterY = (Horizontal.Top + Horizontal.Height/2) - Center.Height/2;
-            int CenterX = (Vertical.Left + Vertical.Width/2) - Center.Width/2;
+            int CenterY = (Horizontal.Top + Horizontal.Height / 2) - Center.Height / 2;
+            int CenterX = (Vertical.Left + Vertical.Width / 2) - Center.Width / 2;
 
             Center.Location = new Point(CenterX, CenterY);
             ResumeLayout();
@@ -588,9 +574,9 @@ namespace Alsing.Windows.Forms.CoreLib
                 if (UpperLeft != null)
                     UpperLeft.Refresh();
             }
-            catch {}
+            catch { }
             OnResizing();
-            //DoResize();	
+            //DoResize();
             //this.Refresh ();
         }
 
@@ -605,23 +591,22 @@ namespace Alsing.Windows.Forms.CoreLib
             if (yy < 0)
                 yy = 0;
 
-            if (yy > Height - Horizontal.Height - SystemInformation.VerticalScrollBarWidth*3)
+            if (yy > Height - Horizontal.Height - SystemInformation.VerticalScrollBarWidth * 3)
             {
-                yy = Height - Horizontal.Height - SystemInformation.VerticalScrollBarWidth*3;
+                yy = Height - Horizontal.Height - SystemInformation.VerticalScrollBarWidth * 3;
                 if (yy != Horizontal.Top)
                     Horizontal.Top = yy;
             }
 
-
-            if (xx > Width - Vertical.Width - SystemInformation.VerticalScrollBarWidth*3)
+            if (xx > Width - Vertical.Width - SystemInformation.VerticalScrollBarWidth * 3)
             {
-                xx = Width - Vertical.Width - SystemInformation.VerticalScrollBarWidth*3;
+                xx = Width - Vertical.Width - SystemInformation.VerticalScrollBarWidth * 3;
                 if (xx != Vertical.Left)
                     Vertical.Left = xx;
             }
 
-            int CenterY = (Horizontal.Top + Horizontal.Height/2) - Center.Height/2;
-            int CenterX = (Vertical.Left + Vertical.Width/2) - Center.Width/2;
+            int CenterY = (Horizontal.Top + Horizontal.Height / 2) - Center.Height / 2;
+            int CenterX = (Vertical.Left + Vertical.Width / 2) - Center.Width / 2;
 
             Center.Location = new Point(CenterX, CenterY);
         }
@@ -650,7 +635,7 @@ namespace Alsing.Windows.Forms.CoreLib
         /// </summary>
         public void Split5050h()
         {
-            Horizontal.Top = Height/2;
+            Horizontal.Top = Height / 2;
             DoResize();
         }
 
@@ -659,10 +644,9 @@ namespace Alsing.Windows.Forms.CoreLib
         /// </summary>
         public void Split5050v()
         {
-            Vertical.Left = Width/2;
+            Vertical.Left = Width / 2;
             DoResize();
         }
-
 
         public void ResetSplitview()
         {
@@ -677,7 +661,7 @@ namespace Alsing.Windows.Forms.CoreLib
         public void InvokeMouseDownh()
         {
             IntPtr hwnd = Horizontal.Handle;
-            NativeMethods.SendMessage(hwnd, (int) WindowMessage.WM_LBUTTONDOWN, 0, 0);
+            NativeMethods.SendMessage(hwnd, (int)WindowMessage.WM_LBUTTONDOWN, 0, 0);
         }
 
         /// <summary>
@@ -686,15 +670,20 @@ namespace Alsing.Windows.Forms.CoreLib
         public void InvokeMouseDownv()
         {
             IntPtr hwnd = Vertical.Handle;
-            NativeMethods.SendMessage(hwnd, (int) WindowMessage.WM_LBUTTONDOWN, 0, 0);
+            NativeMethods.SendMessage(hwnd, (int)WindowMessage.WM_LBUTTONDOWN, 0, 0);
         }
 
-        private void SplitViewControl_Leave(object sender, EventArgs e) {}
+        private void SplitViewControl_Leave(object sender, EventArgs e)
+        {
+        }
 
-        private void SplitViewControl_Enter(object sender, EventArgs e) {}
+        private void SplitViewControl_Enter(object sender, EventArgs e)
+        {
+        }
 
-
-        private void SplitViewControl_VisibleChanged(object sender, EventArgs e) {}
+        private void SplitViewControl_VisibleChanged(object sender, EventArgs e)
+        {
+        }
 
         #region Nested type: SizeAction
 
@@ -706,6 +695,6 @@ namespace Alsing.Windows.Forms.CoreLib
             SizeA = 3
         }
 
-        #endregion
+        #endregion Nested type: SizeAction
     }
 }

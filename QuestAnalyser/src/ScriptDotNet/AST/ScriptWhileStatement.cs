@@ -2,50 +2,51 @@
 
 using Irony.Compiler;
 using ScriptNET.Runtime;
-#endregion
+
+#endregion using
 
 namespace ScriptNET.Ast
 {
-  /// <summary>
-  /// Script Array Constructor Expression
-  /// </summary>
-  internal class ScriptWhileStatement : ScriptExpr
-  {
-    private ScriptCondition condition;
-    private ScriptStatement statement;
-
-    public ScriptWhileStatement(AstNodeArgs args)
-        : base(args)
+    /// <summary>
+    /// Script Array Constructor Expression
+    /// </summary>
+    internal class ScriptWhileStatement : ScriptExpr
     {
-      condition = args.ChildNodes[1] as ScriptCondition;
-      statement = args.ChildNodes[2] as ScriptStatement;
-    }
+        private ScriptCondition condition;
+        private ScriptStatement statement;
 
-    public override void Evaluate(IScriptContext context)
-    {
-      condition.Evaluate(context);
-      object lastResult = RuntimeHost.NullValue;
-
-      while ((bool)context.Result)
-      {
-        statement.Evaluate(context);
-        lastResult = context.Result;
-
-        if (context.IsBreak() || context.IsReturn())
+        public ScriptWhileStatement(AstNodeArgs args)
+            : base(args)
         {
-          context.SetBreak(false);
-          break;
+            condition = args.ChildNodes[1] as ScriptCondition;
+            statement = args.ChildNodes[2] as ScriptStatement;
         }
 
-        if (context.IsContinue())
+        public override void Evaluate(IScriptContext context)
         {
-          context.SetContinue(false);
+            condition.Evaluate(context);
+            object lastResult = RuntimeHost.NullValue;
+
+            while ((bool)context.Result)
+            {
+                statement.Evaluate(context);
+                lastResult = context.Result;
+
+                if (context.IsBreak() || context.IsReturn())
+                {
+                    context.SetBreak(false);
+                    break;
+                }
+
+                if (context.IsContinue())
+                {
+                    context.SetContinue(false);
+                }
+
+                condition.Evaluate(context);
+            }
+
+            context.Result = lastResult;
         }
-
-        condition.Evaluate(context);
-      }
-
-      context.Result = lastResult;
     }
-  }
 }

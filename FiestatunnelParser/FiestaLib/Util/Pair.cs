@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace FiestaLib.Util
+﻿namespace FiestaLib.Util
 {
     public sealed class Pair<T1, T2>
     {
@@ -12,8 +7,8 @@ namespace FiestaLib.Util
 
         public Pair(T1 pFirst, T2 pSecond)
         {
-            this.First = pFirst;
-            this.Second = pSecond;
+            First = pFirst;
+            Second = pSecond;
         }
     }
 }

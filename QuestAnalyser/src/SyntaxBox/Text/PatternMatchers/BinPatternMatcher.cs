@@ -21,7 +21,7 @@ namespace Alsing.Text.PatternMatchers
         //patterns that trigger this matcher
         public override string[] DefaultPrefixes
         {
-            get { return new[] {"0", "1"}; }
+            get { return new[] { "0", "1" }; }
         }
 
         public override int Match(string textToMatch, int matchAtIndex)

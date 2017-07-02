@@ -11,7 +11,7 @@
 namespace Alsing.SourceCode
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class Span
     {
@@ -60,9 +60,8 @@ namespace Alsing.SourceCode
         /// </summary>
         public Word StartWord;
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="startrow"></param>
         public Span(Row startrow)
@@ -71,8 +70,8 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public Span() {}
+        public Span() { }
     }
 }

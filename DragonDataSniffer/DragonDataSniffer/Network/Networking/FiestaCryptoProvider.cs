@@ -1,26 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DragonDataSniffer.Network
 {
     public sealed class FiestaCryptoProvider
     {
         public short XorPos { get; private set; }
+
         public FiestaCryptoProvider(short offset)
         {
             if (offset >= table_size) throw new IndexOutOfRangeException("Xor offset cannot be bigger than 499.");
-            this.XorPos = offset;
+            XorPos = offset;
         }
 
         public void Crypt(byte[] pBuffer, int pOffset, int pLen)
         {
             for (int i = 0; i < pLen; ++i)
             {
-                pBuffer[pOffset + i] ^= XorTable[this.XorPos];
+                pBuffer[pOffset + i] ^= XorTable[XorPos];
                 ++XorPos;
-                if (XorPos == table_size) this.XorPos = 0;
+                if (XorPos == table_size) XorPos = 0;
             }
         }
 
@@ -30,6 +28,7 @@ namespace DragonDataSniffer.Network
         }
 
         private const int table_size = 499;
+
         private static readonly byte[] XorTable = new byte[]
         {
             0x07, 0x59, 0x69, 0x4A, 0x94, 0x11, 0x94, 0x85, 0x8C, 0x88, 0x05, 0xCB, 0xA0, 0x9E, 0xCD, 0x58,

@@ -85,7 +85,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
             get
             {
                 if (_Control != null)
-                    return (EditViewControl) _Control.Target;
+                    return (EditViewControl)_Control.Target;
                 else
                     return null;
             }
@@ -296,313 +296,313 @@ namespace Alsing.Windows.Forms.SyntaxBox
         private void InitializeComponent()
         {
             var resources = new
-                System.Resources.ResourceManager(typeof (FindReplaceForm));
-            this.pnlButtons = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnMarkAll = new System.Windows.Forms.Button();
-            this.pnlReplaceButtons = new System.Windows.Forms.Panel();
-            this.btnReplaceAll = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnDoReplace = new System.Windows.Forms.Button();
-            this.btnReplace = new System.Windows.Forms.Button();
-            this.btnFind = new System.Windows.Forms.Button();
-            this.pnlFind = new System.Windows.Forms.Panel();
-            this.cboFind = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnRegex1 = new System.Windows.Forms.Button();
-            this.pnlReplace = new System.Windows.Forms.Panel();
-            this.cboReplace = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pnlSettings = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkRegEx = new System.Windows.Forms.CheckBox();
-            this.chkWholeWord = new System.Windows.Forms.CheckBox();
-            this.chkMatchCase = new System.Windows.Forms.CheckBox();
-            this.pnlButtons.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.pnlReplaceButtons.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.pnlFind.SuspendLayout();
-            this.pnlReplace.SuspendLayout();
-            this.pnlSettings.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
-            // 
+                System.Resources.ResourceManager(typeof(FindReplaceForm));
+            pnlButtons = new System.Windows.Forms.Panel();
+            panel3 = new System.Windows.Forms.Panel();
+            btnClose = new System.Windows.Forms.Button();
+            btnMarkAll = new System.Windows.Forms.Button();
+            pnlReplaceButtons = new System.Windows.Forms.Panel();
+            btnReplaceAll = new System.Windows.Forms.Button();
+            panel1 = new System.Windows.Forms.Panel();
+            btnDoReplace = new System.Windows.Forms.Button();
+            btnReplace = new System.Windows.Forms.Button();
+            btnFind = new System.Windows.Forms.Button();
+            pnlFind = new System.Windows.Forms.Panel();
+            cboFind = new System.Windows.Forms.ComboBox();
+            label1 = new System.Windows.Forms.Label();
+            btnRegex1 = new System.Windows.Forms.Button();
+            pnlReplace = new System.Windows.Forms.Panel();
+            cboReplace = new System.Windows.Forms.ComboBox();
+            label2 = new System.Windows.Forms.Label();
+            button1 = new System.Windows.Forms.Button();
+            pnlSettings = new System.Windows.Forms.Panel();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            chkRegEx = new System.Windows.Forms.CheckBox();
+            chkWholeWord = new System.Windows.Forms.CheckBox();
+            chkMatchCase = new System.Windows.Forms.CheckBox();
+            pnlButtons.SuspendLayout();
+            panel3.SuspendLayout();
+            pnlReplaceButtons.SuspendLayout();
+            panel1.SuspendLayout();
+            pnlFind.SuspendLayout();
+            pnlReplace.SuspendLayout();
+            pnlSettings.SuspendLayout();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
+            //
             // pnlButtons
-            // 
-            this.pnlButtons.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            pnlButtons.Controls.AddRange(new System.Windows.Forms.Control[]
                                               {
-                                                  this.panel3, this.pnlReplaceButtons, this.panel1
+                                                  panel3, pnlReplaceButtons, panel1
                                               }
                 );
-            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlButtons.Location = new System.Drawing.Point(400, 0);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(96, 178);
-            this.pnlButtons.TabIndex = 0;
-            // 
+            pnlButtons.Dock = System.Windows.Forms.DockStyle.Right;
+            pnlButtons.Location = new System.Drawing.Point(400, 0);
+            pnlButtons.Name = "pnlButtons";
+            pnlButtons.Size = new System.Drawing.Size(96, 178);
+            pnlButtons.TabIndex = 0;
+            //
             // panel3
-            // 
-            this.panel3.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            panel3.Controls.AddRange(new System.Windows.Forms.Control[]
                                           {
-                                              this.btnClose, this.btnMarkAll
+                                              btnClose, btnMarkAll
                                           }
                 );
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 96);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(96, 82);
-            this.panel3.TabIndex = 4;
-            // 
+            panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel3.Location = new System.Drawing.Point(0, 96);
+            panel3.Name = "panel3";
+            panel3.Size = new System.Drawing.Size(96, 82);
+            panel3.TabIndex = 4;
+            //
             // btnClose
-            // 
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(8, 40);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(80, 24);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "Close";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
+            //
+            btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            btnClose.Location = new System.Drawing.Point(8, 40);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new System.Drawing.Size(80, 24);
+            btnClose.TabIndex = 3;
+            btnClose.Text = "Close";
+            btnClose.Click += new System.EventHandler(btnClose_Click);
+            //
             // btnMarkAll
-            // 
-            this.btnMarkAll.Location = new System.Drawing.Point(8, 8);
-            this.btnMarkAll.Name = "btnMarkAll";
-            this.btnMarkAll.Size = new System.Drawing.Size(80, 24);
-            this.btnMarkAll.TabIndex = 2;
-            this.btnMarkAll.Text = "Mark all";
-            this.btnMarkAll.Click += new System.EventHandler(this.btnMarkAll_Click);
-            // 
+            //
+            btnMarkAll.Location = new System.Drawing.Point(8, 8);
+            btnMarkAll.Name = "btnMarkAll";
+            btnMarkAll.Size = new System.Drawing.Size(80, 24);
+            btnMarkAll.TabIndex = 2;
+            btnMarkAll.Text = "Mark all";
+            btnMarkAll.Click += new System.EventHandler(btnMarkAll_Click);
+            //
             // pnlReplaceButtons
-            // 
-            this.pnlReplaceButtons.Controls.AddRange(new
+            //
+            pnlReplaceButtons.Controls.AddRange(new
                                                          System.Windows.Forms.Control[]
                                                      {
-                                                         this.btnReplaceAll
+                                                         btnReplaceAll
                                                      }
                 );
-            this.pnlReplaceButtons.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlReplaceButtons.Location = new System.Drawing.Point(0, 64);
-            this.pnlReplaceButtons.Name = "pnlReplaceButtons";
-            this.pnlReplaceButtons.Size = new System.Drawing.Size(96, 32);
-            this.pnlReplaceButtons.TabIndex = 3;
-            this.pnlReplaceButtons.Visible = false;
-            // 
+            pnlReplaceButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            pnlReplaceButtons.Location = new System.Drawing.Point(0, 64);
+            pnlReplaceButtons.Name = "pnlReplaceButtons";
+            pnlReplaceButtons.Size = new System.Drawing.Size(96, 32);
+            pnlReplaceButtons.TabIndex = 3;
+            pnlReplaceButtons.Visible = false;
+            //
             // btnReplaceAll
-            // 
-            this.btnReplaceAll.Location = new System.Drawing.Point(8, 8);
-            this.btnReplaceAll.Name = "btnReplaceAll";
-            this.btnReplaceAll.Size = new System.Drawing.Size(80, 24);
-            this.btnReplaceAll.TabIndex = 2;
-            this.btnReplaceAll.Text = "Replace All";
-            this.btnReplaceAll.Click += new System.EventHandler
-                (this.btnReplaceAll_Click);
-            // 
+            //
+            btnReplaceAll.Location = new System.Drawing.Point(8, 8);
+            btnReplaceAll.Name = "btnReplaceAll";
+            btnReplaceAll.Size = new System.Drawing.Size(80, 24);
+            btnReplaceAll.TabIndex = 2;
+            btnReplaceAll.Text = "Replace All";
+            btnReplaceAll.Click += new System.EventHandler
+                (btnReplaceAll_Click);
+            //
             // panel1
-            // 
-            this.panel1.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            panel1.Controls.AddRange(new System.Windows.Forms.Control[]
                                           {
-                                              this.btnDoReplace, this.btnReplace, this.btnFind
+                                              btnDoReplace, btnReplace, btnFind
                                           }
                 );
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(96, 64);
-            this.panel1.TabIndex = 2;
-            // 
+            panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(96, 64);
+            panel1.TabIndex = 2;
+            //
             // btnDoReplace
-            // 
-            this.btnDoReplace.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnDoReplace.Location = new System.Drawing.Point(8, 40);
-            this.btnDoReplace.Name = "btnDoReplace";
-            this.btnDoReplace.Size = new System.Drawing.Size(80, 24);
-            this.btnDoReplace.TabIndex = 4;
-            this.btnDoReplace.Text = "Replace";
-            this.btnDoReplace.Click += new System.EventHandler
-                (this.btnDoReplace_Click);
-            // 
+            //
+            btnDoReplace.DialogResult = System.Windows.Forms.DialogResult.OK;
+            btnDoReplace.Location = new System.Drawing.Point(8, 40);
+            btnDoReplace.Name = "btnDoReplace";
+            btnDoReplace.Size = new System.Drawing.Size(80, 24);
+            btnDoReplace.TabIndex = 4;
+            btnDoReplace.Text = "Replace";
+            btnDoReplace.Click += new System.EventHandler
+                (btnDoReplace_Click);
+            //
             // btnReplace
-            // 
-            this.btnReplace.Image = ((System.Drawing.Bitmap) (resources.GetObject(
+            //
+            btnReplace.Image = ((System.Drawing.Bitmap)(resources.GetObject(
                                                                  "btnReplace.Image")));
-            this.btnReplace.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReplace.Location = new System.Drawing.Point(8, 40);
-            this.btnReplace.Name = "btnReplace";
-            this.btnReplace.Size = new System.Drawing.Size(80, 24);
-            this.btnReplace.TabIndex = 3;
-            this.btnReplace.Text = "Replace";
-            this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
-            // 
+            btnReplace.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnReplace.Location = new System.Drawing.Point(8, 40);
+            btnReplace.Name = "btnReplace";
+            btnReplace.Size = new System.Drawing.Size(80, 24);
+            btnReplace.TabIndex = 3;
+            btnReplace.Text = "Replace";
+            btnReplace.Click += new System.EventHandler(btnReplace_Click);
+            //
             // btnFind
-            // 
-            this.btnFind.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnFind.Location = new System.Drawing.Point(8, 8);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(80, 24);
-            this.btnFind.TabIndex = 2;
-            this.btnFind.Text = "&FindNext";
-            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
-            // 
+            //
+            btnFind.DialogResult = System.Windows.Forms.DialogResult.OK;
+            btnFind.Location = new System.Drawing.Point(8, 8);
+            btnFind.Name = "btnFind";
+            btnFind.Size = new System.Drawing.Size(80, 24);
+            btnFind.TabIndex = 2;
+            btnFind.Text = "&FindNext";
+            btnFind.Click += new System.EventHandler(btnFind_Click);
+            //
             // pnlFind
-            // 
-            this.pnlFind.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            pnlFind.Controls.AddRange(new System.Windows.Forms.Control[]
                                            {
-                                               this.cboFind, this.label1, this.btnRegex1
+                                               cboFind, label1, btnRegex1
                                            }
                 );
-            this.pnlFind.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlFind.Name = "pnlFind";
-            this.pnlFind.Size = new System.Drawing.Size(400, 40);
-            this.pnlFind.TabIndex = 1;
-            // 
+            pnlFind.Dock = System.Windows.Forms.DockStyle.Top;
+            pnlFind.Name = "pnlFind";
+            pnlFind.Size = new System.Drawing.Size(400, 40);
+            pnlFind.TabIndex = 1;
+            //
             // cboFind
-            // 
-            this.cboFind.Location = new System.Drawing.Point(104, 8);
-            this.cboFind.Name = "cboFind";
-            this.cboFind.Size = new System.Drawing.Size(288, 21);
-            this.cboFind.TabIndex = 1;
-            // 
+            //
+            cboFind.Location = new System.Drawing.Point(104, 8);
+            cboFind.Name = "cboFind";
+            cboFind.Size = new System.Drawing.Size(288, 21);
+            cboFind.TabIndex = 1;
+            //
             // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(8, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Fi&nd what:";
-            // 
+            //
+            label1.Location = new System.Drawing.Point(8, 8);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(96, 24);
+            label1.TabIndex = 0;
+            label1.Text = "Fi&nd what:";
+            //
             // btnRegex1
-            // 
-            this.btnRegex1.Image = ((System.Drawing.Bitmap) (resources.GetObject(
+            //
+            btnRegex1.Image = ((System.Drawing.Bitmap)(resources.GetObject(
                                                                 "btnRegex1.Image")));
-            this.btnRegex1.Location = new System.Drawing.Point(368, 8);
-            this.btnRegex1.Name = "btnRegex1";
-            this.btnRegex1.Size = new System.Drawing.Size(21, 21);
-            this.btnRegex1.TabIndex = 2;
-            this.btnRegex1.Visible = false;
-            // 
+            btnRegex1.Location = new System.Drawing.Point(368, 8);
+            btnRegex1.Name = "btnRegex1";
+            btnRegex1.Size = new System.Drawing.Size(21, 21);
+            btnRegex1.TabIndex = 2;
+            btnRegex1.Visible = false;
+            //
             // pnlReplace
-            // 
-            this.pnlReplace.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            pnlReplace.Controls.AddRange(new System.Windows.Forms.Control[]
                                               {
-                                                  this.cboReplace, this.label2, this.button1
+                                                  cboReplace, label2, button1
                                               }
                 );
-            this.pnlReplace.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlReplace.Location = new System.Drawing.Point(0, 40);
-            this.pnlReplace.Name = "pnlReplace";
-            this.pnlReplace.Size = new System.Drawing.Size(400, 40);
-            this.pnlReplace.TabIndex = 2;
-            this.pnlReplace.Visible = false;
-            // 
+            pnlReplace.Dock = System.Windows.Forms.DockStyle.Top;
+            pnlReplace.Location = new System.Drawing.Point(0, 40);
+            pnlReplace.Name = "pnlReplace";
+            pnlReplace.Size = new System.Drawing.Size(400, 40);
+            pnlReplace.TabIndex = 2;
+            pnlReplace.Visible = false;
+            //
             // cboReplace
-            // 
-            this.cboReplace.Location = new System.Drawing.Point(106, 8);
-            this.cboReplace.Name = "cboReplace";
-            this.cboReplace.Size = new System.Drawing.Size(286, 21);
-            this.cboReplace.TabIndex = 4;
-            // 
+            //
+            cboReplace.Location = new System.Drawing.Point(106, 8);
+            cboReplace.Name = "cboReplace";
+            cboReplace.Size = new System.Drawing.Size(286, 21);
+            cboReplace.TabIndex = 4;
+            //
             // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(10, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Re&place with:";
-            // 
+            //
+            label2.Location = new System.Drawing.Point(10, 8);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(96, 24);
+            label2.TabIndex = 3;
+            label2.Text = "Re&place with:";
+            //
             // button1
-            // 
-            this.button1.Image = ((System.Drawing.Bitmap) (resources.GetObject(
+            //
+            button1.Image = ((System.Drawing.Bitmap)(resources.GetObject(
                                                               "button1.Image")));
-            this.button1.Location = new System.Drawing.Point(368, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(21, 21);
-            this.button1.TabIndex = 5;
-            this.button1.Visible = false;
-            // 
+            button1.Location = new System.Drawing.Point(368, 8);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(21, 21);
+            button1.TabIndex = 5;
+            button1.Visible = false;
+            //
             // pnlSettings
-            // 
-            this.pnlSettings.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            pnlSettings.Controls.AddRange(new System.Windows.Forms.Control[]
                                                {
-                                                   this.groupBox1
+                                                   groupBox1
                                                }
                 );
-            this.pnlSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSettings.Location = new System.Drawing.Point(0, 80);
-            this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(400, 98);
-            this.pnlSettings.TabIndex = 3;
-            // 
+            pnlSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            pnlSettings.Location = new System.Drawing.Point(0, 80);
+            pnlSettings.Name = "pnlSettings";
+            pnlSettings.Size = new System.Drawing.Size(400, 98);
+            pnlSettings.TabIndex = 3;
+            //
             // groupBox1
-            // 
-            this.groupBox1.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            groupBox1.Controls.AddRange(new System.Windows.Forms.Control[]
                                              {
-                                                 this.chkRegEx, this.chkWholeWord, this.chkMatchCase
+                                                 chkRegEx, chkWholeWord, chkMatchCase
                                              }
                 );
-            this.groupBox1.Location = new System.Drawing.Point(8, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(384, 88);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Search";
-            // 
+            groupBox1.Location = new System.Drawing.Point(8, 0);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(384, 88);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Search";
+            //
             // chkRegEx
-            // 
-            this.chkRegEx.Location = new System.Drawing.Point(8, 64);
-            this.chkRegEx.Name = "chkRegEx";
-            this.chkRegEx.Size = new System.Drawing.Size(144, 16);
-            this.chkRegEx.TabIndex = 2;
-            this.chkRegEx.Text = "Use Regular expressions";
-            this.chkRegEx.Visible = false;
-            // 
+            //
+            chkRegEx.Location = new System.Drawing.Point(8, 64);
+            chkRegEx.Name = "chkRegEx";
+            chkRegEx.Size = new System.Drawing.Size(144, 16);
+            chkRegEx.TabIndex = 2;
+            chkRegEx.Text = "Use Regular expressions";
+            chkRegEx.Visible = false;
+            //
             // chkWholeWord
-            // 
-            this.chkWholeWord.Location = new System.Drawing.Point(8, 40);
-            this.chkWholeWord.Name = "chkWholeWord";
-            this.chkWholeWord.Size = new System.Drawing.Size(144, 16);
-            this.chkWholeWord.TabIndex = 1;
-            this.chkWholeWord.Text = "Match &whole word";
-            // 
+            //
+            chkWholeWord.Location = new System.Drawing.Point(8, 40);
+            chkWholeWord.Name = "chkWholeWord";
+            chkWholeWord.Size = new System.Drawing.Size(144, 16);
+            chkWholeWord.TabIndex = 1;
+            chkWholeWord.Text = "Match &whole word";
+            //
             // chkMatchCase
-            // 
-            this.chkMatchCase.Location = new System.Drawing.Point(8, 16);
-            this.chkMatchCase.Name = "chkMatchCase";
-            this.chkMatchCase.Size = new System.Drawing.Size(144, 16);
-            this.chkMatchCase.TabIndex = 0;
-            this.chkMatchCase.Text = "Match &case";
-            // 
+            //
+            chkMatchCase.Location = new System.Drawing.Point(8, 16);
+            chkMatchCase.Name = "chkMatchCase";
+            chkMatchCase.Size = new System.Drawing.Size(144, 16);
+            chkMatchCase.TabIndex = 0;
+            chkMatchCase.Text = "Match &case";
+            //
             // FindReplaceForm
-            // 
-            this.AcceptButton = this.btnFind;
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(496, 178);
-            this.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            AcceptButton = btnFind;
+            AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            CancelButton = btnClose;
+            ClientSize = new System.Drawing.Size(496, 178);
+            Controls.AddRange(new System.Windows.Forms.Control[]
                                    {
-                                       this.pnlSettings, this.pnlReplace, this.pnlFind, this.pnlButtons
+                                       pnlSettings, pnlReplace, pnlFind, pnlButtons
                                    }
                 );
-            this.FormBorderStyle =
+            FormBorderStyle =
                 System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "FindReplaceForm";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Find";
-            this.Closing += new System.ComponentModel.CancelEventHandler
-                (this.FindReplace_Closing);
-            this.pnlButtons.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.pnlReplaceButtons.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.pnlFind.ResumeLayout(false);
-            this.pnlReplace.ResumeLayout(false);
-            this.pnlSettings.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.ResumeLayout(false);
+            Name = "FindReplaceForm";
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Find";
+            Closing += new System.ComponentModel.CancelEventHandler
+                (FindReplace_Closing);
+            pnlButtons.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            pnlReplaceButtons.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            pnlFind.ResumeLayout(false);
+            pnlReplace.ResumeLayout(false);
+            pnlSettings.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
-        #endregion
+        #endregion Windows Form Designer generated code
     }
 }

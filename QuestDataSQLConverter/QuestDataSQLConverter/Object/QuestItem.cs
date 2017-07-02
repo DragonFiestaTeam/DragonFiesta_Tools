@@ -4,41 +4,35 @@ namespace QuestDataSQLConverter.Object
 {
     public class QuestItem
     {
-
-        public ushort ID { get; private set; }
-        public ushort Amount;
-
+        public byte IsEnabled { get; private set; }
         public byte Type { get; private set; }
-        public bool IsEnabled { get; private set; }
+        public ushort ItemID { get; private set; }
+        public ushort Amount { get; private set; }
 
-        public void SaveSQL(ushort questid)
+        public void SaveSQL(int questid)
         {
-            string SQL = "INSERT INTO QuestItem (QuestID,Amount,Type,IsEnabled,ItemID) VALUES "
-                + "('" + questid + "','" + Amount + "','" + Type + "','" + IsEnabled + "','" + ID + "')";
+            string SQL = "INSERT INTO QuestItem (QuestID,IsEnabled,Type,ItemID,Amount) VALUES "
+                + "('" + questid + "','" + IsEnabled + "','" + Type + "','" + ItemID + "','" + Amount + "')";
             DatabaseManager.RunSQL(SQL);
         }
+
         public static bool Read(QuestStream pStream, out QuestItem pItem)
         {
             pItem = null;
-            bool pIsEnabled;
-            byte pItemType;
-            ushort pItemID;
-            ushort pAmount;
 
-            if (!pStream.TryReadBoolean(out pIsEnabled)) { return false; }
+            if (!pStream.TryReadByte(out byte pIsEnabled)) { return false; }
 
-            if (!pStream.TryReadByte(out pItemType)) { return false; }
+            if (!pStream.TryReadByte(out byte pItemType)) { return false; }
 
-            if (!pStream.TryReadUInt16(out pItemID)) { return false; }
+            if (!pStream.TryReadUInt16(out ushort pItemID)) { return false; }
 
-            if (!pStream.TryReadUInt16(out pAmount)) { return false; }
-
+            if (!pStream.TryReadUInt16(out ushort pAmount)) { return false; }
 
             pItem = new QuestItem
             {
                 IsEnabled = pIsEnabled,
                 Type = pItemType,
-                ID = pItemID,
+                ItemID = pItemID,
                 Amount = pAmount,
             };
 

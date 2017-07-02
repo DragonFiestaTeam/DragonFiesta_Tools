@@ -1,15 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.Windows.Forms.Design;
-using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
     #region DockPanelSkin classes
+
     /// <summary>
     /// The skin to use when displaying the DockPanel.
     /// The skin allows custom gradient color schemes to be used when drawing the
@@ -106,14 +103,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_ToolWindowGradient = new DockPaneStripToolWindowGradient();
             m_ToolWindowGradient.DockStripGradient.StartColor = SystemColors.ControlLight;
             m_ToolWindowGradient.DockStripGradient.EndColor = SystemColors.ControlLight;
-            
+
             m_ToolWindowGradient.ActiveTabGradient.StartColor = SystemColors.Control;
             m_ToolWindowGradient.ActiveTabGradient.EndColor = SystemColors.Control;
-            
+
             m_ToolWindowGradient.InactiveTabGradient.StartColor = Color.Transparent;
             m_ToolWindowGradient.InactiveTabGradient.EndColor = Color.Transparent;
             m_ToolWindowGradient.InactiveTabGradient.TextColor = SystemColors.ControlDarkDark;
-            
+
             m_ToolWindowGradient.ActiveCaptionGradient.StartColor = SystemColors.GradientActiveCaption;
             m_ToolWindowGradient.ActiveCaptionGradient.EndColor = SystemColors.ActiveCaption;
             m_ToolWindowGradient.ActiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
@@ -295,9 +292,10 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
     }
 
-    #endregion
+    #endregion DockPanelSkin classes
 
     #region Converters
+
     public class DockPanelSkinConverter : ExpandableObjectConverter
     {
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
@@ -417,5 +415,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.ConvertTo(context, culture, value, destinationType);
         }
     }
-    #endregion
+
+    #endregion Converters
 }

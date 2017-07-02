@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace FiestaLib.Data
+﻿namespace FiestaLib.Data
 {
     public enum ServerOpCode : ushort
     {
@@ -15,8 +10,6 @@ namespace FiestaLib.Data
         Chardeatiledinfo = 0x1038,
         PerfomEmote = 0x2020,
         ChangeMap = 0x1809,
-
-
     }
     public enum ClienOpcodes : ushort
     {

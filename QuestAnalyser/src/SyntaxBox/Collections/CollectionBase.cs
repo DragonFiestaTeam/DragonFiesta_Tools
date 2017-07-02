@@ -12,7 +12,6 @@ using System;
 
 namespace Puzzle.Collections
 {
-
     #region EventArgs and Delegate
 
     public class CollectionEventArgs : EventArgs
@@ -22,8 +21,10 @@ namespace Puzzle.Collections
 
         public CollectionEventArgs()
         {
-            try {}
-                #region ERROR HANDLER
+            try { }
+
+            #region ERROR HANDLER
+
 #if DEBUG_COMPONA
 			catch (Exception x)
 			{
@@ -37,7 +38,7 @@ namespace Puzzle.Collections
             }
 #endif
 
-            #endregion
+            #endregion ERROR HANDLER
         }
 
         public CollectionEventArgs(object item, int index)
@@ -47,15 +48,17 @@ namespace Puzzle.Collections
             if (item == null)
                 throw new ArgumentNullException("item"); // Throw error if validation failed for "item"
 
-            #endregion
+            #endregion PARAMETER VALIDATIONS
 
-            //IMPLEMENTATION 
+            //IMPLEMENTATION
             try
             {
                 Index = index;
                 Item = item;
             }
-                #region ERROR HANDLER
+
+            #region ERROR HANDLER
+
 #if DEBUG_COMPONA
 			catch (Exception x)
 			{
@@ -69,13 +72,13 @@ namespace Puzzle.Collections
             }
 #endif
 
-            #endregion
+            #endregion ERROR HANDLER
         }
     }
 
     public delegate void CollectionEventHandler(object sender, CollectionEventArgs e);
 
-    #endregion
+    #endregion EventArgs and Delegate
 
     public abstract class CollectionBase : System.Collections.CollectionBase
     {
@@ -113,7 +116,7 @@ namespace Puzzle.Collections
                 ItemsCleared(this, EventArgs.Empty);
         }
 
-        #endregion
+        #endregion Events
 
         #region Overrides
 
@@ -135,6 +138,6 @@ namespace Puzzle.Collections
             OnItemAdded(index, value);
         }
 
-        #endregion
+        #endregion Overrides
     }
 }

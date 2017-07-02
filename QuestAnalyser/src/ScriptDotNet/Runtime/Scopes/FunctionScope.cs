@@ -1,149 +1,147 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ScriptNET.Ast;
-
-namespace ScriptNET.Runtime
+﻿namespace ScriptNET.Runtime
 {
-  /// <summary>
-  /// Scope with contracts on variables
-  /// </summary>
-  public class FunctionScope : ScriptScope, INotifyingScope
-  {
-    #region Fields
-    public bool SearchHierarchy { get; set; }
-    #endregion
-
-    #region Constructors
     /// <summary>
-    /// Default Constructor
+    /// Scope with contracts on variables
     /// </summary>
-    public FunctionScope(IScriptScope parent)
-      : base(parent)
+    public class FunctionScope : ScriptScope, INotifyingScope
     {
-    }
-    #endregion
+        #region Fields
 
-    #region Methods
-    public override object GetItem(string id, bool throwException)
-    {
-      ScopeArgs args = new ScopeArgs(id, RuntimeHost.NullValue);
+        public bool SearchHierarchy { get; set; }
 
-      OnBeforeGetItem(args);
-      if (args.Cancel)
-      {
-        if (args.Value != RuntimeHost.NullValue)
+        #endregion Fields
+
+        #region Constructors
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public FunctionScope(IScriptScope parent)
+          : base(parent)
         {
-          return args.Value;
         }
-        else
+
+        #endregion Constructors
+
+        #region Methods
+
+        public override object GetItem(string id, bool throwException)
         {
-          throw new ScriptIdNotFoundException(id);
+            ScopeArgs args = new ScopeArgs(id, RuntimeHost.NullValue);
+
+            OnBeforeGetItem(args);
+            if (args.Cancel)
+            {
+                if (args.Value != RuntimeHost.NullValue)
+                {
+                    return args.Value;
+                }
+                else
+                {
+                    throw new ScriptIdNotFoundException(id);
+                }
+            }
+            args.Value = base.GetItem(id, throwException);
+
+            OnAfterGetItem(args);
+            if (args.Cancel)
+            {
+                throw new ScriptException("Canceled by event-handler");
+            }
+
+            return args.Value;
         }
-      }
-      args.Value = base.GetItem(id, throwException);
 
-      OnAfterGetItem(args);
-      if (args.Cancel)
-      {
-        throw new ScriptException("Canceled by event-handler");
-      }
+        public override void SetItem(string id, object value)
+        {
+            ScopeArgs args = new ScopeArgs(id, value);
 
-      return args.Value;
-    }
+            OnBeforeSetItem(args);
+            if (args.Cancel) return;
 
-    public override void SetItem(string id, object value)
-    {
-      ScopeArgs args = new ScopeArgs(id, value);
+            base.SetItem(id, args.Value);
 
-      OnBeforeSetItem(args);    
-      if (args.Cancel) return;
+            OnAfterSetItem(args);
+            if (args.Cancel)
+            {
+                throw new ScriptException("Canceled by event-handler");
+            }
+        }
 
-      base.SetItem(id, args.Value);
+        #endregion Methods
 
-      OnAfterSetItem(args);
-      if (args.Cancel)
-      {
-        throw new ScriptException("Canceled by event-handler");
-      }
-    }
-    #endregion
+        #region INotifyingScope Members
 
+        protected virtual void OnBeforeGetItem(ScopeArgs args)
+        {
+            if (BeforeGetItem != null)
+                BeforeGetItem(this, args);
+        }
 
-    #region INotifyingScope Members
+        protected virtual void OnAfterGetItem(ScopeArgs args)
+        {
+            if (AfterGetItem != null)
+                AfterGetItem(this, args);
+        }
 
-    protected virtual void OnBeforeGetItem(ScopeArgs args)
-    {
-      if (BeforeGetItem != null)
-        BeforeGetItem(this, args);
-    }
+        protected virtual void OnBeforeSetItem(ScopeArgs args)
+        {
+            if (BeforeSetItem != null)
+                BeforeSetItem(this, args);
+        }
 
-    protected virtual void OnAfterGetItem(ScopeArgs args)
-    {
-      if (AfterGetItem != null)
-        AfterGetItem(this, args);
-    }
+        protected virtual void OnAfterSetItem(ScopeArgs args)
+        {
+            if (AfterSetItem != null)
+                AfterSetItem(this, args);
+        }
 
-    protected virtual void OnBeforeSetItem(ScopeArgs args)
-    {
-      if (BeforeSetItem!=null)
-        BeforeSetItem(this, args);
-    }
+        /// <summary>
+        /// Event raised before performing getting item, allowing to
+        /// cancel action or replace actual value
+        /// </summary>
+        public event ScopeSetEvent BeforeGetItem;
 
-    protected virtual void OnAfterSetItem(ScopeArgs args)
-    {
-      if (AfterSetItem != null)
-        AfterSetItem(this, args);
+        /// <summary>
+        /// Raised after performing get item action, allowing to replace
+        /// resulting value or cancel action. Cancelling will raise ScriptException
+        /// </summary>
+        public event ScopeSetEvent AfterGetItem;
+
+        /// <summary>
+        /// Event raised before performing setting item action, allowing to
+        /// cancel it or replace actual value
+        /// </summary>
+        public event ScopeSetEvent BeforeSetItem;
+
+        /// <summary>
+        /// Raised after performing set item action, allowing to cancel action.
+        /// Cancelling will raise ScriptException
+        /// </summary>
+        public event ScopeSetEvent AfterSetItem;
+
+        #endregion INotifyingScope Members
     }
 
     /// <summary>
-    /// Event raised before performing getting item, allowing to
-    /// cancel action or replace actual value
+    /// Default activator for a FunctionScope. May be replaced in xml file configuration
+    /// by custom implementation
     /// </summary>
-    public event ScopeSetEvent BeforeGetItem;
-
-    /// <summary>
-    /// Raised after performing get item action, allowing to replace
-    /// resulting value or cancel action. Cancelling will raise ScriptException
-    /// </summary>
-    public event ScopeSetEvent AfterGetItem;
-
-    /// <summary>
-    /// Event raised before performing setting item action, allowing to
-    /// cancel it or replace actual value
-    /// </summary>
-    public event ScopeSetEvent BeforeSetItem;
-
-    /// <summary>
-    /// Raised after performing set item action, allowing to cancel action. 
-    /// Cancelling will raise ScriptException    
-    /// </summary>
-    public event ScopeSetEvent AfterSetItem;
-
-    #endregion
-  }
-
-  /// <summary>
-  /// Default activator for a FunctionScope. May be replaced in xml file configuration
-  /// by custom implementation
-  /// </summary>
-  public class FunctionScopeActivator : IScopeActivator
-  {
-    #region IScopeActivator Members
-
-    /// <summary>
-    /// Creates a new Function scope
-    /// </summary>
-    /// <param name="parent"></param>
-    /// <param name="args">arguments are ignored</param>
-    /// <returns>a new instance  of FunctionScope</returns>
-    public IScriptScope Create(IScriptScope parent, params object[] args)
+    public class FunctionScopeActivator : IScopeActivator
     {
-      return new FunctionScope(parent);
+        #region IScopeActivator Members
+
+        /// <summary>
+        /// Creates a new Function scope
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="args">arguments are ignored</param>
+        /// <returns>a new instance  of FunctionScope</returns>
+        public IScriptScope Create(IScriptScope parent, params object[] args)
+        {
+            return new FunctionScope(parent);
+        }
+
+        #endregion IScopeActivator Members
     }
-
-    #endregion
-  }
-
-
 }

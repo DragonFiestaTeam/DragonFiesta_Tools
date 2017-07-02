@@ -1,12 +1,10 @@
-using System;
 using System.Collections;
-using System.Text;
 
 namespace System.Windows.Forms
 {
     internal class DataMap : ICollection, IEnumerable
     {
-        readonly object _syncRoot = new object();
+        private readonly object _syncRoot = new object();
         internal int _count;
         internal DataBlock _firstBlock;
         internal int _version;
@@ -91,14 +89,14 @@ namespace System.Windows.Forms
                 throw new InvalidOperationException("The collection is empty.");
             }
             RemoveInternal(GetLastBlock());
-		}
+        }
 
-		public DataBlock Replace(DataBlock block, DataBlock newBlock)
-		{
-			AddAfterInternal(block, newBlock);
-			RemoveInternal(block);
-			return newBlock;
-		}
+        public DataBlock Replace(DataBlock block, DataBlock newBlock)
+        {
+            AddAfterInternal(block, newBlock);
+            RemoveInternal(block);
+            return newBlock;
+        }
 
         public void Clear()
         {
@@ -114,7 +112,7 @@ namespace System.Windows.Forms
             _version++;
         }
 
-        void AddAfterInternal(DataBlock block, DataBlock newBlock)
+        private void AddAfterInternal(DataBlock block, DataBlock newBlock)
         {
             newBlock._previousBlock = block;
             newBlock._nextBlock = block._nextBlock;
@@ -126,11 +124,11 @@ namespace System.Windows.Forms
             }
             block._nextBlock = newBlock;
 
-            this._version++;
-            this._count++;
+            _version++;
+            _count++;
         }
 
-        void AddBeforeInternal(DataBlock block, DataBlock newBlock)
+        private void AddBeforeInternal(DataBlock block, DataBlock newBlock)
         {
             newBlock._nextBlock = block;
             newBlock._previousBlock = block._previousBlock;
@@ -146,11 +144,11 @@ namespace System.Windows.Forms
             {
                 _firstBlock = newBlock;
             }
-            this._version++;
-            this._count++;
+            _version++;
+            _count++;
         }
 
-        void RemoveInternal(DataBlock block)
+        private void RemoveInternal(DataBlock block)
         {
             DataBlock previousBlock = block._previousBlock;
             DataBlock nextBlock = block._nextBlock;
@@ -176,7 +174,7 @@ namespace System.Windows.Forms
             _version++;
         }
 
-        DataBlock GetLastBlock()
+        private DataBlock GetLastBlock()
         {
             DataBlock lastBlock = null;
             for (DataBlock block = FirstBlock; block != null; block = block.NextBlock)
@@ -186,14 +184,14 @@ namespace System.Windows.Forms
             return lastBlock;
         }
 
-        void InvalidateBlock(DataBlock block)
+        private void InvalidateBlock(DataBlock block)
         {
             block._map = null;
             block._nextBlock = null;
             block._previousBlock = null;
         }
 
-        void AddBlockToEmptyMap(DataBlock block)
+        private void AddBlockToEmptyMap(DataBlock block)
         {
             block._map = this;
             block._nextBlock = null;
@@ -205,6 +203,7 @@ namespace System.Windows.Forms
         }
 
         #region ICollection Members
+
         public void CopyTo(Array array, int index)
         {
             DataBlock[] blockArray = array as DataBlock[];
@@ -237,22 +236,26 @@ namespace System.Windows.Forms
                 return _syncRoot;
             }
         }
-        #endregion
+
+        #endregion ICollection Members
 
         #region IEnumerable Members
+
         public IEnumerator GetEnumerator()
         {
             return new Enumerator(this);
         }
-        #endregion
+
+        #endregion IEnumerable Members
 
         #region Enumerator Nested Type
+
         internal class Enumerator : IEnumerator, IDisposable
         {
-            DataMap _map;
-            DataBlock _current;
-            int _index;
-            int _version;
+            private DataMap _map;
+            private DataBlock _current;
+            private int _index;
+            private int _version;
 
             internal Enumerator(DataMap map)
             {
@@ -276,7 +279,7 @@ namespace System.Windows.Forms
 
             public bool MoveNext()
             {
-                if (this._version != _map._version)
+                if (_version != _map._version)
                 {
                     throw new InvalidOperationException("Collection was modified after the enumerator was instantiated.");
                 }
@@ -300,19 +303,20 @@ namespace System.Windows.Forms
 
             void IEnumerator.Reset()
             {
-                if (this._version != this._map._version)
+                if (_version != _map._version)
                 {
                     throw new InvalidOperationException("Collection was modified after the enumerator was instantiated.");
                 }
 
-                this._index = -1;
-                this._current = null;
+                _index = -1;
+                _current = null;
             }
 
             public void Dispose()
             {
             }
         }
-        #endregion
+
+        #endregion Enumerator Nested Type
     }
 }

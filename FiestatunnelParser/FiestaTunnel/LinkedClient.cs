@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Reflection;
-
 using FiestaLib.Data;
 using FiestaLib.Networking;
 using FiestaLib.Util;
 using System.Net.Sockets;
-using FiestaLib.Util.Database;
 using FiestaLib.Objects;
 using FiestaTunnel.Handler;
 
@@ -29,12 +26,12 @@ namespace FiestaTunnel
         public LinkedClient(Socket sock, string ip, int port)
         {
             inClient = new Client(sock, ClientType.ToClient);
-            inClient.OnEvent += new EventHandler<NetworkEventArgs>(inClient_OnEvent);
+            inClient.OnEvent += new EventHandler<NetworkEventArgs>(InClient_OnEvent);
             StartOutClient(ip, port);
             // get existing spawnpoints from database
-            Console.WriteLine("-- Loaded [{0}] Spawns from DB --",getSpawnPointsFromDB());
-            Console.WriteLine("-- Loaded [{0}] Maps from DB --", getMapsFromDB());
-            Console.WriteLine("-- Loaded [{0}] RealNpcs from DB --", getOnlyNpcs());
+            Console.WriteLine("-- Loaded [{0}] Spawns from DB --",GetSpawnPointsFromDB());
+            Console.WriteLine("-- Loaded [{0}] Maps from DB --", GetMapsFromDB());
+            Console.WriteLine("-- Loaded [{0}] RealNpcs from DB --", GetOnlyNpcs());
             ;
         }
 
@@ -45,7 +42,7 @@ namespace FiestaTunnel
                 Socket outSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 outSocket.Connect(IP, port);
                 outClient = new Client(outSocket, ClientType.ToServer);
-                outClient.OnEvent += new EventHandler<NetworkEventArgs>(outClient_OnEvent);
+                outClient.OnEvent += new EventHandler<NetworkEventArgs>(OutClient_OnEvent);
                 outClient.Start();
             }
             catch (Exception ex)
@@ -55,7 +52,7 @@ namespace FiestaTunnel
             }
         }
 
-        void outClient_OnEvent(object sender, NetworkEventArgs e)
+        void OutClient_OnEvent(object sender, NetworkEventArgs e)
         {
             switch (e.Type)
             {
@@ -86,7 +83,7 @@ namespace FiestaTunnel
             }
         }
 
-        void inClient_OnEvent(object sender, NetworkEventArgs e)
+        void InClient_OnEvent(object sender, NetworkEventArgs e)
         {
             switch (e.Type)
             {
@@ -98,7 +95,7 @@ namespace FiestaTunnel
                     Packet packet = (Packet)e.Obj;
                     try
                     {
-                        if (!this.CallHandlerForPacket(packet))                       //Get From Client
+                        if (!CallHandlerForPacket(packet))                       //Get From Client
                         {
                             outClient.SendPacket(packet);
                         }
@@ -126,7 +123,7 @@ namespace FiestaTunnel
              } */
         }
 
-        private int getOnlyNpcs()
+        private int GetOnlyNpcs()
         {
 
             try
@@ -147,12 +144,12 @@ namespace FiestaTunnel
             return onlyNpcs.Count;
         }
 
-        public bool isNPC(int id)
+        public bool IsNPC(int id)
         {
             return onlyNpcs.Contains(id) ? true : false;
         }
 
-        private int getMapsFromDB()
+        private int GetMapsFromDB()
         {
 
             try
@@ -210,7 +207,7 @@ namespace FiestaTunnel
             int i = 0;
             string gateString = "INSERT INTO gateinfo (SpawnID,GateName,MapToName,ToPosX,ToPosY,Direct,MinLevel,MaxLevel,Party)" +
                    "VALUES ("
-                   + getSpawnIDFromDB(npc) + ","
+                   + GetSpawnIDFromDB(npc) + ","
                    + " \"" + res.Read<string>(i, "GateName") + "\","
                    + " \"" + res.Read<string>(i, "MapClient") + "\","
                    + res.Read<UInt16>(i, "Coord_X") + ","
@@ -226,7 +223,7 @@ namespace FiestaTunnel
 
         }
 
-        private int getSpawnPointsFromDB()
+        private int GetSpawnPointsFromDB()
         {
 
             try
@@ -252,7 +249,7 @@ namespace FiestaTunnel
             return npcs.Count;
         }
 
-        private int getSpawnIDFromDB(NPC npc)
+        private int GetSpawnIDFromDB(NPC npc)
         {
             if (npc == null)
                 return 0;

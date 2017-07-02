@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ScriptNET.Runtime
+﻿namespace ScriptNET.Runtime
 {
-  public interface IScopeActivator
-  {
-    IScriptScope Create(IScriptScope parent, params object[] args);
-  }
+    public interface IScopeActivator
+    {
+        IScriptScope Create(IScriptScope parent, params object[] args);
+    }
 }

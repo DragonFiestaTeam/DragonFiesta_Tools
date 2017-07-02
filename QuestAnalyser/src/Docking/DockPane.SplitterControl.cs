@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,7 +7,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         private class SplitterControl : Control, ISplitterDragSource
         {
-            DockPane m_pane;
+            private DockPane m_pane;
 
             public SplitterControl(DockPane pane)
             {
@@ -24,6 +21,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             private DockAlignment m_alignment;
+
             public DockAlignment Alignment
             {
                 get { return m_alignment; }
@@ -133,12 +131,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 get { return this; }
             }
 
-            #endregion
+            #endregion IDragSource Members
 
-            #endregion
+            #endregion ISplitterDragSource Members
         }
 
         private SplitterControl m_splitter;
+
         private SplitterControl Splitter
         {
             get { return m_splitter; }

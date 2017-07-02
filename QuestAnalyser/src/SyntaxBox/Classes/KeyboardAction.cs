@@ -27,7 +27,9 @@ namespace Alsing.Windows.Forms.SyntaxBox
         /// </summary>
         private Keys _Key = 0;
 
-        public KeyboardAction() {}
+        public KeyboardAction()
+        {
+        }
 
         public KeyboardAction(Keys key, bool shift, bool control, bool alt, bool
                                                                                 allowreadonly,

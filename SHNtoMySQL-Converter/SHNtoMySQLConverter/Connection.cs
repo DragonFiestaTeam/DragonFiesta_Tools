@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MySql.Data.MySqlClient;
-using System.Collections;
+﻿using MySql.Data.MySqlClient;
 
 namespace SHNtoMySQLConverter.Connection
 {
     public class DatabaseHelper
     {
         #region .ctor
+
         public DatabaseHelper(string connectionString)
         {
             this.connectionString = connectionString;
         }
+
         ~DatabaseHelper()
         {
         }
-        #endregion
+
+        #endregion .ctor
 
         #region Methods
 
         public MySqlConnection GetConnection()
         {
-
             MySqlConnection conn = new MySqlConnection(connectionString);
             if (conn.State == System.Data.ConnectionState.Closed)
             {
@@ -32,16 +29,14 @@ namespace SHNtoMySQLConverter.Connection
             return conn;
         }
 
-        #endregion
+        #endregion Methods
 
-        #region Propertys
-        #endregion
+
 
         #region Variables
 
         private string connectionString;
 
-        #endregion
+        #endregion Variables
     }
-
 }

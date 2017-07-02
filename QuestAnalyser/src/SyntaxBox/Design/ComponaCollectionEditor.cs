@@ -23,13 +23,16 @@ namespace Alsing.Design
         #region EditorImplementation
 
         private ComponaCollectionForm Form;
-        public ComponaCollectionEditor(Type t) : base(t) {}
+
+        public ComponaCollectionEditor(Type t) : base(t)
+        {
+        }
 
         public IDesignerHost DesignerHost
         {
             get
             {
-                var designer = (IDesignerHost) GetService(typeof (IDesignerHost));
+                var designer = (IDesignerHost)GetService(typeof(IDesignerHost));
                 return designer;
             }
         }
@@ -44,7 +47,6 @@ namespace Alsing.Design
             Form.RemoveObject(o);
         }
 
-
         protected virtual CollectionEditorGui CreateGUI()
         {
             return new CollectionEditorGui();
@@ -53,13 +55,13 @@ namespace Alsing.Design
         protected override CollectionForm CreateCollectionForm()
         {
             Form = new ComponaCollectionForm(this)
-                   {
-                       StartPosition = FormStartPosition.CenterScreen
-                   };
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
             return Form;
         }
 
-        #endregion
+        #endregion EditorImplementation
 
         #region CollectionForm
 
@@ -71,12 +73,11 @@ namespace Alsing.Design
             private readonly ArrayList RemovedItems = new ArrayList();
             private bool IsDirty;
 
-
             public ComponaCollectionForm(CollectionEditor e) : base(e)
             {
                 Editor = e as ComponaCollectionEditor;
 
-                if (Editor != null) 
+                if (Editor != null)
                     GUI = Editor.CreateGUI();
 
                 GUI.Visible = true;
@@ -92,7 +93,7 @@ namespace Alsing.Design
                 {
                     GUI.btnDropdown.Visible = true;
                     GUI.btnDropdown.ContextMenu = new ContextMenu();
-                    for (int i = 0; (i < types.Length); i ++)
+                    for (int i = 0; (i < types.Length); i++)
                     {
                         GUI.btnDropdown.ContextMenu.MenuItems.Add(new TypeMenuItem(types[i], btnDropDownMenuItem_Click));
                     }
@@ -106,7 +107,6 @@ namespace Alsing.Design
                 GUI.btnDown.Click += btnDown_Click;
                 GUI.btnDropdown.Click += btnDropDown_Click;
             }
-
 
             public void RemoveObject(object o)
             {
@@ -126,7 +126,7 @@ namespace Alsing.Design
             public void AddObject(object o)
             {
                 var e = GUI.EditValue as IList;
-                
+
                 e.Add(o);
 
                 IsDirty = true;
@@ -137,7 +137,7 @@ namespace Alsing.Design
                     var cp = o as Component;
                     Editor.DesignerHost.Container.Add(cp);
                 }
-                var Items = new object[((uint) GUI.lstMembers.Items.Count)];
+                var Items = new object[((uint)GUI.lstMembers.Items.Count)];
                 for (int i = 0; (i < Items.Length); i++)
                 {
                     Items[i] = GUI.lstMembers.Items[i];
@@ -173,7 +173,7 @@ namespace Alsing.Design
             protected void btnDropDownMenuItem_Click(object o, EventArgs e)
             {
                 var tmi = o as TypeMenuItem;
-                if (tmi != null) 
+                if (tmi != null)
                     CreateAndAddInstance(tmi.Type as Type);
             }
 
@@ -191,7 +191,6 @@ namespace Alsing.Design
 
                 GUI.lstMembers.Items[i] = GUI.lstMembers.Items[(i + 1)];
                 GUI.lstMembers.Items[(i + 1)] = item;
-
 
                 if (j < GUI.lstMembers.Items.Count - 1)
                 {
@@ -230,12 +229,12 @@ namespace Alsing.Design
                         base.DestroyInstance(i);
                     }
 
-//					object[] items = new object[((uint) GUI.lstMembers.Items.Count)];
-//					for (int i = 0; i < items.Length; i++)
-//					{
-//						items[i] = GUI.lstMembers.Items[i];
-//					}
-//					base.Items = items;
+                    //					object[] items = new object[((uint) GUI.lstMembers.Items.Count)];
+                    //					for (int i = 0; i < items.Length; i++)
+                    //					{
+                    //						items[i] = GUI.lstMembers.Items[i];
+                    //					}
+                    //					base.Items = items;
                 }
                 ClearAll();
             }
@@ -249,7 +248,7 @@ namespace Alsing.Design
                         base.DestroyInstance(i);
                     }
 
-                    var items = new object[((uint) GUI.lstMembers.Items.Count)];
+                    var items = new object[((uint)GUI.lstMembers.Items.Count)];
                     for (int i = 0; i < items.Length; i++)
                     {
                         items[i] = GUI.lstMembers.Items[i];
@@ -266,10 +265,13 @@ namespace Alsing.Design
                 IsDirty = false;
             }
 
+            protected override void OnEditValueChanged()
+            {
+            }
 
-            protected override void OnEditValueChanged() {}
-
-            protected static void OnComponentChanged(object o, ComponentChangedEventArgs e) {}
+            protected static void OnComponentChanged(object o, ComponentChangedEventArgs e)
+            {
+            }
 
             protected override DialogResult ShowEditorDialog(IWindowsFormsEditorService edSvc)
             {
@@ -280,7 +282,7 @@ namespace Alsing.Design
 
                 try
                 {
-                    Service = ((IComponentChangeService) Editor.Context.GetService(typeof (IComponentChangeService)));
+                    Service = ((IComponentChangeService)Editor.Context.GetService(typeof(IComponentChangeService)));
                     if (Service != null)
                     {
                         Service.ComponentChanged += OnComponentChanged;
@@ -312,13 +314,12 @@ namespace Alsing.Design
                         IsDirty = true;
                         CreatedItems.Add(NewInstance);
 
-
                         GUI.lstMembers.Items.Add(NewInstance);
                         GUI.lstMembers.Invalidate();
                         GUI.lstMembers.ClearSelected();
                         GUI.lstMembers.SelectedIndex = (GUI.lstMembers.Items.Count - 1);
 
-                        var array1 = new object[((uint) GUI.lstMembers.Items.Count)];
+                        var array1 = new object[((uint)GUI.lstMembers.Items.Count)];
                         for (int i = 0; (i < array1.Length); i++)
                         {
                             array1[i] = GUI.lstMembers.Items[i];
@@ -334,7 +335,7 @@ namespace Alsing.Design
             }
         }
 
-        #endregion
+        #endregion CollectionForm
 
         #region Nested type: TypeMenuItem
 
@@ -344,7 +345,7 @@ namespace Alsing.Design
 
             public object Type { get; set; }
 
-            #endregion
+            #endregion PUBLIC PROPERTY TYPE
 
             public TypeMenuItem(object o, EventHandler e)
             {
@@ -354,6 +355,6 @@ namespace Alsing.Design
             }
         }
 
-        #endregion
+        #endregion Nested type: TypeMenuItem
     }
 }

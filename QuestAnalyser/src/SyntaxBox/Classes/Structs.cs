@@ -21,14 +21,17 @@ namespace Alsing.Windows.Forms.SyntaxBox
         /// Caret is always confined to the first column when a new line is inserted
         /// </summary>
         None = 0,
+
         /// <summary>
         /// New lines inherit the same indention as the previous row.
         /// </summary>
         LastRow = 1,
+
         /// <summary>
         /// New lines get their indention from the scoping level.
         /// </summary>
         Scope = 2,
+
         /// <summary>
         /// New lines get thir indention from the scoping level or from the previous row
         /// depending on which is most indented.
@@ -48,10 +51,12 @@ namespace Alsing.Windows.Forms.SyntaxBox
         /// The control is not performing any action
         /// </summary>
         None = 0,
+
         /// <summary>
         /// The control is in Drag Drop mode
         /// </summary>
         DragText = 1,
+
         /// <summary>
         /// The control is selecting text
         /// </summary>
@@ -76,7 +81,6 @@ namespace Alsing.Windows.Forms.SyntaxBox.Painter
         /// Width of a char (space) in pixels
         /// </summary>
         public int CharWidth;
-
 
         /// <summary>
         /// Height of the client area in pixels
@@ -119,7 +123,7 @@ namespace Alsing.Windows.Forms.SyntaxBox.Painter
         public int TextMargin;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int TotalMarginWidth;
 
@@ -135,7 +139,6 @@ namespace Alsing.Windows.Forms.SyntaxBox.Painter
 
         //document items
     }
-
 
     /// <summary>
     /// Struct used by the NativePainter class.
@@ -185,12 +188,12 @@ namespace Alsing.Windows.Forms.SyntaxBox.Painter
         /// <summary>
         /// For internal use only
         /// </summary>
-        public GDIFont FontNormal; //Font , no decoration		
+        public GDIFont FontNormal; //Font , no decoration
 
         /// <summary>
         /// For internal use only
         /// </summary>
-        public GDIFont FontUnderline; //Font , no decoration		
+        public GDIFont FontUnderline; //Font , no decoration
 
         /// <summary>
         /// For internal use only

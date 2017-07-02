@@ -40,8 +40,8 @@
 			this.mTree.Name = "mTree";
 			this.mTree.Size = new System.Drawing.Size(292, 364);
 			this.mTree.TabIndex = 3;
-			this.mTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.mTree_AfterSelect);
-			this.mTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTree_KeyDown);
+			this.mTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.MTree_AfterSelect);
+			this.mTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MTree_KeyDown);
 			// 
 			// StructureForm
 			// 

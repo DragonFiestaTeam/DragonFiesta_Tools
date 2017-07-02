@@ -17,6 +17,5 @@ namespace Alsing.SourceCode
     /// </summary>
     public sealed class RowList : List<Row>
     {
-        
     }
 }

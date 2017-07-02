@@ -20,15 +20,14 @@ namespace Alsing.SourceCode
     {
         private readonly List<SyntaxDefinition> languages;
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SyntaxDefinitionList()
         {
             languages = new List<SyntaxDefinition>();
 
-            string[] files = Directory.GetFiles(".", "*.syn");            
+            string[] files = Directory.GetFiles(".", "*.syn");
             foreach (string file in files)
             {
                 var loader = new SyntaxDefinitionLoader();
@@ -37,9 +36,8 @@ namespace Alsing.SourceCode
             }
         }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -58,7 +56,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public List<SyntaxDefinition> GetSyntaxDefinitions()

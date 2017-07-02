@@ -106,20 +106,20 @@ namespace Alsing.Windows.Forms.SyntaxBox
         #region Implementation of IComparable
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public int CompareTo(object obj)
         {
-            var li = (ListItem) obj;
+            var li = (ListItem)obj;
             return Text.CompareTo(li.Text);
         }
 
-        #endregion
+        #endregion Implementation of IComparable
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()

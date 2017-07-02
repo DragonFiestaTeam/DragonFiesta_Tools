@@ -8,9 +8,9 @@
 // *
 // *
 
+using Alsing.Windows;
 using System;
 using System.Drawing;
-using Alsing.Windows;
 
 namespace Alsing.Drawing.GDI
 {
@@ -25,7 +25,6 @@ namespace Alsing.Drawing.GDI
             hBrush = NativeMethods.CreateSolidBrush(NativeMethods.ColorToInt(color));
             Create();
         }
-
 
         public GDIBrush(Bitmap pattern)
         {
@@ -50,7 +49,7 @@ namespace Alsing.Drawing.GDI
 
         public GDIBrush(int BrushIndex)
         {
-            hBrush = (IntPtr) BrushIndex;
+            hBrush = (IntPtr)BrushIndex;
             mSystemBrush = true;
             Create();
         }
@@ -60,15 +59,14 @@ namespace Alsing.Drawing.GDI
             //only destroy if brush is created by us
             if (!mSystemBrush)
             {
-                if (hBrush != (IntPtr) 0)
+                if (hBrush != (IntPtr)0)
                     NativeMethods.DeleteObject(hBrush);
             }
 
             base.Destroy();
-            hBrush = (IntPtr) 0;
+            hBrush = (IntPtr)0;
         }
     }
-
 
     //needs to be recoded , cant create new instances for the same colors
     public class GDIBrushes

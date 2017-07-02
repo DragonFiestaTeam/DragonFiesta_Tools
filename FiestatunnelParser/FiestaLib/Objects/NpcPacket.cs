@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FiestaLib.Networking;
+﻿using FiestaLib.Networking;
 using FiestaLib.Util.Database;
 
 namespace FiestaLib.Objects
@@ -19,28 +15,26 @@ namespace FiestaLib.Objects
 
         public static NPC GetNpcFromPacket(Packet packet)
         {
-            ushort pObjectID, pNpcId;
-            int pX,pY;
-            byte pRot,pIsGate,pUnk;
             string pGateName = "";
 
-            if (!packet.TryReadUShort(out pObjectID)
-            || !packet.TryReadByte(out pUnk)
-            || !packet.TryReadUShort(out pNpcId)
-            || !packet.TryReadInt(out pX)
-            || !packet.TryReadInt(out pY)
-            || !packet.TryReadByte(out pRot)
-            || !packet.TryReadByte(out pIsGate))
+            if (!packet.TryReadUShort(out ushort pObjectID)
+                || !packet.TryReadByte(out byte pUnk)
+                || !packet.TryReadUShort(out ushort pNpcId)
+                || !packet.TryReadInt(out int pX)
+                || !packet.TryReadInt(out int pY)
+                || !packet.TryReadByte(out byte pRot)
+                || !packet.TryReadByte(out byte pIsGate))
                 return null;
 
             if (pIsGate == 1)
             {
                 packet.TryReadString(out pGateName, 12);
-                packet.ReadSkip(98);
+                packet.ReadSkip(125);
             }
             else
-                packet.ReadSkip(110);
-
+            {
+                packet.ReadSkip(137);
+            }
 
             NPC spawnm = new NPC
             {
@@ -60,11 +54,11 @@ namespace FiestaLib.Objects
         {
             string npcString = "INSERT INTO spawnpoins (MobID,MapID,PosX,PosY,Rotation)" +
                                                   "VALUES ("
-                                                  + this.NpcId + ","
-                                                  + this.Map + ","
-                                                  + this.x + ","
-                                                  + this.y + ","
-                                                  + this.rot + ")";
+                                                  + NpcId + ","
+                                                  + Map + ","
+                                                  + x + ","
+                                                  + y + ","
+                                                  + rot + ")";
 
             DatabaseHelper.Instance.runSQL(npcString);
         }

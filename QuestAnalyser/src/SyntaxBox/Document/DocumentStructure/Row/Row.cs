@@ -23,10 +23,12 @@ namespace Alsing.SourceCode
         /// the row is not parsed
         /// </summary>
         NotParsed = 0,
+
         /// <summary>
         /// the row is span parsed
         /// </summary>
         SpanParsed = 1,
+
         /// <summary>
         /// the row is both span and keyword parsed
         /// </summary>
@@ -63,7 +65,7 @@ namespace Alsing.SourceCode
         public int Expansion_EndChar;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Span expansion_EndSpan;
 
@@ -83,7 +85,7 @@ namespace Alsing.SourceCode
         public int Expansion_StartChar;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Span expansion_StartSpan;
 
@@ -104,7 +106,6 @@ namespace Alsing.SourceCode
         /// For public use only
         /// </summary>
         public int Indent; //value indicating how much this line should be indented (c style)
-
 
         /// <summary>
         /// Returns true if the row is in the owner documents keyword parse queue
@@ -142,17 +143,17 @@ namespace Alsing.SourceCode
         ///		public int		abc=123;
         ///		publci string	def="abc";
         /// }
-        /// 
+        ///
         /// ...
-        /// 
+        ///
         /// //assign custom data to a row
         /// Row MyRow=MySyntaxBox.Caret.CurrentRow;
         /// CustomData MyData=new CustomData();
         /// MyData.abc=1337;
         /// MyRow.Tag=MyData;
-        /// 
+        ///
         /// ...
-        /// 
+        ///
         /// //read custom data from a row
         /// Row MyRow=MySyntaxBox.Caret.CurrentRow;
         /// if (MyRow.Tag != null){
@@ -161,8 +162,8 @@ namespace Alsing.SourceCode
         ///			//Do something...
         ///		}
         /// }
-        /// 
-        /// 
+        ///
+        ///
         /// </code>
         /// </example>
         public object Tag;
@@ -177,7 +178,7 @@ namespace Alsing.SourceCode
             set { _BackColor = value; }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY BACKCOLOR
 
         public int Depth
         {
@@ -252,7 +253,7 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion General Declarations
 
         /// <summary>
         /// Gets or Sets if this row has a bookmark or not.
@@ -397,8 +398,8 @@ namespace Alsing.SourceCode
                 int i = Document.VisibleRows.IndexOf(this);
                 if (i == -1)
                 {
-                    if (startSpan != null && 
-                        startSpan.StartRow != null && 
+                    if (startSpan != null &&
+                        startSpan.StartRow != null &&
                         startSpan.StartRow != this)
 
                         return startSpan.StartRow.VisibleIndex;
@@ -487,7 +488,6 @@ namespace Alsing.SourceCode
             }
         }
 
-
         /// <summary>
         /// Returns true if this row can fold
         /// </summary>
@@ -529,19 +529,19 @@ namespace Alsing.SourceCode
             {
                 Scope oScope = expansion_StartSpan.Scope;
                 var oNewScope = new Scope
-                                {
-                                    CaseSensitive = oScope.CaseSensitive,
-                                    CauseIndent = oScope.CauseIndent,
-                                    DefaultExpanded = oScope.DefaultExpanded,
-                                    EndPatterns = oScope.EndPatterns,
-                                    NormalizeCase = oScope.NormalizeCase,
-                                    Parent = oScope.Parent,
-                                    spawnSpanOnEnd = oScope.spawnSpanOnEnd,
-                                    spawnSpanOnStart = oScope.spawnSpanOnStart,
-                                    Start = oScope.Start,
-                                    Style = oScope.Style,
-                                    ExpansionText = value
-                                };
+                {
+                    CaseSensitive = oScope.CaseSensitive,
+                    CauseIndent = oScope.CauseIndent,
+                    DefaultExpanded = oScope.DefaultExpanded,
+                    EndPatterns = oScope.EndPatterns,
+                    NormalizeCase = oScope.NormalizeCase,
+                    Parent = oScope.Parent,
+                    spawnSpanOnEnd = oScope.spawnSpanOnEnd,
+                    spawnSpanOnStart = oScope.spawnSpanOnStart,
+                    Start = oScope.Start,
+                    Style = oScope.Style,
+                    ExpansionText = value
+                };
                 expansion_StartSpan.Scope = oNewScope;
                 Document.InvokeChange();
             }
@@ -608,7 +608,7 @@ namespace Alsing.SourceCode
                 }
 
                 Word wo = r.Add(CollapsedText);
-                wo.Style = new TextStyle {BackColor = Color.Silver, ForeColor = Color.DarkBlue, Bold = true};
+                wo.Style = new TextStyle { BackColor = Color.Silver, ForeColor = Color.DarkBlue, Bold = true };
 
                 bool found = false;
                 if (Expansion_EndRow != null)
@@ -675,7 +675,7 @@ namespace Alsing.SourceCode
             return words.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable Members
 
         public void Clear()
         {
@@ -701,7 +701,7 @@ namespace Alsing.SourceCode
 
         public Word Add(string text)
         {
-            var xw = new Word {Row = this, Text = text};
+            var xw = new Word { Row = this, Text = text };
             words.Add(xw);
             return xw;
         }
@@ -725,7 +725,7 @@ namespace Alsing.SourceCode
         {
             Document.StartUndoCapture();
             var tp = new TextPoint(0, Index);
-            var tr = new TextRange {FirstColumn = 0, FirstRow = tp.Y, LastColumn = Text.Length, LastRow = tp.Y};
+            var tr = new TextRange { FirstColumn = 0, FirstRow = tp.Y, LastColumn = Text.Length, LastRow = tp.Y };
 
             Document.StartUndoCapture();
             //delete the current line
@@ -805,7 +805,7 @@ namespace Alsing.SourceCode
             s = s.Replace("	", " ");
             for (i = 0; i < s.Length; i++)
             {
-                if (s.Substring(i, 1) == " ") {}
+                if (s.Substring(i, 1) == " ") { }
                 else
                 {
                     break;

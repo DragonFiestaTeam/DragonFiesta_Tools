@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace FiestaLib.Data
@@ -21,7 +18,7 @@ namespace FiestaLib.Data
             {
                 throw new ArgumentOutOfRangeException("Padded string is too long");
             }
-            this.Write(data);
+            Write(data);
             Fill(0, lenght - data.Length);
         }
 

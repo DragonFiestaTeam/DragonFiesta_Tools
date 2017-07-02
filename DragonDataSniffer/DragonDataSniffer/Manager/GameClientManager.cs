@@ -1,12 +1,11 @@
-﻿using System;
+﻿using DragonDataSniffer.Network;
+using System;
 using System.Collections.Generic;
-using DragonDataSniffer.Network;
-
 
 namespace DragonDataSniffer.Manager
 {
     [TunnelModule(InitializationStage.Clients)]
-   public class GameClientManager
+    public class GameClientManager
     {
         private Dictionary<ClientType, GameClient> ClientList { get; set; }
         public static GameClientManager Instance { get; private set; }
@@ -15,6 +14,7 @@ namespace DragonDataSniffer.Manager
         {
             ClientList = new Dictionary<ClientType, GameClient>();
         }
+
         [InitializerMethod]
         public static bool Load()
         {
@@ -29,10 +29,10 @@ namespace DragonDataSniffer.Manager
                 return false;
             }
         }
+
         public void DropMessage(string text)
         {
-            GameClient pClient;
-            if (GetClientByType(ClientType.Zone, out pClient))
+            if (GetClientByType(ClientType.Zone, out GameClient pClient))
             {
                 using (var packet = new FiestaPacket(Handler8Type._Header, Handler8Type.GMNote))
                 {
@@ -42,6 +42,7 @@ namespace DragonDataSniffer.Manager
                 }
             }
         }
+
         public bool GetClientByType(ClientType pType, out GameClient pClient)
         {
             if (ClientList.TryGetValue(pType, out pClient))
@@ -49,11 +50,12 @@ namespace DragonDataSniffer.Manager
 
             return false;
         }
-        public bool AddClient(GameClient pClient,ClientType pClientType)
+
+        public bool AddClient(GameClient pClient, ClientType pClientType)
         {
             if (!ClientList.ContainsKey(pClientType))
             {
-                ClientList.Add(pClientType,pClient);
+                ClientList.Add(pClientType, pClient);
                 return true;
             }
             return false;

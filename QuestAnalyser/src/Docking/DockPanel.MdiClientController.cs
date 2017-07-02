@@ -1,9 +1,8 @@
 using System;
-using System.Drawing;
-using System.Windows.Forms;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.Runtime.InteropServices;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -242,7 +241,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             private void ParentFormHandleCreated(object sender, EventArgs e)
             {
                 // The form has been created, unwire the event, and initialize the MdiClient.
-                this.m_parentForm.HandleCreated -= new EventHandler(ParentFormHandleCreated);
+                m_parentForm.HandleCreated -= new EventHandler(ParentFormHandleCreated);
                 InitializeMdiClient();
                 RefreshProperties();
             }
@@ -331,6 +330,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private MdiClientController m_mdiClientController = null;
+
         private MdiClientController GetMdiClientController()
         {
             if (m_mdiClientController == null)
@@ -393,7 +393,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             MdiClientController controller = GetMdiClientController();
 
-            if (this.DocumentStyle == DocumentStyle.DockingMdi)
+            if (DocumentStyle == DocumentStyle.DockingMdi)
             {
                 controller.AutoScroll = false;
                 controller.BorderStyle = BorderStyle.None;
@@ -407,7 +407,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (MdiClientExists)
                     controller.MdiClient.Dock = DockStyle.Fill;
             }
-            else if (this.DocumentStyle == DocumentStyle.SystemMdi)
+            else if (DocumentStyle == DocumentStyle.SystemMdi)
             {
                 controller.AutoScroll = true;
                 controller.BorderStyle = BorderStyle.Fixed3D;

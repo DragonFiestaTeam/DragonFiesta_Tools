@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Text;
 using System.IO;
-
+using System.Text;
 
 namespace QuestDataSQLConverter.IO
 {
@@ -10,15 +9,16 @@ namespace QuestDataSQLConverter.IO
         private Stream memStream;
         private BinaryReader binReader;
 
-
         public int Length
         {
             get { return (int)memStream.Length; }
         }
+
         public int Cursor
         {
             get { return (int)memStream.Position; }
         }
+
         public int Remaining
         {
             get { return Length - Cursor; }
@@ -26,10 +26,10 @@ namespace QuestDataSQLConverter.IO
 
         public QuestStream(string filename)
         {
-    
-            binReader = new BinaryReader(File.Open(filename,FileMode.Open));
+            binReader = new BinaryReader(File.Open(filename, FileMode.Open));
             memStream = binReader.BaseStream;
         }
+
         public bool ReadSkip(Int32 pLength)
         {
             if (Remaining < pLength)
@@ -40,8 +40,7 @@ namespace QuestDataSQLConverter.IO
             return true;
         }
 
-      
-        public bool  TryReadNulledString(out string pString)
+        public bool TryReadNulledString(out string pString)
         {
             try
             {
@@ -62,6 +61,7 @@ namespace QuestDataSQLConverter.IO
                 return false;
             }
         }
+
         public bool TryReadBoolean(out Boolean pValue)
         {
             pValue = default(Boolean);
@@ -72,6 +72,7 @@ namespace QuestDataSQLConverter.IO
             pValue = binReader.ReadBoolean();
             return true;
         }
+
         public bool TryReadByte(out Byte pValue)
         {
             pValue = default(Byte);
@@ -82,6 +83,7 @@ namespace QuestDataSQLConverter.IO
             pValue = binReader.ReadByte();
             return true;
         }
+
         public bool TryReadSByte(out SByte pValue)
         {
             pValue = default(SByte);
@@ -92,6 +94,7 @@ namespace QuestDataSQLConverter.IO
             pValue = binReader.ReadSByte();
             return true;
         }
+
         public bool TryReadBytes(out byte[] pValue, Int32 pLength)
         {
             pValue = default(byte[]);
@@ -102,11 +105,11 @@ namespace QuestDataSQLConverter.IO
             pValue = binReader.ReadBytes(pLength);
             return true;
         }
+
         public bool TryReadString(out String pValue)
         {
             pValue = default(String);
-            byte len;
-            if (!TryReadByte(out len))
+            if (!TryReadByte(out byte len))
             {
                 return false;
             }
@@ -150,6 +153,7 @@ namespace QuestDataSQLConverter.IO
             pValue = binReader.ReadInt16();
             return true;
         }
+
         public bool TryReadUInt16(out UInt16 pValue)
         {
             pValue = default(UInt16);
@@ -160,6 +164,7 @@ namespace QuestDataSQLConverter.IO
             pValue = binReader.ReadUInt16();
             return true;
         }
+
         public bool TryReadInt32(out Int32 pValue)
         {
             pValue = default(Int32);
@@ -170,6 +175,7 @@ namespace QuestDataSQLConverter.IO
             pValue = binReader.ReadInt32();
             return true;
         }
+
         public bool TryReadUInt32(out UInt32 pValue)
         {
             pValue = default(UInt32);
@@ -180,6 +186,7 @@ namespace QuestDataSQLConverter.IO
             pValue = binReader.ReadUInt32();
             return true;
         }
+
         public bool TryReadInt64(out Int64 pValue)
         {
             pValue = default(Int64);
@@ -190,6 +197,7 @@ namespace QuestDataSQLConverter.IO
             pValue = binReader.ReadInt64();
             return true;
         }
+
         public bool TryReadUInt64(out UInt64 pValue)
         {
             pValue = default(UInt64);
@@ -205,6 +213,7 @@ namespace QuestDataSQLConverter.IO
         {
             Dispose(true);
         }
+
         protected virtual void Dispose(bool pDisposing)
         {
             if (pDisposing)
@@ -219,7 +228,6 @@ namespace QuestDataSQLConverter.IO
                 }
                 memStream = null;
                 binReader = null;
-          
             }
         }
     }

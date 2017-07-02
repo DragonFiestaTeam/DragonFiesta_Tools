@@ -15,7 +15,7 @@ namespace Alsing.SourceCode
     /// <summary>
     /// A Pattern is a specific string or a RegEx pattern that is used by the parser.
     /// There are two types of patterns , Simple and Complex.
-    /// 
+    ///
     /// Simple Patterns are patterns that consists of a simple fixed string eg. "void" or "for".
     /// Complex Patterns are patterns that consists of RegEx patterns , eg hex numbers or urls can be described as regex patterns.
     /// </summary>
@@ -33,7 +33,7 @@ namespace Alsing.SourceCode
             set { _Separators = value; }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY SEPARATORS
 
         private string _StringPattern = "";
         public BracketType BracketType = BracketType.None;
@@ -81,7 +81,7 @@ namespace Alsing.SourceCode
         internal Regex rx;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pattern"></param>
         /// <param name="iscomplex"></param>
@@ -99,9 +99,8 @@ namespace Alsing.SourceCode
             }
         }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pattern"></param>
         /// <param name="iscomplex"></param>
@@ -113,7 +112,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="pattern"></param>
         /// <param name="separator"></param>
@@ -157,6 +156,7 @@ namespace Alsing.SourceCode
                 return false;
             }
         }
+
         private void Init(string pattern, bool isComplex, bool separator, bool keyword)
         {
             StringPattern = pattern;
@@ -165,6 +165,6 @@ namespace Alsing.SourceCode
             IsComplex = isComplex;
             if (isComplex)
                 rx = new Regex(StringPattern, RegexOptions.Compiled);
-        }        
+        }
     }
 }

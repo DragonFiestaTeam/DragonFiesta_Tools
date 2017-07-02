@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using FiestaLib.Encryption;
@@ -28,15 +27,15 @@ namespace FiestaLib.Networking
 
         public Client(Socket socket, ClientType type)
         {
-            this.ClientType = type;
+            ClientType = type;
             mSendSegments = new ConcurrentQueue<ByteArraySegment>();
-            this.Socket = socket;
+            Socket = socket;
             mReceiveBuffer = new byte[MaxReceiveBuffer];
         }
 
         public void Start()
         {
-            if (this.ClientType == Networking.ClientType.ToClient)
+            if (ClientType == Networking.ClientType.ToClient)
             {
                 crypto = new NetCrypto(MathUtils.RandomizeShort(498));
                 SendHandshake(crypto.XorPos);
@@ -69,7 +68,7 @@ namespace FiestaLib.Networking
              args.SetBuffer(mReceiveBuffer, mReceiveStart, mReceiveBuffer.Length - (mReceiveStart + mReceiveLength));
              try
              {
-                 if (!this.Socket.ReceiveAsync(args))
+                 if (!Socket.ReceiveAsync(args))
                  {
                      EndReceive(this, args);
                  }
@@ -146,7 +145,7 @@ namespace FiestaLib.Networking
                      {
                          byte[] packetData = new byte[mReceivingPacketLength];
                          Buffer.BlockCopy(mReceiveBuffer, mReceiveStart + (BigHeader ? 3 : 1), packetData, 0, mReceivingPacketLength);
-                         if (this.ClientType == Networking.ClientType.ToClient)
+                         if (ClientType == Networking.ClientType.ToClient)
                          {
                              crypto.Crypt(packetData, 0, mReceivingPacketLength);
                          }
@@ -201,39 +200,38 @@ namespace FiestaLib.Networking
 
          public void SendPacket(Packet pPacket)
          {
-             if (this.ClientType == Networking.ClientType.ToClient)
+             if (ClientType == Networking.ClientType.ToClient)
              {
                  Send(pPacket.ToArray());
              }
              else
              {
-                 Send(pPacket.ToArray(this.crypto));
+                 Send(pPacket.ToArray(crypto));
              }
          }
 
          private void BeginSend()
          {
              SocketAsyncEventArgs args = new SocketAsyncEventArgs();
-             ByteArraySegment segment;
-             if (mSendSegments.TryPeek(out segment))
-             {
-                 args.Completed += EndSend;
-                 args.SetBuffer(segment.Buffer, segment.Start, segment.Length);
+            if (mSendSegments.TryPeek(out ByteArraySegment segment))
+            {
+                args.Completed += EndSend;
+                args.SetBuffer(segment.Buffer, segment.Start, segment.Length);
                 // args.SetBuffer(segment.Buffer, segment.Start, Math.Min(segment.Length, 1360));
-                 try
-                 {
-                     if (!this.Socket.SendAsync(args))
-                     {
-                         EndSend(this, args);
-                     }
-                 }
-                 catch (ObjectDisposedException ex)
-                 {
-                     Console.WriteLine("BeginSend: {0}", ex.Message);
-                     Disconnect();
-                 }
-             }
-         }
+                try
+                {
+                    if (!Socket.SendAsync(args))
+                    {
+                        EndSend(this, args);
+                    }
+                }
+                catch (ObjectDisposedException ex)
+                {
+                    Console.WriteLine("BeginSend: {0}", ex.Message);
+                    Disconnect();
+                }
+            }
+        }
 
          private void EndSend(object sender, SocketAsyncEventArgs pArguments)
          {
@@ -246,25 +244,23 @@ namespace FiestaLib.Networking
                  return;
              }
 
-             ByteArraySegment segment;
-             if (mSendSegments.TryPeek(out segment))
-             {
-                 if (segment.Advance(pArguments.BytesTransferred))
-                 {
-                     ByteArraySegment seg;
-                     mSendSegments.TryDequeue(out seg); //we try to get it out
-                 }
+            if (mSendSegments.TryPeek(out ByteArraySegment segment))
+            {
+                if (segment.Advance(pArguments.BytesTransferred))
+                {
+                    mSendSegments.TryDequeue(out ByteArraySegment seg); //we try to get it out
+                }
 
-                 if (mSendSegments.Count > 0)
-                 {
-                     this.BeginSend();
-                 }
-                 else
-                 {
-                     mSending = 0;
-                 }
-             }
-         }
+                if (mSendSegments.Count > 0)
+                {
+                    BeginSend();
+                }
+                else
+                {
+                    mSending = 0;
+                }
+            }
+        }
 
          private void EndEvent(IAsyncResult iar)
          {

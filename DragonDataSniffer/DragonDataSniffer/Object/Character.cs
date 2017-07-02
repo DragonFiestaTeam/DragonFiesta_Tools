@@ -1,6 +1,4 @@
-﻿using DragonDataSniffer.Data;
-
-namespace DragonDataSniffer.Object
+﻿namespace DragonDataSniffer.Object
 {
     public class Character : MapObject
     {
@@ -8,20 +6,19 @@ namespace DragonDataSniffer.Object
         public ushort MapID { get; private set; }
         public short TargetID = -1;
 
-        public Map pMap
+        public Map PMap
         {
             get
             {
-                Map mMap;
-                if (Manager.MapDataManager.Instance.GetMapByID(MapID, out mMap))
+                if (Manager.MapDataManager.Instance.GetMapByID(MapID, out Map mMap))
                 {
                     return mMap;
                 }
                 return null;
             }
-
         }
-        public Character(ushort pMapID,int pCharID = 0)
+
+        public Character(ushort pMapID, int pCharID = 0)
         {
             MapID = pMapID;
         }
@@ -30,8 +27,7 @@ namespace DragonDataSniffer.Object
         {
             if (TargetID != -1)
             {
-                MapObject pInfo;
-                if(pMap.MapObjects.TryGetValue((ushort)TargetID,out pInfo))
+                if (PMap.MapObjects.TryGetValue((ushort)TargetID, out MapObject pInfo))
                 {
                     pObject = pInfo;
                     return true;

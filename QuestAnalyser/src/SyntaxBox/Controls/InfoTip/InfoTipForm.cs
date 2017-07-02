@@ -8,13 +8,13 @@
 // *
 // *
 
+using Alsing.Windows.Forms.CoreLib;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Alsing.Windows.Forms.CoreLib;
 
 namespace Alsing.Windows.Forms
 {
@@ -45,7 +45,7 @@ namespace Alsing.Windows.Forms
         private Panel pnlSelect;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public InfoTipForm()
         {
@@ -53,7 +53,7 @@ namespace Alsing.Windows.Forms
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="parent"></param>
         public InfoTipForm(Control parent)
@@ -67,10 +67,9 @@ namespace Alsing.Windows.Forms
         private Control ParentControl
         {
             get
-            { return _Control != null ? (Control) _Control.Target : null; }
+            { return _Control != null ? (Control)_Control.Target : null; }
             set { _Control = new WeakReference(value); }
         }
-
 
         public int SelectedIndex
         {
@@ -141,7 +140,6 @@ namespace Alsing.Windows.Forms
             base.Dispose(disposing);
         }
 
-
         private void InfoText_Resize(object sender, EventArgs e)
         {
             DoResize();
@@ -159,16 +157,15 @@ namespace Alsing.Windows.Forms
                 w += pnlImage.Width;
             }
 
-
             int h = InfoText.Top + InfoText.Height + 6;
-            if (Image != null && Image.Height + picIcon.Top*2 > h)
-                h = Image.Height + picIcon.Top*2;
+            if (Image != null && Image.Height + picIcon.Top * 2 > h)
+                h = Image.Height + picIcon.Top * 2;
 
             ClientSize = new Size(w, h);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Init()
         {
@@ -244,171 +241,171 @@ namespace Alsing.Windows.Forms
         private void InitializeComponent()
         {
             var resources = new
-                System.Resources.ResourceManager(typeof (InfoTipForm));
-            this.pnlSelect = new System.Windows.Forms.Panel();
-            this.btnNext = new System.Windows.Forms.PictureBox();
-            this.btnPrev = new System.Windows.Forms.PictureBox();
-            this.lblIndex = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.InfoText = new Alsing.Windows.Forms.CoreLib.FormatLabelControl();
-            this.pnlImage = new System.Windows.Forms.Panel();
-            this.picIcon = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pnlSelect.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.pnlImage.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
-            // 
+                System.Resources.ResourceManager(typeof(InfoTipForm));
+            pnlSelect = new System.Windows.Forms.Panel();
+            btnNext = new System.Windows.Forms.PictureBox();
+            btnPrev = new System.Windows.Forms.PictureBox();
+            lblIndex = new System.Windows.Forms.Label();
+            panel2 = new System.Windows.Forms.Panel();
+            InfoText = new Alsing.Windows.Forms.CoreLib.FormatLabelControl();
+            pnlImage = new System.Windows.Forms.Panel();
+            picIcon = new System.Windows.Forms.PictureBox();
+            panel1 = new System.Windows.Forms.Panel();
+            pnlSelect.SuspendLayout();
+            panel2.SuspendLayout();
+            pnlImage.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
+            //
             // pnlSelect
-            // 
-            this.pnlSelect.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            pnlSelect.Controls.AddRange(new System.Windows.Forms.Control[]
                                              {
-                                                 this.btnNext, this.btnPrev, this.lblIndex
+                                                 btnNext, btnPrev, lblIndex
                                              }
                 );
-            this.pnlSelect.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlSelect.DockPadding.All = 4;
-            this.pnlSelect.Location = new System.Drawing.Point(32, 0);
-            this.pnlSelect.Name = "pnlSelect";
-            this.pnlSelect.Size = new System.Drawing.Size(80, 35);
-            this.pnlSelect.TabIndex = 0;
-            // 
+            pnlSelect.Dock = System.Windows.Forms.DockStyle.Left;
+            pnlSelect.DockPadding.All = 4;
+            pnlSelect.Location = new System.Drawing.Point(32, 0);
+            pnlSelect.Name = "pnlSelect";
+            pnlSelect.Size = new System.Drawing.Size(80, 35);
+            pnlSelect.TabIndex = 0;
+            //
             // btnNext
-            // 
-            this.btnNext.BackColor = System.Drawing.SystemColors.Control;
-            this.btnNext.Image = ((System.Drawing.Bitmap) (resources.GetObject(
+            //
+            btnNext.BackColor = System.Drawing.SystemColors.Control;
+            btnNext.Image = ((System.Drawing.Bitmap)(resources.GetObject(
                                                               "btnNext.Image")));
-            this.btnNext.Location = new System.Drawing.Point(68, 6);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(9, 11);
-            this.btnNext.TabIndex = 1;
-            this.btnNext.TabStop = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            this.btnNext.DoubleClick += new System.EventHandler
-                (this.btnNext_DoubleClick);
-            // 
+            btnNext.Location = new System.Drawing.Point(68, 6);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new System.Drawing.Size(9, 11);
+            btnNext.TabIndex = 1;
+            btnNext.TabStop = false;
+            btnNext.Click += new System.EventHandler(btnNext_Click);
+            btnNext.DoubleClick += new System.EventHandler
+                (btnNext_DoubleClick);
+            //
             // btnPrev
-            // 
-            this.btnPrev.BackColor = System.Drawing.SystemColors.Control;
-            this.btnPrev.Image = ((System.Drawing.Bitmap) (resources.GetObject(
+            //
+            btnPrev.BackColor = System.Drawing.SystemColors.Control;
+            btnPrev.Image = ((System.Drawing.Bitmap)(resources.GetObject(
                                                               "btnPrev.Image")));
-            this.btnPrev.Location = new System.Drawing.Point(4, 6);
-            this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(9, 11);
-            this.btnPrev.TabIndex = 0;
-            this.btnPrev.TabStop = false;
-            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
-            this.btnPrev.DoubleClick += new System.EventHandler
-                (this.btnPrev_DoubleClick);
-            // 
+            btnPrev.Location = new System.Drawing.Point(4, 6);
+            btnPrev.Name = "btnPrev";
+            btnPrev.Size = new System.Drawing.Size(9, 11);
+            btnPrev.TabIndex = 0;
+            btnPrev.TabStop = false;
+            btnPrev.Click += new System.EventHandler(btnPrev_Click);
+            btnPrev.DoubleClick += new System.EventHandler
+                (btnPrev_DoubleClick);
+            //
             // lblIndex
-            // 
-            this.lblIndex.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblIndex.Location = new System.Drawing.Point(4, 4);
-            this.lblIndex.Name = "lblIndex";
-            this.lblIndex.Size = new System.Drawing.Size(72, 23);
-            this.lblIndex.TabIndex = 2;
-            this.lblIndex.Text = "20 of 20";
-            this.lblIndex.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
+            //
+            lblIndex.Dock = System.Windows.Forms.DockStyle.Top;
+            lblIndex.Location = new System.Drawing.Point(4, 4);
+            lblIndex.Name = "lblIndex";
+            lblIndex.Size = new System.Drawing.Size(72, 23);
+            lblIndex.TabIndex = 2;
+            lblIndex.Text = "20 of 20";
+            lblIndex.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            //
             // panel2
-            // 
-            this.panel2.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            panel2.Controls.AddRange(new System.Windows.Forms.Control[]
                                           {
-                                              this.InfoText
+                                              InfoText
                                           }
                 );
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.DockPadding.All = 4;
-            this.panel2.Location = new System.Drawing.Point(112, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(126, 35);
-            this.panel2.TabIndex = 1;
-            // 
+            panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel2.DockPadding.All = 4;
+            panel2.Location = new System.Drawing.Point(112, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new System.Drawing.Size(126, 35);
+            panel2.TabIndex = 1;
+            //
             // InfoText
-            // 
-            this.InfoText.AutoSizeHorizontal = true;
-            this.InfoText.AutoSizeVertical = true;
-            this.InfoText.BackColor = System.Drawing.SystemColors.Info;
-            this.InfoText.BorderColor = System.Drawing.Color.Black;
-            this.InfoText.BorderStyle = Alsing.Windows.Forms.BorderStyle.None;
-            this.InfoText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F,
+            //
+            InfoText.AutoSizeHorizontal = true;
+            InfoText.AutoSizeVertical = true;
+            InfoText.BackColor = System.Drawing.SystemColors.Info;
+            InfoText.BorderColor = System.Drawing.Color.Black;
+            InfoText.BorderStyle = Alsing.Windows.Forms.BorderStyle.None;
+            InfoText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F,
                                                          System.Drawing.FontStyle.Regular,
                                                          System.Drawing.GraphicsUnit.Point, (
-                                                                                                (System.Byte) (0)));
-            this.InfoText.ImageList = null;
-            this.InfoText.Link_Color = System.Drawing.Color.Blue;
-            this.InfoText.Link_Color_Hover = System.Drawing.Color.Blue;
-            this.InfoText.Link_UnderLine = false;
-            this.InfoText.Link_UnderLine_Hover = true;
-            this.InfoText.Location = new System.Drawing.Point(2, 4);
-            this.InfoText.Name = "InfoText";
-            this.InfoText.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.InfoText.Size = new System.Drawing.Size(59, 13);
-            this.InfoText.TabIndex = 0;
-            this.InfoText.Text = "format <b>label</b>";
-            this.InfoText.WordWrap = false;
-            this.InfoText.Resize += new System.EventHandler(this.InfoText_Resize);
-            this.InfoText.Enter += new System.EventHandler(this.InfoText_Enter);
-            // 
+                                                                                                (System.Byte)(0)));
+            InfoText.ImageList = null;
+            InfoText.Link_Color = System.Drawing.Color.Blue;
+            InfoText.Link_Color_Hover = System.Drawing.Color.Blue;
+            InfoText.Link_UnderLine = false;
+            InfoText.Link_UnderLine_Hover = true;
+            InfoText.Location = new System.Drawing.Point(2, 4);
+            InfoText.Name = "InfoText";
+            InfoText.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            InfoText.Size = new System.Drawing.Size(59, 13);
+            InfoText.TabIndex = 0;
+            InfoText.Text = "format <b>label</b>";
+            InfoText.WordWrap = false;
+            InfoText.Resize += new System.EventHandler(InfoText_Resize);
+            InfoText.Enter += new System.EventHandler(InfoText_Enter);
+            //
             // pnlImage
-            // 
-            this.pnlImage.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            pnlImage.Controls.AddRange(new System.Windows.Forms.Control[]
                                             {
-                                                this.picIcon
+                                                picIcon
                                             }
                 );
-            this.pnlImage.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlImage.Name = "pnlImage";
-            this.pnlImage.Size = new System.Drawing.Size(32, 35);
-            this.pnlImage.TabIndex = 2;
-            this.pnlImage.Visible = false;
-            // 
+            pnlImage.Dock = System.Windows.Forms.DockStyle.Left;
+            pnlImage.Name = "pnlImage";
+            pnlImage.Size = new System.Drawing.Size(32, 35);
+            pnlImage.TabIndex = 2;
+            pnlImage.Visible = false;
+            //
             // picIcon
-            // 
-            this.picIcon.Location = new System.Drawing.Point(5, 3);
-            this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(19, 20);
-            this.picIcon.TabIndex = 1;
-            this.picIcon.TabStop = false;
-            // 
+            //
+            picIcon.Location = new System.Drawing.Point(5, 3);
+            picIcon.Name = "picIcon";
+            picIcon.Size = new System.Drawing.Size(19, 20);
+            picIcon.TabIndex = 1;
+            picIcon.TabStop = false;
+            //
             // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel1.Controls.AddRange(new System.Windows.Forms.Control[]
                                           {
-                                              this.panel2, this.pnlSelect, this.pnlImage
+                                              panel2, pnlSelect, pnlImage
                                           }
                 );
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(240, 37);
-            this.panel1.TabIndex = 3;
-            // 
+            panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(240, 37);
+            panel1.TabIndex = 3;
+            //
             // InfoTipForm
-            // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(240, 37);
-            this.ControlBox = false;
-            this.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            BackColor = System.Drawing.SystemColors.Info;
+            ClientSize = new System.Drawing.Size(240, 37);
+            ControlBox = false;
+            Controls.AddRange(new System.Windows.Forms.Control[]
                                    {
-                                       this.panel1
+                                       panel1
                                    }
                 );
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "InfoTipForm";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Enter += new System.EventHandler(this.InfoTipForm_Enter);
-            this.pnlSelect.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.pnlImage.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.ResumeLayout(false);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Name = "InfoTipForm";
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            Enter += new System.EventHandler(InfoTipForm_Enter);
+            pnlSelect.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            pnlImage.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
-        #endregion
+        #endregion Windows Form Designer generated code
     }
 }

@@ -23,7 +23,7 @@ namespace Alsing.SourceCode
 
         /// <summary>
         /// Gets or Sets if this list contains case seinsitive patterns
-        /// </summary>		
+        /// </summary>
         public bool CaseSensitive;
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Alsing.SourceCode
         public bool NormalizeCase;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PatternListList Parent;
 
@@ -57,7 +57,7 @@ namespace Alsing.SourceCode
         public Hashtable SimplePatterns = new Hashtable();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Hashtable SimplePatterns1Char = new Hashtable();
 
@@ -72,7 +72,7 @@ namespace Alsing.SourceCode
         public TextStyle Style = new TextStyle();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PatternList()
         {
@@ -82,7 +82,7 @@ namespace Alsing.SourceCode
         #region IEnumerable Members
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public IEnumerator GetEnumerator()
@@ -90,10 +90,10 @@ namespace Alsing.SourceCode
             return patterns.GetEnumerator();
         }
 
-        #endregion
+        #endregion IEnumerable Members
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="Pattern"></param>
         /// <returns></returns>
@@ -126,7 +126,7 @@ namespace Alsing.SourceCode
                 {
                     if (SimplePatterns2Char[s] == null)
                         SimplePatterns2Char[s] = new PatternCollection();
-                    var ar = (PatternCollection) SimplePatterns2Char[s];
+                    var ar = (PatternCollection)SimplePatterns2Char[s];
                     ar.Add(Pattern);
                 }
 
@@ -151,7 +151,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Clear()
         {

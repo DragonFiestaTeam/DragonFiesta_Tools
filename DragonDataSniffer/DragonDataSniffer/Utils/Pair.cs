@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DragonDataSniffer.Utils
+﻿namespace DragonDataSniffer.Utils
 {
     public sealed class Pair<T1, T2>
     {
@@ -13,8 +7,8 @@ namespace DragonDataSniffer.Utils
 
         public Pair(T1 pFirst, T2 pSecond)
         {
-            this.First = pFirst;
-            this.Second = pSecond;
+            First = pFirst;
+            Second = pSecond;
         }
     }
 }

@@ -8,15 +8,12 @@
 // *
 // *
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using T = Alsing.SourceCode.Scope;
 
 namespace Alsing.SourceCode
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed class ScopeList : List<Scope>
     {

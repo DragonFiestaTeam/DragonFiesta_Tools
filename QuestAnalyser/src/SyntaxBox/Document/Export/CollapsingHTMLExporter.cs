@@ -22,7 +22,6 @@ namespace Alsing.SourceCode.SyntaxDocumentExporters
     {
         private StringBuilder sb;
 
-
         /// <summary>
         /// Exports the content of a SyntaxDocument to a HTML formatted string
         /// </summary>
@@ -33,7 +32,6 @@ namespace Alsing.SourceCode.SyntaxDocumentExporters
         {
             return Export(doc, Color.Transparent, ImagePath, "");
         }
-
 
         /// <summary>
         /// Exports the content of a SyntaxDocument to a HTML formatted string
@@ -75,7 +73,7 @@ namespace Alsing.SourceCode.SyntaxDocumentExporters
                         if (r.expansion_StartSpan.Parent.Parent == null)
                             img = "minusNoTopLine.gif";
                     }
-                    catch {}
+                    catch { }
                     Out("<img src=\"" + ImagePath + img + "\" align=top onclick=\"open" +
                         guid + "_" + i.ToString
                                          (CultureInfo.InvariantCulture) +
@@ -103,7 +101,7 @@ namespace Alsing.SourceCode.SyntaxDocumentExporters
                 }
                 foreach (Word w in r)
                 {
-                    write(w.Text, w.Style);
+                    Write(w.Text, w.Style);
                 }
                 if (r.CanFoldEndPart)
                     Out("</div>\n");
@@ -114,7 +112,6 @@ namespace Alsing.SourceCode.SyntaxDocumentExporters
 
             return sb.ToString();
         }
-
 
         private void RenderCollapsed(Row r, Row TrueRow, int i, string ImagePath,
                                      string guid)
@@ -127,8 +124,7 @@ namespace Alsing.SourceCode.SyntaxDocumentExporters
                 if (TrueRow.expansion_StartSpan.Parent.Parent == null)
                     img = "PlusNoLines.gif";
             }
-            catch {}
-
+            catch { }
 
             Out("<img src=\"" + ImagePath + img + "\" align=top onclick=\"open" +
                 guid + "_" + i.ToString
@@ -139,13 +135,13 @@ namespace Alsing.SourceCode.SyntaxDocumentExporters
 
             foreach (Word w in r)
             {
-                write(w.Text, w.Style);
+                Write(w.Text, w.Style);
             }
 
             Out("</div>");
         }
 
-        private void write(string text, TextStyle s)
+        private void Write(string text, TextStyle s)
         {
             if (s != null)
             {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ScriptNET.Runtime.Operators.Binary
+﻿namespace ScriptNET.Runtime.Operators.Binary
 {
-    class IEvaluator
+    internal class IEvaluator
     {
     }
 }

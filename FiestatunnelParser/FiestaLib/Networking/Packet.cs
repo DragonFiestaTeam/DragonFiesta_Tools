@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 using System.IO;
 using FiestaLib.Util;
@@ -16,48 +15,47 @@ namespace FiestaLib.Networking
         private BinaryWriter writer;
 
         public ushort OpCode { get; private set; }
-        public int Length { get { return (int)this.memoryStream.Length; } }
-        public int Cursor { get { return (int)this.memoryStream.Position; } }
-        public int Remaining { get { return (int)(this.memoryStream.Length - this.memoryStream.Position); } }
+        public int Length { get { return (int)memoryStream.Length; } }
+        public int Cursor { get { return (int)memoryStream.Position; } }
+        public int Remaining { get { return (int)(memoryStream.Length - memoryStream.Position); } }
 
         public Packet(ushort pOpCode)
         {
-            this.memoryStream = new MemoryStream();
-            this.writer = new BinaryWriter(this.memoryStream);
-            this.OpCode = pOpCode;
+            memoryStream = new MemoryStream();
+            writer = new BinaryWriter(memoryStream);
+            OpCode = pOpCode;
             WriteUShort(pOpCode);
         }
         public Packet(ServerOpCode pOpCode)
         {
-            this.memoryStream = new MemoryStream();
-            this.writer = new BinaryWriter(this.memoryStream);
-            this.OpCode = (ushort)pOpCode;
+            memoryStream = new MemoryStream();
+            writer = new BinaryWriter(memoryStream);
+            OpCode = (ushort)pOpCode;
             WriteUShort((ushort)pOpCode);
         }
         public Packet()
         {
-            this.memoryStream = new MemoryStream();
-            this.writer = new BinaryWriter(this.memoryStream);
+            memoryStream = new MemoryStream();
+            writer = new BinaryWriter(memoryStream);
         }
 
         internal Packet(byte[] pData)
         {
-            this.memoryStream = new MemoryStream(pData);
-            this.reader = new BinaryReader(this.memoryStream);
-            this.writer = new BinaryWriter(this.memoryStream);
+            memoryStream = new MemoryStream(pData);
+            reader = new BinaryReader(memoryStream);
+            writer = new BinaryWriter(memoryStream);
 
-            ushort opCode;
-            this.TryReadUShort(out opCode);
-            this.OpCode = opCode;
+            TryReadUShort(out ushort opCode);
+            OpCode = opCode;
         }
 
         public void Dispose()
         {
-            if (this.writer != null) this.writer.Close();
-            if (this.reader != null) this.reader.Close();
-            this.memoryStream = null;
-            this.writer = null;
-            this.reader = null;
+            if (writer != null) writer.Close();
+            if (reader != null) reader.Close();
+            memoryStream = null;
+            writer = null;
+            reader = null;
         }
 
         ~Packet()
@@ -67,8 +65,8 @@ namespace FiestaLib.Networking
 
         public void SetOffset(int offset)
         {
-            if (offset > this.Length) throw new IndexOutOfRangeException("Cannot go to packet offset.");
-            this.memoryStream.Seek(offset, SeekOrigin.Begin);
+            if (offset > Length) throw new IndexOutOfRangeException("Cannot go to packet offset.");
+            memoryStream.Seek(offset, SeekOrigin.Begin);
         }
 
         #region Write methods
@@ -81,10 +79,10 @@ namespace FiestaLib.Networking
 
         public void SetByte(long pOffset, byte pValue)
         {
-            long oldoffset = this.memoryStream.Position;
-            this.memoryStream.Seek(pOffset, SeekOrigin.Begin);
-            this.writer.Write(pValue);
-            this.memoryStream.Seek(oldoffset, SeekOrigin.Begin);
+            long oldoffset = memoryStream.Position;
+            memoryStream.Seek(pOffset, SeekOrigin.Begin);
+            writer.Write(pValue);
+            memoryStream.Seek(oldoffset, SeekOrigin.Begin);
         }
 
         public void Fill(int pLenght, byte pValue)
@@ -97,62 +95,62 @@ namespace FiestaLib.Networking
 
         public void WriteDouble(double pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteBool(bool pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteByte(byte pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteSByte(sbyte pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteBytes(byte[] pBytes)
         {
-            this.writer.Write(pBytes);
+            writer.Write(pBytes);
         }
 
         public void WriteUShort(ushort pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteShort(short pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteUInt(uint pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteInt(int pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteFloat(float pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteULong(ulong pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteLong(long pValue)
         {
-            this.writer.Write(pValue);
+            writer.Write(pValue);
         }
 
         public void WriteString(string pValue)
@@ -185,7 +183,7 @@ namespace FiestaLib.Networking
         {
             if (Remaining < pLength) return false;
 
-            this.memoryStream.Seek(pLength, SeekOrigin.Current);
+            memoryStream.Seek(pLength, SeekOrigin.Current);
             return true;
         }
 
@@ -193,7 +191,7 @@ namespace FiestaLib.Networking
         {
             pValue = false;
             if (Remaining < 1) return false;
-            pValue = this.reader.ReadBoolean();
+            pValue = reader.ReadBoolean();
             return true;
         }
 
@@ -201,7 +199,7 @@ namespace FiestaLib.Networking
         {
             pValue = 0;
             if (Remaining < 1) return false;
-            pValue = this.reader.ReadByte();
+            pValue = reader.ReadByte();
             return true;
         }
 
@@ -209,7 +207,7 @@ namespace FiestaLib.Networking
         {
             pValue = 0;
             if (Remaining < 1) return false;
-            pValue = this.reader.ReadSByte();
+            pValue = reader.ReadSByte();
             return true;
         }
 
@@ -218,7 +216,7 @@ namespace FiestaLib.Networking
         {
             pValue = 0;
             if (Remaining < 2) return false;
-            pValue = this.reader.ReadUInt16();
+            pValue = reader.ReadUInt16();
             return true;
         }
 
@@ -227,7 +225,7 @@ namespace FiestaLib.Networking
         {
             pValue = 0;
             if (Remaining < 2) return false;
-            pValue = this.reader.ReadInt16();
+            pValue = reader.ReadInt16();
             return true;
         }
 
@@ -235,7 +233,7 @@ namespace FiestaLib.Networking
         {
             pValue = 0;
             if (Remaining < 2) return false;
-            pValue = this.reader.ReadSingle();
+            pValue = reader.ReadSingle();
             return true;
         }
 
@@ -244,7 +242,7 @@ namespace FiestaLib.Networking
         {
             pValue = 0;
             if (Remaining < 4) return false;
-            pValue = this.reader.ReadUInt32();
+            pValue = reader.ReadUInt32();
             return true;
         }
 
@@ -253,7 +251,7 @@ namespace FiestaLib.Networking
         {
             pValue = 0;
             if (Remaining < 4) return false;
-            pValue = this.reader.ReadInt32();
+            pValue = reader.ReadInt32();
             return true;
         }
 
@@ -262,7 +260,7 @@ namespace FiestaLib.Networking
         {
             pValue = 0;
             if (Remaining < 8) return false;
-            pValue = this.reader.ReadUInt64();
+            pValue = reader.ReadUInt64();
             return true;
         }
 
@@ -271,17 +269,16 @@ namespace FiestaLib.Networking
         {
             pValue = 0;
             if (Remaining < 8) return false;
-            pValue = this.reader.ReadInt64();
+            pValue = reader.ReadInt64();
             return true;
         }
 
         public bool TryReadString(out string pValue)
         {
             pValue = "";
-            if (this.Remaining < 1) return false;
-            byte len;
-            this.TryReadByte(out len);
-            if (this.Remaining < len) return false;
+            if (Remaining < 1) return false;
+            TryReadByte(out byte len);
+            if (Remaining < len) return false;
             return TryReadString(out pValue, len);
         }
 
@@ -315,7 +312,7 @@ namespace FiestaLib.Networking
         public bool ReadBytes(byte[] pBuffer)
         {
             if (Remaining < pBuffer.Length) return false;
-            this.memoryStream.Read(pBuffer, 0, pBuffer.Length);
+            memoryStream.Read(pBuffer, 0, pBuffer.Length);
             return true;
         }
 
@@ -346,7 +343,7 @@ namespace FiestaLib.Networking
 
         public string Dump()
         {
-            return ByteUtils.BytesToHex(this.memoryStream.ToArray(), string.Format("Packet (0x{0} - {1}): ", this.OpCode.ToString("X4"), this.Length));
+            return ByteUtils.BytesToHex(memoryStream.ToArray(), string.Format("Packet (0x{0} - {1}): ", OpCode.ToString("X4"), Length));
         }
     }
 }

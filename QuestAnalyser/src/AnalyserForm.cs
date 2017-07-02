@@ -1,8 +1,7 @@
 ﻿using System;
-using WeifenLuo.WinFormsUI.Docking;
-using System.Windows.Forms;
 using System.IO;
-using System.Collections.Generic;
+using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace QuestDataAnalyser
 {
@@ -52,8 +51,6 @@ namespace QuestDataAnalyser
             {
                 RefreshData();
 
-
-
                 mDataForm.Show(mDockPanel);
                 mLabelForm.Show(mDockPanel);
                 mStructureForm.Show(mDockPanel);
@@ -77,19 +74,13 @@ namespace QuestDataAnalyser
             Application.Exit();
         }
 
-
-
-
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-
         }
 
         private void QuestAnalyserForm_Load(object sender, EventArgs e)
         {
-
         }
-
 
         public void RefreshData()
         {
@@ -113,21 +104,19 @@ namespace QuestDataAnalyser
         {
             return mDataForm.HexBox.SelectionLength;
         }
+
         private void mDockPanel_ActiveDocumentChanged(object pSender, EventArgs pArgs)
         {
-
             AnalyserForm session = mDockPanel.ActiveDocument as AnalyserForm;
 
             if (mDataForm.HexBox.ByteProvider != null) mDataForm.HexBox.ByteProvider.DeleteBytes(0, mDataForm.HexBox.ByteProvider.Length);
             mStructureForm.Tree.Nodes.Clear();
             mPropertyForm.Properties.SelectedObject = null;
-
-
         }
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.RefreshData();
+            RefreshData();
         }
 
         private void scriptToolStripMenuItem_MouseHover(object sender, EventArgs e)
@@ -136,13 +125,12 @@ namespace QuestDataAnalyser
 
         private void mainToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.mScriptForm = new ScriptForm();
+            mScriptForm = new ScriptForm();
             mScriptForm.Show();
         }
 
         private void editScriptToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
-
             if (!Directory.Exists(@"Scripts"))
             {
                 editScriptToolStripMenuItem.DropDown.Items.Add("Not Sub Scripts Found");
@@ -168,27 +156,27 @@ namespace QuestDataAnalyser
             {
                 editScriptToolStripMenuItem.DropDownItems.Add("No Scripts found");
             }
-
         }
 
         private void editScriptToolStripMenuItem_MouseLeave(object sender, EventArgs e)
         {
-
         }
+
         private void ClickRemoveScriptItem(object sender, EventArgs e)
         {
-            DialogResult result1 = MessageBox.Show("Do you will delte "+sender.ToString()+" ?",
+            DialogResult result1 = MessageBox.Show("Do you will delte " + sender.ToString() + " ?",
          "mportant Question!",
          MessageBoxButtons.YesNo);
 
             if (result1 == DialogResult.Yes)
             {
-               if(File.Exists(@sender.ToString()))
-               {
-                   File.Delete(@sender.ToString());
-               }
+                if (File.Exists(@sender.ToString()))
+                {
+                    File.Delete(@sender.ToString());
+                }
             }
         }
+
         private void removeScriptToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
             if (!Directory.Exists(@"Scripts"))
@@ -218,7 +206,5 @@ namespace QuestDataAnalyser
             mNewScript = new NewScriptForm();
             mNewScript.Show();
         }
-
- 
     }
 }

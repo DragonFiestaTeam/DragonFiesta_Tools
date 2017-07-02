@@ -1,141 +1,139 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScriptNET.Runtime.Operators
 {
-  /// <summary>
-  /// Implementation of and operator
-  /// </summary>
-  public class AndOperator : BinaryOperator
-  {
-    public AndOperator() :
-      base("&")
+    /// <summary>
+    /// Implementation of and operator
+    /// </summary>
+    public class AndOperator : BinaryOperator
     {
-      RegisterEvaluator<Boolean, Boolean>((x, y) => x & y);
-    }
-  }
-
-  /// <summary>
-  /// Implementation of exclusive and operator
-  /// </summary>
-  public class And2Operator : BinaryOperator
-  {
-    public And2Operator() :
-      base("&&")
-    {
-      RegisterEvaluator<Boolean, Boolean>((x, y) => x && y);
-    }
-  }
-
-  /// <summary>
-  /// Implementation of or operator
-  /// </summary>
-  public class OrOperator : BinaryOperator
-  {
-    public OrOperator() :
-      base("|")
-    {
-      RegisterEvaluator<Boolean, Boolean>((x, y) => x | y);
-    }
-  }
-
-  /// <summary>
-  /// Implementation of exclusive or operator
-  /// </summary>
-  public class Or2Operator : BinaryOperator
-  {
-    public Or2Operator() :
-      base("||")
-    {
-      RegisterEvaluator<Boolean, Boolean>((x, y) => x || y);
-    }
-  }
-
-  /// <summary>
-  /// Implementation of equals operator
-  /// </summary>
-  public class EqualsOperator : IOperator
-  {
-    public EqualsOperator()
-    {
+        public AndOperator() :
+          base("&")
+        {
+            RegisterEvaluator<Boolean, Boolean>((x, y) => x & y);
+        }
     }
 
-    #region IOperator Members
-
-    public string Name
+    /// <summary>
+    /// Implementation of exclusive and operator
+    /// </summary>
+    public class And2Operator : BinaryOperator
     {
-      get { return "=="; }
+        public And2Operator() :
+          base("&&")
+        {
+            RegisterEvaluator<Boolean, Boolean>((x, y) => x && y);
+        }
     }
 
-    public bool Unary
+    /// <summary>
+    /// Implementation of or operator
+    /// </summary>
+    public class OrOperator : BinaryOperator
     {
-      get { return false; }
+        public OrOperator() :
+          base("|")
+        {
+            RegisterEvaluator<Boolean, Boolean>((x, y) => x | y);
+        }
     }
 
-    public object Evaluate(object value)
+    /// <summary>
+    /// Implementation of exclusive or operator
+    /// </summary>
+    public class Or2Operator : BinaryOperator
     {
-      throw new NotImplementedException();
+        public Or2Operator() :
+          base("||")
+        {
+            RegisterEvaluator<Boolean, Boolean>((x, y) => x || y);
+        }
     }
 
-    public object Evaluate(object left, object right)
+    /// <summary>
+    /// Implementation of equals operator
+    /// </summary>
+    public class EqualsOperator : IOperator
     {
-      if (left == null || right == null)
-        return object.Equals(left, right);
+        public EqualsOperator()
+        {
+        }
 
-      IObjectBind equalityMethod = null;
+        #region IOperator Members
 
-      equalityMethod = RuntimeHost.Binder.BindToMethod(left, "op_Equality", null, new object[] { left, right });
-      if (equalityMethod != null)
-        return equalityMethod.Invoke(null, new object[] { left, right });
+        public string Name
+        {
+            get { return "=="; }
+        }
 
-      equalityMethod = RuntimeHost.Binder.BindToMethod(right, "op_Equality", null, new object[] { right, left });
-      if (equalityMethod != null)
-        return equalityMethod.Invoke(null, new object[] { right, left });
+        public bool Unary
+        {
+            get { return false; }
+        }
 
-      equalityMethod = RuntimeHost.Binder.BindToMethod(left, "Equals", null, new object[] { right });
-      if (equalityMethod != null)
-        return equalityMethod.Invoke(null, new object[] { left, right });
-      
-      return object.Equals(left, right);
+        public object Evaluate(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Evaluate(object left, object right)
+        {
+            if (left == null || right == null)
+                return object.Equals(left, right);
+
+            IObjectBind equalityMethod = null;
+
+            equalityMethod = RuntimeHost.Binder.BindToMethod(left, "op_Equality", null, new object[] { left, right });
+            if (equalityMethod != null)
+                return equalityMethod.Invoke(null, new object[] { left, right });
+
+            equalityMethod = RuntimeHost.Binder.BindToMethod(right, "op_Equality", null, new object[] { right, left });
+            if (equalityMethod != null)
+                return equalityMethod.Invoke(null, new object[] { right, left });
+
+            equalityMethod = RuntimeHost.Binder.BindToMethod(left, "Equals", null, new object[] { right });
+            if (equalityMethod != null)
+                return equalityMethod.Invoke(null, new object[] { left, right });
+
+            return object.Equals(left, right);
+        }
+
+        #endregion IOperator Members
     }
 
-    #endregion
-  }
-
-  /// <summary>
-  /// Implementation of not equals operator
-  /// </summary>
-  public class NotEqualsOperator : IOperator
-  {
-    EqualsOperator equalsOperator = new EqualsOperator();
-
-    public NotEqualsOperator()
+    /// <summary>
+    /// Implementation of not equals operator
+    /// </summary>
+    public class NotEqualsOperator : IOperator
     {
+        private EqualsOperator equalsOperator = new EqualsOperator();
+
+        public NotEqualsOperator()
+        {
+        }
+
+        #region IOperator Members
+
+        public string Name
+        {
+            get { return "!="; }
+        }
+
+        public bool Unary
+        {
+            get { return false; }
+        }
+
+        public object Evaluate(object value)
+        {
+            return equalsOperator.Evaluate(value);
+        }
+
+        public object Evaluate(object left, object right)
+        {
+            return !(bool)equalsOperator.Evaluate(left, right);
+        }
+
+        #endregion IOperator Members
     }
-
-    #region IOperator Members
-
-    public string Name
-    {
-      get { return "!="; }
-    }
-
-    public bool Unary
-    {
-      get { return false; }
-    }
-
-    public object Evaluate(object value)
-    {
-      return equalsOperator.Evaluate(value);
-    }
-
-    public object Evaluate(object left, object right)
-    {
-      return !(bool)equalsOperator.Evaluate(left, right);
-    }
-
-    #endregion
-  }
 }

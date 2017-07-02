@@ -8,8 +8,8 @@
 // *
 // *
 
-using System;
 using Alsing.Windows;
+using System;
 
 namespace Alsing.Drawing.GDI
 {
@@ -23,7 +23,6 @@ namespace Alsing.Drawing.GDI
         public float Size;
         public bool Strikethrough;
         public bool Underline;
-
 
         public GDIFont()
         {
@@ -52,17 +51,16 @@ namespace Alsing.Drawing.GDI
             Strikethrough = strikethrough;
 
             var tFont = new LogFont
-                        {
-                            lfItalic = ((byte) (Italic ? 1 : 0)),
-                            lfStrikeOut = ((byte) (Strikethrough ? 1 : 0)),
-                            lfUnderline = ((byte) (Underline ? 1 : 0)),
-                            lfWeight = (Bold ? 700 : 400),
-                            lfWidth = 0,
-                            lfHeight = ((int) (-Size*1.3333333333333)),
-                            lfCharSet = 1,
-                            lfFaceName = FontName
-                        };
-
+            {
+                lfItalic = ((byte)(Italic ? 1 : 0)),
+                lfStrikeOut = ((byte)(Strikethrough ? 1 : 0)),
+                lfUnderline = ((byte)(Underline ? 1 : 0)),
+                lfWeight = (Bold ? 700 : 400),
+                lfWidth = 0,
+                lfHeight = ((int)(-Size * 1.3333333333333)),
+                lfCharSet = 1,
+                lfFaceName = FontName
+            };
 
             hFont = NativeMethods.CreateFontIndirect(tFont);
         }
@@ -74,10 +72,10 @@ namespace Alsing.Drawing.GDI
 
         protected override void Destroy()
         {
-            if (hFont != (IntPtr) 0)
+            if (hFont != (IntPtr)0)
                 NativeMethods.DeleteObject(hFont);
             base.Destroy();
-            hFont = (IntPtr) 0;
+            hFont = (IntPtr)0;
         }
     }
 }

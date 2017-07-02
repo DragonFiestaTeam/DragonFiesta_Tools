@@ -1,47 +1,49 @@
 #region using
+
 using Irony.Compiler;
 using ScriptNET.Runtime;
-#endregion
+
+#endregion using
 
 namespace ScriptNET.Ast
 {
-  /// <summary>
-  /// 
-  /// </summary>
-  internal class ScriptFuncContractInv : ScriptExpr
-  {
-    private ScriptExprList list;
-
-    public ScriptFuncContractInv(AstNodeArgs args)
-      : base(args)
+    /// <summary>
+    ///
+    /// </summary>
+    internal class ScriptFuncContractInv : ScriptExpr
     {
-      list = ChildNodes[1] as ScriptExprList;
-    }
+        private ScriptExprList list;
 
-    public override void Evaluate(IScriptContext context)
-    {
-      if (list == null)
-      {
-        context.Result = true;
-        return;
-      }
-
-      bool result = true;     
-      list.Evaluate(context);
-      object[] rez = (object[])context.Result;
-      foreach (object o in rez)
-      {
-        try
+        public ScriptFuncContractInv(AstNodeArgs args)
+          : base(args)
         {
-          result = result & (bool)o;
+            list = ChildNodes[1] as ScriptExprList;
         }
-        catch
-        {
-          throw new ScriptException("Non boolean expression in invariant");
-        }
-      }
 
-      context.Result = result;
+        public override void Evaluate(IScriptContext context)
+        {
+            if (list == null)
+            {
+                context.Result = true;
+                return;
+            }
+
+            bool result = true;
+            list.Evaluate(context);
+            object[] rez = (object[])context.Result;
+            foreach (object o in rez)
+            {
+                try
+                {
+                    result = result & (bool)o;
+                }
+                catch
+                {
+                    throw new ScriptException("Non boolean expression in invariant");
+                }
+            }
+
+            context.Result = result;
+        }
     }
-  }
 }

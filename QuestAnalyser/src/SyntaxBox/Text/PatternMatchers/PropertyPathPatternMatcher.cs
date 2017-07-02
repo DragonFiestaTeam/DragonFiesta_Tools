@@ -37,7 +37,7 @@ namespace Alsing.Text.PatternMatchers
                 {
                     start = true;
                 }
-                else if (!start && IsValidChar(currentChar)) {}
+                else if (!start && IsValidChar(currentChar)) { }
                 else
                 {
                     break;
@@ -50,7 +50,6 @@ namespace Alsing.Text.PatternMatchers
 
             return currentIndex - matchAtIndex;
         }
-
 
         private static bool IsWildcard(char c)
         {

@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -21,6 +19,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private bool m_isMouseOver = false;
+
         protected bool IsMouseOver
         {
             get { return m_isMouseOver; }

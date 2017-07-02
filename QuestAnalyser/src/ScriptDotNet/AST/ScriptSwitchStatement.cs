@@ -1,47 +1,47 @@
 ﻿#region using
-using System.Collections.Generic;
 
 using Irony.Compiler;
 using ScriptNET.Runtime;
-#endregion
+using System.Collections.Generic;
+
+#endregion using
 
 namespace ScriptNET.Ast
 {
-  /// <summary>
-  /// 
-  /// </summary>
-  internal class ScriptSwitchStatement : ScriptStatement
-  {
-    private List<ScriptSwitchCaseStatement> cases;
-    private ScriptSwitchDefaultStatement defaultCase;
-
-    public ScriptSwitchStatement(AstNodeArgs args)
-        : base(args)
+    /// <summary>
+    ///
+    /// </summary>
+    internal class ScriptSwitchStatement : ScriptStatement
     {
-      cases = new List<ScriptSwitchCaseStatement>();
-      foreach (ScriptSwitchCaseStatement caseStatement in ChildNodes[0].ChildNodes)
-      {
-        cases.Add(caseStatement);
-      }
-      if (ChildNodes.Count == 2)
-        defaultCase = ChildNodes[1] as ScriptSwitchDefaultStatement;
-    }
+        private List<ScriptSwitchCaseStatement> cases;
+        private ScriptSwitchDefaultStatement defaultCase;
 
-    public override void Evaluate(IScriptContext context)
-    {
-      foreach (ScriptSwitchCaseStatement caseStatement in cases)
-      {
-        caseStatement.Evaluate(context);
-        if (context.IsBreak() || context.IsReturn())
+        public ScriptSwitchStatement(AstNodeArgs args)
+            : base(args)
         {
-          context.SetBreak(false);
-          return;
+            cases = new List<ScriptSwitchCaseStatement>();
+            foreach (ScriptSwitchCaseStatement caseStatement in ChildNodes[0].ChildNodes)
+            {
+                cases.Add(caseStatement);
+            }
+            if (ChildNodes.Count == 2)
+                defaultCase = ChildNodes[1] as ScriptSwitchDefaultStatement;
         }
-      }
 
-      if (defaultCase != null)
-        defaultCase.Evaluate(context);
+        public override void Evaluate(IScriptContext context)
+        {
+            foreach (ScriptSwitchCaseStatement caseStatement in cases)
+            {
+                caseStatement.Evaluate(context);
+                if (context.IsBreak() || context.IsReturn())
+                {
+                    context.SetBreak(false);
+                    return;
+                }
+            }
+
+            if (defaultCase != null)
+                defaultCase.Evaluate(context);
+        }
     }
-
-  }
 }

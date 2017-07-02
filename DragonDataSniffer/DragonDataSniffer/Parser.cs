@@ -1,32 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DragonDataSniffer.Network;
 using DragonDataSniffer.Utils;
-using DragonDataSniffer.Network;
+using System.Linq;
 
 namespace DragonDataSniffer
 {
     public static class Parser
     {
-
-        public static bool  Load()
+        public static bool Load()
         {
-            if(!Config.Load())
+            if (!Config.Load())
             {
                 return false;
             }
             if (Reflector.GetInitializerMethods().Any(method => !method.Invoke()))
             {
-
-                return false ;
+                return false;
             }
-
 
             if (!GameAcceptorManager.Instance.StartAcceptor(ClientType.Login, Config.Instance.TunnelPort))
             {
-
             }
-     
+
             return true;
         }
     }

@@ -44,13 +44,13 @@ namespace Alsing.Text.PatternMatchers
             return currentIndex - matchAtIndex;
         }
 
-//		//patterns that trigger this matcher
-//		public override string[] DefaultPrefixes
-//		{
-//			get
-//			{
-//				return new string[] {};//"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."};
-//			}
-//		}
+        //		//patterns that trigger this matcher
+        //		public override string[] DefaultPrefixes
+        //		{
+        //			get
+        //			{
+        //				return new string[] {};//"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."};
+        //			}
+        //		}
     }
 }

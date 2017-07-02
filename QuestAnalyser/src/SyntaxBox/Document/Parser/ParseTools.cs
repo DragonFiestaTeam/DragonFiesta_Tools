@@ -71,7 +71,6 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
             }
         }
 
-
         public static List<string> GetWords(string text)
         {
             var words = new List<string>();
@@ -124,11 +123,10 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
             //						Result.Index =i+StartPosition;
             //						Result.Token = Text.Substring(i+StartPosition,this.Pattern.Length);
             //						return Result;
-            //					}							
+            //					}
             //				}
             //				//-----------------------------------------------
             //			}
-
 
             return Result;
         }

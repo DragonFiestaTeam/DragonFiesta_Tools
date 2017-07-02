@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DragonDataSniffer.Data
+﻿namespace DragonDataSniffer.Data
 {
     public sealed class MobInfo
     {
@@ -13,8 +7,10 @@ namespace DragonDataSniffer.Data
         public byte Level { get; private set; }
         public bool IsNPC { get; private set; }
         public uint Size { get; private set; }
+
         //MobInfoServer
         public bool DetectEnemy { get; private set; }
+
         public uint EXP { get; private set; }
         public double EXPRange { get; private set; }
         public double DetectCharacterRange { get; private set; }
@@ -26,7 +22,6 @@ namespace DragonDataSniffer.Data
 
         public MobInfo(SQLResult pResult, int i)
         {
-
             ID = pResult.Read<ushort>(i, "ID");
             Index = pResult.Read<string>(i, "InxName");
             Level = pResult.Read<byte>(i, "Level");
@@ -37,7 +32,6 @@ namespace DragonDataSniffer.Data
 
             IsNPC = pResult.Read<bool>(i, "IsNPC");
             Size = pResult.Read<uint>(i, "Size");
-
         }
     }
 }

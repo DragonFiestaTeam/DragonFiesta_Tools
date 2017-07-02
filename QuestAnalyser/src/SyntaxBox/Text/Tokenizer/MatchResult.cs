@@ -22,7 +22,7 @@ namespace Alsing.Text
         {
             get
             {
-                var result = new MatchResult {Found = false};
+                var result = new MatchResult { Found = false };
                 return result;
             }
         }

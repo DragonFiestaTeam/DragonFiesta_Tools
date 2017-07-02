@@ -1,5 +1,5 @@
-﻿using System.Data;
-using System;
+﻿using System;
+using System.Data;
 
 namespace DragonDataSniffer.Object
 {
@@ -15,12 +15,14 @@ namespace DragonDataSniffer.Object
             Slot = pSlot;
             ItemID = pItemID;
         }
+
         public NPCItem(DataRow Row)
         {
             MobID = Convert.ToUInt16(Row["MobID"]);
             Slot = Convert.ToByte(Row["Slot"]);
             ItemID = Convert.ToInt32(Row["ItemID"]);
         }
+
         public void AddToDB()
         {
             string insertstring = "INSERT INTO NPCItemList (MobID,Slot,ItemID) VALUES ('"

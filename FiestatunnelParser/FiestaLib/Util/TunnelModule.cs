@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FiestaLib.Util
 {
@@ -16,11 +13,11 @@ namespace FiestaLib.Util
     public class TunnelModuleAttribute : Attribute
     {
         private readonly InitializationStage stageInternal;
-        public InitializationStage InitializationStage { get { return this.stageInternal; } }
+        public InitializationStage InitializationStage { get { return stageInternal; } }
 
         public TunnelModuleAttribute(InitializationStage initializationStage)
         {
-            this.stageInternal = initializationStage;
+            stageInternal = initializationStage;
         }
     }
 

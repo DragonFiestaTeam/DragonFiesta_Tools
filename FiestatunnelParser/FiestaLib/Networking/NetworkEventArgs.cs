@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FiestaLib.Networking
 {
@@ -12,13 +9,13 @@ namespace FiestaLib.Networking
 
         public NetworkEventArgs(NetworkEventType type)
         {
-            this.Type = type;
+            Type = type;
         }
 
         public NetworkEventArgs(NetworkEventType type, object obj)
         {
-            this.Type = type;
-            this.Obj = obj;
+            Type = type;
+            Obj = obj;
         }
     }
 

@@ -9,7 +9,6 @@
 // *
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -39,7 +38,7 @@ namespace Alsing.Windows.Forms.CoreLib
             set { _Views = value; }
         }
 
-        #endregion
+        #endregion Private Properties
 
         public SplitViewParentControl()
         {
@@ -50,7 +49,6 @@ namespace Alsing.Windows.Forms.CoreLib
             splitView.Resizing += SplitView_Resizing;
             splitView.HideLeft += SplitView_HideLeft;
             splitView.HideTop += SplitView_HideTop;
-
 
             LowerRight = GetNewView();
             LowerRight.AllowDrop = true;
@@ -107,7 +105,6 @@ namespace Alsing.Windows.Forms.CoreLib
                     ActivateSplits();
                 }
 
-
                 if (value == ActiveView.TopLeft)
                     _ActiveView = UpperLeft;
 
@@ -122,7 +119,9 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        private void InitializeComponent() {}
+        private void InitializeComponent()
+        {
+        }
 
         /// <summary>
         /// Resets the Splitview.
@@ -171,14 +170,12 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-
         protected void TopThumb_MouseDown(object sender, MouseEventArgs e)
         {
             ActivateSplits();
 
             long t = DateTime.Now.Ticks - _ticks;
             _ticks = DateTime.Now.Ticks;
-
 
             if (t < 3000000)
             {
@@ -197,7 +194,6 @@ namespace Alsing.Windows.Forms.CoreLib
             long t = DateTime.Now.Ticks - _ticks;
             _ticks = DateTime.Now.Ticks;
 
-
             if (t < 3000000)
             {
                 splitView.Split5050v();
@@ -208,7 +204,9 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        protected virtual void OnCreate() {}
+        protected virtual void OnCreate()
+        {
+        }
 
         protected virtual void CreateViews()
         {
@@ -227,7 +225,7 @@ namespace Alsing.Windows.Forms.CoreLib
 
         protected void View_Enter(object sender, EventArgs e)
         {
-            _ActiveView = (SplitViewChildControl) sender;
+            _ActiveView = (SplitViewChildControl)sender;
         }
 
         protected void View_Leave(object sender, EventArgs e)
@@ -238,7 +236,7 @@ namespace Alsing.Windows.Forms.CoreLib
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
-            if (m.Msg == (int) WindowMessage.WM_SETFOCUS)
+            if (m.Msg == (int)WindowMessage.WM_SETFOCUS)
             {
                 if (_ActiveView != null)
                     _ActiveView.Focus();
@@ -260,7 +258,7 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY SPLITVIEWV
 
         #region PUBLIC PROPERTY SPLITVIEWH
 
@@ -276,7 +274,7 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY SPLITVIEWH
 
         #region public property ScrollBars
 
@@ -305,7 +303,7 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        #endregion
+        #endregion public property ScrollBars
 
         #region public property SplitView
 
@@ -343,7 +341,7 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        #endregion //END PROPERTY SplitView
+        #endregion public property SplitView
 
         #region PUBLIC PROPERTY CHILDBODERSTYLE
 
@@ -355,7 +353,7 @@ namespace Alsing.Windows.Forms.CoreLib
         [DefaultValue(BorderStyle.FixedSingle)]
         public BorderStyle ChildBorderStyle
         {
-            get { return ((SplitViewChildControl) Views[0]).BorderStyle; }
+            get { return ((SplitViewChildControl)Views[0]).BorderStyle; }
             set
             {
                 foreach (SplitViewChildControl ev in Views)
@@ -365,7 +363,7 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY CHILDBODERSTYLE
 
         #region PUBLIC PROPERTY CHILDBORDERCOLOR
 
@@ -374,10 +372,10 @@ namespace Alsing.Windows.Forms.CoreLib
         /// </summary>
         [Category("Appearance - Borders")]
         [Description("Gets or Sets the border color of the split views.")]
-        [DefaultValue(typeof (Color), "ControlDark")]
+        [DefaultValue(typeof(Color), "ControlDark")]
         public Color ChildBorderColor
         {
-            get { return ((SplitViewChildControl) Views[0]).BorderColor; }
+            get { return ((SplitViewChildControl)Views[0]).BorderColor; }
             set
             {
                 foreach (SplitViewChildControl ev in Views)
@@ -390,7 +388,7 @@ namespace Alsing.Windows.Forms.CoreLib
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY CHILDBORDERCOLOR
 
         #region roger generated code
 
@@ -398,9 +396,9 @@ namespace Alsing.Windows.Forms.CoreLib
         {
             splitView = new SplitViewControl();
             SuspendLayout();
-            // 
+            //
             // splitView
-            // 
+            //
             splitView.BackColor = Color.Empty;
             splitView.Dock = DockStyle.Fill;
             splitView.LowerLeft = null;
@@ -413,9 +411,9 @@ namespace Alsing.Windows.Forms.CoreLib
             splitView.Text = "splitView";
             splitView.UpperLeft = null;
             splitView.UpperRight = null;
-            // 
+            //
             // SplitViewParentControl
-            // 
+            //
             Controls.AddRange(new Control[]
                               {
                                   splitView
@@ -425,7 +423,7 @@ namespace Alsing.Windows.Forms.CoreLib
             ResumeLayout(false);
         }
 
-        #endregion
+        #endregion roger generated code
     }
 }
 

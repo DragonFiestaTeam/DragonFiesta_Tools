@@ -184,7 +184,7 @@ namespace Alsing.Windows
         public static extern IntPtr DrawThemeParentBackground( IntPtr hwnd, IntPtr hdc, ref RECT prc );
 */
 
-        #endregion
+        #endregion uxTheme.dll
 
         [DllImport("imm32.dll")]
         public static extern IntPtr ImmGetDefaultIMEWnd(IntPtr hWnd);
@@ -198,7 +198,6 @@ namespace Alsing.Windows
         [DllImport("user32.DLL", SetLastError = false, CharSet = CharSet.Auto,
             CallingConvention = CallingConvention.StdCall)]
         public static extern int DrawText(IntPtr hDC, string lpString, int nCount, ref APIRect Rect, int wFormat);
-
 
         [DllImport("gdi32", SetLastError = true, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
         public static extern int EnumFontFamiliesEx(IntPtr hDC, [MarshalAs(UnmanagedType.LPStruct)] LogFont lf,
@@ -236,7 +235,6 @@ namespace Alsing.Windows
         [DllImport("gdi32.DLL", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern IntPtr DeleteDC(IntPtr hDC);
 
-
         [DllImport("gdi32.DLL", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern IntPtr GdiFlush();
 
@@ -269,7 +267,6 @@ namespace Alsing.Windows
         [DllImport("gdi32.DLL", SetLastError = false, CharSet = CharSet.Auto,
             CallingConvention = CallingConvention.StdCall)]
         public static extern int GetBkColor(IntPtr hDC);
-
 
         [DllImport("gdi32.DLL", SetLastError = false, CharSet = CharSet.Auto,
             CallingConvention = CallingConvention.StdCall)]
@@ -342,11 +339,10 @@ namespace Alsing.Windows
 
         public static bool IsKeyPressed(Keys k)
         {
-            int s = GetAsyncKeyState((int) k);
+            int s = GetAsyncKeyState((int)k);
             s = (s & 0x8000) >> 15;
             return (s == 1);
         }
-
 
         //---------------------------------------
         //helper , return DC of a control

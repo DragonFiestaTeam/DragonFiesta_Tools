@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
@@ -17,14 +11,13 @@ namespace BlockInfoReader
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "BlockInfo (*.shbd) | *shbd";
             openFileDialog1.FileName = "";
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                        var data = File.ReadAllBytes(openFileDialog1.FileName);
-
 
                        using (var stream = new MemoryStream(data))
                        {

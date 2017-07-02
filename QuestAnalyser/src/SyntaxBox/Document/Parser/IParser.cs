@@ -35,7 +35,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
         void Init(string syntaxDefinitionPath);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="syntaxDefinitionPath"></param>
         /// <param name="separators"></param>

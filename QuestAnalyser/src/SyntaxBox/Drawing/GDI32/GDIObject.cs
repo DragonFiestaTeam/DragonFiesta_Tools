@@ -36,6 +36,6 @@ namespace Alsing.Drawing.GDI
             Destroy();
         }
 
-        #endregion
+        #endregion Implementation of IDisposable
     }
 }

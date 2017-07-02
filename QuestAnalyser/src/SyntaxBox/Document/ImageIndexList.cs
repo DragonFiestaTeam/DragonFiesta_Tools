@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace Alsing.SourceCode
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class ImageIndexList : List<int>
     {

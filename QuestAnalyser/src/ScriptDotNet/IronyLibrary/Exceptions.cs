@@ -1,19 +1,26 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Irony.Compiler {
+namespace Irony.Compiler
+{
+    public class GrammarErrorException : Exception
+    {
+        public GrammarErrorException(string message) : base(message)
+        {
+        }
 
-  public class GrammarErrorException : Exception {
-    public GrammarErrorException(string message) : base(message) { }
-    public GrammarErrorException(string message, Exception inner) : base(message, inner) { }
+        public GrammarErrorException(string message, Exception inner) : base(message, inner)
+        {
+        }
+    }//class
 
-  }//class
+    public class CompilerException : Exception
+    {
+        public CompilerException(string message) : base(message)
+        {
+        }
 
-  public class CompilerException : Exception {
-    public CompilerException(string message) : base(message) { }
-    public CompilerException(string message, Exception inner) : base(message, inner) { }
-
-  }//class
-
+        public CompilerException(string message, Exception inner) : base(message, inner)
+        {
+        }
+    }//class
 }//namespace

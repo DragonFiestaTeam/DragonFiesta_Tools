@@ -1,13 +1,9 @@
-using System;
-using System.Drawing;
-using System.Reflection;
 using System.Resources;
-using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-	internal static class ResourceHelper
-	{
+    internal static class ResourceHelper
+    {
         private static ResourceManager _resourceManager = null;
 
         private static ResourceManager ResourceManager
@@ -18,12 +14,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                     _resourceManager = new ResourceManager("QuestDataAnalyser.Docking.Strings", typeof(ResourceHelper).Assembly);
                 return _resourceManager;
             }
-
         }
 
-		public static string GetString(string name)
-		{
-			return ResourceManager.GetString(name);
-		}
-	}
+        public static string GetString(string name)
+        {
+            return ResourceManager.GetString(name);
+        }
+    }
 }

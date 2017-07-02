@@ -71,9 +71,9 @@ namespace Alsing.Text.PatternMatchers
                 PatternChanged(this, e);
         }
 
-        #endregion //END PUBLIC EVENT PATTERNCHANGED
+        #endregion PUBLIC EVENT PATTERNCHANGED
 
-        #endregion //END PUBLIC PROPERTY PATTERN (+PATTERNCHANGED EVENT)
+        #endregion PUBLIC PROPERTY PATTERN (+PATTERNCHANGED EVENT)
 
         //perform the match
         public override int Match(string textToMatch, int matchAtIndex)
@@ -95,7 +95,7 @@ namespace Alsing.Text.PatternMatchers
         {
             const RegexOptions options = RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline;
 
-            regEx = new Regex(string.Format(@"\G({0})",pattern), options);
+            regEx = new Regex(string.Format(@"\G({0})", pattern), options);
         }
     }
 }

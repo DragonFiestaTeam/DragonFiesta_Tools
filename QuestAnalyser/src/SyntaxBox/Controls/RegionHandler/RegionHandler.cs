@@ -29,19 +29,19 @@ namespace Alsing.Windows.Forms.CoreLib
             set { _TransparencyKey = value; }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY TRANSPARENCYKEY
 
         #region PUBLIC PROPERTY CONTROL
 
         public Control Control { get; set; }
 
-        #endregion
+        #endregion PUBLIC PROPERTY CONTROL
 
         #region PUBLIC PROPERTY MASKIMAGE
 
         public Bitmap MaskImage { get; set; }
 
-        #endregion
+        #endregion PUBLIC PROPERTY MASKIMAGE
 
         public RegionHandler(IContainer container)
         {
@@ -65,7 +65,7 @@ namespace Alsing.Windows.Forms.CoreLib
             components = new System.ComponentModel.Container();
         }
 
-        #endregion
+        #endregion Component Designer generated code
 
         public void ApplyRegion(Control Target, Bitmap MaskImage, Color TransparencyKey)
         {
@@ -74,7 +74,6 @@ namespace Alsing.Windows.Forms.CoreLib
             this.TransparencyKey = TransparencyKey;
             ApplyRegion();
         }
-
 
         public void ApplyRegion()
         {

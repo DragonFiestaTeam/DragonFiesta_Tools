@@ -1,0 +1,114 @@
+using(ScriptAPI)
+{
+    count = AddUShort("QuestCount");
+    for(i=0; i<count; i++)
+    {
+        QuestLenght = AddUInt("QuestLenght");
+		StartNode("QuestInfo");
+        AddInt("QuestID");
+        AddInt("TitleID");
+        AddInt("DescriptionID");
+        AddField("unk",1);
+		AddByte("QuestGrade");
+		AddByte("MultiQuest");
+		AddByte("DailyQuest");
+		AddField("unk",4);
+		AddByte("Enable");
+		AddByte("InstAcc");
+		AddByte("NeedLevel");	
+        AddByte("MinLevel");
+        AddByte("MaxLevel");
+		AddByte("NeedNPC");
+		AddShort("StartingNPC");
+		AddByte("NeedItem");
+		AddField("unk",1);
+		AddShort("ItemID");
+		AddByte("ItemVanish");
+		AddField("unk",19);
+		AddByte("NeedPred");
+		AddField("unk",1);
+		AddShort("Predesessor");
+		AddField("unk",2);
+		AddByte("NeedClass");
+		AddByte("ClassType");
+		AddField("unk",24);
+		AddByte("InstHand");
+		AddByte("RequireLevel");
+		AddByte("FinishLevel");
+		AddField("unk",1);
+		EndNode(0);
+		
+		StartNode("MobInfo");
+        for (inxMob = 0; inxMob < 5; inxMob++)
+        {
+            StartNode("mob"+inxMob);
+            AddByte("IsActive");
+		    AddByte("Unk1");
+	        AddUShort("MobID");
+	        AddByte("IsKillable");
+	        AddByte("Amount");
+			AddByte("Unk2");
+			AddByte("Unk3");
+	        EndNode(0);
+		}
+		EndNode(0);
+		
+		StartNode("ItemInfo");
+		for (inxItem = 0; inxItem < 10; inxItem++)
+		{
+			StartNode("Item"+inxItem);
+			AddByte("IsActive");
+			AddByte("ItemType");
+			AddUShort("ItemID");
+			AddUShort("Amount");
+			EndNode(0);
+		}	
+		EndNode(0);
+		
+		StartNode("ItemDrop");
+		for (inxDrop = 0; inxDrop < 10; inxDrop++)
+		{
+	        StartNode("Item"+inxDrop);
+			AddInt("Amount");
+			AddInt("MobID");
+		    AddInt("IsEnabled");
+			AddInt("ItemID");
+			AddInt("Rate");
+			AddInt("MinDrop");
+			AddInt("MaxDrop");
+			AddInt("Unk");
+			EndNode(0);
+		}
+		AddInt("DropCount");
+		EndNode(0);
+		
+		StartNode("RewardInfo");
+		for (inxReward = 0; inxReward < 12; inxReward++)
+		{
+			StartNode("Reward"+inxReward);
+			AddByte("GiveType");
+			RewardType = AddByte("RewardType");
+			AddUShort("unk");
+			if(RewardType == 2)
+			{				
+				AddUShort("ItemID");
+				AddUShort("ItemCount");
+				AddUInt("Unk2");
+			}
+			else
+			{
+				AddLong("Amount");
+			}	
+			EndNode(0);
+		}
+		AddField("RewardData",14);  
+		EndNode(0);
+		
+		StartScriptLenght = AddShort("StartScriptLenght");
+		ActionLenght = AddShort("ActionLenght");
+		FinishScriptLenght = AddShort("FinishScriptLenght");
+		AddNulledString("StartScript");
+		AddNulledString("ActionScript");
+		AddNulledString("FinishScript");
+	}	
+}

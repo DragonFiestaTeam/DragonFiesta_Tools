@@ -18,7 +18,7 @@ namespace Alsing.Design
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
-            if (sourceType == typeof (string))
+            if (sourceType == typeof(string))
                 return true;
 
             return base.CanConvertFrom(context, sourceType);
@@ -26,7 +26,7 @@ namespace Alsing.Design
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type t)
         {
-            if (t == typeof (string))
+            if (t == typeof(string))
                 return true;
 
             return base.CanConvertTo(context, t);
@@ -48,7 +48,7 @@ namespace Alsing.Design
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
                                          Type destinationType)
         {
-            if (destinationType == typeof (string))
+            if (destinationType == typeof(string))
             {
                 int v = Convert.ToInt32(value);
                 if (v == 0)

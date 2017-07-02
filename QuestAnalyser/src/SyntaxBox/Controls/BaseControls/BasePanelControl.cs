@@ -8,11 +8,11 @@
 // *
 // *
 
+using Alsing.Drawing;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Alsing.Drawing;
 
 namespace Alsing.Windows.Forms
 {
@@ -25,7 +25,6 @@ namespace Alsing.Windows.Forms
         private BorderStyle borderStyle;
         private Container components;
         private bool RunOnce = true;
-
 
         public BasePanelControl()
         {
@@ -79,7 +78,7 @@ namespace Alsing.Windows.Forms
                         Refresh();
                     }
                 }
-                catch {}
+                catch { }
             }
         }
 
@@ -90,17 +89,16 @@ namespace Alsing.Windows.Forms
             set { base.BackgroundImage = value; }
         }
 
-
         [Browsable(false)]
         public int ClientWidth
         {
-            get { return Width - (BorderWidth*2); }
+            get { return Width - (BorderWidth * 2); }
         }
 
         [Browsable(false)]
         public int ClientHeight
         {
-            get { return Height - (BorderWidth*2); }
+            get { return Height - (BorderWidth * 2); }
         }
 
         [Browsable(false)]
@@ -157,26 +155,25 @@ namespace Alsing.Windows.Forms
                         }
                 }
 
-
                 return Height;
             }
         }
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            // 
+            //
             // BasePanelControl
-            // 
-            this.Size = new System.Drawing.Size(272, 264);
+            //
+            Size = new System.Drawing.Size(272, 264);
         }
 
-        #endregion
+        #endregion Component Designer generated code
 
         public event EventHandler Load = null;
 
@@ -201,17 +198,17 @@ namespace Alsing.Windows.Forms
 
         protected override unsafe void WndProc(ref Message m)
         {
-            if (m.Msg == (int) WindowMessage.WM_NCPAINT)
+            if (m.Msg == (int)WindowMessage.WM_NCPAINT)
             {
                 try
                 {
                     RenderBorder();
                 }
-                catch {}
+                catch { }
                 base.WndProc(ref m);
                 //	RenderBorder();
             }
-            else if (m.Msg == (int) WindowMessage.WM_SHOWWINDOW)
+            else if (m.Msg == (int)WindowMessage.WM_SHOWWINDOW)
             {
                 if (RunOnce)
                 {
@@ -226,21 +223,21 @@ namespace Alsing.Windows.Forms
                     base.WndProc(ref m);
                 }
             }
-            else if (m.Msg == (int) WindowMessage.WM_NCCREATE)
+            else if (m.Msg == (int)WindowMessage.WM_NCCREATE)
             {
                 base.WndProc(ref m);
             }
-            else if (m.Msg == (int) WindowMessage.WM_NCCALCSIZE)
+            else if (m.Msg == (int)WindowMessage.WM_NCCALCSIZE)
             {
-                if (m.WParam == (IntPtr) 0)
+                if (m.WParam == (IntPtr)0)
                 {
                     //APIRect* pRC=(APIRect*)m.LParam;
                     //pRC->left -=3;
                     base.WndProc(ref m);
                 }
-                else if (m.WParam == (IntPtr) 1)
+                else if (m.WParam == (IntPtr)1)
                 {
-                    var pNCP = (_NCCALCSIZE_PARAMS*) m.LParam;
+                    var pNCP = (_NCCALCSIZE_PARAMS*)m.LParam;
 
                     base.WndProc(ref m);
 
@@ -248,7 +245,6 @@ namespace Alsing.Windows.Forms
                     int l = pNCP->NewRect.left + BorderWidth;
                     int b = pNCP->NewRect.bottom - BorderWidth;
                     int r = pNCP->NewRect.right - BorderWidth;
-
 
                     pNCP->NewRect.top = t;
                     pNCP->NewRect.left = l;
@@ -272,7 +268,7 @@ namespace Alsing.Windows.Forms
 
             using (Graphics g = Graphics.FromHdc(hdc))
             {
-                DrawingTools.DrawBorder((BorderStyle2) (int) BorderStyle, BorderColor, g,
+                DrawingTools.DrawBorder((BorderStyle2)(int)BorderStyle, BorderColor, g,
                                         new Rectangle(0, 0, s.Width, s.Height));
             }
             NativeMethods.ReleaseDC(Handle, hdc);

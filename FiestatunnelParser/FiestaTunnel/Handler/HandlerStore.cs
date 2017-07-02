@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Reflection;
 using FiestaLib.Util;
 
@@ -26,9 +24,8 @@ namespace FiestaTunnel.Handler
 
         public static MethodInfo GetMethod(ushort opCode)
         {
-            MethodInfo method;
 
-            PacketHandlers.TryGetValue(opCode, out method);
+            PacketHandlers.TryGetValue(opCode, out MethodInfo method);
             return method;
         }
 

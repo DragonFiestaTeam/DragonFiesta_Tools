@@ -10,3 +10,15 @@ C:\Users\gothic\Documents\Visual Studio 2015\Projects\QuestDataSQLConverter\Ques
 C:\Users\gothic\Documents\Visual Studio 2015\Projects\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.exe
 C:\Users\gothic\Documents\Visual Studio 2015\Projects\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.pdb
 C:\Users\gothic\Documents\Visual Studio 2015\Projects\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.DatabaseForm.resources
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\bin\Debug\QuestDataForm.exe.config
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\bin\Debug\QuestDataForm.exe
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\bin\Debug\QuestDataForm.pdb
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\bin\Debug\QuestDataSQLConverter.dll
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\bin\Debug\QuestDataSQLConverter.pdb
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.csprojResolveAssemblyReference.cache
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.DatabaseForm.resources
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.Properties.Resources.resources
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.csproj.GenerateResource.Cache
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.exe
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.pdb
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataForm\obj\Debug\QuestDataForm.FrmMain.resources

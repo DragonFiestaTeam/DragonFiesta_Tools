@@ -21,10 +21,12 @@ namespace Alsing.SourceCode
         /// The word is a normal word/text
         /// </summary>
         Word = 0,
+
         /// <summary>
         /// The word is a space char
         /// </summary>
         Space = 1,
+
         /// <summary>
         /// The word is a tab char
         /// </summary>
@@ -83,7 +85,7 @@ namespace Alsing.SourceCode
         /// </summary>
         public WordType Type; //word type , space , tab , word
 
-        #endregion
+        #endregion General Declarations
 
         /// <summary>
         /// Gets the index of the word in the parent row
@@ -107,7 +109,7 @@ namespace Alsing.SourceCode
                         return x;
                     x += w.Text.Length;
                 }
-                return - 1;
+                return -1;
             }
         }
     }

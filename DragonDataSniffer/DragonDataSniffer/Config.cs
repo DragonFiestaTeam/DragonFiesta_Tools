@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 public class Config
 {
@@ -12,28 +12,32 @@ public class Config
 
     public static string Comments { get { return comments; } }
     private static string comments = string.Empty;
+
     // TS: This is otherwise known as a dictionary:
     //private static List<KeyValuePair<object, object>> Properties;
     private readonly Dictionary<string, object> properties;
+
     private bool isInitialized;
     public static Random Random { get; private set; }
-
 
     public string ConnectIP { get; private set; }
     public string TunnelIP { get; private set; }
     public int TunnelPort { get; private set; }
     public int WorkInteval { get; private set; }
+
     //Database shit
     public string SQLHost { get; private set; }
+
     public string SQLUser { get; private set; }
     public string SQLPassword { get; private set; }
     public string SQLDatabase { get; private set; }
-    #endregion;
+
+    #endregion Proberty
 
     private Config()
     {
-        this.properties = new Dictionary<string, object>();
-        this.isInitialized = false;
+        properties = new Dictionary<string, object>();
+        isInitialized = false;
     }
 
     public static bool Load()
@@ -50,25 +54,20 @@ public class Config
             return false;
         }
     }
+
     private const string ConfigName = "\\Config.cfg";
     private static readonly string configPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + ConfigName;
 
-
-
-
-
-
     /// <summary>
     /// Automatically loads settings from config file
-    /// </summary>        
-
+    /// </summary>
 
     private bool InitializeInternal()
     {
-        if (this.isInitialized) return true;
+        if (isInitialized) return true;
         try
         {
-            this.ParseFile(configPath);
+            ParseFile(configPath);
 
             //Tunnel
             ConnectIP = GetString("Tunnel.ConnectIP");
@@ -90,9 +89,8 @@ public class Config
         }
         Random = new Random(DateTime.Now.Second);
 
-
-        Log.WriteLine(LogLevel.Info,"Config loaded successfully.");
-        this.isInitialized = true;
+        Log.WriteLine(LogLevel.Info, "Config loaded successfully.");
+        isInitialized = true;
         return true;
     }
 
@@ -117,10 +115,12 @@ public class Config
     {
         return Convert.ToInt32(properties[key]);
     }
+
     public uint GetUInt32(string key)
     {
         return Convert.ToUInt32(properties[key]);
     }
+
     /// <summary>
     /// Gets an Int16 type variable from the file
     /// </summary>
@@ -151,9 +151,7 @@ public class Config
         return properties[key].ToString();
     }
 
-    #endregion
-
-
+    #endregion Get methods
 
     /// <summary>
     /// Reads the file and parse it into a List of Key Vaule Pairs.
@@ -185,4 +183,3 @@ public class Config
         }
     }
 }
- 

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace SHNtoMySQLConverter.SHN
@@ -11,7 +8,6 @@ namespace SHNtoMySQLConverter.SHN
         public SHNWriter(Stream input)
             : base(input)
         {
-
         }
 
         public void WritePaddedString(string value, int Length)

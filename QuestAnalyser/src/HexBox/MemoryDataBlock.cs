@@ -1,10 +1,8 @@
-using System;
-
 namespace System.Windows.Forms
 {
     internal sealed class MemoryDataBlock : DataBlock
     {
-        byte[] _data;
+        private byte[] _data;
 
         public MemoryDataBlock(byte data)
         {

@@ -3,48 +3,49 @@
 using Irony.Compiler;
 
 using ScriptNET.Runtime;
-#endregion
+
+#endregion using
 
 namespace ScriptNET.Ast
 {
-  /// <summary>
-  /// Root of any script program
-  /// </summary>
-  internal class ScriptProg : ScriptAst, IInvokable
-  {
-    internal ScriptElements Elements
+    /// <summary>
+    /// Root of any script program
+    /// </summary>
+    internal class ScriptProg : ScriptAst, IInvokable
     {
-      get;
-      set;
+        internal ScriptElements Elements
+        {
+            get;
+            set;
+        }
+
+        public ScriptProg(AstNodeArgs args)
+          : base(args)
+        {
+            Elements = ChildNodes[0] as ScriptElements;
+        }
+
+        public override void Evaluate(IScriptContext context)
+        {
+            context.SetItem("Context", context);
+            context.SetItem("prog", this);
+
+            base.Evaluate(context);
+        }
+
+        #region IInvokable Members
+
+        public bool CanInvoke()
+        {
+            return true;
+        }
+
+        public object Invoke(IScriptContext context, object[] args)
+        {
+            Evaluate(context);
+            return context.Result;
+        }
+
+        #endregion IInvokable Members
     }
-
-    public ScriptProg(AstNodeArgs args)
-      : base(args)
-    {
-      Elements = ChildNodes[0] as ScriptElements;
-    }
-
-    public override void Evaluate(IScriptContext context)
-    {
-      context.SetItem("Context", context);
-      context.SetItem("prog", this);
-
-      base.Evaluate(context);
-    }
-
-    #region IInvokable Members
-
-    public bool CanInvoke()
-    {
-      return true;
-    }
-
-    public object Invoke(IScriptContext context, object[] args)
-    {
-      Evaluate(context);
-      return context.Result;
-    }
-
-    #endregion
-  }
 }

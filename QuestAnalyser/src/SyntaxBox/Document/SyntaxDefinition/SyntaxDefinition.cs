@@ -51,7 +51,7 @@ namespace Alsing.SourceCode
             set { _Separators = value; }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY SEPARATORS
 
         #region PUBLIC PROPERTY VERSION
 
@@ -63,7 +63,7 @@ namespace Alsing.SourceCode
             set { _Version = value; }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY VERSION
 
         private readonly Dictionary<SpanDefinition, SpanDefinition> spanDefinitionLookup = new Dictionary<SpanDefinition, SpanDefinition>();
         private readonly Dictionary<TextStyle, TextStyle> styleLookup = new Dictionary<TextStyle, TextStyle>();
@@ -217,7 +217,6 @@ namespace Alsing.SourceCode
                 }
             }
         }
-
 
         private void FillBlocks(SpanDefinition bt)
         {

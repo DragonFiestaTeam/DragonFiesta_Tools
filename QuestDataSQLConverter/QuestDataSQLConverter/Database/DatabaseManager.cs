@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.Text;
-using System.Data.SqlClient;
-using System.Collections;
-using System.Globalization;
 using System.Data;
-
+using System.Data.SqlClient;
+using System.Globalization;
+using System.Text;
+using System.Windows.Forms;
 
 public static class DatabaseManager
 {
@@ -13,13 +11,12 @@ public static class DatabaseManager
 
     public static bool IsInitialed;
 
-    public static bool Initialize(string host,string SQLUser,string Password,string SQLDB)
+    public static bool Initialize(string host, string SQLUser, string Password, string SQLDB)
     {
         try
         {
-
             Connectionstring = BuildConnectionString(host, SQLUser, Password, SQLDB);//TODO CREATE
-                                                       //test
+                                                                                     //test
             using (var con = GetConnection()) { con.Close(); }
 
             IsInitialed = true;
@@ -30,8 +27,8 @@ public static class DatabaseManager
             MessageBox.Show(ex.ToString());
             return false;
         }
-
     }
+
     private static string BuildConnectionString(string host, string SQLUser, string Password, string SQLDB)
     {
         var cb = new SqlConnectionStringBuilder()
@@ -47,24 +44,15 @@ public static class DatabaseManager
         return cb.ToString();
     }
 
-
-
-
-
-
-
-
-
-
     public static SqlConnection GetConnection()
     {
         var con = new SqlConnection(Connectionstring);
 
         con.Open();
 
-
         return con;
     }
+
     public static bool RunSQL(string sql, params SqlParameter[] Parameters)
     {
         SqlConnection Connection = null;
@@ -81,16 +69,15 @@ public static class DatabaseManager
             sqlCommand.ExecuteNonQuery();
             return true;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            MessageBox.Show( "Error With Query  "+sqlCommand.CommandText);
+            MessageBox.Show("Error With Query  " + sqlCommand.CommandText);
             return false;
         }
     }
 
     public static SQLResult Select(string sql, params SqlParameter[] Parameters)
     {
-
         SqlConnection Connection = null;
         DatabaseManager.CheckConnection(ref Connection);
         StringBuilder sqlString = new StringBuilder();
@@ -101,8 +88,6 @@ public static class DatabaseManager
 
         try
         {
-
-
             sqlCommand.Parameters.AddRange(Parameters);
 
             using (var SqlData = sqlCommand.ExecuteReader())
@@ -116,14 +101,14 @@ public static class DatabaseManager
                 }
             }
         }
-        catch 
+        catch
         {
-
-            MessageBox.Show( "Error With Query {0}", sqlCommand.CommandText);
+            MessageBox.Show("Error With Query {0}", sqlCommand.CommandText);
         }
 
         return null;
     }
+
     public static void CheckConnection(ref SqlConnection con)
     {
         if (con == null)
@@ -137,5 +122,3 @@ public static class DatabaseManager
         }
     }
 }
-
-

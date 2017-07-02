@@ -8,14 +8,14 @@
 // *
 // *
 
+using Alsing.SourceCode;
 using System;
 using System.Drawing;
-using Alsing.SourceCode;
 
 namespace Alsing.Windows.Forms.SyntaxBox.Painter
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public interface IPainter : IDisposable
     {
@@ -42,7 +42,7 @@ namespace Alsing.Windows.Forms.SyntaxBox.Painter
         void RenderCaret(Graphics g);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="RowIndex"></param>
         void RenderRow(int RowIndex);

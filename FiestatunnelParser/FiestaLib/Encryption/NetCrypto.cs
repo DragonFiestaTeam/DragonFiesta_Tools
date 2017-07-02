@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 
 namespace FiestaLib.Encryption
 {
@@ -12,16 +8,16 @@ namespace FiestaLib.Encryption
         public NetCrypto(short offset)
         {
             if (offset >= table_size) throw new IndexOutOfRangeException("Xor offset cannot be bigger than 499.");
-            this.XorPos = offset;
+            XorPos = offset;
         }
 
         public void Crypt(byte[] pBuffer, int pOffset, int pLen)
         {
                 for (int i = 0; i < pLen; ++i)
                 {
-                    pBuffer[pOffset + i] ^= XorTable[this.XorPos];
-                    ++this.XorPos;
-                    if (this.XorPos == table_size) this.XorPos = 0;
+                    pBuffer[pOffset + i] ^= XorTable[XorPos];
+                    ++XorPos;
+                    if (XorPos == table_size) XorPos = 0;
                 }
         }
 

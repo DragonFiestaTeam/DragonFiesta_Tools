@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace Alsing.SourceCode
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed class UndoBuffer : List<UndoBlockCollection>
     {
@@ -25,7 +25,7 @@ namespace Alsing.SourceCode
         public int MaxSize { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         public void ClearFrom(int index)

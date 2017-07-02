@@ -2,7 +2,7 @@
 
 namespace SHNtoMySQLConverter.Encryption
 {
-    class FileCrypto
+    internal class FileCrypto
     {
         public static void Crypt(byte[] data, int index, int length)
         {

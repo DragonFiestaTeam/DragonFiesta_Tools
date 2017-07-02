@@ -8,6 +8,7 @@
 // *
 // *
 
+using Alsing.Windows;
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -15,7 +16,6 @@ using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using Alsing.Windows;
 
 namespace Alsing.Drawing.GDI
 {
@@ -31,7 +31,6 @@ namespace Alsing.Drawing.GDI
 
             if (e.Index == -1)
                 return;
-
 
             object li = FontListbox.Items[e.Index];
             string text = li.ToString();
@@ -55,11 +54,9 @@ namespace Alsing.Drawing.GDI
                 e.Graphics.FillRectangle(SystemBrushes.Window, 0, e.Bounds.Top, e.Bounds.Width, FontListbox.ItemHeight);
             }
 
-
             e.Graphics.DrawString(text, e.Font, fg, 38, e.Bounds.Top + 4);
 
             e.Graphics.SetClip(new Rectangle(1, e.Bounds.Top + 2, 34, FontListbox.ItemHeight - 4));
-
 
             e.Graphics.FillRectangle(SystemBrushes.Highlight,
                                      new Rectangle(1, e.Bounds.Top + 2, 34, FontListbox.ItemHeight - 4));
@@ -67,11 +64,11 @@ namespace Alsing.Drawing.GDI
             IntPtr hdc = e.Graphics.GetHdc();
             var gf = new GDIFont(text, 9);
             int a = 0;
-            IntPtr res = Alsing.Windows.NativeMethods.SelectObject(hdc, gf.hFont);
-            Alsing.Windows.NativeMethods.SetTextColor(hdc, ColorTranslator.ToWin32(SystemColors.Window));
-            Alsing.Windows.NativeMethods.SetBkMode(hdc, 0);
-            Alsing.Windows.NativeMethods.TabbedTextOut(hdc, 3, e.Bounds.Top + 5, "abc", 3, 0, ref a, 0);
-            Alsing.Windows.NativeMethods.SelectObject(hdc, res);
+            IntPtr res = Windows.NativeMethods.SelectObject(hdc, gf.hFont);
+            Windows.NativeMethods.SetTextColor(hdc, ColorTranslator.ToWin32(SystemColors.Window));
+            Windows.NativeMethods.SetBkMode(hdc, 0);
+            Windows.NativeMethods.TabbedTextOut(hdc, 3, e.Bounds.Top + 5, "abc", 3, 0, ref a, 0);
+            Windows.NativeMethods.SelectObject(hdc, res);
             gf.Dispose();
             e.Graphics.ReleaseHdc(hdc);
             e.Graphics.DrawRectangle(Pens.Black, new Rectangle(1, e.Bounds.Top + 2, 34, FontListbox.ItemHeight - 4));
@@ -84,13 +81,13 @@ namespace Alsing.Drawing.GDI
                 && context.Instance != null
                 && provider != null)
             {
-                edSvc = (IWindowsFormsEditorService) provider.GetService(typeof (IWindowsFormsEditorService));
+                edSvc = (IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService));
 
                 if (edSvc != null)
                 {
                     // Create a CheckedListBox and populate it with all the enum values
                     FontListbox = new ListBox
-                                  {DrawMode = DrawMode.OwnerDrawFixed, BorderStyle = BorderStyle.None, Sorted = true};
+                    { DrawMode = DrawMode.OwnerDrawFixed, BorderStyle = BorderStyle.None, Sorted = true };
                     FontListbox.MouseDown += OnMouseDown;
                     FontListbox.DoubleClick += ValueChanged;
                     FontListbox.DrawItem += LB_DrawItem;
@@ -111,7 +108,6 @@ namespace Alsing.Drawing.GDI
 
             return value;
         }
-
 
         public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
         {
@@ -146,11 +142,11 @@ namespace Alsing.Drawing.GDI
             IntPtr hdc = g.GetHdc();
             var gf = new GDIFont(text, 9);
             int a = 0;
-            IntPtr res = Alsing.Windows.NativeMethods.SelectObject(hdc, gf.hFont);
-            Alsing.Windows.NativeMethods.SetTextColor(hdc, ColorTranslator.ToWin32(SystemColors.Window));
-            Alsing.Windows.NativeMethods.SetBkMode(hdc, 0);
-            Alsing.Windows.NativeMethods.TabbedTextOut(hdc, 1, 1, "abc", 3, 0, ref a, 0);
-            Alsing.Windows.NativeMethods.SelectObject(hdc, res);
+            IntPtr res = Windows.NativeMethods.SelectObject(hdc, gf.hFont);
+            Windows.NativeMethods.SetTextColor(hdc, ColorTranslator.ToWin32(SystemColors.Window));
+            Windows.NativeMethods.SetBkMode(hdc, 0);
+            Windows.NativeMethods.TabbedTextOut(hdc, 1, 1, "abc", 3, 0, ref a, 0);
+            Windows.NativeMethods.SelectObject(hdc, res);
             gf.Dispose();
             g.ReleaseHdc(hdc);
             e.Graphics.DrawImage(bp, e.Bounds.Left, e.Bounds.Top);
@@ -164,11 +160,9 @@ namespace Alsing.Drawing.GDI
         }
     }
 
-
     public class FontEnum
     {
         private Hashtable Fonts;
-
 
         public ICollection EnumFonts()
         {
@@ -177,9 +171,9 @@ namespace Alsing.Drawing.GDI
 
             IntPtr hDC = g.GetHdc();
             Fonts = new Hashtable();
-            var lf = new LogFont {lfCharSet = 1};
+            var lf = new LogFont { lfCharSet = 1 };
             FONTENUMPROC callback = CallbackFunc;
-            Alsing.Windows.NativeMethods.EnumFontFamiliesEx(hDC, lf, callback, 0, 0);
+            Windows.NativeMethods.EnumFontFamiliesEx(hDC, lf, callback, 0, 0);
 
             g.ReleaseHdc(hDC);
             g.Dispose();

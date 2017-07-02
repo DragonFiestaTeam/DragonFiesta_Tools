@@ -7,27 +7,24 @@ namespace QuestDataSQLConverter.Object
     {
         public RewardType Type { get; private set; }
         public RewardMethod Method { get; private set; }
-
         public ushort ItemID { get; private set; }
         public ulong Amount { get; private set; }
 
-        public void SaveSQL(ushort QuestID)
+        public void SaveSQL(int QuestID)
         {
-            string SQL = "INSERT INTO QuestReward (QuestID,Type,Method,ItemID,Amount)"
-                + "VALUES ('" + QuestID + "','" + (byte)Type + "','" + (byte)Method + "','" + ItemID + "','" + Amount + "')";
+            string SQL = "INSERT INTO QuestReward (QuestID,Method,Type,ItemID,Amount)"
+                + "VALUES ('" + QuestID + "','" + (byte)Method + "','" + (byte)Type + "','" + ItemID + "','" + Amount + "')";
             DatabaseManager.RunSQL(SQL);
         }
+
         public static bool Read(QuestStream pStream, out QuestReward pReward)
         {
             pReward = null;
-            byte pMethod;
-            byte pType;
             ushort pAmount = 0, pItemID = 0;
             ulong pAmount2 = 0;
-            if (!pStream.TryReadByte(out pMethod)) { return false; }
-            if (!pStream.TryReadByte(out pType)) { return false; }
+            if (!pStream.TryReadByte(out byte pMethod)) { return false; }
+            if (!pStream.TryReadByte(out byte pType)) { return false; }
             if (!pStream.ReadSkip(2)) { return false; }
-
 
             if ((RewardType)pType == RewardType.Item)
             {
@@ -37,11 +34,8 @@ namespace QuestDataSQLConverter.Object
             }
             else
             {
-
                 if (!pStream.TryReadUInt64(out pAmount2)) { return false; }
             }
-
-
 
             pReward = new QuestReward
             {
@@ -53,13 +47,10 @@ namespace QuestDataSQLConverter.Object
             if (pReward.Type == RewardType.Item)
             {
                 pReward.Amount = pAmount;
-
             }
             else { pReward.Amount = pAmount2; }
 
-
             return true;
-
         }
     }
 }

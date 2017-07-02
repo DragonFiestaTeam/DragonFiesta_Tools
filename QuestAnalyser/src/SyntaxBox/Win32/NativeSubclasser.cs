@@ -13,7 +13,6 @@ using System.Windows.Forms;
 
 namespace Alsing.Windows.Forms
 {
-
     #region params
 
     public class NativeMessageArgs : EventArgs
@@ -24,11 +23,13 @@ namespace Alsing.Windows.Forms
 
     public delegate void NativeMessageHandler(object s, NativeMessageArgs e);
 
-    #endregion
+    #endregion params
 
     public class NativeSubclasser : NativeWindow
     {
-        public NativeSubclasser() {}
+        public NativeSubclasser()
+        {
+        }
 
         public NativeSubclasser(Control Target)
         {
@@ -52,7 +53,7 @@ namespace Alsing.Windows.Forms
 
         private void Handle_Created(object o, EventArgs e)
         {
-            AssignHandle(((Control) o).Handle);
+            AssignHandle(((Control)o).Handle);
         }
 
         private void Handle_Destroyed(object o, EventArgs e)
@@ -69,7 +70,7 @@ namespace Alsing.Windows.Forms
         {
             try
             {
-                var e = new NativeMessageArgs {Message = m, Cancel = false};
+                var e = new NativeMessageArgs { Message = m, Cancel = false };
 
                 OnMessage(e);
 

@@ -8,8 +8,8 @@
 // *
 // *
 
-using System;
 using Alsing.Text.PatternMatchers;
+using System;
 
 namespace Alsing.Text
 {
@@ -54,7 +54,7 @@ namespace Alsing.Text
                 NeedSeparators = needSeparators
             };
 
-            node.FirstExpression = patternMatcherReference;           
+            node.FirstExpression = patternMatcherReference;
         }
 
         public void AddPattern(bool caseSensitive, bool needSeparators, IPatternMatcher matcher, object[] tags)
@@ -84,7 +84,6 @@ namespace Alsing.Text
         public TokenTreeNode AddTokenInternal(string token, bool caseSensitive)
         {
             Char = token[0];
-
 
             if (!caseSensitive)
                 ContainsCaseInsensitiveData = true;
@@ -116,7 +115,8 @@ namespace Alsing.Text
             return res;
         }
 
-        private static void MakeRepeatingWS(TokenTreeNode child) {
+        private static void MakeRepeatingWS(TokenTreeNode child)
+        {
             if (child.Char == ' ')
             {
                 // if the node contains " " (whitespace)
@@ -134,7 +134,7 @@ namespace Alsing.Text
             {
                 node = node.NextSibling;
             }
-            
+
             if (node.Char != childChar)
             {
                 var child = new TokenTreeNode();
@@ -170,6 +170,6 @@ namespace Alsing.Text
             }
 
             return node;
-        }        
+        }
     }
 }

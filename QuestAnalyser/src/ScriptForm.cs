@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace QuestDataAnalyser
@@ -19,11 +13,13 @@ namespace QuestDataAnalyser
         {
             InitializeComponent();
         }
+
         public ScriptForm(string path)
         {
             mPath = path;
             InitializeComponent();
         }
+
         private void ScriptForm_Load(object pSender, EventArgs pArgs)
         {
             mScriptEditor.Document.SetSyntaxFromEmbeddedResource(Assembly.GetExecutingAssembly(), "QuestDataAnalyser.ScriptSyntax.txt");
@@ -47,7 +43,6 @@ namespace QuestDataAnalyser
                 Program.MainForm.RefreshData();
                 Program.MainForm.mScriptForm.Close();
             }
-     
         }
     }
 }

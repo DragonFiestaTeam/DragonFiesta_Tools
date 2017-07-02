@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FiestaVersionsGrapper
@@ -20,7 +11,7 @@ namespace FiestaVersionsGrapper
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             DialogResult res = BinDialog.ShowDialog();
             
@@ -32,8 +23,5 @@ namespace FiestaVersionsGrapper
                 ClientDateBox.Text = File.GetCreationTime(file).ToString("yyyy-MM-dd:HH:mm.ss");
             }
         }
-
-
-
     }
 }

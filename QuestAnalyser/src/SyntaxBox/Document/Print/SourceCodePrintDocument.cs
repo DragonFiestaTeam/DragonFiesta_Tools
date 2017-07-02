@@ -18,8 +18,8 @@ namespace Alsing.SourceCode
     /// Printer document class.
     /// </summary>
     /// <example >
-    /// 
-    /// 
+    ///
+    ///
     /// <b>Print the content of a SyntaxDocument:</b>
     /// <code>
     /// SourceCodePrintDocument PrintDoc=new SourceCodePrintDocument(MySyntaxDocument);
@@ -42,11 +42,12 @@ namespace Alsing.SourceCode
         private Font fontBreak;
         private Font fontNormal;
 
-
         private RowList rc;
         private int RowIndex;
 
-        public SourceCodePrintDocument() {}
+        public SourceCodePrintDocument()
+        {
+        }
 
         public SourceCodePrintDocument(SyntaxDocument document)
         {
@@ -85,7 +86,6 @@ namespace Alsing.SourceCode
                 Document.ParseAll();
                 Document.ParseAll(true);
 
-
                 rc = new RowList();
                 foreach (Row r in Document)
                 {
@@ -114,11 +114,10 @@ namespace Alsing.SourceCode
                         SizeF sf = ev.Graphics.MeasureString(w.Text, f);
                         if (x + sf.Width > rightMargin)
                         {
-                            var chr = (char) 0xbf;
-                            var br = new Word {Text = (chr + ""), InfoTip = "break char"};
+                            var chr = (char)0xbf;
+                            var br = new Word { Text = (chr + ""), InfoTip = "break char" };
                             newRow.Add(br);
                             hasbreak = true;
-
 
                             newRow = new Row();
                             rc.Add(newRow);
@@ -137,14 +136,12 @@ namespace Alsing.SourceCode
 
             base.OnPrintPage(ev);
 
-
-            float lpp = ev.MarginBounds.Height/fontNormal.GetHeight(ev.Graphics);
-
+            float lpp = ev.MarginBounds.Height / fontNormal.GetHeight(ev.Graphics);
 
             while (count < lpp && (RowIndex < rc.Count))
             {
                 float x = leftMargin;
-                float yPos = topMargin + (count*fontNormal.GetHeight(ev.Graphics));
+                float yPos = topMargin + (count * fontNormal.GetHeight(ev.Graphics));
 
                 Row r = rc[RowIndex];
 
@@ -168,7 +165,6 @@ namespace Alsing.SourceCode
                         {
                             sf.Width = ev.Graphics.MeasureString("...", fontNormal).Width;
                         }
-
 
                         Color c = Color.Black;
                         Font f = fontNormal;
@@ -197,7 +193,6 @@ namespace Alsing.SourceCode
                         }
 
                         c = Color.FromArgb(c.R, c.G, c.B);
-
 
                         ev.Graphics.DrawString(w.Text, f, new SolidBrush(c), x, yPos, new
                                                                                           StringFormat());

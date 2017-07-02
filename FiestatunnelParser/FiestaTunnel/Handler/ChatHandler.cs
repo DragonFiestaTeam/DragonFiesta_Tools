@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FiestaLib.Util.Database;
 using FiestaLib.Networking;
 using FiestaLib.Data;
 
@@ -15,9 +11,8 @@ namespace FiestaTunnel.Handler
         {
             Packet packet = pPacket;
 
-            byte chatlen;
             string chattext = "";
-            if (!packet.TryReadByte(out chatlen) ||
+            if (!packet.TryReadByte(out byte chatlen) ||
                 !packet.TryReadString(out chattext, chatlen))
             {
                 Console.WriteLine("Error reading chat command.");

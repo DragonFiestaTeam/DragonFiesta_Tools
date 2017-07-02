@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FiestaLib.Networking;
 
 namespace FiestaTunnel
@@ -16,7 +13,7 @@ namespace FiestaTunnel
 
         public PacketHandlerAttribute(ushort opCode)
         {
-            this.OpCode = opCode;
+            OpCode = opCode;
         }
     }
 

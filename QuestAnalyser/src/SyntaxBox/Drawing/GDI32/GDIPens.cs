@@ -8,9 +8,9 @@
 // *
 // *
 
+using Alsing.Windows;
 using System;
 using System.Drawing;
-using Alsing.Windows;
 
 namespace Alsing.Drawing.GDI
 {
@@ -26,10 +26,10 @@ namespace Alsing.Drawing.GDI
 
         protected override void Destroy()
         {
-            if (hPen != (IntPtr) 0)
+            if (hPen != (IntPtr)0)
                 NativeMethods.DeleteObject(hPen);
             base.Destroy();
-            hPen = (IntPtr) 0;
+            hPen = (IntPtr)0;
         }
     }
 }

@@ -1,42 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Irony.Compiler;
-using ScriptNET.Runtime;
+﻿using ScriptNET.Runtime;
 
 namespace ScriptNET.CustomFunctions
 {
-  internal class RunConsole : IInvokable
-  {
-    public static RunConsole FunctionDefinition = new RunConsole();
-    public static string FunctionName = "RunConsole";
-
-    private RunConsole()
+    internal class RunConsole : IInvokable
     {
-    }
+        public static RunConsole FunctionDefinition = new RunConsole();
+        public static string FunctionName = "RunConsole";
 
-    #region IInvokable Members
+        private RunConsole()
+        {
+        }
 
-    public bool CanInvoke()
-    {
-      return true;
-    }
+        #region IInvokable Members
 
-    public object Invoke(IScriptContext context, object[] args)
-    {
-      string code = 
-          @"Console.WriteLine('Please Input Script.NET program. Press Ctrl+Z when finish.');
+        public bool CanInvoke()
+        {
+            return true;
+        }
+
+        public object Invoke(IScriptContext context, object[] args)
+        {
+            string code =
+                @"Console.WriteLine('Please Input Script.NET program. Press Ctrl+Z when finish.');
             s = Console.In.ReadToEnd();
             astNode = Compiler.Parse(s);
             if (astNode != null)
               astNode.Execute(new ScriptContext()).Value;
-            else      
+            else
               throw new ScriptException('Syntax Error');";
 
-      Script prog = Script.Compile(code);
-      return prog.Execute();
-    }
+            Script prog = Script.Compile(code);
+            return prog.Execute();
+        }
 
-    #endregion
-  }
+        #endregion IInvokable Members
+    }
 }

@@ -3,3 +3,8 @@ C:\Users\gothic\Documents\Visual Studio 2015\Projects\QuestDataSQLConverter\Ques
 C:\Users\gothic\Documents\Visual Studio 2015\Projects\QuestDataSQLConverter\QuestDataSQLConverter\obj\Debug\QuestDataSQLConverter.pdb
 C:\Users\gothic\Documents\Visual Studio 2015\Projects\QuestDataSQLConverter\QuestDataSQLConverter\bin\Debug\QuestDataSQLConverter.dll
 C:\Users\gothic\Documents\Visual Studio 2015\Projects\QuestDataSQLConverter\QuestDataSQLConverter\obj\Debug\QuestDataSQLConverter.dll
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataSQLConverter\bin\Debug\QuestDataSQLConverter.dll
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataSQLConverter\bin\Debug\QuestDataSQLConverter.pdb
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataSQLConverter\obj\Debug\QuestDataSQLConverter.csprojResolveAssemblyReference.cache
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataSQLConverter\obj\Debug\QuestDataSQLConverter.dll
+C:\Users\Sequess\Desktop\GitHub\DragonFiesta_Tools\QuestDataSQLConverter\QuestDataSQLConverter\obj\Debug\QuestDataSQLConverter.pdb

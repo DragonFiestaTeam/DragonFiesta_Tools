@@ -30,7 +30,7 @@ namespace Alsing.Text
                     isLetterOrDigitLookup = new bool[65536];
                     for (int i = 0; i < 65536; i++)
                     {
-                        isLetterOrDigitLookup[i] = char.IsLetterOrDigit((char) i);
+                        isLetterOrDigitLookup[i] = char.IsLetterOrDigit((char)i);
                     }
                 }
 
@@ -47,7 +47,7 @@ namespace Alsing.Text
                     isLetterLookup = new bool[65536];
                     for (int i = 0; i < 65536; i++)
                     {
-                        isLetterLookup[i] = char.IsLetter((char) i);
+                        isLetterLookup[i] = char.IsLetter((char)i);
                     }
                 }
 
@@ -64,7 +64,7 @@ namespace Alsing.Text
                     separatorCharLookup = new bool[65536];
                     for (int i = 0; i < 65536; i++)
                     {
-                        separatorCharLookup[i] = char.IsSeparator((char) i);
+                        separatorCharLookup[i] = char.IsSeparator((char)i);
                     }
                 }
 
@@ -81,7 +81,7 @@ namespace Alsing.Text
                     lowerCharLookup = new char[65536];
                     for (int i = 0; i < 65536; i++)
                     {
-                        lowerCharLookup[i] = char.ToLower((char) i, CultureInfo.InvariantCulture);
+                        lowerCharLookup[i] = char.ToLower((char)i, CultureInfo.InvariantCulture);
                     }
                 }
 
@@ -98,7 +98,7 @@ namespace Alsing.Text
                     upperCharLookup = new char[65536];
                     for (int i = 0; i < 65536; i++)
                     {
-                        upperCharLookup[i] = char.ToUpper((char) i, CultureInfo.InvariantCulture);
+                        upperCharLookup[i] = char.ToUpper((char)i, CultureInfo.InvariantCulture);
                     }
                 }
 

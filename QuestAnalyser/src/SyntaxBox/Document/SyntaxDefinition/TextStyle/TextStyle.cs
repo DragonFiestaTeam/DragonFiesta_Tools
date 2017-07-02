@@ -18,7 +18,7 @@ namespace Alsing.SourceCode
     /// <summary>
     /// TextStyles are used to describe the apperance of text.
     /// </summary>
-    [Editor(typeof (TextStyleUIEditor), typeof
+    [Editor(typeof(TextStyleUIEditor), typeof
         (UITypeEditor))]
     public class TextStyle :
         ICloneable
@@ -45,7 +45,7 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY BOLD
 
         #region PUBLIC PROPERTY ITALIC
 
@@ -65,7 +65,7 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY ITALIC
 
         #region PUBLIC PROPERTY UNDERLINE
 
@@ -85,7 +85,7 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY UNDERLINE
 
         #region PUBLIC PROPERTY FORECOLOR
 
@@ -104,7 +104,7 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY FORECOLOR
 
         #region PUBLIC PROPERTY BACKCOLOR
 
@@ -124,7 +124,7 @@ namespace Alsing.SourceCode
             }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY BACKCOLOR
 
         /// <summary>
         /// Gets or Sets if the style uses a Bold font
@@ -185,18 +185,18 @@ namespace Alsing.SourceCode
         public object Clone()
         {
             var ts = new TextStyle
-                     {
-                         //TODO: verify if this actually works
-                         BackColor = BackColor,
-                         Bold = Bold,
-                         ForeColor = ForeColor,
-                         Italic = Italic,
-                         Underline = Underline,
-                         Name = Name
-                     };
+            {
+                //TODO: verify if this actually works
+                BackColor = BackColor,
+                Bold = Bold,
+                ForeColor = ForeColor,
+                Italic = Italic,
+                Underline = Underline,
+                Name = Name
+            };
             return ts;
         }
 
-        #endregion
+        #endregion Implementation of ICloneable
     }
 }

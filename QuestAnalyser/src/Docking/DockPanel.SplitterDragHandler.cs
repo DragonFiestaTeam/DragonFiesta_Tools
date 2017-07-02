@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -23,7 +18,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     DragForm.Show(false);
                 }
 
-                DragForm m_dragForm;
+                private DragForm m_dragForm;
+
                 private DragForm DragForm
                 {
                     get { return m_dragForm; }
@@ -61,6 +57,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             private SplitterOutline m_outline;
+
             private SplitterOutline Outline
             {
                 get { return m_outline; }
@@ -68,6 +65,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             private Rectangle m_rectSplitter;
+
             private Rectangle RectSplitter
             {
                 get { return m_rectSplitter; }
@@ -150,6 +148,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private SplitterDragHandler m_splitterDragHandler = null;
+
         private SplitterDragHandler GetSplitterDragHandler()
         {
             if (m_splitterDragHandler == null)

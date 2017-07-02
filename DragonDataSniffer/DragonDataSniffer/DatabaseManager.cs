@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.SqlClient;
-using System.Collections;
-using System.Globalization;
 using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
+using System.Text;
 
 [TunnelModule(InitializationStage.Metadata)]
 public static class DatabaseManager
@@ -30,8 +27,8 @@ public static class DatabaseManager
             Log.WriteLine(LogLevel.Exception, "DatabaseManager exception: {0}", ex.ToString());
             return false;
         }
-
     }
+
     private static string BuildConnectionString()
     {
         var cb = new SqlConnectionStringBuilder()
@@ -47,24 +44,15 @@ public static class DatabaseManager
         return cb.ToString();
     }
 
-
-
-
-
-
-
-
-
-
     public static SqlConnection GetConnection()
     {
         var con = new SqlConnection(Connectionstring);
 
         con.Open();
 
-
         return con;
     }
+
     public static bool RunSQL(string sql, params SqlParameter[] Parameters)
     {
         SqlConnection Connection = null;
@@ -90,7 +78,6 @@ public static class DatabaseManager
 
     public static SQLResult Select(string sql, params SqlParameter[] Parameters)
     {
-
         SqlConnection Connection = null;
         DatabaseManager.CheckConnection(ref Connection);
         StringBuilder sqlString = new StringBuilder();
@@ -101,8 +88,6 @@ public static class DatabaseManager
 
         try
         {
-
-
             sqlCommand.Parameters.AddRange(Parameters);
 
             using (var SqlData = sqlCommand.ExecuteReader())
@@ -118,12 +103,12 @@ public static class DatabaseManager
         }
         catch (SqlException ex)
         {
-
             Log.WriteLine(LogLevel.Error, "Error With Query {0}", sqlCommand.CommandText);
         }
 
         return null;
     }
+
     public static void CheckConnection(ref SqlConnection con)
     {
         if (con == null)
@@ -137,5 +122,3 @@ public static class DatabaseManager
         }
     }
 }
-
-

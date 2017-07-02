@@ -1,0 +1,6 @@
+using(ScriptAPI)
+{
+AddField("KFFileHash",32);
+AddField("FolderNamee",32);
+AddField("FileName",60);
+}

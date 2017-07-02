@@ -10,9 +10,9 @@ namespace FiestaLib.Util
 
         public ByteArraySegment(byte[] pBuffer)
         {
-            this.Start = 0;
-            this.Buffer = pBuffer;
-            this.Length = this.Buffer.Length;
+            Start = 0;
+            Buffer = pBuffer;
+            Length = Buffer.Length;
         }
 
         public ByteArraySegment(byte[] pBuffer, int pStart, int pLength)
@@ -21,16 +21,16 @@ namespace FiestaLib.Util
             {
                 throw new ArgumentOutOfRangeException("pLength", "The segment doesn't fit the array bounds.");
             }
-            this.Buffer = pBuffer;
-            this.Start = pStart;
-            this.Length = pLength;
+            Buffer = pBuffer;
+            Start = pStart;
+            Length = pLength;
         }
 
         public bool Advance(int pLength)
         {
-            this.Start += pLength;
-            this.Length -= pLength;
-            return this.Length <= 0;
+            Start += pLength;
+            Length -= pLength;
+            return Length <= 0;
         }
     }
 }

@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DragonDataSniffer.Network.ClientHandler
+﻿namespace DragonDataSniffer.Network.ClientHandler
 {
     public class MapEntryHandler
 
     {
-        
         [ClientPacketHandler(Handler6Type._Header, 1)]
         public static void On_SelectEntry2(GameClient client, FiestaPacket packet)
         {
-            short objectID; string name, hash;
-            int k;
-            if (!packet.TryReadInt16(out objectID) 
-                || !packet.TryReadString(out name, 16) 
-                || !packet.TryReadInt32(out k) 
-                || !packet.TryReadString(out hash,1600))
+            if (!packet.TryReadInt16(out short objectID)
+                || !packet.TryReadString(out string name, 16)
+                || !packet.TryReadInt32(out int k)
+                || !packet.TryReadString(out string hash, 1600))
             {
                 client.Dispose();
                 return;
@@ -32,25 +23,25 @@ namespace DragonDataSniffer.Network.ClientHandler
                 mpack.WriteString(hash, 1600);
                 client.SendPacket(packet);
             }
-
         }
+
         [ClientPacketHandler(Handler9Type._Header, Handler9Type.SelectObject)]
         public static void On_SelectEntry(GameClient client, FiestaPacket packet)
         {
-            short objectID;
-            if(!packet.TryReadInt16(out objectID))
+            if (!packet.TryReadInt16(out short objectID))
             {
                 client.Dispose();
             }
-            client.pCharacter.TargetID = objectID;
+            client.PCharacter.TargetID = objectID;
 
-            client.sClient.SendPacket(packet);
+            client.SClient.SendPacket(packet);
         }
+
         [ClientPacketHandler(Handler9Type._Header, Handler9Type.DelectObject)]
         public static void On_DelectEntry(GameClient client, FiestaPacket packet)
         {
-            client.pCharacter.TargetID = -1;
-            client.sClient.SendPacket(packet);
+            client.PCharacter.TargetID = -1;
+            client.SClient.SendPacket(packet);
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using FiestaLib.Networking;
 
 namespace FiestaTunnel
 {
@@ -14,13 +12,13 @@ namespace FiestaTunnel
 
         public Listener(int port, string ip = "46.253.147.147")
         {
-            this.Port = port;
+            Port = port;
             IP = ip;
             try
             {
-                this.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                this.socket.Bind(new IPEndPoint(IPAddress.Any, port));
-                this.socket.Listen(10);
+                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                socket.Bind(new IPEndPoint(IPAddress.Any, port));
+                socket.Listen(10);
                 Console.WriteLine("Tunnel ready at {0} to {1}", port, IP);
             }
             catch (SocketException ex) {
@@ -28,12 +26,12 @@ namespace FiestaTunnel
                 Console.ReadLine();
                 return;
             }
-            this.socket.BeginAccept(new AsyncCallback(OnConnect), null);
+            socket.BeginAccept(new AsyncCallback(OnConnect), null);
         }
 
         public void Close()
         {
-            this.socket.Close();
+            socket.Close();
         }
 
         private void OnConnect(IAsyncResult ar)
@@ -41,8 +39,8 @@ namespace FiestaTunnel
             if (!Program.isRunning) return;
             try
             {
-                Socket newSocket = this.socket.EndAccept(ar);
-                LinkedClient client = new LinkedClient(newSocket, IP, this.Port);
+                Socket newSocket = socket.EndAccept(ar);
+                LinkedClient client = new LinkedClient(newSocket, IP, Port);
                 Console.WriteLine("New session started.");
             }
             catch (Exception ex)
@@ -51,7 +49,7 @@ namespace FiestaTunnel
             }
             finally
             {
-                this.socket.BeginAccept(new AsyncCallback(OnConnect), null);
+                socket.BeginAccept(new AsyncCallback(OnConnect), null);
             }
         }
     }

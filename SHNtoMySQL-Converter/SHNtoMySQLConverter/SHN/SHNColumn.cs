@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.IO;
 
 namespace SHNtoMySQLConverter.SHN
 {
@@ -49,29 +48,39 @@ namespace SHNtoMySQLConverter.SHN
                 case 1:
                 case 12:
                     return typeof(byte);
+
                 case 2:
                     return typeof(UInt16);
+
                 case 3:
                 case 11:
                     return typeof(UInt32);
+
                 case 5:
                     return typeof(Single);
+
                 case 0x15:
                 case 13:
                     return typeof(Int16);
+
                 case 0x10:
                     return typeof(byte);
+
                 case 0x12:
                 case 0x1b:
                     return typeof(UInt32);
+
                 case 20:
                     return typeof(SByte);
+
                 case 0x16:
                     return typeof(Int32);
+
                 case 0x18:
                 case 0x1a:
                 case 9:
                     return typeof(string);
+
                 default:
                     return typeof(object);
             }
@@ -79,7 +88,6 @@ namespace SHNtoMySQLConverter.SHN
 
         public string GetMYSQLType(uint pCode)
         {
-
             switch (pCode)
             {
                 case 1:
@@ -120,35 +128,35 @@ namespace SHNtoMySQLConverter.SHN
                     return " int(11) unsigned NOT NULL ";
 
                 default:
-                    throw new Exception("New column type found : "+pCode);
-                /*                case 1:
-                case 12:
-                    return " tinyint(3) unsigned ";//typeof(byte);
-                case 2:
-                    return " smallint(5) unsigned NOT NULL ";//typeof(UInt16); 
-                case 3:
-                case 11:
-                    return " tinyint(2) unsigned NOT NULL ";//typeof(UInt32);
-                case 5:
-                    return " float NOT NULL ";//typeof(Single);
-                case 0x15:
-                case 13:
-                    return " int(11) NOT NULL ";//typeof(Int16);
-                case 0x10:
-                    return " tinyint(3) unsigned ";//typeof(byte);
-                case 0x12:
-                case 0x1b:
-                    return " int(11) unsigned NOT NULL ";//typeof(UInt32);
-                case 20:
-                    return " tinyint(3) ";//typeof(SByte);
-                case 0x16:
-                    return " int(11) NOT NULL ";//typeof(Int32);
-                case 0x18:
-                case 0x1a:
-                case 9:
-                    return " text NOT NULL ";//typeof(string);
-                default:
-                    return " unknown.. ";//typeof(object); */
+                    throw new Exception("New column type found : " + pCode);
+                    /*                case 1:
+                    case 12:
+                        return " tinyint(3) unsigned ";//typeof(byte);
+                    case 2:
+                        return " smallint(5) unsigned NOT NULL ";//typeof(UInt16);
+                    case 3:
+                    case 11:
+                        return " tinyint(2) unsigned NOT NULL ";//typeof(UInt32);
+                    case 5:
+                        return " float NOT NULL ";//typeof(Single);
+                    case 0x15:
+                    case 13:
+                        return " int(11) NOT NULL ";//typeof(Int16);
+                    case 0x10:
+                        return " tinyint(3) unsigned ";//typeof(byte);
+                    case 0x12:
+                    case 0x1b:
+                        return " int(11) unsigned NOT NULL ";//typeof(UInt32);
+                    case 20:
+                        return " tinyint(3) ";//typeof(SByte);
+                    case 0x16:
+                        return " int(11) NOT NULL ";//typeof(Int32);
+                    case 0x18:
+                    case 0x1a:
+                    case 9:
+                        return " text NOT NULL ";//typeof(string);
+                    default:
+                        return " unknown.. ";//typeof(object); */
             }
         }
     }

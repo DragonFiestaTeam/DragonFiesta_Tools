@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 using System.Data;
@@ -30,7 +28,7 @@ namespace FiestaLib.Data
 
         public SHNFile(string pPath)
         {
-            this.FileName = pPath;
+            FileName = pPath;
             Load();
         }
 
@@ -59,10 +57,10 @@ namespace FiestaLib.Data
             using (var stream = new MemoryStream(data))
             {
                 SHNReader reader = new SHNReader(stream);
-                this.Header = reader.ReadUInt32();
-                this.RecordCount = reader.ReadUInt32();
-                this.DefaultRecordLenght = reader.ReadUInt32();
-                this.ColumnCount = reader.ReadUInt32();
+                Header = reader.ReadUInt32();
+                RecordCount = reader.ReadUInt32();
+                DefaultRecordLenght = reader.ReadUInt32();
+                ColumnCount = reader.ReadUInt32();
                 GenerateColumns(reader);
                 GenerateRows(reader);
             }
@@ -89,10 +87,10 @@ namespace FiestaLib.Data
                 using (MemoryStream encrypted = new MemoryStream())
                 {
                     SHNWriter writer = new SHNWriter(encrypted);
-                    writer.Write(this.Header);
-                    writer.Write((uint)this.Rows.Count);
-                    writer.Write(this.DefaultRecordLenght);
-                    writer.Write((uint)this.Columns.Count);
+                    writer.Write(Header);
+                    writer.Write((uint)Rows.Count);
+                    writer.Write(DefaultRecordLenght);
+                    writer.Write((uint)Columns.Count);
                     WriteColumns(writer);
                     WriteRows(writer);
                     content = new byte[encrypted.Length];
@@ -105,11 +103,11 @@ namespace FiestaLib.Data
                 {
                     BinaryWriter writer = new BinaryWriter(final);
                     writer.Write(CryptHeader);
-                    writer.Write((int)(content.Length + 36));
+                    writer.Write(content.Length + 36);
                     writer.Write(content);
                 }
 
-                this.FileName = path;
+                FileName = path;
                 if (OnSaveFinished != null)
                     OnSaveFinished.Invoke(this);
             }
@@ -132,9 +130,9 @@ namespace FiestaLib.Data
                 int CurPos = (int)writer.BaseStream.Position;
                 short unkLength = 0;
                 writer.Write((short)0);     // Row Length
-                for (int colIndex = 0; colIndex < base.Columns.Count; ++colIndex)
+                for (int colIndex = 0; colIndex < Columns.Count; ++colIndex)
                 {
-                    SHNColumn column = (SHNColumn)base.Columns[colIndex];
+                    SHNColumn column = (SHNColumn)Columns[colIndex];
                     switch (column.TypeByte)
                     {
                         case 1:
@@ -184,9 +182,9 @@ namespace FiestaLib.Data
 
         private void WriteColumns(SHNWriter writer)
         {
-            for (int i = 0; i < base.Columns.Count; ++i)
+            for (int i = 0; i < Columns.Count; ++i)
             {
-                ((SHNColumn)base.Columns[i]).Write(writer);
+                ((SHNColumn)Columns[i]).Write(writer);
             }
         }
 
@@ -199,23 +197,23 @@ namespace FiestaLib.Data
         private void UpdateDefaultRecordLenght()
         {
             uint len = 2;
-            for (int i = 0; i < base.Columns.Count; ++i)
+            for (int i = 0; i < Columns.Count; ++i)
             {
-                SHNColumn col = (SHNColumn)base.Columns[i];
+                SHNColumn col = (SHNColumn)Columns[i];
                 len += (uint)col.Lenght;
             }
-            this.DefaultRecordLenght = len;
+            DefaultRecordLenght = len;
         }
 
         public void GenerateRows(SHNReader reader)
         {
-             object[] values = new object[this.ColumnCount];
+             object[] values = new object[ColumnCount];
              for (uint i = 0; i < RecordCount; ++i)
              {
                  uint RowLength = reader.ReadUInt16();
-                 for (int j = 0; j < this.ColumnCount; ++j)
+                 for (int j = 0; j < ColumnCount; ++j)
                  {
-                     switch (((SHNColumn)this.Columns[j]).TypeByte)
+                     switch (((SHNColumn)Columns[j]).TypeByte)
                      {
                          case 1:
                          case 12:
@@ -236,7 +234,7 @@ namespace FiestaLib.Data
                              break;
                          case 9:
                          case 24:
-                             values[j] = reader.ReadPaddedString(((SHNColumn)this.Columns[j]).Lenght);
+                             values[j] = reader.ReadPaddedString(((SHNColumn)Columns[j]).Lenght);
                              break;
                          case 13:
                          case 21:
@@ -268,7 +266,7 @@ namespace FiestaLib.Data
                 SHNColumn col = new SHNColumn();
                 col.Load(reader, ref unkcolumns);
                 lenght += col.Lenght;
-                base.Columns.Add(col);
+                Columns.Add(col);
             }
             if (lenght != DefaultRecordLenght)
             {

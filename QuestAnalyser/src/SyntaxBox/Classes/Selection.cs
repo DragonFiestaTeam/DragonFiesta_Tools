@@ -8,8 +8,8 @@
 // *
 // *
 
-using System;
 using Alsing.SourceCode;
+using System;
 
 namespace Alsing.Windows.Forms.SyntaxBox
 {
@@ -71,14 +71,13 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 if (Text == value)
                     return;
 
-                //selection text bug fix 
+                //selection text bug fix
                 //
                 //selection gets too short if \n is used instead of newline
                 string tmp = value.Replace(Environment.NewLine, "\n");
                 tmp = tmp.Replace("\n", Environment.NewLine);
                 value = tmp;
                 //---
-
 
                 TextPoint oCaretPos = Control.Caret.Position;
                 int nCaretX = oCaretPos.X;
@@ -176,7 +175,6 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 Bounds.LastRow = p.Y;
             }
         }
-
 
         /// <summary>
         /// Gets or Sets the Selection start as an index in the document text.
@@ -295,7 +293,6 @@ namespace Alsing.Windows.Forms.SyntaxBox
             Control.Caret.Position.X = LogicalBounds.LastColumn;
             Control.Caret.Position.Y = LogicalBounds.LastRow;
         }
-
 
         public void Indent(string Pattern)
         {
@@ -425,7 +422,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
         /// <summary>
         /// The bounds of the selection
         /// </summary>
-        /// 
+        ///
         private TextRange _Bounds;
 
         public TextRange Bounds

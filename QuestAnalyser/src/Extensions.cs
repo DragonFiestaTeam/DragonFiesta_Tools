@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace QuestDataAnalyser
 {
@@ -19,8 +18,7 @@ namespace QuestDataAnalyser
 
         public static TValue GetOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> pThis, TKey pKey, TValue pDefault)
         {
-            TValue result;
-            return pThis.TryGetValue(pKey, out result) ? result : pDefault;
+            return pThis.TryGetValue(pKey, out TValue result) ? result : pDefault;
         }
     }
 }

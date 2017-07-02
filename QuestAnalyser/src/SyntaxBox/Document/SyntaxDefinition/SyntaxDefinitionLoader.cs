@@ -16,14 +16,13 @@ using System.Xml;
 namespace Alsing.SourceCode
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class SyntaxDefinitionLoader
     {
         private Hashtable spanDefinitionLookup = new Hashtable();
         private Hashtable styleLookup = new Hashtable();
         private SyntaxDefinition syntaxDefinition = new SyntaxDefinition();
-
 
         /// <summary>
         /// Load a specific syntax file
@@ -44,7 +43,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="File"></param>
         /// <param name="Separators"></param>
@@ -53,7 +52,7 @@ namespace Alsing.SourceCode
         {
             styleLookup = new Hashtable();
             spanDefinitionLookup = new Hashtable();
-            syntaxDefinition = new SyntaxDefinition {Separators = Separators};
+            syntaxDefinition = new SyntaxDefinition { Separators = Separators };
 
             var xmlDocument = new XmlDocument();
             xmlDocument.Load(File);
@@ -86,7 +85,6 @@ namespace Alsing.SourceCode
             {
                 throw new Exception("no main block found in syntax");
             }
-
 
             return syntaxDefinition;
         }
@@ -146,7 +144,7 @@ namespace Alsing.SourceCode
                             if (a.Name.ToLowerInvariant() == "extension")
                                 Extension = a.Value;
                         }
-                        var ft = new FileType {Extension = Extension, Name = Name};
+                        var ft = new FileType { Extension = Extension, Name = Name };
                         syntaxDefinition.FileTypes.Add(ft);
                     }
                 }
@@ -184,7 +182,6 @@ namespace Alsing.SourceCode
             bl.Style = GetStyle(Style);
             bl.TerminateChildren = TerminateChildren;
 
-
             foreach (XmlNode n in node.ChildNodes)
             {
                 if (n.NodeType == XmlNodeType.Element)
@@ -216,42 +213,55 @@ namespace Alsing.SourceCode
                                 case "start":
                                     Start = att.Value;
                                     break;
+
                                 case "escapechar":
                                     EscapeChar = att.Value;
                                     break;
+
                                 case "end":
                                     End = att.Value;
                                     break;
+
                                 case "style":
                                     style = att.Value;
                                     break;
+
                                 case "text":
                                     text = att.Value;
                                     break;
+
                                 case "defaultexpanded":
                                     expanded = bool.Parse(att.Value);
                                     break;
+
                                 case "endisseparator":
                                     EndIsSeparator = att.Value;
                                     break;
+
                                 case "startiskeyword":
                                     StartIsKeyword = att.Value;
                                     break;
+
                                 case "startiscomplex":
                                     StartIsComplex = att.Value;
                                     break;
+
                                 case "endiscomplex":
                                     EndIsComplex = att.Value;
                                     break;
+
                                 case "endiskeyword":
                                     EndIsKeyword = att.Value;
                                     break;
+
                                 case "spawnblockonstart":
                                     spawnStart = att.Value;
                                     break;
+
                                 case "spawnblockonend":
                                     spawnEnd = att.Value;
                                     break;
+
                                 case "causeindent":
                                     CauseIndent = att.Value;
                                     break;
@@ -265,7 +275,7 @@ namespace Alsing.SourceCode
                             bool blnEndIsComplex = bool.Parse(EndIsComplex);
                             bool blnCauseIndent = bool.Parse(CauseIndent);
 
-                            var scope = new Scope {Style = GetStyle(style), ExpansionText = text, DefaultExpanded = expanded, CauseIndent = blnCauseIndent};
+                            var scope = new Scope { Style = GetStyle(style), ExpansionText = text, DefaultExpanded = expanded, CauseIndent = blnCauseIndent };
 
                             var StartP = new Pattern(Start, blnStartIsComplex, false, bool.Parse(StartIsKeyword));
                             Pattern endPattern = EscapeChar != "" ? new Pattern(End, false, bool.Parse(EndIsKeyword), EscapeChar) : new Pattern(End, blnEndIsComplex, false, bool.Parse(EndIsKeyword));
@@ -308,26 +318,33 @@ namespace Alsing.SourceCode
                                 case "start":
                                     Start = att.Value;
                                     break;
+
                                 case "end":
                                     End = att.Value;
                                     break;
+
                                 case "style":
                                     style = att.Value;
                                     break;
+
                                 case "endisseparator":
                                     if (att.Name.ToLowerInvariant() == "startisseparator")
                                         if (att.Name.ToLowerInvariant() == "startiskeyword")
                                             StartIsKeyword = att.Value;
                                     break;
+
                                 case "startiscomplex":
                                     StartIsComplex = att.Value;
                                     break;
+
                                 case "endiscomplex":
                                     EndIsComplex = att.Value;
                                     break;
+
                                 case "endiskeyword":
                                     EndIsKeyword = att.Value;
                                     break;
+
                                 case "ismultiline":
                                     IsMultiLineB = att.Value;
                                     break;
@@ -335,7 +352,7 @@ namespace Alsing.SourceCode
                         }
                         if (Start != "")
                         {
-                            var pl = new PatternList {Style = GetStyle(style)};
+                            var pl = new PatternList { Style = GetStyle(style) };
 
                             bool blnStartIsComplex = bool.Parse(StartIsComplex);
                             bool blnEndIsComplex = bool.Parse(EndIsComplex);
@@ -371,12 +388,15 @@ namespace Alsing.SourceCode
                                     case "style":
                                         pl.Style = GetStyle(att.Value);
                                         break;
+
                                     case "name":
                                         pl.Name = att.Value;
                                         break;
+
                                     case "normalizecase":
                                         pl.NormalizeCase = bool.Parse(att.Value);
                                         break;
+
                                     case "casesensitive":
                                         pl.CaseSensitive = bool.Parse(att.Value);
                                         break;
@@ -399,12 +419,15 @@ namespace Alsing.SourceCode
                                                 case "text":
                                                     Pattern = att.Value;
                                                     break;
+
                                                 case "iscomplex":
                                                     IsComplex = bool.Parse(att.Value);
                                                     break;
+
                                                 case "isseparator":
                                                     IsSeparator = bool.Parse(att.Value);
                                                     break;
+
                                                 case "category":
                                                     Category = (att.Value);
                                                     break;
@@ -413,7 +436,7 @@ namespace Alsing.SourceCode
                                     }
                                     if (Pattern != "")
                                     {
-                                        var pat = new Pattern(Pattern, IsComplex, IsSeparator, true) {Category = Category};
+                                        var pat = new Pattern(Pattern, IsComplex, IsSeparator, true) { Category = Category };
                                         pl.Add(pat);
                                     }
                                 }
@@ -423,7 +446,6 @@ namespace Alsing.SourceCode
                                     Patterns = Patterns.Replace("\t", " ");
                                     while (Patterns.IndexOf("  ") >= 0)
                                         Patterns = Patterns.Replace("  ", " ");
-
 
                                     foreach (string Pattern in Patterns.Split())
                                     {
@@ -450,12 +472,15 @@ namespace Alsing.SourceCode
                                     case "style":
                                         pl.Style = GetStyle(att.Value);
                                         break;
+
                                     case "name":
                                         pl.Name = att.Value;
                                         break;
+
                                     case "normalizecase":
                                         pl.NormalizeCase = bool.Parse(att.Value);
                                         break;
+
                                     case "casesensitive":
                                         pl.CaseSensitive = bool.Parse(att.Value);
                                         break;
@@ -479,12 +504,15 @@ namespace Alsing.SourceCode
                                                 case "text":
                                                     Pattern = att.Value;
                                                     break;
+
                                                 case "iscomplex":
                                                     IsComplex = bool.Parse(att.Value);
                                                     break;
+
                                                 case "isseparator":
                                                     IsSeparator = bool.Parse(att.Value);
                                                     break;
+
                                                 case "category":
                                                     Category = (att.Value);
                                                     break;
@@ -493,7 +521,7 @@ namespace Alsing.SourceCode
                                     }
                                     if (Pattern != "")
                                     {
-                                        var pat = new Pattern(Pattern, IsComplex, IsSeparator, false) {Category = Category};
+                                        var pat = new Pattern(Pattern, IsComplex, IsSeparator, false) { Category = Category };
                                         pl.Add(pat);
                                     }
                                 }
@@ -529,7 +557,6 @@ namespace Alsing.SourceCode
             }
         }
 
-
         //done
         private TextStyle GetStyle(string Name)
         {
@@ -539,7 +566,7 @@ namespace Alsing.SourceCode
                 styleLookup.Add(Name, s);
             }
 
-            return (TextStyle) styleLookup[Name];
+            return (TextStyle)styleLookup[Name];
         }
 
         //done
@@ -551,7 +578,7 @@ namespace Alsing.SourceCode
                 spanDefinitionLookup.Add(Name, b);
             }
 
-            return (SpanDefinition) spanDefinitionLookup[Name];
+            return (SpanDefinition)spanDefinitionLookup[Name];
         }
 
         //done
@@ -561,7 +588,6 @@ namespace Alsing.SourceCode
             string ForeColor = "", BackColor = "";
             bool Bold = false, Italic = false, Underline = false;
 
-
             foreach (XmlAttribute att in node.Attributes)
             {
                 switch (att.Name.ToLowerInvariant())
@@ -569,18 +595,23 @@ namespace Alsing.SourceCode
                     case "name":
                         Name = att.Value;
                         break;
+
                     case "forecolor":
                         ForeColor = att.Value;
                         break;
+
                     case "backcolor":
                         BackColor = att.Value;
                         break;
+
                     case "bold":
                         Bold = bool.Parse(att.Value);
                         break;
+
                     case "italic":
                         Italic = bool.Parse(att.Value);
                         break;
+
                     case "underline":
                         Underline = bool.Parse(att.Value);
                         break;

@@ -20,6 +20,8 @@ namespace Alsing.Windows.Forms
             AssignHandle(Handle);
         }
 
-        protected override void WndProc(ref Message m) {}
+        protected override void WndProc(ref Message m)
+        {
+        }
     }
 }

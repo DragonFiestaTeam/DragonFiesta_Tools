@@ -13,9 +13,9 @@ using System.Collections.Generic;
 namespace Alsing.SourceCode
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed class WordList : List<Word>
-    {        
+    {
     }
 }

@@ -1,18 +1,16 @@
-﻿using System;
+﻿using SHNtoMySQLConverter.SHN;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SHNtoMySQLConverter.SHN;
-using SHNtoMySQLConverter;
 using System.IO;
+using System.Text;
 
 namespace SHNtoMySQLConverter
 {
-    class Converter
+    internal class Converter
     {
-        public string getTables(SHNFile file)
+        public string GetTables(SHNFile file)
         {
             string tables = "";
             for (int j = 0; j < file.ColumnCount; ++j)
@@ -23,10 +21,12 @@ namespace SHNtoMySQLConverter
 
             return FormatBuilder(tables);
         }
+
         /*
         DROP TABLE IF EXISTS `data_iteminfo`;
         CREATE TABLE `data_iteminfo` (`ID` smallint(5) unsigned NOT NULL,next,  PRIMARY KEY (`ID`),) ENGINE=InnoDB DEFAULT CHARSET=utf8;
         */
+
         public bool MakeTable(SHNFile file, string newtable, bool nokey)
         {
             //types = "'"+file.Columns[x].ColumnName+"' int(11) unsigned NOT NULL, TypeByte: "+((SHNColumn)file.Columns[x]).TypeByte;
@@ -43,8 +43,8 @@ namespace SHNtoMySQLConverter
              * decimal = decimal
 
              * Int16 -> short
-             * Int32 -> int  
-             * Int64 -> long 
+             * Int32 -> int
+             * Int64 -> long
 */
 
             string types = "CREATE TABLE " + newtable + " (";
@@ -64,7 +64,6 @@ namespace SHNtoMySQLConverter
             //Log.Write(LogLevel.Info, types);
             if (Database.DatabaseHelper.Instance.runSQL(types)) Console.WriteLine("\r" + text + " done"); else { Log.Writer.Write(" failed"); return false; }
 
-
             return true;
         }
 
@@ -81,7 +80,8 @@ namespace SHNtoMySQLConverter
                         .Replace("From", "From_")
                         .Replace("To", "To_");
         }
-        public string getData(SHNFile file, int index)
+
+        public string GetData(SHNFile file, int index)
         {
             object[] data = new object[file.Rows.Count + 2];
             file.Rows.CopyTo(data, 1);
@@ -107,7 +107,7 @@ namespace SHNtoMySQLConverter
         public bool SendtoDB(SHNFile file, int inx, string table)
         {
             //Log.WriteLine(LogLevel.Info, "VALUES (" + getData(file, inx) + ")");
-            if (Database.DatabaseHelper.Instance.runSQL("INSERT INTO " + table + " (" + getTables(file) + ") VALUES (" + getData(file, inx) + ")"))
+            if (Database.DatabaseHelper.Instance.runSQL("INSERT INTO " + table + " (" + GetTables(file) + ") VALUES (" + GetData(file, inx) + ")"))
             {
                 return true;
             }
@@ -116,24 +116,22 @@ namespace SHNtoMySQLConverter
 
         public void Convert(string filename, string table, bool nokey)
         {
-
             bool useSameTableNameAsFile = true;
             if (!File.Exists(filename)) { Console.WriteLine("{0} doesn't exists ... skipping!", filename); return; }
             SHNFile file = new SHNFile(filename);
             int count = 0;
-            MakeTable(file, useSameTableNameAsFile ? filename.Replace(".shn","") : table, nokey);
-            
+            MakeTable(file, useSameTableNameAsFile ? filename.Replace(".shn", "") : table, nokey);
 
             for (int inx = 0; inx < file.Rows.Count; inx++)
             {
                 if (SendtoDB(file, inx, useSameTableNameAsFile ? filename.Replace(".shn", "") : table)) count++;
                 Console.Write("\rImporting [{3}] to Database : {0}% [{1}/{2}]", (int)((inx + 1) / (double)file.Rows.Count * 100), inx + 1, file.Rows.Count, file.FileName);
-                
+
                 if (count == file.Rows.Count)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\rImporting [{3}] to Database : {0}% [{1}/{2}] ... done", (int)((inx + 1) / (double)file.Rows.Count * 100), inx + 1, file.Rows.Count, file.FileName);
-                    Console.ForegroundColor = ConsoleColor.White;                    
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 else if (inx == file.Rows.Count && count != file.Rows.Count)
                 {
@@ -141,7 +139,6 @@ namespace SHNtoMySQLConverter
                     Console.WriteLine("\rImporting [{3}] to Database : {0}% [{1}/{2}] ... failed", (int)((inx + 1) / (double)file.Rows.Count * 100), inx + 1, file.Rows.Count, file.FileName);
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                
             }
         }
 
@@ -163,18 +160,18 @@ namespace SHNtoMySQLConverter
             //Log.Write(LogLevel.Info, types);
             if (Database.DatabaseHelper.Instance.runSQL(newtable))
                 Console.WriteLine("\r" + text + " done");
-            else Log.Writer.Write(" failed");  
+            else Log.Writer.Write(" failed");
 
             SQLResult res = Database.DatabaseHelper.Instance.Select("SELECT * from mobcoordinate");
-            List<SpawnInfo>SpawnInfos = new List<SpawnInfo>();
+            List<SpawnInfo> SpawnInfos = new List<SpawnInfo>();
             int rotcount = 0;
-            for (int i = 0; i < res.Count; i++)    
+            for (int i = 0; i < res.Count; i++)
             {
-                string MapNameToID = string.Format("SELECT ID from mapinfo WHERE MapName ='{0}'",res.Read<string>(i, "MapName"));
+                string MapNameToID = string.Format("SELECT ID from mapinfo WHERE MapName ='{0}'", res.Read<string>(i, "MapName"));
                 string directToRotation = string.Format("SELECT Direct from shinenpc WHERE MobID ='{0}' AND Map ='{1}'", res.Read<UInt16>(i, "Mob_ID"), res.Read<string>(i, "MapName"));
                 byte rotation = 0;
 
-                int Direct = Database.DatabaseHelper.Instance.Select(directToRotation).Count >0 ? Database.DatabaseHelper.Instance.Select(directToRotation).Read<Int32>(0, "Direct") : 0;
+                int Direct = Database.DatabaseHelper.Instance.Select(directToRotation).Count > 0 ? Database.DatabaseHelper.Instance.Select(directToRotation).Read<Int32>(0, "Direct") : 0;
 
                 if (Direct < 0)
                 {
@@ -199,7 +196,7 @@ namespace SHNtoMySQLConverter
                 SpawnInfos.Add(info);
             };
 
-            Log.WriteLine(LogLevel.Info,"Sucessfully added {0} SpawnInfos ! RotationCount: {1}",SpawnInfos.Count, rotcount);
+            Log.WriteLine(LogLevel.Info, "Sucessfully added {0} SpawnInfos ! RotationCount: {1}", SpawnInfos.Count, rotcount);
 
             int succ_count = 0;
             int count = 0;
@@ -207,14 +204,14 @@ namespace SHNtoMySQLConverter
             foreach (SpawnInfo spawn in SpawnInfos)
             {
                 string sqlString = "INSERT INTO spawnpoints (MobID,MapID,PosX,PosY,Rotation)" +
-                                   "VALUES (" 
-                                   + spawn.MobID + "," 
-                                   + spawn.MapID + "," 
-                                   + spawn.X + "," 
-                                   + spawn.Y + "," 
+                                   "VALUES ("
+                                   + spawn.MobID + ","
+                                   + spawn.MapID + ","
+                                   + spawn.X + ","
+                                   + spawn.Y + ","
                                    + spawn.Rot + ")";
 
-                if (Database.DatabaseHelper.Instance.runSQL(sqlString)) 
+                if (Database.DatabaseHelper.Instance.runSQL(sqlString))
                     succ_count++;
                 Console.Write("\rImporting [{3}] to Database : {0}% [{1}/{2}]", (int)((count) / (double)SpawnInfos.Count * 100), count + 1, SpawnInfos.Count, "SpawnPoints");
 
@@ -231,10 +228,8 @@ namespace SHNtoMySQLConverter
                     Console.ForegroundColor = ConsoleColor.White;
                 }
                 count++;
-              
             }
             Log.WriteLine(LogLevel.Info, "Sucessfully completed !");
-
         }
 
         public void BuildGateInfoTable()
@@ -262,10 +257,8 @@ namespace SHNtoMySQLConverter
             SQLResult res = Database.DatabaseHelper.Instance.Select("SELECT * from linktable");
             List<GateInfo> GateInfos = new List<GateInfo>();
 
-
             for (int i = 0; i < res.Count; i++)
             {
-
                 var info = new GateInfo
                 {
                     gSpawnID = 1,
@@ -277,7 +270,6 @@ namespace SHNtoMySQLConverter
                     gMinLevel = res.Read<UInt16>(i, "LevelFrom"),
                     gMaxLevel = res.Read<UInt16>(i, "LevelTo"),
                     gParty = res.Read<UInt16>(i, "Party"),
-                    
                 };
 
                 GateInfos.Add(info);
@@ -293,7 +285,7 @@ namespace SHNtoMySQLConverter
                 string gateString = "INSERT INTO gateinfo (SpawnID,GateName,MapToName,ToPosX,ToPosY,Direct,MinLevel,MaxLevel,Party)" +
                                    "VALUES ("
                                    + gate.gSpawnID + ","
-                                   +" \""+ gate.gGateName +"\","
+                                   + " \"" + gate.gGateName + "\","
                                    + " \"" + gate.gMapToName + "\","
                                    + gate.gToPosX + ","
                                    + gate.gToPosY + ","
@@ -320,97 +312,94 @@ namespace SHNtoMySQLConverter
                     Console.ForegroundColor = ConsoleColor.White;
                 }
                 count++;
-
             }
             Log.WriteLine(LogLevel.Info, "Sucessfully completed !");
-
         }
 
         public void MainConvert()
         {
-
             Log.SetLogToFile(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "//Log/DBError.txt");
             Convert("MapInfo.shn", "data_mapinfo", false);
-/*
-            Convert("AbState.shn", "data_abstate", false);
-            Convert("ActionEffectInfo.shn", "data_actioneffectinfo", false);
-            Convert("ActiveSkill.shn", "data_activeskill", true);
-            Convert("ActiveskillGroup.shn", "activeskillgroup", false);
-            Convert("AttendReward.shn", "data_attendreward", false);
-            Convert("BadNameFilter.shn", "data_badnamefilter", false);
-            Convert("BelongTypeInfo.shn", "data_belongtypeinfo", false);
-            Convert("CharacterTitleData.shn", "data_charactertitle", false);
-            Convert("ChargedEffect.shn", "data_chargedeffect", false);
-            Convert("ChargedIconItem.shn", "data_chargedIconItem", false);
-            Convert("ChargedMessageItem.shn", "data_chargedmessageitem", false);
-            Convert("ChrCreateEquip.shn", "chrcreateequip", false);
-            Convert("ClassName.shn", "classname", false);
-            Convert("ClassName.shn", "data_classname", false);
-            Convert("CollectCard.shn", "collectcard", false);
-            Convert("CollectCardReward.shn", "collectcardreward", false);
-            Convert("CollectCardTitle.shn", "collectcardtitle", false);
-            Convert("DamageEffect.shn", "data_damageeffect", false);
-            Convert("DiceDividind.shn", "data_dicedividind", false);
-            Convert("GBDiceDividind.shn", "data_gbdicedividind", false);
-            Convert("GBHouse.shn", "data_gbhouse", false);
-            Convert("Gather.shn", "data_gather", true);
-            Convert("GradeItemOption.shn", "data_gradeitemoption", false);
-            Convert("GradeItemOption.shn", "gradeitemoption", false);
-            Convert("GuildGradeData.shn", "data_guildgrade", true);
-            Convert("GuildTournamentRequire.shn", "data_guildtournamentrequire", false);
-            Convert("GuildTournamentSkill.shn", "data_guildtournamentskill", true);
-            Convert("ItemAction.shn", "itemaction", true);
-            Convert("ItemDismantle.shn", "data_itemdismantle", false);
-            Convert("ItemDismantle.shn", "itemdismantle", false);
-            Convert("ItemInfoServer.shn", "data_iteminfoserver", false);
-            Convert("ItemMoney.shn", "itemmoney", false);
-            Convert("ItemShop.shn", "data_itemshop", true);
-            Convert("ItemUseEffect.shn", "data_itemuseeffect", false);
+            /*
+                        Convert("AbState.shn", "data_abstate", false);
+                        Convert("ActionEffectInfo.shn", "data_actioneffectinfo", false);
+                        Convert("ActiveSkill.shn", "data_activeskill", true);
+                        Convert("ActiveskillGroup.shn", "activeskillgroup", false);
+                        Convert("AttendReward.shn", "data_attendreward", false);
+                        Convert("BadNameFilter.shn", "data_badnamefilter", false);
+                        Convert("BelongTypeInfo.shn", "data_belongtypeinfo", false);
+                        Convert("CharacterTitleData.shn", "data_charactertitle", false);
+                        Convert("ChargedEffect.shn", "data_chargedeffect", false);
+                        Convert("ChargedIconItem.shn", "data_chargedIconItem", false);
+                        Convert("ChargedMessageItem.shn", "data_chargedmessageitem", false);
+                        Convert("ChrCreateEquip.shn", "chrcreateequip", false);
+                        Convert("ClassName.shn", "classname", false);
+                        Convert("ClassName.shn", "data_classname", false);
+                        Convert("CollectCard.shn", "collectcard", false);
+                        Convert("CollectCardReward.shn", "collectcardreward", false);
+                        Convert("CollectCardTitle.shn", "collectcardtitle", false);
+                        Convert("DamageEffect.shn", "data_damageeffect", false);
+                        Convert("DiceDividind.shn", "data_dicedividind", false);
+                        Convert("GBDiceDividind.shn", "data_gbdicedividind", false);
+                        Convert("GBHouse.shn", "data_gbhouse", false);
+                        Convert("Gather.shn", "data_gather", true);
+                        Convert("GradeItemOption.shn", "data_gradeitemoption", false);
+                        Convert("GradeItemOption.shn", "gradeitemoption", false);
+                        Convert("GuildGradeData.shn", "data_guildgrade", true);
+                        Convert("GuildTournamentRequire.shn", "data_guildtournamentrequire", false);
+                        Convert("GuildTournamentSkill.shn", "data_guildtournamentskill", true);
+                        Convert("ItemAction.shn", "itemaction", true);
+                        Convert("ItemDismantle.shn", "data_itemdismantle", false);
+                        Convert("ItemDismantle.shn", "itemdismantle", false);
+                        Convert("ItemInfoServer.shn", "data_iteminfoserver", false);
+                        Convert("ItemMoney.shn", "itemmoney", false);
+                        Convert("ItemShop.shn", "data_itemshop", true);
+                        Convert("ItemUseEffect.shn", "data_itemuseeffect", false);
 
-            Convert("MHEmotion.shn", "data_mhemotion", true);
-            Convert("MapInfo.shn", "data_mapinfo", false);
-            Convert("MapLinkPoint.shn", "data_maplinkpoint", true);
-            Convert("MapWayPoint.shn", "data_mapwaypoint", true);
-            Convert("MiniHouse.shn", "data_minihouse", false);
-            Convert("MiniHouseDummy.shn", "data_minihousedummy", false);
-            Convert("MiniHouseEndure.shn", "data_minihouseendure", false);
-            Convert("MiniHouseFurniture.shn", "data_minihousefurniture", false);
-            Convert("MiniHouseFurnitureObjEffect.shn", "data_minihousefurnitureobjeffect", false);
-            Convert("MobCoordinate.shn", "data_mobcoordinate", false);
-            Convert("MobInfo.shn", "data_mobinfo", false);
-            Convert("MobNoFadeIn.shn", "mobnofadein", false);
-            Convert("MobSpecies.shn", "data_mobspecies", false);
-            Convert("MoverAbility.shn", "moverability", false);
-            Convert("MoverHG.shn", "moverhg", false);
-            Convert("MoverItem.shn", "moveritem", false);
-            Convert("MoverMain.shn", "movermain", false);
-            Convert("MoverSlotView.shn", "moverslotview", false);
-            Convert("MoverUseSkill.shn", "moveruseskill", false);
-            Convert("MoverView.shn", "moverview", false);
-            Convert("PSkillSetAbState.shn", "itemaction", false);
-            Convert("PassiveSkill.shn", "data_passiveskill", false);
-            Convert("Produce.shn", "data_produce", false);
-            
-            Convert("RaceNameInfo.shn", "data_racenameinfo", false);
-            Convert("Riding.shn", "data_riding", false);
-            Convert("SetEffect.shn", "seteffect", false);
-            Convert("SetItem.shn", "data_setitem", false);
-            Convert("SetItemEffect.shn", "data_setitemeffect", false);
-            Convert("SetItemName.shn", "setitemname", false);
-            Convert("SingleData.shn", "singledata", false);
-            Convert("SlanderFilter.shn", "data_slanderfilter", false);
-            Convert("SubAbState.shn", "data_subabstate", true);
-            Convert("ToggleSkill.shn", "toogleskill", false);
-            Convert("TownPortal.shn", "data_townportal", true);
-            Convert("UpEffect.shn", "data_upeffect", false);
-            Convert("UpEffect.shn", "upeffect", false);
-            Convert("UpgradeInfo.shn", "data_upgradeinfo", false);
-            Convert("WeaponAttrib.shn", "data_weaponattrib", false);
-            Convert("WeaponTitleData.shn", "data_weapontitle", true);
-            Convert("Wedding.shn", "wedding", false);
-*/
+                        Convert("MHEmotion.shn", "data_mhemotion", true);
+                        Convert("MapInfo.shn", "data_mapinfo", false);
+                        Convert("MapLinkPoint.shn", "data_maplinkpoint", true);
+                        Convert("MapWayPoint.shn", "data_mapwaypoint", true);
+                        Convert("MiniHouse.shn", "data_minihouse", false);
+                        Convert("MiniHouseDummy.shn", "data_minihousedummy", false);
+                        Convert("MiniHouseEndure.shn", "data_minihouseendure", false);
+                        Convert("MiniHouseFurniture.shn", "data_minihousefurniture", false);
+                        Convert("MiniHouseFurnitureObjEffect.shn", "data_minihousefurnitureobjeffect", false);
+                        Convert("MobCoordinate.shn", "data_mobcoordinate", false);
+                        Convert("MobInfo.shn", "data_mobinfo", false);
+                        Convert("MobNoFadeIn.shn", "mobnofadein", false);
+                        Convert("MobSpecies.shn", "data_mobspecies", false);
+                        Convert("MoverAbility.shn", "moverability", false);
+                        Convert("MoverHG.shn", "moverhg", false);
+                        Convert("MoverItem.shn", "moveritem", false);
+                        Convert("MoverMain.shn", "movermain", false);
+                        Convert("MoverSlotView.shn", "moverslotview", false);
+                        Convert("MoverUseSkill.shn", "moveruseskill", false);
+                        Convert("MoverView.shn", "moverview", false);
+                        Convert("PSkillSetAbState.shn", "itemaction", false);
+                        Convert("PassiveSkill.shn", "data_passiveskill", false);
+                        Convert("Produce.shn", "data_produce", false);
 
-          //  BuildGateInfoTable();
+                        Convert("RaceNameInfo.shn", "data_racenameinfo", false);
+                        Convert("Riding.shn", "data_riding", false);
+                        Convert("SetEffect.shn", "seteffect", false);
+                        Convert("SetItem.shn", "data_setitem", false);
+                        Convert("SetItemEffect.shn", "data_setitemeffect", false);
+                        Convert("SetItemName.shn", "setitemname", false);
+                        Convert("SingleData.shn", "singledata", false);
+                        Convert("SlanderFilter.shn", "data_slanderfilter", false);
+                        Convert("SubAbState.shn", "data_subabstate", true);
+                        Convert("ToggleSkill.shn", "toogleskill", false);
+                        Convert("TownPortal.shn", "data_townportal", true);
+                        Convert("UpEffect.shn", "data_upeffect", false);
+                        Convert("UpEffect.shn", "upeffect", false);
+                        Convert("UpgradeInfo.shn", "data_upgradeinfo", false);
+                        Convert("WeaponAttrib.shn", "data_weaponattrib", false);
+                        Convert("WeaponTitleData.shn", "data_weapontitle", true);
+                        Convert("Wedding.shn", "wedding", false);
+            */
+
+            //  BuildGateInfoTable();
             //Convert("ItemActionCondition.shn", "itemactioncondition", false); //don't works
             //Convert("ItemActionEffect.shn", "itemactioneffect", false); //don't works
 
@@ -431,7 +420,7 @@ namespace SHNtoMySQLConverter
             //Convert("FacInfo.shn", "faceinfo", false);
             //Convert("FaceInfo.shn", "data_faceinfo",false);
             //Convert("GTIView.shn", "data_gtiview",false);
-            //Convert("GuildTournamentSkillDesc.shn", "data_guildtournamentskilldesc",true);                                 
+            //Convert("GuildTournamentSkillDesc.shn", "data_guildtournamentskilldesc",true);
             //Convert("HairColorInfo.shn", "data_haircolorinfo",false);
             //Convert("HairInfo.shn", "data_hairinfo",false);
             //Convert("ItemActionEffectDesc.shn", "itemeffectactiondesc", false);
@@ -456,8 +445,6 @@ namespace SHNtoMySQLConverter
             //Convert("WorldMapAvatarInfo.shn", "data_worldmapavatarinfo",false);
             //Convert("itemviewinfo.shn", "data_itemviewinfo",false);
             //KingDomQuestDesc.shn - not necessary - skipping
-
-
-        } 
+        }
     }
 }

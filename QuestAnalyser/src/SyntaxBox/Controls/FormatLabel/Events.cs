@@ -13,17 +13,17 @@ using System;
 namespace Alsing.Windows.Forms.FormatLabel
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class ClickLinkEventArgs : EventArgs
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string Link = "";
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="Link"></param>
         public ClickLinkEventArgs(string Link)
@@ -33,7 +33,7 @@ namespace Alsing.Windows.Forms.FormatLabel
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public delegate void ClickLinkEventHandler(object sender, ClickLinkEventArgs e);
 }

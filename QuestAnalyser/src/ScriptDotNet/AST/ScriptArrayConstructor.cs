@@ -1,32 +1,28 @@
 #region using
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
 
 using Irony.Compiler;
 using ScriptNET.Runtime;
-#endregion
+
+#endregion using
 
 namespace ScriptNET.Ast
 {
-  /// <summary>
-  /// Script Array Constructor Expression
-  /// </summary>
-  internal class ScriptArrayConstructor : ScriptExpr
-  {
-    private ScriptExprList exprList;
-
-    public ScriptArrayConstructor(AstNodeArgs args)
-        : base(args)
+    /// <summary>
+    /// Script Array Constructor Expression
+    /// </summary>
+    internal class ScriptArrayConstructor : ScriptExpr
     {
-      exprList = (ScriptExprList)ChildNodes[0];
-    }
+        private ScriptExprList exprList;
 
-    public override void Evaluate(IScriptContext context)
-    {      
-      exprList.Evaluate(context);
+        public ScriptArrayConstructor(AstNodeArgs args)
+            : base(args)
+        {
+            exprList = (ScriptExprList)ChildNodes[0];
+        }
+
+        public override void Evaluate(IScriptContext context)
+        {
+            exprList.Evaluate(context);
+        }
     }
-  }
 }
-

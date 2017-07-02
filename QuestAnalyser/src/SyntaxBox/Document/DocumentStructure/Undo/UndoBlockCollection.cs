@@ -10,12 +10,11 @@
 
 using System;
 using System.Collections;
-using T = Alsing.SourceCode.UndoBlock;
 
 namespace Alsing.SourceCode
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed class UndoBlockCollection : ICollection, IList, IEnumerable,
                                               ICloneable
@@ -27,19 +26,19 @@ namespace Alsing.SourceCode
         private int m_version;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public string Name = "UndoAction";
 
         // Construction
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public UndoBlockCollection() {}
+        public UndoBlockCollection() { }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="collection"></param>
         public UndoBlockCollection(UndoBlockCollection collection)
@@ -48,7 +47,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="array"></param>
         public UndoBlockCollection(UndoBlock[] array)
@@ -57,7 +56,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UndoBlock this[int index]
         {
@@ -76,7 +75,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Capacity
         {
@@ -107,14 +106,14 @@ namespace Alsing.SourceCode
             return (Clone());
         }
 
-        #endregion
+        #endregion ICloneable Members
 
         // Operations (type-safe ICollection)
 
         #region ICollection Members
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public int Count
         {
@@ -133,7 +132,7 @@ namespace Alsing.SourceCode
 
         void ICollection.CopyTo(Array array, int start)
         {
-            CopyTo((UndoBlock[]) array, start);
+            CopyTo((UndoBlock[])array, start);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -141,12 +140,12 @@ namespace Alsing.SourceCode
             return (GetEnumerator());
         }
 
-        #endregion
+        #endregion ICollection Members
 
         #region IList Members
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Clear()
         {
@@ -156,7 +155,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         public void RemoveAt(int index)
@@ -185,12 +184,12 @@ namespace Alsing.SourceCode
         object IList.this[int index]
         {
             get { return this[index]; }
-            set { this[index] = (UndoBlock) value; }
+            set { this[index] = (UndoBlock)value; }
         }
 
         int IList.Add(object item)
         {
-            return Add((UndoBlock) item);
+            return Add((UndoBlock)item);
         }
 
         /* redundant w/ type-safe method
@@ -202,28 +201,28 @@ namespace Alsing.SourceCode
 
         bool IList.Contains(object item)
         {
-            return Contains((UndoBlock) item);
+            return Contains((UndoBlock)item);
         }
 
         int IList.IndexOf(object item)
         {
-            return IndexOf((UndoBlock) item);
+            return IndexOf((UndoBlock)item);
         }
 
         void IList.Insert(int position, object item)
         {
-            Insert(position, (UndoBlock) item);
+            Insert(position, (UndoBlock)item);
         }
 
         void IList.Remove(object item)
         {
-            Remove((UndoBlock) item);
+            Remove((UndoBlock)item);
         }
 
-        #endregion
+        #endregion IList Members
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="array"></param>
         public void CopyTo(UndoBlock[] array)
@@ -232,7 +231,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="array"></param>
         /// <param name="start"></param>
@@ -249,7 +248,7 @@ namespace Alsing.SourceCode
         // Operations (type-safe IList)
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -265,17 +264,17 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
         public bool Contains(UndoBlock item)
         {
-            return ((IndexOf(item) == - 1) ? false : true);
+            return ((IndexOf(item) == -1) ? false : true);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -284,11 +283,11 @@ namespace Alsing.SourceCode
             for (int i = 0; i < m_count; ++i)
                 if (m_array[i] == (item))
                     return i;
-            return - 1;
+            return -1;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="position"></param>
         /// <param name="item"></param>
@@ -308,7 +307,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="item"></param>
         public void Remove(UndoBlock item)
@@ -323,7 +322,7 @@ namespace Alsing.SourceCode
 
         // Operations (type-safe IEnumerable)
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public Enumerator GetEnumerator()
@@ -333,7 +332,7 @@ namespace Alsing.SourceCode
 
         // Operations (type-safe ICloneable)
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public UndoBlockCollection Clone()
@@ -348,7 +347,7 @@ namespace Alsing.SourceCode
         // Public helpers (just to mimic some nice features of ArrayList)
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="collection"></param>
         public void AddRange(UndoBlockCollection collection)
@@ -364,7 +363,7 @@ namespace Alsing.SourceCode
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="array"></param>
         public void AddRange(UndoBlock[] array)
@@ -402,12 +401,12 @@ namespace Alsing.SourceCode
         private void Grow()
         {
             if (NeedsGrowth())
-                Capacity = m_count*2;
+                Capacity = m_count * 2;
         }
 
         private bool NeedsTrimming()
         {
-            return (m_count <= Capacity/2);
+            return (m_count <= Capacity / 2);
         }
 
         private void Trim()
@@ -431,7 +430,7 @@ namespace Alsing.SourceCode
         #region Nested type: Enumerator
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public class Enumerator : IEnumerator
         {
@@ -444,14 +443,14 @@ namespace Alsing.SourceCode
             public Enumerator(UndoBlockCollection tc)
             {
                 m_collection = tc;
-                m_index = - 1;
+                m_index = -1;
                 m_version = tc.m_version;
             }
 
             // Operations (type-safe IEnumerator)
 
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public UndoBlock Current
             {
@@ -461,7 +460,7 @@ namespace Alsing.SourceCode
             #region IEnumerator Members
 
             /// <summary>
-            /// 
+            ///
             /// </summary>
             /// <returns></returns>
             public bool MoveNext()
@@ -475,7 +474,7 @@ namespace Alsing.SourceCode
             }
 
             /// <summary>
-            /// 
+            ///
             /// </summary>
             public void Reset()
             {
@@ -483,7 +482,7 @@ namespace Alsing.SourceCode
                     throw new InvalidOperationException(
                         "Collection was modified; enumeration operation may not execute.");
 
-                m_index = - 1;
+                m_index = -1;
             }
 
             // Implementation (IEnumerator)
@@ -493,7 +492,7 @@ namespace Alsing.SourceCode
                 get { return (Current); }
             }
 
-            #endregion
+            #endregion IEnumerator Members
 
             /* redundant w/ type-safe method
       bool IEnumerator.MoveNext()
@@ -510,6 +509,6 @@ namespace Alsing.SourceCode
        */
         }
 
-        #endregion
+        #endregion Nested type: Enumerator
     }
 }

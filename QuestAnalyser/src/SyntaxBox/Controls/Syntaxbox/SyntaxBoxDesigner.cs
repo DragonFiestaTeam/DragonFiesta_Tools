@@ -8,9 +8,9 @@
 // *
 // *
 
+using Alsing.SourceCode;
 using System.ComponentModel.Design;
 using System.Windows.Forms.Design;
-using Alsing.SourceCode;
 
 namespace Alsing.Windows.Forms.SyntaxBox
 {
@@ -21,12 +21,12 @@ namespace Alsing.Windows.Forms.SyntaxBox
     {
         protected ISelectionService SelectionService
         {
-            get { return (ISelectionService) GetService(typeof (ISelectionService)); }
+            get { return (ISelectionService)GetService(typeof(ISelectionService)); }
         }
 
         protected virtual IDesignerHost DesignerHost
         {
-            get { return (IDesignerHost) base.GetService(typeof (IDesignerHost)); }
+            get { return (IDesignerHost)base.GetService(typeof(IDesignerHost)); }
         }
 
         //protected void OnActivate(object s, EventArgs e) {}
@@ -41,7 +41,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 var sd = DesignerHost.CreateComponent
                              (typeof(SyntaxDocument)) as
                          SyntaxDocument;
-                
+
                 var sb = Control as SyntaxBoxControl;
 
                 if (sb == null)

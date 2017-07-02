@@ -1,11 +1,14 @@
 ﻿#region Information
+
 /*
  by Petro Protsyk
  28.11.2008, 22:16
  */
-#endregion
+
+#endregion Information
 
 #region using
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,11 +25,14 @@ using DefaultAssemblyManager = ScriptNET.Runtime.BaseAssemblyManager;
 using DefaultActivator = ScriptNET.Runtime.ObjectActivator;
 using DefaultBinder = ScriptNET.Runtime.ObjectBinderExtended;
 #else
+
 using DefaultAssemblyManager = ScriptNET.Runtime.AssemblyManager;
 using DefaultActivator = ScriptNET.Runtime.ObjectActivator;
 using DefaultBinder = ScriptNET.Runtime.ObjectBinderExtended;
+
 #endif
-#endregion
+
+#endregion using
 
 namespace ScriptNET.Runtime
 {
@@ -36,6 +42,7 @@ namespace ScriptNET.Runtime
     public static class RuntimeHost
     {
         #region Fields
+
         private static ScriptConfiguration Configuration = null;
 
         private static Script InitializationScript = null;
@@ -61,7 +68,7 @@ namespace ScriptNET.Runtime
         private static object syncRoot = new object();
 
         [Bindable(false)]
-        public static IScopeFactory ScopeFactory {get; private set;}
+        public static IScopeFactory ScopeFactory { get; private set; }
 
         public static IObjectBinder Binder { get; set; }
 
@@ -80,11 +87,13 @@ namespace ScriptNET.Runtime
         /// name not found in the scope hierarchy
         /// </summary>
         public static object NoVariable = new object();
-      
+
         public static object NullValue = new object();
-        #endregion
+
+        #endregion Fields
 
         #region Construction & Initialization
+
         /// <summary>
         /// Load default configuration from RuntimeConfig.xml
         /// </summary>
@@ -105,15 +114,15 @@ namespace ScriptNET.Runtime
             try
             {
                 LoadConfiguration(configuration);
-                
+
                 if (Binder == null)
                 {
-                  Binder = new DefaultBinder();
+                    Binder = new DefaultBinder();
                 }
 
                 if (Activator == null)
                 {
-                  Activator = new DefaultActivator();
+                    Activator = new DefaultActivator();
                 }
 
                 InitializeSettingItems();
@@ -121,23 +130,23 @@ namespace ScriptNET.Runtime
 
                 if (ScopeFactory == null)
                 {
-                  ScopeFactory = Activator.CreateInstance(GetNativeType(GetSettingsItem<string>(ConfigSchema.ScopeFactoryAttribute))) as IScopeFactory;
+                    ScopeFactory = Activator.CreateInstance(GetNativeType(GetSettingsItem<string>(ConfigSchema.ScopeFactoryAttribute))) as IScopeFactory;
                 }
                 RegisterScopes();
 
                 if (AssemblyManager == null)
                 {
-                  AssemblyManager = new DefaultAssemblyManager();
+                    AssemblyManager = new DefaultAssemblyManager();
                 }
                 OnInitializingTypes(AssemblyManager);
                 AssemblyManager.Initialize(Configuration);
-                
+
                 if (!string.IsNullOrEmpty(Configuration.Initialization))
                     InitializationScript = Script.Compile(Configuration.Initialization);
 
                 RegisterOperatorHandler("+=", new EventOperatorHandler(true));
                 RegisterOperatorHandler("-=", new EventOperatorHandler(false));
-                
+
                 ScriptNET.Ast.ScriptExpr.HandleOperator += HandleOperator;
             }
             finally
@@ -148,22 +157,22 @@ namespace ScriptNET.Runtime
 
         private static void RegisterOperators()
         {
-          foreach (OperatorDefinition definition in Configuration.Operators)
-          {
-            IOperator oper = (IOperator)Activator.CreateInstance(GetNativeType(definition.Type));
-            if (oper.Unary)
-              UnaryOperators.Add(oper.Name, oper);
-            else
-              BinOperators.Add(oper.Name, oper);
-          }
+            foreach (OperatorDefinition definition in Configuration.Operators)
+            {
+                IOperator oper = (IOperator)Activator.CreateInstance(GetNativeType(definition.Type));
+                if (oper.Unary)
+                    UnaryOperators.Add(oper.Name, oper);
+                else
+                    BinOperators.Add(oper.Name, oper);
+            }
         }
 
         private static void HandleOperator(object sender, HandleOperatorArgs e)
         {
-          if (Handlers.ContainsKey(e.Symbol))
-          {
-            e.Result = Handlers[e.Symbol].Process(e);
-          }
+            if (Handlers.ContainsKey(e.Symbol))
+            {
+                e.Result = Handlers[e.Symbol].Process(e);
+            }
         }
 
         private static void RegisterScopes()
@@ -175,14 +184,14 @@ namespace ScriptNET.Runtime
 
             foreach (ScopeDefinition definition in Configuration.Scopes)
             {
-              ScopeFactory.RegisterType(definition.Id, (IScopeActivator)Activator.CreateInstance(GetNativeType(definition.Type)));
+                ScopeFactory.RegisterType(definition.Id, (IScopeActivator)Activator.CreateInstance(GetNativeType(definition.Type)));
             }
         }
 
         /// <summary>
         /// Clears all information in the RuntimeHost
         /// </summary>
-        [Bindable(false)] 
+        [Bindable(false)]
         public static void CleanUp()
         {
             Lock();
@@ -195,7 +204,7 @@ namespace ScriptNET.Runtime
                 Activator = null;
                 ScopeFactory = null;
                 if (AssemblyManager != null)
-                  AssemblyManager.Dispose();
+                    AssemblyManager.Dispose();
                 AssemblyManager = null;
                 SettingsItems.Clear();
                 BinOperators.Clear();
@@ -209,9 +218,11 @@ namespace ScriptNET.Runtime
                 UnLock();
             }
         }
-        #endregion
+
+        #endregion Construction & Initialization
 
         #region Methods
+
         /// <summary>
         /// Loads language configuration from stream
         /// </summary>
@@ -223,24 +234,26 @@ namespace ScriptNET.Runtime
             if (Configuration == null)
                 throw new ScriptException("Configuration has wrong format or empty");
         }
-        #endregion
+
+        #endregion Methods
 
         #region Loading
+
         private static void InitializeSettingItems()
         {
-          foreach (SettingXml item in Configuration.SettingXml)
-          {
-            object rez = item.Value;
-            if (!string.IsNullOrEmpty(item.Converter))
-              rez = GetItemValue(item.Value, item.Converter);
+            foreach (SettingXml item in Configuration.SettingXml)
+            {
+                object rez = item.Value;
+                if (!string.IsNullOrEmpty(item.Converter))
+                    rez = GetItemValue(item.Value, item.Converter);
 
-            SettingsItems.Add(item.Name, rez);
-          }
+                SettingsItems.Add(item.Name, rez);
+            }
         }
 
         private static object GetItemValue(string value, string converter)
         {
-          Type converterType = GetNativeType(converter);
+            Type converterType = GetNativeType(converter);
 #if PocketPC || SILVERLIGHT
           try
           {
@@ -251,28 +264,30 @@ namespace ScriptNET.Runtime
             System.Diagnostics.Debug.WriteLine("Failed to convert string to type: " + converterType.ToString());
           }
 #else
-          TypeConverter converterObject = Activator.CreateInstance(converterType) as TypeConverter;
-          if (converterObject != null && converterObject.CanConvertFrom(typeof(string)))
-          {
-            return converterObject.ConvertFrom(value);
-          }
+            TypeConverter converterObject = Activator.CreateInstance(converterType) as TypeConverter;
+            if (converterObject != null && converterObject.CanConvertFrom(typeof(string)))
+            {
+                return converterObject.ConvertFrom(value);
+            }
 #endif
-          return value;
+            return value;
         }
-        #endregion
+
+        #endregion Loading
 
         #region Public methods
+
         /// <summary>
         /// Returns setting item specified in run-time config file
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public static object GetSettingsItem(string id)
-        { 
-          if (SettingsItems.ContainsKey(id))
-            return SettingsItems[id];
+        {
+            if (SettingsItems.ContainsKey(id))
+                return SettingsItems[id];
 
-          return null;
+            return null;
         }
 
         public static void SetSettingItem(string id, object value)
@@ -294,6 +309,7 @@ namespace ScriptNET.Runtime
                 UnLock();
             }
         }
+
         /// <summary>
         /// Returns setting item specified in run-time config file
         /// </summary>
@@ -301,73 +317,72 @@ namespace ScriptNET.Runtime
         /// <returns></returns>
         public static T GetSettingsItem<T>(string id)
         {
-          object result = GetSettingsItem(id);
-          return result == null ? default(T) : (T)result;
+            object result = GetSettingsItem(id);
+            return result == null ? default(T) : (T)result;
         }
 
         [Bindable(false)]
         public static IOperator GetBinaryOperator(string id)
         {
-          if (!BinOperators.ContainsKey(id))
-            throw new NotSupportedException(string.Format("Given operator {0} is not found", id));
+            if (!BinOperators.ContainsKey(id))
+                throw new NotSupportedException(string.Format("Given operator {0} is not found", id));
 
-          return BinOperators[id];
+            return BinOperators[id];
         }
-        
+
         [Bindable(false)]
         public static IOperator GetUnaryOperator(string id)
         {
-          if (!UnaryOperators.ContainsKey(id))
-            throw new NotSupportedException(string.Format("Given operator {0} is not found", id));
+            if (!UnaryOperators.ContainsKey(id))
+                throw new NotSupportedException(string.Format("Given operator {0} is not found", id));
 
-          return UnaryOperators[id];
+            return UnaryOperators[id];
         }
 
         [Bindable(false)]
         public static void InitializeScript(IScriptContext context)
         {
-          if (InitializationScript == null) return;
+            if (InitializationScript == null) return;
 
-          Lock();
+            Lock();
             InitializationScript.Context = context;
             InitializationScript.Execute();
             InitializationScript.Context = null;
-          UnLock();
+            UnLock();
         }
 
         internal static Type GetNativeType(string name)
         {
-          return Type.GetType(name);
+            return Type.GetType(name);
         }
-        
+
         public static Type GetType(string name)
         {
-          return AssemblyManager.GetType(name);
+            return AssemblyManager.GetType(name);
         }
 
         public static bool HasType(string name)
         {
-          return AssemblyManager.HasType(name);
+            return AssemblyManager.HasType(name);
         }
-        
+
         [Bindable(false)]
         public static void AddType(string alias, Type type)
         {
-          AssemblyManager.AddType(alias, type);
+            AssemblyManager.AddType(alias, type);
         }
-        
+
         [Bindable(false)]
         public static void RegisterOperatorHandler(string operatorSymbol, IOperatorHandler handler)
         {
-          if (!Handlers.ContainsKey(operatorSymbol))
-            Handlers.Add(operatorSymbol, handler);
-          else
-            Handlers[operatorSymbol] = handler;
+            if (!Handlers.ContainsKey(operatorSymbol))
+                Handlers.Add(operatorSymbol, handler);
+            else
+                Handlers[operatorSymbol] = handler;
         }
 
-
         /// <summary>
-        /// Lock's runtime host for threading execution 
+        /// Lock's runtime host for threading execution
         /// </summary>
         public static void Lock()
         {
@@ -386,29 +401,31 @@ namespace ScriptNET.Runtime
         /// This event is raised before AssemblyManager starts creating type system.
         /// It should be used to subscribe on AssemblyManager's events in order to cancel
         /// loading some assemblies and adding particular types
-        /// </summary>          
+        /// </summary>
         public static event EventHandler<EventArgs> InitializingTypes
-        {          
-          add
-          {
-            initializingTypes.Add(value);
-          }
-          remove
-          {
-            initializingTypes.Remove(value);
-          }
+        {
+            add
+            {
+                initializingTypes.Add(value);
+            }
+            remove
+            {
+                initializingTypes.Remove(value);
+            }
         }
 
         private static List<EventHandler<EventArgs>> initializingTypes = new List<EventHandler<EventArgs>>();
-       
+
         private static void OnInitializingTypes(object sender)
         {
-          foreach (EventHandler<EventArgs> handler in initializingTypes)
-            handler.Invoke(sender, EventArgs.Empty);
+            foreach (EventHandler<EventArgs> handler in initializingTypes)
+                handler.Invoke(sender, EventArgs.Empty);
         }
-        #endregion
+
+        #endregion Public methods
 
         #region Config
+
         public static Stream DefaultConfig
         {
             get
@@ -418,6 +435,7 @@ namespace ScriptNET.Runtime
                 return configStream;
             }
         }
-        #endregion
+
+        #endregion Config
     }
 }

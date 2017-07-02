@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Collections;
@@ -99,7 +98,7 @@ namespace FiestaLib.Util.Database
             try
             {
                 List<MySqlParameter> mParams = new List<MySqlParameter>(args.Length);
-                var Connection = this.GetConnection();
+                var Connection = GetConnection();
                 MySqlCommand sqlCommand = new MySqlCommand(sqlString.ToString(), Connection);
                 foreach (var a in args)
                     mParams.Add(new MySqlParameter("", a));
@@ -135,7 +134,7 @@ namespace FiestaLib.Util.Database
                 // Log.WriteLine(LogLevel.Info, Syntax);
                 try
                 {
-                    var conn = this.GetConnection();
+                    var conn = GetConnection();
 
                     MySqlCommand SqlCmd = new MySqlCommand(Syntax, conn);
                     SqlCmd.ExecuteNonQuery();
@@ -157,7 +156,7 @@ namespace FiestaLib.Util.Database
             try
             {
 
-                pCommand.Connection = this.GetConnection();
+                pCommand.Connection = GetConnection();
                 pCommand.Prepare();
                 retvalue = (byte[])pCommand.ExecuteScalar();
 
@@ -177,7 +176,7 @@ namespace FiestaLib.Util.Database
             Console.WriteLine(query);
             try
             {
-                var conn = this.GetConnection();
+                var conn = GetConnection();
 
                 MySqlCommand mysqlCmd = new MySqlCommand(query, conn);
                 MySqlDataReader mysqlReader = mysqlCmd.ExecuteReader();

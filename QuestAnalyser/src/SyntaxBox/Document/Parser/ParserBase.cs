@@ -37,7 +37,6 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
         }
 
         public abstract void ParseRow(int rowIndex, bool parseKeywords);
-        
 
         public void ParsePreviewLine(int rowIndex)
         {

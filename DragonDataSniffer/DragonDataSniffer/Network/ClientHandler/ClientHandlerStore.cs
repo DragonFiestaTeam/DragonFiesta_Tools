@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using DragonDataSniffer.Network;
+﻿using DragonDataSniffer.Network;
 using DragonDataSniffer.Utils;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace DragonDataSniffer.ClientHandler
 {
@@ -39,11 +38,9 @@ namespace DragonDataSniffer.ClientHandler
 
         public static MethodInfo GetHandler(byte header, byte type)
         {
-            Dictionary<byte, MethodInfo> dict;
-            MethodInfo meth;
-            if (handlers.TryGetValue(header, out dict))
+            if (handlers.TryGetValue(header, out Dictionary<byte, MethodInfo> dict))
             {
-                if (dict.TryGetValue(type, out meth))
+                if (dict.TryGetValue(type, out MethodInfo meth))
                 {
                     return meth;
                 }

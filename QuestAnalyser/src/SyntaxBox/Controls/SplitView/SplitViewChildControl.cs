@@ -32,11 +32,10 @@ namespace Alsing.Windows.Forms.CoreLib
         {
             InitializeComponent();
 
-//			Alsing.Windows.NativeMethods.OpenThemeData (this.Handle,"EDIT");
-//			Alsing.Windows.NativeMethods.OpenThemeData (this.vScroll.Handle,"SCROLLBAR");
-//			Alsing.Windows.NativeMethods.OpenThemeData (this.hScroll.Handle,"SCROLLBAR");
+            //			Alsing.Windows.NativeMethods.OpenThemeData (this.Handle,"EDIT");
+            //			Alsing.Windows.NativeMethods.OpenThemeData (this.vScroll.Handle,"SCROLLBAR");
+            //			Alsing.Windows.NativeMethods.OpenThemeData (this.hScroll.Handle,"SCROLLBAR");
         }
-
 
         protected Rectangle ClientArea
         {
@@ -48,7 +47,6 @@ namespace Alsing.Windows.Forms.CoreLib
                 return r;
             }
         }
-
 
         /// <summary>
         /// Gets or Sets if the Left side thumb control is visible or not.
@@ -104,7 +102,6 @@ namespace Alsing.Windows.Forms.CoreLib
 
         private ScrollBars _ScrollBars;
 
-
         private bool HasThumbs;
 
         public ScrollBars ScrollBars
@@ -153,7 +150,6 @@ namespace Alsing.Windows.Forms.CoreLib
                     LeftThumb.Width = 0;
                 }
 
-
                 DoResize();
                 Refresh();
             }
@@ -175,7 +171,7 @@ namespace Alsing.Windows.Forms.CoreLib
             DoResize();
         }
 
-        #endregion
+        #endregion public property ScrollBars
 
         protected override void Dispose(bool disposing)
         {
@@ -243,7 +239,6 @@ namespace Alsing.Windows.Forms.CoreLib
                     hScroll.Left = 0;
                 }
 
-
                 vScroll.Left = ClientWidth - vScroll.Width;
                 hScroll.Top = ClientHeight - hScroll.Height;
 
@@ -254,90 +249,88 @@ namespace Alsing.Windows.Forms.CoreLib
                 ;
                 TopThumb.Top = 0;
 
-
                 Filler.Left = vScroll.Left;
                 Filler.Top = hScroll.Top;
                 Filler.Width = vScroll.Width;
                 Filler.Height = hScroll.Height;
             }
-            catch {}
+            catch { }
         }
 
         #region Component Designer generated code
 
         private void InitializeComponent()
         {
-            var resources = new System.Resources.ResourceManager(typeof (SplitViewChildControl));
-            this.hScroll = new System.Windows.Forms.HScrollBar();
-            this.vScroll = new System.Windows.Forms.VScrollBar();
-            this.Filler = new System.Windows.Forms.Panel();
-            this.TopThumb = new Alsing.Windows.Forms.CoreLib.ThumbControl();
-            this.LeftThumb = new Alsing.Windows.Forms.CoreLib.ThumbControl();
+            var resources = new System.Resources.ResourceManager(typeof(SplitViewChildControl));
+            hScroll = new System.Windows.Forms.HScrollBar();
+            vScroll = new System.Windows.Forms.VScrollBar();
+            Filler = new System.Windows.Forms.Panel();
+            TopThumb = new Alsing.Windows.Forms.CoreLib.ThumbControl();
+            LeftThumb = new Alsing.Windows.Forms.CoreLib.ThumbControl();
 
-
-            this.SuspendLayout();
-            // 
+            SuspendLayout();
+            //
             // hScroll
-            // 
-            this.hScroll.Location = new System.Drawing.Point(-4, 292);
-            this.hScroll.Name = "hScroll";
-            this.hScroll.Size = new System.Drawing.Size(440, 16);
-            this.hScroll.TabIndex = 0;
+            //
+            hScroll.Location = new System.Drawing.Point(-4, 292);
+            hScroll.Name = "hScroll";
+            hScroll.Size = new System.Drawing.Size(440, 16);
+            hScroll.TabIndex = 0;
 
-            // 
+            //
             // vScroll
-            // 
-            this.vScroll.Location = new System.Drawing.Point(440, 0);
-            this.vScroll.Maximum = 300;
-            this.vScroll.Minimum = 0;
-            this.vScroll.Name = "vScroll";
-            this.vScroll.Size = new System.Drawing.Size(16, 360);
-            this.vScroll.TabIndex = 1;
-            // 
+            //
+            vScroll.Location = new System.Drawing.Point(440, 0);
+            vScroll.Maximum = 300;
+            vScroll.Minimum = 0;
+            vScroll.Name = "vScroll";
+            vScroll.Size = new System.Drawing.Size(16, 360);
+            vScroll.TabIndex = 1;
+            //
             // Filler
-            // 
-            this.Filler.BackColor = System.Drawing.SystemColors.Control;
-            this.Filler.Location = new System.Drawing.Point(64, 260);
-            this.Filler.Name = "Filler";
-            this.Filler.Size = new System.Drawing.Size(20, 20);
-            this.Filler.TabIndex = 3;
-            // 
+            //
+            Filler.BackColor = System.Drawing.SystemColors.Control;
+            Filler.Location = new System.Drawing.Point(64, 260);
+            Filler.Name = "Filler";
+            Filler.Size = new System.Drawing.Size(20, 20);
+            Filler.TabIndex = 3;
+            //
             // TopThumb
-            // 
-            this.TopThumb.BackColor = System.Drawing.SystemColors.Control;
-            this.TopThumb.Cursor = System.Windows.Forms.Cursors.HSplit;
-            this.TopThumb.Location = new System.Drawing.Point(101, 17);
-            this.TopThumb.Name = "TopThumb";
-            this.TopThumb.Size = new System.Drawing.Size(16, 8);
-            this.TopThumb.TabIndex = 3;
-            this.TopThumb.Visible = false;
-            // 
+            //
+            TopThumb.BackColor = System.Drawing.SystemColors.Control;
+            TopThumb.Cursor = System.Windows.Forms.Cursors.HSplit;
+            TopThumb.Location = new System.Drawing.Point(101, 17);
+            TopThumb.Name = "TopThumb";
+            TopThumb.Size = new System.Drawing.Size(16, 8);
+            TopThumb.TabIndex = 3;
+            TopThumb.Visible = false;
+            //
             // LeftThumb
-            // 
-            this.LeftThumb.BackColor = System.Drawing.SystemColors.Control;
-            this.LeftThumb.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.LeftThumb.Location = new System.Drawing.Point(423, 17);
-            this.LeftThumb.Name = "LeftThumb";
-            this.LeftThumb.Size = new System.Drawing.Size(8, 16);
-            this.LeftThumb.TabIndex = 3;
-            this.LeftThumb.Visible = false;
+            //
+            LeftThumb.BackColor = System.Drawing.SystemColors.Control;
+            LeftThumb.Cursor = System.Windows.Forms.Cursors.VSplit;
+            LeftThumb.Location = new System.Drawing.Point(423, 17);
+            LeftThumb.Name = "LeftThumb";
+            LeftThumb.Size = new System.Drawing.Size(8, 16);
+            LeftThumb.TabIndex = 3;
+            LeftThumb.Visible = false;
 
-            // 
+            //
             // SplitViewChildControl
-            // 
-            this.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            Controls.AddRange(new System.Windows.Forms.Control[]
                                    {
-                                       this.TopThumb,
-                                       this.LeftThumb,
-                                       this.Filler,
-                                       this.vScroll,
-                                       this.hScroll
+                                       TopThumb,
+                                       LeftThumb,
+                                       Filler,
+                                       vScroll,
+                                       hScroll
                                    });
-            this.Name = "SplitViewChildControl";
-            this.Size = new System.Drawing.Size(456, 376);
-            this.ResumeLayout(false);
+            Name = "SplitViewChildControl";
+            Size = new System.Drawing.Size(456, 376);
+            ResumeLayout(false);
         }
 
-        #endregion
+        #endregion Component Designer generated code
     }
 }

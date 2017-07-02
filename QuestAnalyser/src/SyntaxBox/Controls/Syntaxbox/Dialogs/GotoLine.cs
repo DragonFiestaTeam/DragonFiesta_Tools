@@ -88,7 +88,7 @@ namespace Alsing.Windows.Forms.SyntaxBox
                 int row = int.Parse(txtRow.Text) - 1;
                 mOwner.GotoLine(row);
             }
-            catch {}
+            catch { }
             Close();
         }
 
@@ -117,70 +117,70 @@ namespace Alsing.Windows.Forms.SyntaxBox
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.txtRow = new System.Windows.Forms.TextBox();
-            this.lblLines = new System.Windows.Forms.Label();
-            this.SuspendLayout();
-            // 
+            btnCancel = new System.Windows.Forms.Button();
+            btnOK = new System.Windows.Forms.Button();
+            txtRow = new System.Windows.Forms.TextBox();
+            lblLines = new System.Windows.Forms.Label();
+            SuspendLayout();
+            //
             // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(160, 48);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(72, 24);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
+            //
+            btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            btnCancel.Location = new System.Drawing.Point(160, 48);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new System.Drawing.Size(72, 24);
+            btnCancel.TabIndex = 0;
+            btnCancel.Text = "Cancel";
+            btnCancel.Click += new System.EventHandler(btnCancel_Click);
+            //
             // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(80, 48);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(72, 24);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "OK";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
+            //
+            btnOK.Location = new System.Drawing.Point(80, 48);
+            btnOK.Name = "btnOK";
+            btnOK.Size = new System.Drawing.Size(72, 24);
+            btnOK.TabIndex = 1;
+            btnOK.Text = "OK";
+            btnOK.Click += new System.EventHandler(btnOK_Click);
+            //
             // txtRow
-            // 
-            this.txtRow.Location = new System.Drawing.Point(8, 24);
-            this.txtRow.Name = "txtRow";
-            this.txtRow.Size = new System.Drawing.Size(224, 20);
-            this.txtRow.TabIndex = 2;
-            this.txtRow.Text = "";
-            // 
+            //
+            txtRow.Location = new System.Drawing.Point(8, 24);
+            txtRow.Name = "txtRow";
+            txtRow.Size = new System.Drawing.Size(224, 20);
+            txtRow.TabIndex = 2;
+            txtRow.Text = "";
+            //
             // lblLines
-            // 
-            this.lblLines.Location = new System.Drawing.Point(8, 8);
-            this.lblLines.Name = "lblLines";
-            this.lblLines.Size = new System.Drawing.Size(128, 16);
-            this.lblLines.TabIndex = 3;
-            this.lblLines.Text = "-";
-            // 
+            //
+            lblLines.Location = new System.Drawing.Point(8, 8);
+            lblLines.Name = "lblLines";
+            lblLines.Size = new System.Drawing.Size(128, 16);
+            lblLines.TabIndex = 3;
+            lblLines.Text = "-";
+            //
             // GotoLineForm
-            // 
-            this.AcceptButton = this.btnOK;
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(242, 82);
-            this.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            AcceptButton = btnOK;
+            AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            CancelButton = btnCancel;
+            ClientSize = new System.Drawing.Size(242, 82);
+            Controls.AddRange(new System.Windows.Forms.Control[]
                                    {
-                                       this.lblLines, this.txtRow, this.btnOK, this.btnCancel
+                                       lblLines, txtRow, btnOK, btnCancel
                                    }
                 );
-            this.FormBorderStyle =
+            FormBorderStyle =
                 System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "GotoLineForm";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Go To Line";
-            this.Closing += new System.ComponentModel.CancelEventHandler
-                (this.GotoLine_Closing);
-            this.Activated += new System.EventHandler(this.GotoLine_Activated);
-            this.ResumeLayout(false);
+            Name = "GotoLineForm";
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Go To Line";
+            Closing += new System.ComponentModel.CancelEventHandler
+                (GotoLine_Closing);
+            Activated += new System.EventHandler(GotoLine_Activated);
+            ResumeLayout(false);
         }
 
-        #endregion
+        #endregion Windows Form Designer generated code
     }
 }

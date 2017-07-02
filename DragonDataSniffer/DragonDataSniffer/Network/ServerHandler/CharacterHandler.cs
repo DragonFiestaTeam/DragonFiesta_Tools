@@ -1,6 +1,6 @@
-﻿using DragonDataSniffer.Object;
+﻿using DragonDataSniffer.Data;
 using DragonDataSniffer.Manager;
-using DragonDataSniffer.Data;
+using DragonDataSniffer.Object;
 
 namespace DragonDataSniffer.Network.ServerHandler
 {
@@ -9,28 +9,24 @@ namespace DragonDataSniffer.Network.ServerHandler
         [ServerPacketHandler(Handler4Type._Header, Handler4Type.Chardeatiledinfo)]
         public static void CharDetailedInfo(ServerClient client, FiestaPacket pPacket)
         {
-     
-            string MapName;
 
             if (!pPacket.ReadSkip(66) ||
-            !pPacket.TryReadString(out MapName, 12))
+            !pPacket.TryReadString(out string MapName, 12))
                 return;
 
-            MapInfo inf;
-            if(MapDataManager.Instance.GetMapInfoByName(MapName,out inf))
+            if (MapDataManager.Instance.GetMapInfoByName(MapName, out MapInfo inf))
             {
                 Character pChar = new Character(inf.ID);
 
-                client.pCharacter = pChar;
-                client.cClient.pCharacter = pChar;
-                Map pMap;
-                if(MapDataManager.Instance.GetMapByID(inf.ID,out pMap))
+                client.PCharacter = pChar;
+                client.CClient.PCharacter = pChar;
+                if (MapDataManager.Instance.GetMapByID(inf.ID, out Map pMap))
                 {
                     pMap.Invoke(pChar);
                 }
             }
 
-            client.cClient.SendPacket(pPacket);
+            client.CClient.SendPacket(pPacket);
         }
     }
 }

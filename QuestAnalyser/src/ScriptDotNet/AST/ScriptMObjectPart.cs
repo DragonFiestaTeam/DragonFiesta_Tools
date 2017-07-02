@@ -2,29 +2,30 @@
 
 using Irony.Compiler;
 using ScriptNET.Runtime;
-#endregion
+
+#endregion using
 
 namespace ScriptNET.Ast
 {
-  /// <summary>
-  /// 
-  /// </summary>
-  internal class ScriptMObjectPart : ScriptExpr
-  {
-    private string name;
-    private ScriptExpr expr;
-
-    public ScriptMObjectPart(AstNodeArgs args)
-        : base(args)
+    /// <summary>
+    ///
+    /// </summary>
+    internal class ScriptMObjectPart : ScriptExpr
     {
-      name = (ChildNodes[0] as Token).Text;
-      expr = ChildNodes[2] as ScriptExpr;
-    }
+        private string name;
+        private ScriptExpr expr;
 
-    public override void Evaluate(IScriptContext context)
-    {
-      expr.Evaluate(context);
-      context.Result = new object[] { name, context.Result };
+        public ScriptMObjectPart(AstNodeArgs args)
+            : base(args)
+        {
+            name = (ChildNodes[0] as Token).Text;
+            expr = ChildNodes[2] as ScriptExpr;
+        }
+
+        public override void Evaluate(IScriptContext context)
+        {
+            expr.Evaluate(context);
+            context.Result = new object[] { name, context.Result };
+        }
     }
-  }
 }

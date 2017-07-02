@@ -26,13 +26,12 @@ namespace Alsing.SourceCode
         {
             if (context != null && context.Instance != null && provider != null)
             {
-                edSvc = (IWindowsFormsEditorService) provider.GetService(typeof
+                edSvc = (IWindowsFormsEditorService)provider.GetService(typeof
                                                                              (IWindowsFormsEditorService));
-
 
                 if (edSvc != null)
                 {
-                    var style = (TextStyle) value;
+                    var style = (TextStyle)value;
                     using (var tsd = new TextStyleDesignerDialog(style)
                         )
                     {
@@ -50,22 +49,20 @@ namespace Alsing.SourceCode
             return value;
         }
 
-
         public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext
                                                                context)
         {
             return UITypeEditorEditStyle.Modal;
         }
 
-
         private void ValueChanged(object sender, EventArgs e)
         {
-            if (edSvc != null) {}
+            if (edSvc != null) { }
         }
 
         public override void PaintValue(PaintValueEventArgs e)
         {
-            var ts = (TextStyle) e.Value;
+            var ts = (TextStyle)e.Value;
             using (var b = new SolidBrush(ts.BackColor))
             {
                 e.Graphics.FillRectangle(b, e.Bounds);
@@ -80,7 +77,6 @@ namespace Alsing.SourceCode
                 fs |= FontStyle.Underline;
 
             var f = new Font("arial", 8f, fs);
-
 
             using (var b = new SolidBrush(ts.ForeColor))
             {

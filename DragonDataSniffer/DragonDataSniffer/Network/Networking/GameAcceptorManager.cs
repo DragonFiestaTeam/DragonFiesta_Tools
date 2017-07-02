@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DragonDataSniffer.Network
 {
@@ -11,11 +8,13 @@ namespace DragonDataSniffer.Network
     {
         public static GameAcceptorManager Instance { get; private set; }
         private ConcurrentDictionary<ClientType, GameClientAcceptor> AcceptorsByType { get; set; }
-        private ConcurrentDictionary<ushort,GameClientAcceptor> AcceptorsByPort { get; set; }
-        GameAcceptorManager()
+        private ConcurrentDictionary<ushort, GameClientAcceptor> AcceptorsByPort { get; set; }
+
+        private GameAcceptorManager()
         {
             AcceptorsByType = new ConcurrentDictionary<ClientType, GameClientAcceptor>();
         }
+
         [InitializerMethod]
         public static bool Load()
         {
@@ -30,47 +29,45 @@ namespace DragonDataSniffer.Network
                 return false;
             }
         }
-        public bool GetAcceptorByType(ClientType pType,out GameClientAcceptor aceptor)
+
+        public bool GetAcceptorByType(ClientType pType, out GameClientAcceptor aceptor)
         {
             if (AcceptorsByType.TryGetValue(pType, out aceptor))
                 return true;
 
             return false;
         }
+
         public void StopAcceptorByType(ClientType pType)
         {
-            GameClientAcceptor Acceptor;
 
-            if (AcceptorsByType.TryRemove(pType, out Acceptor))
+            if (AcceptorsByType.TryRemove(pType, out GameClientAcceptor Acceptor))
             {
                 Acceptor.Stop();
             }
-
         }
+
         public void StopAcceptorByPort(ushort port)
         {
-
         }
-        public bool StopAcceptorByType(ClientType pType,out GameClientAcceptor  Acceptor)
-        {
 
+        public bool StopAcceptorByType(ClientType pType, out GameClientAcceptor Acceptor)
+        {
             if (AcceptorsByType.TryGetValue(pType, out Acceptor))
             {
-              
-                GameClientAcceptor Acp;
-                if (AcceptorsByType.TryRemove(pType, out Acp))
+                if (AcceptorsByType.TryRemove(pType, out GameClientAcceptor Acp))
                 {
                     Acceptor.Stop();
                     return true;
                 }
                 return true;
             }
-           return false;
+            return false;
         }
 
-        public bool StartAcceptor(ClientType pType,int port)
+        public bool StartAcceptor(ClientType pType, int port)
         {
-            if(!AcceptorsByType.ContainsKey(pType))
+            if (!AcceptorsByType.ContainsKey(pType))
             {
                 GameClientAcceptor Accept = new GameClientAcceptor(port, pType);
 

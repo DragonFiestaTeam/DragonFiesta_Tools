@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using DragonDataSniffer.Data;
+﻿using DragonDataSniffer.Data;
 using DragonDataSniffer.Events;
+using System;
+using System.Collections.Generic;
+
 namespace DragonDataSniffer.Object
 {
     public sealed class Map
     {
-        public MapInfo pMapInfo { get; private set; }
+        public MapInfo PMapInfo { get; private set; }
 
         public event EventHandler<MapEnterArgs> ObjectEnterTheMap;
+
         public List<NPC> NPCsByMob = new List<NPC>();
         public Dictionary<ushort, MapObject> MapObjects = new Dictionary<ushort, MapObject>();
+
         public Map(MapInfo pMapInf)
         {
-            pMapInfo = pMapInf;
+            PMapInfo = pMapInf;
             ObjectEnterTheMap += Map_ObjectEnterTheMap;
         }
 
@@ -26,9 +29,9 @@ namespace DragonDataSniffer.Object
                 NPC pNPC = e.pObject as NPC;
                 NPC OldNPC = NPCsByMob.Find(m => m.MobID == pNPC.MobID && m.MapID == pNPC.MapID && m.X == pNPC.X && m.Y == pNPC.Y);
 
-                if(OldNPC != null)
+                if (OldNPC != null)
                 {
-                    if(MapObjects.ContainsKey(OldNPC.MapObjectID) && pNPC.MapObjectID != OldNPC.MapObjectID)
+                    if (MapObjects.ContainsKey(OldNPC.MapObjectID) && pNPC.MapObjectID != OldNPC.MapObjectID)
                     {
                         if (MapObjects.Remove(OldNPC.MapObjectID))
                         {
@@ -42,7 +45,6 @@ namespace DragonDataSniffer.Object
                     pNPC.AddToDB();
                     NPCsByMob.Add(pNPC);
                 }
-
             }
             else if (e.pObject is Character)
             {
@@ -56,11 +58,11 @@ namespace DragonDataSniffer.Object
             }
         }
 
- 
         public void Invoke(MapObject pObject)
         {
             ObjectEnterTheMap.Invoke(null, new MapEnterArgs(pObject));
         }
+
         public bool MobIDContains(ushort MobID)
         {
             NPC pInfo = NPCsByMob.Find(m => m.MobID == MobID);
@@ -71,6 +73,5 @@ namespace DragonDataSniffer.Object
             }
             return false;
         }
-        
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.IO;
 
 namespace FiestaLib.Data
 {
@@ -21,23 +20,23 @@ namespace FiestaLib.Data
             {
                 base.ColumnName = caption;
             }
-            this.TypeByte = (byte)reader.ReadUInt32();
-            this.DataType = GetType(this.TypeByte);
-            this.Lenght = reader.ReadInt32();
+            TypeByte = (byte)reader.ReadUInt32();
+            DataType = GetType(TypeByte);
+            Lenght = reader.ReadInt32();
         }
 
         public void Write(SHNWriter writer)
         {
-            if (this.ColumnName.StartsWith("Undefined"))
+            if (ColumnName.StartsWith("Undefined"))
             {
                 writer.WritePaddedString(" ", 48);
             }
             else
             {
-                writer.WritePaddedString(this.ColumnName, 48);
+                writer.WritePaddedString(ColumnName, 48);
             }
-            writer.Write((uint)this.TypeByte);
-            writer.Write((uint)this.Lenght);
+            writer.Write((uint)TypeByte);
+            writer.Write((uint)Lenght);
         }
 
         public static Type GetType(uint pCode)

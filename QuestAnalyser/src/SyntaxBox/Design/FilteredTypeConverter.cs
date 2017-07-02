@@ -16,7 +16,9 @@ namespace Alsing.Design
 {
     public class FilteredTypeConverter : TypeConverter
     {
-        protected virtual void FilterProperties(IDictionary Properties, object value) {}
+        protected virtual void FilterProperties(IDictionary Properties, object value)
+        {
+        }
 
         public override PropertyDescriptorCollection GetProperties(ITypeDescriptorContext context, object value,
                                                                    Attribute[] attributes)
@@ -29,7 +31,7 @@ namespace Alsing.Design
 
             FilterProperties(arr, value);
 
-            //copy the modified propp arr into a typed propertydescriptor[] 
+            //copy the modified propp arr into a typed propertydescriptor[]
             var arr2 = new PropertyDescriptor[arr.Values.Count];
             arr.Values.CopyTo(arr2, 0);
 

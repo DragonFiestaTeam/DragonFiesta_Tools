@@ -7,15 +7,13 @@ namespace DragonDataSniffer.Network.ServerHandler
         [ServerPacketHandler(Handler15Type._Header, Handler15Type.NPCItemList)]
         public static void On_NPCItemList(ServerClient client, FiestaPacket pPacket)
         {
-            ushort count, unk;
-            if (!pPacket.TryReadUInt16(out count)
-                || !pPacket.TryReadUInt16(out unk))
+            if (!pPacket.TryReadUInt16(out ushort count)
+                || !pPacket.TryReadUInt16(out ushort unk))
             {
                 client.Dispose();
                 return;
             }
-            MapObject pMapObject;
-            if (client.pCharacter.GetTarget(out pMapObject))
+            if (client.PCharacter.GetTarget(out MapObject pMapObject))
             {
                 if (pMapObject is NPC)
                 {
@@ -25,9 +23,7 @@ namespace DragonDataSniffer.Network.ServerHandler
                     {
                         for (int i = 0; i < count; i++)
                         {
-                            byte slot;
-                            ushort ItemID;
-                            if (!pPacket.TryReadByte(out slot) || !pPacket.TryReadUInt16(out ItemID))
+                            if (!pPacket.TryReadByte(out byte slot) || !pPacket.TryReadUInt16(out ushort ItemID))
                             {
                                 break;
                             }
@@ -42,20 +38,19 @@ namespace DragonDataSniffer.Network.ServerHandler
                     }
                 }
             }
-            client.cClient.SendPacket(pPacket);
+            client.CClient.SendPacket(pPacket);
         }
+
         [ServerPacketHandler(Handler15Type._Header, Handler15Type.SkillNPCStuff)]
         public static void On_SkillNPCStufft(ServerClient client, FiestaPacket pPacket)
         {
-            ushort count, unk;
-            if (!pPacket.TryReadUInt16(out count)
-                || !pPacket.TryReadUInt16(out unk))
+            if (!pPacket.TryReadUInt16(out ushort count)
+                || !pPacket.TryReadUInt16(out ushort unk))
             {
                 client.Dispose();
                 return;
             }
-            MapObject pMapObject;
-            if (client.pCharacter.GetTarget(out pMapObject))
+            if (client.PCharacter.GetTarget(out MapObject pMapObject))
             {
                 if (pMapObject is NPC)
                 {
@@ -65,9 +60,7 @@ namespace DragonDataSniffer.Network.ServerHandler
                     {
                         for (int i = 0; i < count; i++)
                         {
-                            byte slot;
-                            ushort ItemID;
-                            if (!pPacket.TryReadByte(out slot) || !pPacket.TryReadUInt16(out ItemID))
+                            if (!pPacket.TryReadByte(out byte slot) || !pPacket.TryReadUInt16(out ushort ItemID))
                             {
                                 break;
                             }
@@ -82,20 +75,19 @@ namespace DragonDataSniffer.Network.ServerHandler
                     }
                 }
             }
-            client.cClient.SendPacket(pPacket);
+            client.CClient.SendPacket(pPacket);
         }
+
         [ServerPacketHandler(Handler15Type._Header, Handler15Type.StuffNPCItemList)]
         public static void StuffNPCItemList(ServerClient client, FiestaPacket pPacket)
         {
-            ushort count, unk;
-            if (!pPacket.TryReadUInt16(out count)
-                || !pPacket.TryReadUInt16(out unk))
+            if (!pPacket.TryReadUInt16(out ushort count)
+                || !pPacket.TryReadUInt16(out ushort unk))
             {
                 client.Dispose();
                 return;
             }
-            MapObject pMapObject;
-            if (client.pCharacter.GetTarget(out pMapObject))
+            if (client.PCharacter.GetTarget(out MapObject pMapObject))
             {
                 if (pMapObject is NPC)
                 {
@@ -105,9 +97,7 @@ namespace DragonDataSniffer.Network.ServerHandler
                     {
                         for (int i = 0; i < count; i++)
                         {
-                            byte slot;
-                            ushort ItemID;
-                            if (!pPacket.TryReadByte(out slot) || !pPacket.TryReadUInt16(out ItemID))
+                            if (!pPacket.TryReadByte(out byte slot) || !pPacket.TryReadUInt16(out ushort ItemID))
                             {
                                 break;
                             }
@@ -122,7 +112,7 @@ namespace DragonDataSniffer.Network.ServerHandler
                     }
                 }
             }
-            client.cClient.SendPacket(pPacket);
+            client.CClient.SendPacket(pPacket);
         }
     }
 }

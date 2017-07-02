@@ -1,5 +1,5 @@
-﻿using System;
-using Alsing.Windows;
+﻿using Alsing.Windows;
+using System;
 using System.Drawing;
 
 namespace Alsing.Drawing

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DragonDataSniffer.Chat
 {
@@ -10,7 +7,9 @@ namespace DragonDataSniffer.Chat
     public sealed class CommandHandler
     {
         public static CommandHandler Instance { get; private set; }
+
         public delegate void Command(params string[] param);
+
         private readonly Dictionary<string, CommandInfo> commands = new Dictionary<string, CommandInfo>();
 
         public CommandHandler() //use this for handling commands :D
@@ -18,6 +17,7 @@ namespace DragonDataSniffer.Chat
             LoadCommands();
             Log.WriteLine(LogLevel.Info, "{0} command(s) registered.", commands.Count);
         }
+
         [InitializerMethod]
         public static bool Load()
         {
@@ -32,17 +32,20 @@ namespace DragonDataSniffer.Chat
                 return false;
             }
         }
+
         public void LoadCommands()
         {
-            RegisterCommand("!Note", Note );
+            RegisterCommand("!Note", Note);
         }
+
         public void Note(params string[] param)
         {
-            if(param.Length > 0)
+            if (param.Length > 0)
             {
                 Manager.GameClientManager.Instance.DropMessage(param[1]);
             }
         }
+
         public void RegisterCommand(string command, Command function, params string[] param)
         {
             if (commands.ContainsKey(command))
@@ -50,14 +53,13 @@ namespace DragonDataSniffer.Chat
                 Log.WriteLine(LogLevel.Warn, "{0} already registered as a command.", command);
                 return;
             }
-            CommandInfo info = new CommandInfo(command.ToLower(), function,  param);
+            CommandInfo info = new CommandInfo(command.ToLower(), function, param);
             commands.Add(command.ToLower(), info);
         }
 
         public string[] GetCommandParams(string command)
         {
-            CommandInfo info;
-            if (commands.TryGetValue(command, out info))
+            if (commands.TryGetValue(command, out CommandInfo info))
             {
                 return info.Parameters;
             }
@@ -66,25 +68,21 @@ namespace DragonDataSniffer.Chat
 
         public CommandStatus ExecuteCommand(string[] command)
         {
-            CommandInfo info;
-            if (commands.TryGetValue(command[0].ToLower(), out info))
+            if (commands.TryGetValue(command[0].ToLower(), out CommandInfo info))
             {
-            
-                    try
-                    {
-                        info.Function(command);
-                        return CommandStatus.Done;
-                    }
-                    catch (Exception ex)
-                    {
-                        string wholeCommand = string.Join(" ", command);
-                        Log.WriteLine(LogLevel.Exception, "Exception while handling command '{0}': {1}", wholeCommand, ex.ToString());
-                        return CommandStatus.Error;
-                    }
-                
+                try
+                {
+                    info.Function(command);
+                    return CommandStatus.Done;
+                }
+                catch (Exception ex)
+                {
+                    string wholeCommand = string.Join(" ", command);
+                    Log.WriteLine(LogLevel.Exception, "Exception while handling command '{0}': {1}", wholeCommand, ex.ToString());
+                    return CommandStatus.Error;
+                }
             }
             else return CommandStatus.NotFound;
         }
-
     }
 }

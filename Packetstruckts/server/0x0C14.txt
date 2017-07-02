@@ -18,20 +18,20 @@ using (ScriptAPI)
 	    AddByte("Face");    
 			   
 	    AddUShort("Helm");
-	    AddUShort("Weapon 1");	
-	    AddUShort("Weapon 2");
+	    AddUShort("Weapon 1 Main");	
+	    AddUShort("Weapon 2 Offhand");
 		AddUShort("Armor");
 		AddUShort("Shield");	
 	    AddUShort("Pants");
 	    AddUShort("Boots");
-	    AddUShort("Custome Boots");
-	    AddUShort("Custome Pants");
+	    AddUShort("Custome Three Pieces Boots");
+	    AddUShort("Custome Three Pieces Pants");
 	    AddUShort("Custome Armor");
 	    AddUShort("Custome Hat");
 	    AddUShort("Custome Pet");
 	    AddUShort("Custome Glasses");
-	    AddUShort("Custome Weapon 1");
-	    AddUShort("Custome Weapon 2");
+	    AddUShort("Custome Weapon 1 Main");
+	    AddUShort("Custome Weapon 2 Offhand");
 	    AddUShort("Custome Back");      
 	    AddUShort("Custome Armor 2");
 	    AddUShort("Custome Tail"); 

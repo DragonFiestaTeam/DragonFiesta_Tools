@@ -14,9 +14,9 @@
     along with Zepheus Emulator.  If not, see <http://www.gnu.org/licenses/>.  */
 
 using System;
-using System.Threading;
-using System.Text;
 using System.IO;
+using System.Text;
+using System.Threading;
 
 namespace SHNtoMySQLConverter
 {
@@ -26,6 +26,7 @@ namespace SHNtoMySQLConverter
         public static bool IsDebug { get; set; }
         public static TextWriter Writer { get; set; }
         public static short FlushCount { get; set; }
+
         public static void WriteLine(LogLevel pLogLevel, string pFormat, params object[] pArgs)
         {
             if (pLogLevel == LogLevel.Debug && !IsDebug) return;
@@ -60,6 +61,7 @@ namespace SHNtoMySQLConverter
             }
             //TODO: txt files
         }
+
         public static void SetLogToFile(string filename)
         {
             Directory.CreateDirectory(filename.Replace(Path.GetFileName(filename), ""));
@@ -67,6 +69,7 @@ namespace SHNtoMySQLConverter
             sw.AutoFlush = true;
             Writer = sw;
         }
+
         public static void Flush()
         {
             if (Writer != null)
@@ -129,14 +132,19 @@ namespace SHNtoMySQLConverter
             {
                 case LogLevel.Info:
                     return ConsoleColor.Green;
+
                 case LogLevel.Warn:
                     return ConsoleColor.Yellow;
+
                 case LogLevel.Debug:
                     return ConsoleColor.Magenta;
+
                 case LogLevel.Error:
                     return ConsoleColor.DarkRed;
+
                 case LogLevel.Exception:
                     return ConsoleColor.Red;
+
                 default:
                     return ConsoleColor.White;
             }
@@ -152,5 +160,4 @@ namespace SHNtoMySQLConverter
         Exception,
         Debug
     }
-
 }

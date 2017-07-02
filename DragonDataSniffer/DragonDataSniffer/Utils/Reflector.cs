@@ -7,8 +7,6 @@ namespace DragonDataSniffer.Utils
 {
     public static class Reflector
     {
-
-
         public static IEnumerable<Pair<TAttribute, MethodInfo>> FindMethodsByAttribute<TAttribute>()
             where TAttribute : Attribute
         {

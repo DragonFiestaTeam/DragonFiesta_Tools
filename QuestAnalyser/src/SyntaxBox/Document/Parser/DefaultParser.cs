@@ -13,7 +13,7 @@
 namespace Alsing.SourceCode.SyntaxDocumentParsers
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed class DefaultParser : IParser
     {
@@ -21,7 +21,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
         private long Version;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public DefaultParser()
         {
@@ -31,7 +31,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
         #region IParser Members
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SyntaxDefinition SyntaxDefinition
         {
@@ -43,7 +43,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                 if (mSyntaxDefinition == null)
                 {
                     var l = new SyntaxDefinition();
-                    l.mainSpanDefinition = new SpanDefinition(l) {MultiLine = true};
+                    l.mainSpanDefinition = new SpanDefinition(l) { MultiLine = true };
                     mSyntaxDefinition = l;
                 }
 
@@ -54,7 +54,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="index"></param>
         /// <param name="ParseKeywords"></param>
@@ -70,11 +70,10 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                 }
             }
 
-
             Document.InvokeRowParsed(Document[index]);
         }
 
-        #endregion
+        #endregion IParser Members
 
         #region PUBLIC PROPERTY SEPARATORS
 
@@ -84,19 +83,19 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
             set { SyntaxDefinition.Separators = value; }
         }
 
-        #endregion
+        #endregion PUBLIC PROPERTY SEPARATORS
 
         #region Optimerat och klart
 
         // ska anropas om "is same but different" är true
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SyntaxDocument Document { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="SyntaxFile"></param>
         public void Init(string SyntaxFile)
@@ -107,10 +106,9 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                     )
                     SyntaxFile += ".syn";
 
-
                 SyntaxDefinition = new SyntaxDefinitionLoader().Load(SyntaxFile);
             }
-            catch {}
+            catch { }
         }
 
         public void Init(string syntaxFile, string separators)
@@ -121,14 +119,13 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                     )
                     syntaxFile += ".syn";
 
-
                 SyntaxDefinition = new SyntaxDefinitionLoader().Load(syntaxFile, separators);
             }
-            catch {}
+            catch { }
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="syntaxDefinition"></param>
         public void Init(SyntaxDefinition syntaxDefinition)
@@ -137,7 +134,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="RowIndex"></param>
         public void ParsePreviewLine(int RowIndex)
@@ -176,7 +173,6 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
 
                 if (seg == row.endSpan)
                     row.endSpan = seg2;
-
 
                 if (row.startSpans.IndexOf(seg) >= 0)
                     row.startSpans[row.startSpans.IndexOf(seg)] = seg2;
@@ -230,14 +226,13 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                 oseg = oseg.Parent;
             }
 
-
             if (diff || row.startSpan != oldStartSpan)
                 return false;
 
             return true;
         }
 
-        #endregion
+        #endregion Optimerat och klart
 
         private ScanResultWord GetNextWord(string Text, Span currentSpan, int
                                                                                     StartPos, ref bool HasComplex)
@@ -246,7 +241,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
 
             #region ComplexFind
 
-            int BestComplexPos = - 1;
+            int BestComplexPos = -1;
             Pattern BestComplexPattern = null;
             string BestComplexToken = "";
             var complexword = new ScanResultWord();
@@ -258,7 +253,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                                                                 pattern.Parent.CaseSensitive, Separators);
                     if (scanres.Token != "")
                     {
-                        if (scanres.Index < BestComplexPos || BestComplexPos == - 1)
+                        if (scanres.Index < BestComplexPos || BestComplexPos == -1)
                         {
                             BestComplexPos = scanres.Index;
                             BestComplexPattern = pattern;
@@ -266,7 +261,6 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                         }
                     }
                 }
-
 
                 if (BestComplexPattern != null)
                 {
@@ -282,9 +276,9 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                 }
             }
 
-            #endregion
+            #endregion ComplexFind
 
-            #region SimpleFind 
+            #region SimpleFind
 
             var simpleword = new ScanResultWord();
             for (int i = StartPos; i < Text.Length; i++)
@@ -352,11 +346,11 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                             }
                         }
 
-                        #endregion
+                        #endregion Case Insensitive
                     }
                 }
 
-                #endregion
+                #endregion 3+ char pattern
 
                 if (simpleword.HasContent)
                     break;
@@ -364,7 +358,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                 #region single char pattern
 
                 char c = Text[i];
-                var patterns = (PatternCollection) spanDefinition.LookupTable[c];
+                var patterns = (PatternCollection)spanDefinition.LookupTable[c];
                 if (patterns != null)
                 {
                     //ok , there are patterns that start with this char
@@ -400,7 +394,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                                 }
                             }
 
-                            #endregion
+                            #endregion Case Insensitive
                         }
                         else
                         {
@@ -425,7 +419,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                                 }
                             }
 
-                            #endregion
+                            #endregion Case Sensitive
                         }
                     }
 
@@ -433,10 +427,10 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                         break;
                 }
 
-                #endregion
+                #endregion single char pattern
             }
 
-            #endregion
+            #endregion SimpleFind
 
             if (complexword.HasContent && simpleword.HasContent)
             {
@@ -460,10 +454,8 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
             if (complexword.HasContent)
                 return complexword;
 
-
             return new ScanResultWord();
         }
-
 
         private void ParseText(Row Row, Span currentSpan, string Text)
         {
@@ -505,14 +497,12 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
             Span oldStartSpan = Row.startSpan;
             bool Fold = !Row.IsCollapsed;
 
-
             if (Row.IsCollapsedEndPart)
             {
                 //Row.expansion_EndSpan.Expanded = true;
                 //Row.expansion_EndSpan.EndRow = null;
                 Row.expansion_EndSpan.EndWord = null;
             }
-
 
             //set startsegment for this row
             if (index > 0)
@@ -523,13 +513,12 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
             {
                 if (Row.startSpan == null)
                 {
-                    Row.startSpan = new Span(Row) {spanDefinition = mSyntaxDefinition.mainSpanDefinition};
+                    Row.startSpan = new Span(Row) { spanDefinition = mSyntaxDefinition.mainSpanDefinition };
                 }
             }
 
             int CurrentPosition = 0;
             Span currentSpan = Row.startSpan;
-
 
             //kör tills vi kommit till slutet av raden..
             Row.endSpans.Clear();
@@ -579,7 +568,6 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                     currentSpan.EndRow = Row;
                     currentSpan.EndWord = Row[Row.Count - 1];
 
-
                     if (currentSpan.Parent != null)
                         currentSpan = currentSpan.Parent;
 
@@ -598,13 +586,12 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                         //ParseTools.AddString (Text,Row,st,currentSpan);
                     }
 
-
                     var NewSeg = new Span
-                                 {
-                                     Parent = currentSpan,
-                                     spanDefinition = ChildSegment.spanDefinition,
-                                     Scope = ChildSegment.Scope
-                                 };
+                    {
+                        Parent = currentSpan,
+                        spanDefinition = ChildSegment.spanDefinition,
+                        Scope = ChildSegment.Scope
+                    };
 
                     Row.startSpans.Add(NewSeg);
 
@@ -614,19 +601,18 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                     NewSeg.StartRow = Row;
                     NewSeg.StartWord = Row[Row.Count - 1];
 
-
                     currentSpan = NewSeg;
                     CurrentPosition = ChildSegment.Position + ChildSegment.Token.Length;
 
                     if (ChildSegment.Scope.spawnSpanOnStart != null)
                     {
                         var SpawnSeg = new Span
-                                       {
-                                           Parent = NewSeg,
-                                           spanDefinition = ChildSegment.Scope.spawnSpanOnStart,
-                                           Scope = new Scope(),
-                                           StartWord = NewSeg.StartWord
-                                       };
+                        {
+                            Parent = NewSeg,
+                            spanDefinition = ChildSegment.Scope.spawnSpanOnStart,
+                            Scope = new Scope(),
+                            StartWord = NewSeg.StartWord
+                        };
                         Row.startSpans.Add(SpawnSeg);
                         currentSpan = SpawnSeg;
                     }
@@ -639,7 +625,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                         {
                             //we did not find a childblock nor an endblock , just output the last pice of text
                             string Text = Row.Text.Substring(CurrentPosition);
-                            //TextStyle st=currentSpan.spanDefinition.Style;	
+                            //TextStyle st=currentSpan.spanDefinition.Style;
                             ParseText(Row, currentSpan, Text);
                             //ParseTools.AddString (Text,Row,st,currentSpan);
                         }
@@ -699,7 +685,6 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
             }
         }
 
-
         private ScanResultSegment GetEndSegment(Row Row, Span currentSpan,
                                                 int StartPos)
         {
@@ -707,8 +692,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
             if (StartPos >= Row.Text.Length || currentSpan.Scope == null)
                 return new ScanResultSegment();
 
-            var Result = new ScanResultSegment {HasContent = false, IsEndSegment = false};
-
+            var Result = new ScanResultSegment { HasContent = false, IsEndSegment = false };
 
             //--------------------------------------------------------------------------------
             //scan for childblocks
@@ -739,7 +723,6 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                                 Result.span = seg;
                                 Result.Scope = null;
 
-
                                 if (!end.IsComplex)
                                 {
                                     if (seg.Scope.NormalizeCase)
@@ -767,9 +750,7 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
             if (StartPos >= Row.Text.Length)
                 return new ScanResultSegment();
 
-
-            var Result = new ScanResultSegment {HasContent = false, IsEndSegment = false};
-
+            var Result = new ScanResultSegment { HasContent = false, IsEndSegment = false };
 
             foreach (SpanDefinition ChildBlock in currentSpan.spanDefinition.childSpanDefinitions)
             {
@@ -797,7 +778,6 @@ namespace Alsing.SourceCode.SyntaxDocumentParsers
                     }
                 }
             }
-
 
             //no result ,  new ScanResultSegment();
             if (!Result.HasContent)

@@ -40,7 +40,7 @@ namespace Alsing.SourceCode
         public TextStyleDesignerDialog(TextStyle Style)
         {
             _Style = Style;
-            _TmpStyle = (TextStyle) Style.Clone();
+            _TmpStyle = (TextStyle)Style.Clone();
 
             //
             // Required for Windows Form Designer support
@@ -95,7 +95,6 @@ namespace Alsing.SourceCode
             else
                 lblPreview.BackColor = Color.White;
 
-
             FontStyle fs = FontStyle.Regular;
             if (s.Bold)
                 fs |= FontStyle.Bold;
@@ -123,7 +122,9 @@ namespace Alsing.SourceCode
             DialogResult = DialogResult.Cancel;
         }
 
-        private void TextStyleDesignerDialog_Load(object sender, EventArgs e) {}
+        private void TextStyleDesignerDialog_Load(object sender, EventArgs e)
+        {
+        }
 
         #region Windows Form Designer generated code
 
@@ -133,148 +134,148 @@ namespace Alsing.SourceCode
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.pgStyles = new System.Windows.Forms.PropertyGrid();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblCaption = new System.Windows.Forms.Label();
-            this.lblPreview = new System.Windows.Forms.Label();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.SuspendLayout();
-            // 
+            panel2 = new System.Windows.Forms.Panel();
+            btnCancel = new System.Windows.Forms.Button();
+            btnOK = new System.Windows.Forms.Button();
+            pgStyles = new System.Windows.Forms.PropertyGrid();
+            panel1 = new System.Windows.Forms.Panel();
+            panel3 = new System.Windows.Forms.Panel();
+            lblCaption = new System.Windows.Forms.Label();
+            lblPreview = new System.Windows.Forms.Label();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
+            SuspendLayout();
+            //
             // panel2
-            // 
-            this.panel2.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            panel2.Controls.AddRange(new System.Windows.Forms.Control[]
                                           {
-                                              this.lblPreview, this.btnCancel, this.btnOK
+                                              lblPreview, btnCancel, btnOK
                                           }
                 );
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(4, 255);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(354, 80);
-            this.panel2.TabIndex = 8;
-            // 
+            panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            panel2.Location = new System.Drawing.Point(4, 255);
+            panel2.Name = "panel2";
+            panel2.Size = new System.Drawing.Size(354, 80);
+            panel2.TabIndex = 8;
+            //
             // btnCancel
-            // 
-            this.btnCancel.Anchor = (System.Windows.Forms.AnchorStyles.Top |
+            //
+            btnCancel.Anchor = (System.Windows.Forms.AnchorStyles.Top |
                                      System.Windows.Forms.AnchorStyles.Right);
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(279, 48);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
+            btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            btnCancel.Location = new System.Drawing.Point(279, 48);
+            btnCancel.Name = "btnCancel";
+            btnCancel.TabIndex = 4;
+            btnCancel.Text = "Cancel";
+            btnCancel.Click += new System.EventHandler(btnCancel_Click);
+            //
             // btnOK
-            // 
-            this.btnOK.Anchor = (System.Windows.Forms.AnchorStyles.Top |
+            //
+            btnOK.Anchor = (System.Windows.Forms.AnchorStyles.Top |
                                  System.Windows.Forms.AnchorStyles.Right);
-            this.btnOK.Location = new System.Drawing.Point(200, 48);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.TabIndex = 3;
-            this.btnOK.Text = "OK";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
+            btnOK.Location = new System.Drawing.Point(200, 48);
+            btnOK.Name = "btnOK";
+            btnOK.TabIndex = 3;
+            btnOK.Text = "OK";
+            btnOK.Click += new System.EventHandler(btnOK_Click);
+            //
             // pgStyles
-            // 
-            this.pgStyles.CommandsVisibleIfAvailable = true;
-            this.pgStyles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pgStyles.LargeButtons = false;
-            this.pgStyles.LineColor = System.Drawing.SystemColors.ScrollBar;
-            this.pgStyles.Location = new System.Drawing.Point(4, 26);
-            this.pgStyles.Name = "pgStyles";
-            this.pgStyles.Size = new System.Drawing.Size(354, 221);
-            this.pgStyles.TabIndex = 6;
-            this.pgStyles.Text = "propertyGrid1";
-            this.pgStyles.ToolbarVisible = false;
-            this.pgStyles.ViewBackColor = System.Drawing.SystemColors.Window;
-            this.pgStyles.ViewForeColor = System.Drawing.SystemColors.WindowText;
-            this.pgStyles.PropertyValueChanged += new
+            //
+            pgStyles.CommandsVisibleIfAvailable = true;
+            pgStyles.Dock = System.Windows.Forms.DockStyle.Fill;
+            pgStyles.LargeButtons = false;
+            pgStyles.LineColor = System.Drawing.SystemColors.ScrollBar;
+            pgStyles.Location = new System.Drawing.Point(4, 26);
+            pgStyles.Name = "pgStyles";
+            pgStyles.Size = new System.Drawing.Size(354, 221);
+            pgStyles.TabIndex = 6;
+            pgStyles.Text = "propertyGrid1";
+            pgStyles.ToolbarVisible = false;
+            pgStyles.ViewBackColor = System.Drawing.SystemColors.Window;
+            pgStyles.ViewForeColor = System.Drawing.SystemColors.WindowText;
+            pgStyles.PropertyValueChanged += new
                 System.Windows.Forms.PropertyValueChangedEventHandler
-                (this.pgStyles_PropertyValueChanged);
-            // 
+                (pgStyles_PropertyValueChanged);
+            //
             // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(4, 247);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(354, 8);
-            this.panel1.TabIndex = 9;
-            // 
+            //
+            panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            panel1.Location = new System.Drawing.Point(4, 247);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(354, 8);
+            panel1.TabIndex = 9;
+            //
             // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel3.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            panel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            panel3.Controls.AddRange(new System.Windows.Forms.Control[]
                                           {
-                                              this.lblCaption
+                                              lblCaption
                                           }
                 );
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(4, 2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(354, 24);
-            this.panel3.TabIndex = 10;
-            // 
+            panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            panel3.Location = new System.Drawing.Point(4, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new System.Drawing.Size(354, 24);
+            panel3.TabIndex = 10;
+            //
             // lblCaption
-            // 
-            this.lblCaption.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCaption.Font = new System.Drawing.Font("Microsoft Sans Serif",
+            //
+            lblCaption.Dock = System.Windows.Forms.DockStyle.Fill;
+            lblCaption.Font = new System.Drawing.Font("Microsoft Sans Serif",
                                                            11F, System.Drawing.FontStyle.Bold,
                                                            System.Drawing.GraphicsUnit.Point,
-                                                           ((System.Byte) (0)));
-            this.lblCaption.ForeColor = System.Drawing.SystemColors.Window;
-            this.lblCaption.Name = "lblCaption";
-            this.lblCaption.Size = new System.Drawing.Size(354, 24);
-            this.lblCaption.TabIndex = 0;
-            this.lblCaption.Text = "-";
-            this.lblCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+                                                           ((System.Byte)(0)));
+            lblCaption.ForeColor = System.Drawing.SystemColors.Window;
+            lblCaption.Name = "lblCaption";
+            lblCaption.Size = new System.Drawing.Size(354, 24);
+            lblCaption.TabIndex = 0;
+            lblCaption.Text = "-";
+            lblCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //
             // lblPreview
-            // 
-            this.lblPreview.BackColor = System.Drawing.SystemColors.Window;
-            this.lblPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPreview.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblPreview.Font = new System.Drawing.Font("Courier New", 10F,
+            //
+            lblPreview.BackColor = System.Drawing.SystemColors.Window;
+            lblPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            lblPreview.Dock = System.Windows.Forms.DockStyle.Top;
+            lblPreview.Font = new System.Drawing.Font("Courier New", 10F,
                                                            System.Drawing.FontStyle.Regular,
                                                            System.Drawing.GraphicsUnit.Point, (
-                                                                                                  (System.Byte) (0)));
-            this.lblPreview.Name = "lblPreview";
-            this.lblPreview.Size = new System.Drawing.Size(354, 40);
-            this.lblPreview.TabIndex = 8;
-            this.lblPreview.Text =
+                                                                                                  (System.Byte)(0)));
+            lblPreview.Name = "lblPreview";
+            lblPreview.Size = new System.Drawing.Size(354, 40);
+            lblPreview.TabIndex = 8;
+            lblPreview.Text =
                 "The quick brown fox jumped over the lazy dog.        ";
-            this.lblPreview.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            lblPreview.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //
             // TextStyleDesignerDialog
-            // 
-            this.AcceptButton = this.btnOK;
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(362, 335);
-            this.ControlBox = false;
-            this.Controls.AddRange(new System.Windows.Forms.Control[]
+            //
+            AcceptButton = btnOK;
+            AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            CancelButton = btnCancel;
+            ClientSize = new System.Drawing.Size(362, 335);
+            ControlBox = false;
+            Controls.AddRange(new System.Windows.Forms.Control[]
                                    {
-                                       this.pgStyles, this.panel3, this.panel1, this.panel2
+                                       pgStyles, panel3, panel1, panel2
                                    }
                 );
-            this.DockPadding.Left = 4;
-            this.DockPadding.Right = 4;
-            this.DockPadding.Top = 2;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "TextStyleDesignerDialog";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Style Designer";
-            this.Load += new System.EventHandler(this.TextStyleDesignerDialog_Load);
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.ResumeLayout(false);
+            DockPadding.Left = 4;
+            DockPadding.Right = 4;
+            DockPadding.Top = 2;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Name = "TextStyleDesignerDialog";
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Style Designer";
+            Load += new System.EventHandler(TextStyleDesignerDialog_Load);
+            panel2.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
-        #endregion
+        #endregion Windows Form Designer generated code
     }
 }

@@ -9,7 +9,6 @@
 // *
 
 using System.Drawing;
-using System.Globalization;
 
 namespace Alsing.Windows.Forms.FormatLabel
 {
@@ -42,7 +41,6 @@ namespace Alsing.Windows.Forms.FormatLabel
         {
             get { return _TagName; }
         }
-
 
         public string Tag
         {

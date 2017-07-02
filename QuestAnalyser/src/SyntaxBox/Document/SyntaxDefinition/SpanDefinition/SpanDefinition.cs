@@ -98,7 +98,7 @@ namespace Alsing.SourceCode
         /// A list of operator groups.
         /// Each operator group can contain its own operator patterns and its own color shemes.
         /// </summary>
-        public PatternListList OperatorsList; //new PatternListList (this);	
+        public PatternListList OperatorsList; //new PatternListList (this);
 
         /// <summary>
         /// A list of scopes , most span only contain one scope , eg a scope with start and end patterns "/*" and "*/"
@@ -117,7 +117,6 @@ namespace Alsing.SourceCode
         /// for example %&gt; in asp terminates any asp span even if it appears inside an asp string.
         /// </summary>
         public bool TerminateChildren;
-
 
         /// <summary>
         /// Default spanDefinition constructor
@@ -145,7 +144,7 @@ namespace Alsing.SourceCode
 
         public SyntaxDefinition Parent { get; set; }
 
-        #endregion
+        #endregion PUBLIC PROPERTY PARENT
 
         /// <summary>
         /// Returns false if any color has been assigned to the backcolor property

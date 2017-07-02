@@ -8,8 +8,8 @@
 // *
 // *
 
-using System;
 using Alsing.Text.PatternMatchers;
+using System;
 
 namespace Alsing.Text
 {
@@ -38,8 +38,6 @@ namespace Alsing.Text
                 AddPatternWithCaseInsensitivePrefix(prefix, matcher, needSeparators, tags);
             }
         }
-
-        
 
         public void AddToken(string text, bool caseSensitive, bool needSeparators, object[] tags)
         {
