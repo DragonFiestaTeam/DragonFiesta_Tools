@@ -1,0 +1,6 @@
+using (ScriptAPI)
+{
+    AddUShort("Animation ID");
+	AddUShort("Object ID");
+	AddByte("Crit (Bool)");
+}

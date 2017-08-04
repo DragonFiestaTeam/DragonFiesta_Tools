@@ -15,8 +15,7 @@ public static class DatabaseManager
         try
         {
             Log.WriteLine(LogLevel.Info, "Initializing database connections...");
-            Connectionstring = BuildConnectionString();//TODO CREATE
-                                                       //test
+            Connectionstring = BuildConnectionString();//TODO CREATE                                                    
             using (var con = GetConnection()) { con.Close(); }
 
             Log.WriteLine(LogLevel.Info, "Database connections initialized successfully.{0}", Environment.NewLine);
@@ -44,22 +43,10 @@ public static class DatabaseManager
         return cb.ToString();
     }
 
-
-
-
-
-
-
-
-
-
     public static SqlConnection GetConnection()
     {
         var con = new SqlConnection(Connectionstring);
-
         con.Open();
-
-
         return con;
     }
     public static bool RunSQL(string sql, params SqlParameter[] Parameters)
@@ -87,19 +74,15 @@ public static class DatabaseManager
 
     public static SQLResult Select(string sql, params SqlParameter[] Parameters)
     {
-
         SqlConnection Connection = null;
-        DatabaseManager.CheckConnection(ref Connection);
+        CheckConnection(ref Connection);
         StringBuilder sqlString = new StringBuilder();
         // Fix for floating point problems on some languages
         sqlString.AppendFormat(CultureInfo.GetCultureInfo("en-US").NumberFormat, sql, Parameters);
-
         SqlCommand sqlCommand = new SqlCommand(sqlString.ToString(), Connection);
 
         try
         {
-
-
             sqlCommand.Parameters.AddRange(Parameters);
 
             using (var SqlData = sqlCommand.ExecuteReader())
@@ -108,14 +91,12 @@ public static class DatabaseManager
                 {
                     retData.Load(SqlData);
                     retData.Count = retData.Rows.Count;
-
                     return retData;
                 }
             }
         }
         catch (SqlException ex)
         {
-
             Log.WriteLine(LogLevel.Error, "Error With Query {0}", sqlCommand.CommandText);
         }
 
@@ -127,12 +108,9 @@ public static class DatabaseManager
         {
             con = GetConnection();
         }
-        else if (con.State == ConnectionState.Closed
-             || con.State == ConnectionState.Broken)
+        else if (con.State == ConnectionState.Closed || con.State == ConnectionState.Broken)
         {
             con = GetConnection();
         }
     }
 }
-
-

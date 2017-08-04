@@ -5,7 +5,6 @@ namespace DragonDataSniffer.Network
 {
     public sealed class GameClientAcceptor : Listener
     {
-     
         public ClientType AcceptorType { get; private set; }
 
         public GameClientAcceptor(int port, ClientType pType)
@@ -18,11 +17,11 @@ namespace DragonDataSniffer.Network
 
         public override void OnClientConnect(Socket socket)
         {
-            GameClient pClient = new GameClient(socket,AcceptorType);
-           
+            GameClient pClient = new GameClient(socket, AcceptorType);
+
             if (GameClientManager.Instance.AddClient(pClient, AcceptorType))
             {
-                pClient.sClient = new ServerClient(Config.Instance.ConnectIP, Port, pClient);
+                pClient.SClient = new ServerClient(Config.Instance.ConnectIP, Port, pClient);
                 Log.WriteLine(LogLevel.Info, "GameClient connected from {0}", pClient.IP);
             }
             else

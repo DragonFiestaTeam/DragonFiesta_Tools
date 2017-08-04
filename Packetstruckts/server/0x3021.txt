@@ -1,0 +1,11 @@
+using (ScriptAPI)
+{
+    AddField("Unk",3);
+	count = AddUShort("Count");
+	AddField("Unk",4);	
+	for(i=0; i<count; i++)
+	{
+		AddUShort("GoodsNo ID");
+		AddField("Unk",14);
+	}
+}

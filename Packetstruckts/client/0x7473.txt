@@ -1,0 +1,6 @@
+using (ScriptAPI)
+{
+	AddByte("unk");
+	AddByte("MessageLength");
+	AddField("Message",5);
+}

@@ -1,14 +1,14 @@
 ﻿using DragonDataSniffer.Object;
 
-
 namespace DragonDataSniffer.Events
 {
-    public class MapEnterArgs 
+    public class MapEnterArgs
     {
-        public MapEnterArgs(MapObject pMapobject) {
-            pObject = pMapobject;
+        public MapEnterArgs(MapObject pMapobject)
+        {
+            PObject = pMapobject;
         }
 
-        public MapObject pObject { get;  private set; }
+        public MapObject PObject { get; private set; }
     }
 }

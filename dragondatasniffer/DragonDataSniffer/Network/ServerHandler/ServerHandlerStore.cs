@@ -20,7 +20,10 @@ namespace DragonDataSniffer.ServerHandler
                 ServerPacketHandlerAttribute attribute = info.First;
                 MethodInfo method = info.Second;
                 if (!handlers.ContainsKey(attribute.Header))
+                {
                     handlers.Add(attribute.Header, new Dictionary<byte, MethodInfo>());
+                }
+
                 if (handlers[attribute.Header].ContainsKey(attribute.Type))
                 {
                     Log.WriteLine(LogLevel.Warn, "Duplicate Serverhandler found: {0}:{1}", attribute.Header, attribute.Type);
@@ -31,7 +34,10 @@ namespace DragonDataSniffer.ServerHandler
 
             int count = 0;
             foreach (var dict in handlers.Values)
+            {
                 count += dict.Count;
+            }
+
             Log.WriteLine(LogLevel.Info, "{0} ServerHandlers loaded.", count);
             return true;
         }

@@ -1,0 +1,11 @@
+using (ScriptAPI)
+{
+    AddField("Unk",4);
+	AddField("Unk",4);
+	AddField("Gilden Name",16);
+	AddField("Unk",10);
+	AddUShort("Ruhm");
+	AddField("Unk",52);
+	AddUShort("Member Online");
+	AddUShort("Max Member");
+}

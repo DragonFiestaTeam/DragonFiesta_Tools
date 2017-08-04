@@ -3,12 +3,12 @@ using DragonDataSniffer.Object;
 
 namespace DragonDataSniffer.Events
 {
-   public class CharacterEventArgs : EventArgs
+    public class CharacterEventArgs : EventArgs
     {
         public CharacterEventArgs(Character pChar)
         {
-            pCharacter = pChar;
+            PCharacter = pChar;
         }
-        public Character pCharacter { get; private set; }
+        public Character PCharacter { get; private set; }
     }
 }

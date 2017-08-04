@@ -1,0 +1,10 @@
+using (ScriptAPI)
+{
+    AddField("Unk",6);
+	AddField("Guild Name",16);
+	AddField("Unk",10);
+	AddUInt("Ruhm");
+	AddField("Unk",50);
+	AddUShort("Member");
+	AddUShort("Max Memeber (200)");
+}

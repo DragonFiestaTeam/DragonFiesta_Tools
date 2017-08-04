@@ -1,0 +1,9 @@
+using (ScriptAPI)
+{
+    count = AddUShort("count");
+	for (i=0; i<count; i++)
+	{
+	    AddField("Char Name",20);
+		AddField("Unk",2);
+	}
+}

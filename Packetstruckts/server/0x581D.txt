@@ -1,0 +1,10 @@
+using(ScriptAPI)
+{
+    count = AddUShort("KingDoomCount");
+	for(i=0; i<count; i++)
+	{
+		AddField("unk",9);
+		AddField("KingdomQuestName",28);
+		AddField("Quest",104);
+	}	
+}

@@ -1,0 +1,11 @@
+using (ScriptAPI)
+{
+	AddByte("unk");
+	AddByte("MessageLength");
+	AddField("Message",55);
+	AddUShort("ItemID");
+	AddByte("Up-Wert");
+	AddField("unk",26);
+	AddField("char name für lizenz",20);
+	AddField("unk",54);
+}

@@ -1,0 +1,13 @@
+using (ScriptAPI)
+{
+    AddInt("Unk");
+	AddInt("Minute");
+	AddInt("Stunde");
+	AddInt("Day");
+	AddInt("Monate");
+	AddInt("Jahr");
+	AddInt("Tag in der Woche");
+	AddInt("Unk");
+	AddInt("Unk");
+	AddByte("Unk");
+}

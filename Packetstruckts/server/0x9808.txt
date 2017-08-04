@@ -1,0 +1,10 @@
+using (ScriptAPI)
+{
+    AddField("Unk",2);
+	AddField("Char Name",20);
+	AddUShort("Member Online");
+	AddUShort("Max Member");
+	AddUInt("Aka Points");
+	AddByte("Rank");
+	AddLong("Buff");
+}

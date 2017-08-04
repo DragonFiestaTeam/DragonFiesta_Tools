@@ -29,7 +29,7 @@ namespace DragonDataSniffer.Network.ServerHandler
                 m.WriteString(Config.Instance.TunnelIP, 16);
                 m.WriteUInt16(Port);
                 m.WriteUInt16(unk);
-                client.cClient.SendPacket(m);
+                client.CClient.SendPacket(m);
             }
 
         }
@@ -48,7 +48,7 @@ namespace DragonDataSniffer.Network.ServerHandler
             {
                 p.WriteString(Config.Instance.TunnelIP, 16);
                 p.WriteUInt16(GamePort);
-                client.cClient.SendPacket(p);
+                client.CClient.SendPacket(p);
             }
         }
 
@@ -71,9 +71,8 @@ namespace DragonDataSniffer.Network.ServerHandler
                 p.WriteString(Config.Instance.TunnelIP, 16);
                 p.WriteUInt16(worldport);
                 p.WriteBytes(uniq);
-                client.cClient.SendPacket(p);
+                client.CClient.SendPacket(p);
             }
-
             GameAcceptorManager.Instance.StopAcceptorByType(ClientType.Login);
         }
     }

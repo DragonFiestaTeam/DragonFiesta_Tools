@@ -6,7 +6,7 @@
         public ushort MapID { get; private set; }
         public short TargetID = -1;
 
-        public Map pMap
+        public Map PMap
         {
             get
             {
@@ -16,7 +16,6 @@
                 }
                 return null;
             }
-
         }
         public Character(ushort pMapID,int pCharID = 0)
         {
@@ -27,15 +26,13 @@
         {
             if (TargetID != -1)
             {
-                if (pMap.MapObjects.TryGetValue((ushort)TargetID, out MapObject pInfo))
+                if (PMap.MapObjects.TryGetValue((ushort)TargetID, out MapObject pInfo))
                 {
                     pObject = pInfo;
                     return true;
                 }
             }
-
             pObject = null;
-
             return false;
         }
     }

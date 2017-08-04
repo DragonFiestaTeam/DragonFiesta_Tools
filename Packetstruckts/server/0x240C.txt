@@ -1,0 +1,53 @@
+using (ScriptAPI)
+{
+    AddByte("Character Level");
+	AddUShort("Mob ID");
+	
+	AddLong("Char Exp");
+	AddLong("Next Exp for Up");
+	
+	AddUInt("Base Str");
+	AddUInt("Full Str");
+	
+	AddUInt("Base End");
+	AddUInt("Full End");
+	
+	AddUInt("Base Dex");
+	AddUInt("Full Dex");
+	
+	AddUInt("Base Int");
+	AddUInt("Full Int");
+
+    AddField("unk",8);
+
+		AddUInt("BaseKon");
+	AddUInt("FullKon");
+	
+	AddUInt("unk");
+	
+	AddLong("BaseDmgMin");
+	AddLong("BaseDmgMax");
+	
+	AddLong("Defense");
+	
+	AddLong("Accuracy");
+	
+	AddLong("Evasive");
+	
+	AddLong("BaseMagicDmgMin");
+	AddLong("BaseMagicDmgMax");
+	
+	AddUInt("MagicDefense");
+    AddField("unk",16);
+	
+	AddUInt("MaxHP");
+	AddUInt("MaxSP");
+	
+	AddUInt("LightPower");
+	AddUInt("unk");
+	
+	AddUInt("MaxHPStones");
+	AddUInt("MaxSPStones");
+	
+	AddField("buffs",64);
+}

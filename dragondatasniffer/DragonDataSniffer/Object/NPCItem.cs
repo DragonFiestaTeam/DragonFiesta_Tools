@@ -25,7 +25,7 @@ namespace DragonDataSniffer.Object
         {
             string insertstring = "INSERT INTO NPCItemList (MobID,Slot,ItemID) VALUES ('"
                                 + MobID + "','" +
-                                +Slot + "','" + ItemID + "')";
+                                + Slot + "','" + ItemID + "')";
             DatabaseManager.RunSQL(insertstring);
         }
     }

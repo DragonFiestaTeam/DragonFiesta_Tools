@@ -1,0 +1,8 @@
+using (ScriptAPI)
+{
+    AddUShort("Object ID");
+	AddUShort("Item ID");
+	AddByte("ItemsEquiped Counter");
+	AddByte("Unk");
+	AddField("Unk",3);
+}

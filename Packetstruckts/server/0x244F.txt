@@ -1,0 +1,7 @@
+using (ScriptAPI)
+{
+    AddUShort("Object ID");
+	AddUShort("Skill ID");
+	AddUShort("Target ID");
+	AddUShort("Animation ID");
+}

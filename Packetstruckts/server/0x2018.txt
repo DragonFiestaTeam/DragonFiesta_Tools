@@ -1,0 +1,10 @@
+using (ScriptAPI)
+{
+    AddUShort("Object ID");
+	AddUInt("Old X");
+	AddUInt("Old Y");
+	AddUInt("New X");
+	AddUInt("New Y");
+	AddUShort("Speed");
+	AddField("Unk",2);
+}

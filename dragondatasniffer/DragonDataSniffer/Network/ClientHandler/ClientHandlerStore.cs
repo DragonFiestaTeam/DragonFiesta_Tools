@@ -20,7 +20,10 @@ namespace DragonDataSniffer.ClientHandler
                 ClientPacketHandlerAttribute attribute = info.First;
                 MethodInfo method = info.Second;
                 if (!handlers.ContainsKey(attribute.Header))
+                {
                     handlers.Add(attribute.Header, new Dictionary<byte, MethodInfo>());
+                }
+
                 if (handlers[attribute.Header].ContainsKey(attribute.Type))
                 {
                     Log.WriteLine(LogLevel.Warn, "Duplicate Clienthandler found: {0}:{1}", attribute.Header, attribute.Type);
@@ -31,7 +34,10 @@ namespace DragonDataSniffer.ClientHandler
 
             int count = 0;
             foreach (var dict in handlers.Values)
+            {
                 count += dict.Count;
+            }
+
             Log.WriteLine(LogLevel.Info, "{0} ClientHandlers loaded.", count);
             return true;
         }

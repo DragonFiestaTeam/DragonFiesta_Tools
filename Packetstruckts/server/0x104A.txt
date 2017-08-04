@@ -1,0 +1,12 @@
+using (ScriptAPI)
+{
+    count = AddUShort("Count");
+	for (i=0; i<count; i++)
+	{
+		AddUShort("Unk");
+	    AddUShort("??");
+		AddUShort("Charged Effect ID");
+		AddUInt("Activation Date");
+		AddUInt("Expire Date");
+	}
+}

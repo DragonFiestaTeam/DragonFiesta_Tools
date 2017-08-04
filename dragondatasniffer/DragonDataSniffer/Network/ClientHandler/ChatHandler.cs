@@ -21,7 +21,7 @@ namespace DragonDataSniffer.Network.ClientHandler
             }
             else
             {
-                client.sClient.SendPacket(packet);
+                client.SClient.SendPacket(packet);
             }
         }
     }

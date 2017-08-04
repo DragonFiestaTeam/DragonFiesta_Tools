@@ -12,8 +12,6 @@ public class Config
 
     public static string Comments { get { return comments; } }
     private static string comments = string.Empty;
-    // TS: This is otherwise known as a dictionary:
-    //private static List<KeyValuePair<object, object>> Properties;
     private readonly Dictionary<string, object> properties;
     private bool isInitialized;
     public static Random Random { get; private set; }
@@ -40,7 +38,6 @@ public class Config
         try
         {
             Instance = new Config();
-
             return Instance.InitializeInternal();
         }
         catch (Exception ex)
@@ -59,7 +56,11 @@ public class Config
 
     private bool InitializeInternal()
     {
-        if (isInitialized) return true;
+        if (isInitialized)
+        {
+            return true;
+        }
+
         try
         {
             ParseFile(configPath);
@@ -84,7 +85,7 @@ public class Config
         Random = new Random(DateTime.Now.Second);
 
 
-        Log.WriteLine(LogLevel.Info,"Config loaded successfully.");
+        Log.WriteLine(LogLevel.Info, "Config loaded successfully.");
         isInitialized = true;
         return true;
     }
@@ -160,7 +161,10 @@ public class Config
             if (!entry.Contains("#"))
             {
                 string[] parts = entry.Split('=');
-                if (parts.Length != 2) continue;
+                if (parts.Length != 2)
+                {
+                    continue;
+                }
 
                 string key = parts[0].Trim();
                 string value = parts[1].Trim();
@@ -176,4 +180,3 @@ public class Config
         }
     }
 }
- 

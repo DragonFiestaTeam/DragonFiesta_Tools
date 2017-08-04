@@ -1,0 +1,7 @@
+using (ScriptAPI)
+{
+    AddField("Charname",20);
+	AddByte("unk");
+	AddByte("MessageLength");
+	AddField("Message",5);
+}

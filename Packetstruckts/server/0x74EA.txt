@@ -1,0 +1,21 @@
+using (ScriptAPI)
+{
+    AddField("Unk",7);
+	count = AddByte("count");
+	AddField("Unk",5);
+	
+	StartNode("Gilden Info");
+	for (i=0; i<count; i++)
+	{
+	    StartNode("Gilde");
+		AddField("Gilden Name",16);
+		AddField("Char Name - Meister",20);
+		AddByte("Bool");
+		AddByte("Grade");
+		AddUShort("Member");
+		AddUShort("Max Member");
+		AddField("Unk",4);
+		EndNode(0);
+	}
+    EndNode(0);
+}

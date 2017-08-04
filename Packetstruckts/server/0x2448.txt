@@ -1,0 +1,12 @@
+using (ScriptAPI)
+{
+    AddUShort("Attacker ID");
+	AddUShort("Target ID");
+	AddByte("unk");
+	AddByte("Crit (Bool)");
+	AddUShort("Damage");
+	AddUInt("Left HP");
+	AddField("Unk",2);
+	AddByte("Counter");
+	AddByte("Unk");
+}

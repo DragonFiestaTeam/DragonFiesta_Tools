@@ -14,12 +14,10 @@
         {
             ID = rResult.Read<ushort>(rIndex, "ID");
             Index = rResult.Read<string>(rIndex, "MapName");
-
             Regen = new Position(rResult.Read<uint>(rIndex, "RegenX"), rResult.Read<uint>(rIndex, "RegenY"));
             Type = (MapType)rResult.Read<byte>(rIndex, "MapType");
             IsInSide = rResult.Read<bool>(rIndex, "InSide");
             ViewRange = rResult.Read<uint>(rIndex, "ViewRange");
-
         }
     }
 }

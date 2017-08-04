@@ -73,7 +73,10 @@ public static class ByteUtils
     private static byte HexToByte(string hex)
     {
         if (hex == null)
+        {
             throw new ArgumentNullException("hex");
+        }
+
         if (hex.Length == 0 || 2 < hex.Length)
         {
             throw new ArgumentOutOfRangeException("hex", "The hexadecimal string must be 1 or 2 characters in length.");

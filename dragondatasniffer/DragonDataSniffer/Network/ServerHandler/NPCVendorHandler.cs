@@ -8,8 +8,7 @@ namespace DragonDataSniffer.Network.ServerHandler
         [ServerPacketHandler(Handler15Type._Header, Handler15Type.NPCItemList)]
         public static void On_NPCItemList(ServerClient client, FiestaPacket pPacket)
         {
-            if (!pPacket.TryReadUInt16(out ushort count)
-                || !pPacket.TryReadUInt16(out ushort unk))
+            if (!pPacket.TryReadUInt16(out ushort count) || !pPacket.TryReadUInt16(out ushort unk))
             {
                 client.Dispose();
                 return;
@@ -39,13 +38,13 @@ namespace DragonDataSniffer.Network.ServerHandler
                     }
                 }
             }
-            client.cClient.SendPacket(pPacket);
+            client.CClient.SendPacket(pPacket);
         }
+
         [ServerPacketHandler(Handler15Type._Header, Handler15Type.SkillNPCStuff)]
         public static void On_SkillNPCStufft(ServerClient client, FiestaPacket pPacket)
         {
-            if (!pPacket.TryReadUInt16(out ushort count)
-                || !pPacket.TryReadUInt16(out ushort unk))
+            if (!pPacket.TryReadUInt16(out ushort count) || !pPacket.TryReadUInt16(out ushort unk))
             {
                 client.Dispose();
                 return;
@@ -75,13 +74,13 @@ namespace DragonDataSniffer.Network.ServerHandler
                     }
                 }
             }
-            client.cClient.SendPacket(pPacket);
+            client.CClient.SendPacket(pPacket);
         }
+
         [ServerPacketHandler(Handler15Type._Header, Handler15Type.StuffNPCItemList)]
         public static void StuffNPCItemList(ServerClient client, FiestaPacket pPacket)
         {
-            if (!pPacket.TryReadUInt16(out ushort count)
-                || !pPacket.TryReadUInt16(out ushort unk))
+            if (!pPacket.TryReadUInt16(out ushort count) || !pPacket.TryReadUInt16(out ushort unk))
             {
                 client.Dispose();
                 return;
@@ -111,7 +110,7 @@ namespace DragonDataSniffer.Network.ServerHandler
                     }
                 }
             }
-            client.cClient.SendPacket(pPacket);
+            client.CClient.SendPacket(pPacket);
         }
     }
 }

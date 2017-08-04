@@ -1,0 +1,8 @@
+using (ScriptAPI)
+{
+    count = AddUShort("Count");
+	for (i=0; i<count; i++)
+	{
+	   AddUShort("Skill ID"); 
+	}
+}

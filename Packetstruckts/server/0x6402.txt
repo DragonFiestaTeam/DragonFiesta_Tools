@@ -1,0 +1,5 @@
+using (ScriptAPI)
+{
+    AddField("unk",2);
+	AddField("Char Name",20);
+}

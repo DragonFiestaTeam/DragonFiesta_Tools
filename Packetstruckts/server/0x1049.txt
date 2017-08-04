@@ -1,0 +1,10 @@
+using (ScriptAPI)
+{
+    AddField("Unk",4);
+	count = AddUShort("Count");
+	for (i=0; i<count; i++)
+	{
+	    AddByte("Titel ID");
+	    AddByte("Unk");
+	}
+}

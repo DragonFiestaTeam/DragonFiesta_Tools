@@ -1,0 +1,5 @@
+using (ScriptAPI)
+{
+    AddUShort("Object ID");
+	AddByte("EquipSlot");
+}

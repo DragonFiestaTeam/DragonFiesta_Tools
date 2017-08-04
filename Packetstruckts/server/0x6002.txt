@@ -1,0 +1,6 @@
+using (ScriptAPI)
+{
+    AddUShort("Titel ID");
+	AddByte("Bonus 1");
+	AddByte("Bonus 2");
+}

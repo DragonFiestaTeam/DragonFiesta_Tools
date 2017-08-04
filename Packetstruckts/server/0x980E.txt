@@ -1,0 +1,23 @@
+using (ScriptAPI)
+{
+    AddUInt("Unk");
+	count = AddUShort("count");
+	
+	StartNode("Member Info");
+	for (i=0; i<count; i++)
+	{
+		StartNode("Member");
+	    AddField("Char Name",20);
+		AddField("Unk",69);
+		AddByte("Class ID");
+		AddUShort("Level");
+		AddField("MapName",12);
+		AddByte("Register Month");
+		AddByte("Register Year");
+		AddByte("Register Day");
+		AddByte("Unk");
+		AddByte("Unk");
+		EndNode(0);
+	}
+    EndNode(0);
+}

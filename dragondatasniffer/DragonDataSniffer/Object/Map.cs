@@ -6,24 +6,22 @@ namespace DragonDataSniffer.Object
 {
     public sealed class Map
     {
-        public MapInfo pMapInfo { get; private set; }
-
+        public MapInfo PMapInfo { get; private set; }
         public event EventHandler<MapEnterArgs> ObjectEnterTheMap;
         public List<NPC> NPCsByMob = new List<NPC>();
         public Dictionary<ushort, MapObject> MapObjects = new Dictionary<ushort, MapObject>();
         public Map(MapInfo pMapInf)
         {
-            pMapInfo = pMapInf;
+            PMapInfo = pMapInf;
             ObjectEnterTheMap += Map_ObjectEnterTheMap;
         }
 
         private void Map_ObjectEnterTheMap(object sender, MapEnterArgs e)
         {
-            ushort ObjectID = e.pObject.MapObjectID;
-
-            if (e.pObject is NPC)
+            ushort ObjectID = e.PObject.MapObjectID;
+            if (e.PObject is NPC)
             {
-                NPC pNPC = e.pObject as NPC;
+                NPC pNPC = e.PObject as NPC;
                 NPC OldNPC = NPCsByMob.Find(m => m.MobID == pNPC.MobID && m.MapID == pNPC.MapID && m.X == pNPC.X && m.Y == pNPC.Y);
 
                 if(OldNPC != null)
@@ -42,21 +40,19 @@ namespace DragonDataSniffer.Object
                     pNPC.AddToDB();
                     NPCsByMob.Add(pNPC);
                 }
-
             }
-            else if (e.pObject is Character)
+            else if (e.PObject is Character)
             {
-                Character pChar = e.pObject as Character;
+                Character pChar = e.PObject as Character;
                 Log.WriteLine(LogLevel.Info, "Character Enter The Map");
             }
 
             if (!MapObjects.ContainsKey(ObjectID))
             {
-                MapObjects.Add(ObjectID, e.pObject);
+                MapObjects.Add(ObjectID, e.PObject);
             }
         }
 
- 
         public void Invoke(MapObject pObject)
         {
             ObjectEnterTheMap.Invoke(null, new MapEnterArgs(pObject));
@@ -70,7 +66,6 @@ namespace DragonDataSniffer.Object
                 return true;
             }
             return false;
-        }
-        
+        }     
     }
 }

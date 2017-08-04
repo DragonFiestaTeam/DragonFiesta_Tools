@@ -8,7 +8,7 @@ namespace DragonDataSniffer.Network
     {
         public static GameAcceptorManager Instance { get; private set; }
         private ConcurrentDictionary<ClientType, GameClientAcceptor> AcceptorsByType { get; set; }
-        private ConcurrentDictionary<ushort,GameClientAcceptor> AcceptorsByPort { get; set; }
+        private ConcurrentDictionary<ushort, GameClientAcceptor> AcceptorsByPort { get; set; }
         GameAcceptorManager()
         {
             AcceptorsByType = new ConcurrentDictionary<ClientType, GameClientAcceptor>();
@@ -27,10 +27,12 @@ namespace DragonDataSniffer.Network
                 return false;
             }
         }
-        public bool GetAcceptorByType(ClientType pType,out GameClientAcceptor aceptor)
+        public bool GetAcceptorByType(ClientType pType, out GameClientAcceptor aceptor)
         {
             if (AcceptorsByType.TryGetValue(pType, out aceptor))
+            {
                 return true;
+            }
 
             return false;
         }
@@ -47,7 +49,7 @@ namespace DragonDataSniffer.Network
         {
 
         }
-        public bool StopAcceptorByType(ClientType pType,out GameClientAcceptor  Acceptor)
+        public bool StopAcceptorByType(ClientType pType, out GameClientAcceptor Acceptor)
         {
 
             if (AcceptorsByType.TryGetValue(pType, out Acceptor))
@@ -60,12 +62,12 @@ namespace DragonDataSniffer.Network
                 }
                 return true;
             }
-           return false;
+            return false;
         }
 
-        public bool StartAcceptor(ClientType pType,int port)
+        public bool StartAcceptor(ClientType pType, int port)
         {
-            if(!AcceptorsByType.ContainsKey(pType))
+            if (!AcceptorsByType.ContainsKey(pType))
             {
                 GameClientAcceptor Accept = new GameClientAcceptor(port, pType);
                 AcceptorsByType.TryAdd(pType, Accept);

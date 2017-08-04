@@ -1,0 +1,13 @@
+using (ScriptAPI)
+{
+    AddField("Unk",2);
+	count = AddUShort("Count");
+	for (i=0; i<count; i++)
+	{
+	    AddUInt("Unk");
+		AddUInt("Counter");
+		AddField("Unk",4);
+		AddField("Name?",20);
+	}
+    AddField("Unk",4);
+}

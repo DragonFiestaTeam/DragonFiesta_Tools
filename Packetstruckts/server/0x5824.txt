@@ -1,0 +1,6 @@
+using (ScriptAPI)
+{
+    AddField("Unk",8);
+	AddByte("MessageLength");
+	AddField("Message",75);
+}

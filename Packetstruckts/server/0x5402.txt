@@ -1,0 +1,6 @@
+using (ScriptAPI)
+{
+    AddField("Char Name",20);
+	AddField("Char Name",20);
+	AddUShort("Response ?");
+}

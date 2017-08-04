@@ -31,11 +31,11 @@ namespace DragonDataSniffer.Chat
         }
         public void LoadCommands()
         {
-            RegisterCommand("!Note", Note );
+            RegisterCommand("!Note", Note);
         }
         public void Note(params string[] param)
         {
-            if(param.Length > 0)
+            if (param.Length > 0)
             {
                 Manager.GameClientManager.Instance.DropMessage(param[1]);
             }
@@ -47,7 +47,7 @@ namespace DragonDataSniffer.Chat
                 Log.WriteLine(LogLevel.Warn, "{0} already registered as a command.", command);
                 return;
             }
-            CommandInfo info = new CommandInfo(command.ToLower(), function,  param);
+            CommandInfo info = new CommandInfo(command.ToLower(), function, param);
             commands.Add(command.ToLower(), info);
         }
 
@@ -57,7 +57,10 @@ namespace DragonDataSniffer.Chat
             {
                 return info.Parameters;
             }
-            else return null;
+            else
+            {
+                return null;
+            }
         }
 
         public CommandStatus ExecuteCommand(string[] command)
@@ -76,10 +79,11 @@ namespace DragonDataSniffer.Chat
                     Log.WriteLine(LogLevel.Exception, "Exception while handling command '{0}': {1}", wholeCommand, ex.ToString());
                     return CommandStatus.Error;
                 }
-
             }
-            else return CommandStatus.NotFound;
+            else
+            {
+                return CommandStatus.NotFound;
+            }
         }
-
     }
 }

@@ -1,0 +1,11 @@
+using(ScriptAPI)
+{
+count = AddByte("StatsUpdateCount");
+	
+	for(i=0; i<count; i++)
+	{
+	AddByte("StatType");
+	AddInt("StatsValue");
+	}
+
+}

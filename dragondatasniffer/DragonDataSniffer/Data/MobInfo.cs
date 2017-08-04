@@ -20,18 +20,14 @@
 
         public MobInfo(SQLResult pResult, int i)
         {
-
             ID = pResult.Read<ushort>(i, "ID");
             Index = pResult.Read<string>(i, "InxName");
             Level = pResult.Read<byte>(i, "Level");
-
             MaxHP = pResult.Read<int>(i, "MaxHP");
             WalkSpeed = pResult.Read<ushort>(i, "WalkSpeed");
             RunSpeed = pResult.Read<ushort>(i, "RunSpeed");
-
             IsNPC = pResult.Read<bool>(i, "IsNPC");
             Size = pResult.Read<uint>(i, "Size");
-
         }
     }
 }

@@ -1,0 +1,9 @@
+using (ScriptAPI)
+{
+    AddField("unk",4);
+	AddField("Char Name",20);
+	AddByte("Class ID");
+	AddByte("Level");
+	AddField("Unk",2);
+	AddField("Map Name",12);
+}

@@ -12,20 +12,21 @@ namespace DragonDataSniffer.Network.ServerHandler
         {
             if (!pPacket.ReadSkip(66) ||
             !pPacket.TryReadString(out string MapName, 12))
+            {
                 return;
+            }
 
             if (MapDataManager.Instance.GetMapInfoByName(MapName, out MapInfo inf))
             {
                 Character pChar = new Character(inf.ID);
-
                 client.pCharacter = pChar;
-                client.cClient.pCharacter = pChar;
+                client.CClient.pCharacter = pChar;
                 if (MapDataManager.Instance.GetMapByID(inf.ID, out Map pMap))
                 {
                     pMap.Invoke(pChar);
                 }
             }
-            client.cClient.SendPacket(pPacket);
+            client.CClient.SendPacket(pPacket);
         }
     }
 }

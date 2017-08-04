@@ -1,0 +1,11 @@
+using (ScriptAPI)
+{
+    AddByte("Unk");
+	AddField("Char Name",20);
+	AddByte("Class ID");
+	AddByte("Level");
+	AddUInt("Max HP");
+	AddUInt("Max SP");
+	AddUInt("Max LightPower");
+	AddByte("Unk");
+}

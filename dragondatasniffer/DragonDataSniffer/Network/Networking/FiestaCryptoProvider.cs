@@ -7,7 +7,11 @@ namespace DragonDataSniffer.Network
         public short XorPos { get; private set; }
         public FiestaCryptoProvider(short offset)
         {
-            if (offset >= table_size) throw new IndexOutOfRangeException("Xor offset cannot be bigger than 499.");
+            if (offset >= table_size)
+            {
+                throw new IndexOutOfRangeException("Xor offset cannot be bigger than 499.");
+            }
+
             XorPos = offset;
         }
 
@@ -17,7 +21,10 @@ namespace DragonDataSniffer.Network
             {
                 pBuffer[pOffset + i] ^= XorTable[XorPos];
                 ++XorPos;
-                if (XorPos == table_size) XorPos = 0;
+                if (XorPos == table_size)
+                {
+                    XorPos = 0;
+                }
             }
         }
 

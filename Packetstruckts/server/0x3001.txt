@@ -1,0 +1,6 @@
+using (ScriptAPI)
+{
+    AddByte("Old Slot");
+	AddByte("Flags");
+	AddByte("New Slot");
+}

@@ -8,8 +8,9 @@ using DragonDataSniffer.Network.Networking;
 
 namespace DragonDataSniffer.Network
 {
-    public class  ClientBase : IDisposable {
-		public Socket Socket { get; internal set; }
+    public class ClientBase : IDisposable
+    {
+        public Socket Socket { get; internal set; }
         public IPAddress IP { get; private set; }
         public ClientType pType { get; set; }//using to identy client
         public Character pCharacter { get; internal set; }
@@ -17,7 +18,7 @@ namespace DragonDataSniffer.Network
 
         public event EventHandler<PacketReceivedEventArgs> PacketReceived;
         public event EventHandler<EventArgs> Disconnected;
-       
+
         public bool IsDisposed
         {
             get { return (isDisposedInt > 0); }
@@ -25,8 +26,6 @@ namespace DragonDataSniffer.Network
         private Int32 isDisposedInt;
         //receive
         public const Int32 MaxReceiveBuffer = 16384;
-     
-      
 
         public FiestaCryptoProvider Crypto = null;
         public byte[] receiveBuffer;
@@ -37,21 +36,20 @@ namespace DragonDataSniffer.Network
         private UInt16 packetLength;
         private byte[] packetBuffer;
         private Int32 packetIndex;
-       
+
         //send
         public ConcurrentQueue<byte[]> sendBuffer;
         private Int32 isSendingInt;
 
         public ClientBase()
         {
-
             receiveBuffer = new byte[MaxReceiveBuffer];
             sendBuffer = new ConcurrentQueue<byte[]>();
         }
         public ClientBase(Socket pSocket, ClientType pClientType)
         {
             Socket = pSocket;
-           pType = pClientType;
+            pType = pClientType;
             var addr = (IPEndPoint)pSocket.RemoteEndPoint;
             IP = addr.Address;
             Port = (UInt16)addr.Port;
@@ -59,14 +57,14 @@ namespace DragonDataSniffer.Network
             sendBuffer = new ConcurrentQueue<byte[]>();
 
         }
-      
+
         public void Dispose()
         {
             if (IsDisposed)
             {
                 return;
             }
-    
+
             if (Socket != null)
             {
                 Socket.Close();
@@ -82,7 +80,6 @@ namespace DragonDataSniffer.Network
         }
         ~ClientBase()
         {
-           
             Dispose();
         }
 
@@ -111,8 +108,7 @@ namespace DragonDataSniffer.Network
             }
             catch (Exception ex)
             {
-
-                Log.WriteLine(LogLevel.Exception,ex.ToString());
+                Log.WriteLine(LogLevel.Exception, ex.ToString());
                 OnDisconnect();
             }
         }
@@ -145,17 +141,14 @@ namespace DragonDataSniffer.Network
                     Buffer.BlockCopy(remaining, 0, data, 0, remaining.Length);
                     Buffer.BlockCopy(receiveBuffer, 0, data, remaining.Length, transfered);
 
-
                     //reset remaining bytes
                     remaining = null;
                 }
                 else
                 {
                     data = new byte[transfered];
-
                     Buffer.BlockCopy(receiveBuffer, 0, data, 0, transfered);
                 }
-
 
                 //handle all bytes
                 var dataIndex = 0;
@@ -190,20 +183,16 @@ namespace DragonDataSniffer.Network
                             packetLength = BitConverter.ToUInt16(data, (dataIndex + 1));
                         }
 
-
                         //update indexes
                         dataIndex += headerLength;
                         bytesLeft -= headerLength;
-
 
                         //create packet buffer
                         packetBuffer = new byte[packetLength];
                         packetIndex = 0;
 
-
                         //we got our len
                         headerParsed = true;
-
 
                         //check if there are any bytes left for handling
                         if (bytesLeft < 1)
@@ -372,7 +361,7 @@ namespace DragonDataSniffer.Network
                 OnDisconnect();
             }
         }
-       
+
         public void SendPacket(FiestaPacket pPacket)
         {
             if (this is GameClient)
@@ -385,7 +374,6 @@ namespace DragonDataSniffer.Network
             }
         }
 
-
         public void OnDisconnect()
         {
 
@@ -397,4 +385,3 @@ namespace DragonDataSniffer.Network
         }
     }
 }
-

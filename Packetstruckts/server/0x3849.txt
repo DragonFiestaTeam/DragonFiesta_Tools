@@ -1,0 +1,7 @@
+using (ScriptAPI)
+{
+    AddByte("Unk");
+	AddField("Char Name",20);
+	AddUInt("X-Coord");
+	AddUInt("Y-Coord");
+}

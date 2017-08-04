@@ -2,4 +2,3 @@
 {
     public static string Create_NPCSpawnTable = "Here create query";
 }
-

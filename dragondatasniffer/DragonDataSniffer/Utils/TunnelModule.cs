@@ -1,7 +1,5 @@
 ﻿using System;
 
-
-
 public enum InitializationStage
 {
     Metadata = 0,
@@ -26,4 +24,3 @@ public class TunnelModule : Attribute
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
 public class InitializerMethodAttribute : Attribute { }
-

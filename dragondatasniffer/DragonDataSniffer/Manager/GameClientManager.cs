@@ -6,7 +6,7 @@ using DragonDataSniffer.Network.Networking;
 namespace DragonDataSniffer.Manager
 {
     [TunnelModule(InitializationStage.Clients)]
-   public class GameClientManager
+    public class GameClientManager
     {
         private Dictionary<ClientType, GameClient> ClientList { get; set; }
         public static GameClientManager Instance { get; private set; }
@@ -44,15 +44,16 @@ namespace DragonDataSniffer.Manager
         public bool GetClientByType(ClientType pType, out GameClient pClient)
         {
             if (ClientList.TryGetValue(pType, out pClient))
+            {
                 return true;
-
+            }
             return false;
         }
-        public bool AddClient(GameClient pClient,ClientType pClientType)
+        public bool AddClient(GameClient pClient, ClientType pClientType)
         {
             if (!ClientList.ContainsKey(pClientType))
             {
-                ClientList.Add(pClientType,pClient);
+                ClientList.Add(pClientType, pClient);
                 return true;
             }
             return false;

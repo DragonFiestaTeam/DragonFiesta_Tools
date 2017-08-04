@@ -1,0 +1,8 @@
+using (ScriptAPI)
+{
+    AddByte("Unk");
+	AddField("Char Name",20);
+	AddUInt("HP");
+	AddUInt("SP");
+	AddUInt("LightPower");
+}

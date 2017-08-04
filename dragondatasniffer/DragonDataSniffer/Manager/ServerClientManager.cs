@@ -7,7 +7,7 @@ namespace DragonDataSniffer.Manager
     [TunnelModule(InitializationStage.Clients)]
     public class ServerClientManager
     {
-        private Dictionary<ClientType,ServerClient> ClientList { get; set; }
+        private Dictionary<ClientType, ServerClient> ClientList { get; set; }
         public static ServerClientManager Instance { get; private set; }
 
         public ServerClientManager()
@@ -29,10 +29,12 @@ namespace DragonDataSniffer.Manager
             }
         }
 
-        public bool GetClientByType(ClientType pType,out ServerClient pClient)
+        public bool GetClientByType(ClientType pType, out ServerClient pClient)
         {
             if (ClientList.TryGetValue(pType, out pClient))
+            {
                 return true;
+            }
 
             return false;
         }

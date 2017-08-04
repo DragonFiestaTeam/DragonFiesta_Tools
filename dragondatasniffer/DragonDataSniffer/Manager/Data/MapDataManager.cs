@@ -6,12 +6,12 @@ using DragonDataSniffer.Object;
 namespace DragonDataSniffer.Manager
 {
     [TunnelModule(InitializationStage.DataStore)]
-    public   class MapDataManager
+    public class MapDataManager
     {
         public static MapDataManager Instance { get; private set; }
-        private ConcurrentDictionary<string,MapInfo> MapInfoByName { get;  set; }
-        private ConcurrentDictionary<ushort,MapInfo> MapInfoByID  { get;  set; }
-        private ConcurrentDictionary<ushort,Map> MapByID { get; set; }
+        private ConcurrentDictionary<string, MapInfo> MapInfoByName { get; set; }
+        private ConcurrentDictionary<ushort, MapInfo> MapInfoByID { get; set; }
+        private ConcurrentDictionary<ushort, Map> MapByID { get; set; }
         public MapDataManager()
         {
             MapInfoByName = new ConcurrentDictionary<string, MapInfo>();
@@ -46,7 +46,7 @@ namespace DragonDataSniffer.Manager
                     Log.WriteLine(LogLevel.Info, "Dublicate Map ID found {0} ", pInfo.ID);
                     continue;
                 }
-                if(!MapInfoByName.TryAdd(pInfo.Index,pInfo))
+                if (!MapInfoByName.TryAdd(pInfo.Index, pInfo))
                 {
                     Log.WriteLine(LogLevel.Info, "Dublicate MapName found {0}", pInfo.Name);
                     continue;
@@ -54,18 +54,17 @@ namespace DragonDataSniffer.Manager
 
                 Map pMap = new Map(pInfo);
 
-                if(!MapByID.TryAdd(pInfo.ID,pMap))
+                if (!MapByID.TryAdd(pInfo.ID, pMap))
                 {
-                   
+
                 }
             }
 
-
-            Log.WriteLine(LogLevel.Info,"Load {0} MapInfos",MapByID.Count);
+            Log.WriteLine(LogLevel.Info, "Load {0} MapInfos", MapByID.Count);
         }
-        public bool GetMapInfoByName(string name,out MapInfo inf)
+        public bool GetMapInfoByName(string name, out MapInfo inf)
         {
-            if(MapInfoByName.TryGetValue(name,out inf))
+            if (MapInfoByName.TryGetValue(name, out inf))
             {
                 return true;
             }
@@ -79,11 +78,12 @@ namespace DragonDataSniffer.Manager
             }
             return false;
         }
-        public bool GetMapByID(ushort MapID,out Map pMap)
+        public bool GetMapByID(ushort MapID, out Map pMap)
         {
             if (MapByID.TryGetValue(MapID, out pMap))
+            {
                 return true;
-
+            }
             return false;
         }
     }

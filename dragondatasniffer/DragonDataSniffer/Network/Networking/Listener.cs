@@ -18,7 +18,11 @@ namespace DragonDataSniffer.Network
 
         private void EndAccept(IAsyncResult ar)
         {
-            if (!IsRunning) return;
+            if (!IsRunning)
+            {
+                return;
+            }
+
             try
             {
                 Socket newclient = Socket.EndAccept(ar);

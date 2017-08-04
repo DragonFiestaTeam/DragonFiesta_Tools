@@ -1,0 +1,9 @@
+using (ScriptAPI)
+{
+    AddUShort("Attacker ID");
+	AddUShort("Target ID");
+	AddByte("Stance");
+	AddUShort("Attackspeed");
+	AddByte("Anzahl der Angriffe bei diesem Mob");
+	AddByte("Unk - Fortlaufend");
+}

@@ -9,11 +9,9 @@ namespace DragonDataSniffer
     {
         public static Worker Instance { get; private set; }
         public bool IsRunning { get; set; }
-
         private ConcurrentQueue<Action> callbacks = new ConcurrentQueue<Action>();
         private Thread main;
         private int sleep = 1;
-
 
         public Worker()
         {
@@ -40,8 +38,6 @@ namespace DragonDataSniffer
         {
             callbacks.Enqueue(pCallback);
         }
-
-
 
         private void Work()
         {

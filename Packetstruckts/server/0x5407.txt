@@ -1,0 +1,14 @@
+using (ScriptAPI)
+{
+    count = AddByte("Count");
+	for (i=0; i<count; i++)
+	{
+	    AddField("Unk",4);
+		AddField("Char Name",20);
+		AddByte("Unk");
+		AddByte("Level");
+		AddField("Unk",2);
+		AddField("MapInfo",12);
+		AddField("Unk",32);
+	}
+}

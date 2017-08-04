@@ -6,36 +6,33 @@ using DragonDataSniffer.Data;
 namespace DragonDataSniffer.Object
 {
     public class NPC : MapObject
-    {  
+    {
         public ushort MapID { get; set; }
         public ushort MobID { get; private set; }
-        public MobInfo pInfo { get;  set; }
+        public MobInfo PInfo { get; set; }
         public int X { get; private set; }
         public int Y { get; private set; }
-        public byte rot { get; private set; }
+        public byte Rot { get; private set; }
         public bool HasMenu { get; private set; }
-        public NPCRole Role { get;  set; }
-        public NPCArgument Argument { get;  set; }
-        public byte isGate { get; private set; }
+        public NPCRole Role { get; set; }
+        public NPCArgument Argument { get; set; }
+        public byte IsGate { get; private set; }
         public string GateName { get; private set; }
-        public ConcurrentDictionary<byte,NPCItem> ItemList { get; private set; }
+        public ConcurrentDictionary<byte, NPCItem> ItemList { get; private set; }
         public NPC(SQLResult pRes, int i = 0) : base()
         {
             ItemList = new ConcurrentDictionary<byte, NPCItem>();
-
-           MobID = pRes.Read<ushort>(i, "MobID");
+            MobID = pRes.Read<ushort>(i, "MobID");
             MapID = pRes.Read<ushort>(i, "MapID");
-
-           X = pRes.Read<int>(i, "X");
-           Y = pRes.Read<int>(i, "Y");
-            rot = pRes.Read<byte>(i, "Rotation");
+            X = pRes.Read<int>(i, "X");
+            Y = pRes.Read<int>(i, "Y");
+            Rot = pRes.Read<byte>(i, "Rotation");
             HasMenu = pRes.Read<bool>(i, "HasMenu");
             Role = (NPCRole)pRes.Read<byte>(i, "Role");
             Argument = (NPCArgument)pRes.Read<byte>(i, "RoleArgument");
- 
         }
 
-        public NPC(FiestaPacket packet,ushort pMapID) : base()
+        public NPC(FiestaPacket packet, ushort pMapID) : base()
         {
             string pGateName = "";
             NPCRole role = NPCRole.None;
@@ -47,7 +44,6 @@ namespace DragonDataSniffer.Object
                   || !packet.TryReadByte(out byte pRot)
                   || !packet.TryReadByte(out byte pIsGate))
             {
-
                 return;
             }
 
@@ -58,7 +54,9 @@ namespace DragonDataSniffer.Object
                 packet.ReadSkip(125);
             }
             else
+            {
                 packet.ReadSkip(137);
+            }
 
             ItemList = new ConcurrentDictionary<byte, NPCItem>();
             MapObjectID = pObjectID;
@@ -66,15 +64,14 @@ namespace DragonDataSniffer.Object
             MapID = pMapID;
             X = pX;
             Y = pY;
-            rot = pRot;
-            isGate = pIsGate;
+            Rot = pRot;
+            IsGate = pIsGate;
             GateName = pGateName;
             Role = role;
 
-
             if (Manager.NPCDataManager.Instance.NPCByID.TryGetValue(pMobID, out MobInfo mInfo))
             {
-                pInfo = mInfo;
+                PInfo = mInfo;
             }
         }
 
@@ -82,21 +79,18 @@ namespace DragonDataSniffer.Object
         {
             if (ItemList.TryAdd(pItem.Slot, pItem))
             {
-                if(Save)
+                if (Save)
                 {
                     pItem.AddToDB();
                 }
-              
                 return true;
             }
-
             return false;
         }
         public void UpdateArgument()
         {
             string update = "UPDATE NPCTable SET RoleArgument = '" + (byte)Argument + "',Role = '" + (byte)Role + "' WHERE MobID = '" + MobID + "'";
             DatabaseManager.RunSQL(update);
-
         }
         public void AddToDB()
         {
@@ -106,7 +100,7 @@ namespace DragonDataSniffer.Object
                   + "'" + MapID + "',"
                   + "'" + X + "',"
                   + "'" + Y + "',"
-                  + "'" + rot + "',"
+                  + "'" + Rot + "',"
                   + "'" + Convert.ToByte(HasMenu) + "',"
                   + "'" + (byte)Role + "',"
                   + "'" + (byte)Argument + "')";

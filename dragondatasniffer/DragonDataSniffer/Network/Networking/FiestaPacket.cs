@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using DragonDataSniffer.Utils;
 
 namespace DragonDataSniffer.Network.Networking
 {
@@ -213,7 +212,10 @@ namespace DragonDataSniffer.Network.Networking
         public bool TryReadString(out string pValue, int pLen)
         {
             pValue = "";
-            if (Remaining < pLen) return false;
+            if (Remaining < pLen)
+            {
+                return false;
+            }
 
             byte[] buffer = binReader.ReadBytes(pLen);
 
@@ -369,9 +371,6 @@ namespace DragonDataSniffer.Network.Networking
                 .Append(Length).Append(" Data: ").Append(ByteUtils.BytesToHex(buf));
             return builder.ToString();
         }
-
-
-
         private MemoryStream memStream;
         private BinaryReader binReader;
         private BinaryWriter binWriter;

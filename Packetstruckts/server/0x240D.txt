@@ -1,0 +1,5 @@
+using (ScriptAPI)
+{
+    AddUShort("Char ID");
+	AddUShort("Mob ID");
+}
