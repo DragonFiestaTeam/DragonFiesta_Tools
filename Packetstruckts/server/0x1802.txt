@@ -41,14 +41,14 @@ using (ScriptAPI)
 	AddUInt("MaxHP");
 	AddUInt("MaxSP");
 	
-	AddInt("LightPower");
-	AddInt("unk");
+	AddUInt("LightPower");
+	AddUInt("unk");
 	
 	AddUInt("MaxHPStones");
 	AddUInt("MaxSPStones");
 	
 	AddField("buffs",64);
 	
-	AddInt("PosX");
-	AddInt("PosY");	
+	AddUInt("PosX");
+	AddUInt("PosY");	
 }

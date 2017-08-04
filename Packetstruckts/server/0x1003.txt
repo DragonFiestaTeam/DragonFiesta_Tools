@@ -1,5 +1,5 @@
-using(ScriptAPI)
+using (ScriptAPI)
 {
-AddField("ZoneIP",16);
-AddUShort("ZonePort");
+    AddPaddedString("Zone IP", 16);
+	AddUShort("Zone Port");
 }

@@ -22,10 +22,6 @@ state = AddByte("enable");
 			{
 				AddByte("UpdateOk?");
 			}
-}
-		
-		
-		
-	
+}	
 }
 }

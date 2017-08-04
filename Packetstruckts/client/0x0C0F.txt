@@ -1,6 +1,6 @@
 using(ScriptAPI)
 {
-AddField("AccountName",256);
+    AddField("AccountName",18);
 	AddInt("accID");
 	AddField("Check?",60);
 }

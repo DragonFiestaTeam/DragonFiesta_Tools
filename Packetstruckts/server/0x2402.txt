@@ -6,6 +6,8 @@ using(ScriptAPI)
 	AddInt("MaxHP");
 	AddInt("SP");
 	AddInt("MaxSP");
+    AddField("unk",8);
 	AddByte("Level");
-	AddShort("Counter");
+	AddByte("Counter ?");
+	AddByte("Unk");
 }

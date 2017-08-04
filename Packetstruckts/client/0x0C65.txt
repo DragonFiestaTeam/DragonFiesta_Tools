@@ -1,4 +1,4 @@
 using(ScriptAPI)
 {
-AddField("Fiestabinmd5",32);
+    AddField("Fiesta.bin md5",32);
 }

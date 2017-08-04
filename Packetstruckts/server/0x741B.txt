@@ -1,26 +1,19 @@
-using(ScriptAPI)
+using (ScriptAPI)
 {
-	AddUInt("GuildMembercount");
-	cound = AddUShort("forcount");
-	for(i=0; i<cound; i++)
-	{
-		AddField("MemberName",16);
-	    AddByte("GuildRank");
-		AddInt("unk");
-		AddUShort("Korp");
-		AddByte("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-	    AddByte("unk");
-		AddInt("unk");
-		AddInt("unk");
-		AddField("unk",50);
-		AddByte("isonline");
-		AddField("unk",3);
-		AddByte("job");
-		AddByte("level");
-		AddByte("unk");
-	    AddField("mapname",12);
-	}
+    AddField("Unk",4);
+	inxMember = AddUShort("Count");
 	
+	StartNode("Member Info");
+	for (i=0; i<inxMember; i++)
+	{
+		StartNode("Member");
+	    AddField("Char Name",20);
+		AddField("Unk",75);
+		AddByte("Class ID");
+		AddUShort("Level");
+		AddField("MapInfo",12);
+		EndNode(0);
+	
+	}
+	EndNode(0);
 }

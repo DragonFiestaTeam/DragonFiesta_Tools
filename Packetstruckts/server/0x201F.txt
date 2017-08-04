@@ -1,8 +1,13 @@
-using(ScriptAPI)
+using (ScriptAPI)
 {
-AddByte("unk");
-AddField("CharName",16);
-AddByte("unk");
+    AddByte("unk");
+	AddField("Char Name",20);
 	AddByte("unk");
-	AddByte("unk");
+	AddByte("MessageLength");
+	AddField("Message",42);
+	AddUShort("ItemID");
+	AddByte("Up-Wert");
+	AddField("unk",26);
+	AddField("Chart Name für Lizi",20);
+	AddField("unk",54);
 }

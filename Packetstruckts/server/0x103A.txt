@@ -1,5 +1,14 @@
 using(ScriptAPI)
 {
-AddInt("CharacterId");
+    AddUInt("CharacterID");
+	AddByte("Unk");
+	count = AddByte("Quest Count");
 
+	StartNode("Quest Info");
+    for (i=0; i<count; i++)
+	{
+	    StartNode("Quest");
+		EndNode("0");
+	}
+    EndNode(0);
 }

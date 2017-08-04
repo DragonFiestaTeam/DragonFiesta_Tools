@@ -1,6 +1,6 @@
 using(ScriptAPI)
 {
-count = AddUShort("Count");
+    count = AddUShort("Count");
 	AddUShort("unk");
 	for(i=0; i<count; i++)
 	{

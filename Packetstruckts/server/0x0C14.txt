@@ -18,20 +18,20 @@ using (ScriptAPI)
 	    AddByte("Face");    
 			   
 	    AddUShort("Helm");
-	    AddUShort("Weapon 1 Main");	
-	    AddUShort("Weapon 2 Offhand");
+	    AddUShort("Weapon 1");	
+	    AddUShort("Weapon 2");
 		AddUShort("Armor");
 		AddUShort("Shield");	
 	    AddUShort("Pants");
 	    AddUShort("Boots");
-	    AddUShort("Custome Three Pieces Boots");
-	    AddUShort("Custome Three Pieces Pants");
+	    AddUShort("Custome Boots");
+	    AddUShort("Custome Pants");
 	    AddUShort("Custome Armor");
 	    AddUShort("Custome Hat");
 	    AddUShort("Custome Pet");
 	    AddUShort("Custome Glasses");
-	    AddUShort("Custome Weapon 1 Main");
-	    AddUShort("Custome Weapon 2 Offhand");
+	    AddUShort("Custome Weapon 1");
+	    AddUShort("Custome Weapon 2");
 	    AddUShort("Custome Back");      
 	    AddUShort("Custome Armor 2");
 	    AddUShort("Custome Tail"); 
@@ -45,13 +45,13 @@ using (ScriptAPI)
 		AddField("unk",4);	
 			
 	    AddPaddedString("mapname",12);  
-	    AddInt("pos");
-	    AddInt("pos");
+	    AddUInt("pos");
+	    AddUInt("pos");
 			
 	    AddUInt("Unk");
 		AddByte("unk");
 			
-	    AddUInt("Unk");
+	    AddUInt("Immer 100");
 		AddByte("unk");
 			
 		AddUInt("Unk");

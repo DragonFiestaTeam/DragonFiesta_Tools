@@ -1,4 +1,4 @@
 using(ScriptAPI)
 {
-AddByte("SelectetWorldID");
+    AddByte("Selectet World ID");
 }

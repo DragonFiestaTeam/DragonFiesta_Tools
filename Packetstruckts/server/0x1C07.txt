@@ -3,65 +3,31 @@ using(ScriptAPI)
 	AddUShort("mapobjectID");
 	Count = AddByte("ObjectCouunt");
 	AddField("CharacterName",20);
-	AddInt("PosX");
-	AddInt("PosY");
-	AddByte("Rotation");
-	
-	characterstate = AddByte("CharacterState");
-	AddByte("ClassID");
-	
-	if(characterstate != 5 && characterstate != 4)
-	{
-		//Look Info
-		AddByte("Male");
-		AddByte("hairID");
-		AddByte("HairColor");
-		AddByte("FaceID");
-		
-		AddUShort("Helm");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-		AddUShort("unk");
-			AddUShort("unk");
-			AddUShort("unk");
-			AddUShort("unk");
-			AddUShort("unk");
-			AddUShort("unk");
-			AddUShort("unk");
-	}
-    else
-	{
-	AddField("house",84);
-	
-	
-	}
-
-	    AddByte("Refment");
-	    AddByte("Refment");
-	
-	AddUShort("unk");
-		AddUShort("unk");
-	
-		AddUShort("emote");
-	
-		AddUShort("unk");
-	AddInt("titel");
-	AddField("unk",112);
-	AddInt("Killpoin");
-	AddByte("unk");
-	AddByte("isinacademy");
-	AddByte("autopickup");
-	AddByte("CharacterLevel");
-	
+	AddUInt("PosX");
+	AddUInt("PosY");
+	AddByte("Rotation");	
+    AddField("unk",3);
+	AddByte("Hair ID");
+	AddByte("HairColor ID");
+	AddByte("Face ID");
+	AddUShort("Helm");
+	AddUShort("Weapon 1");
+	AddUShort("Weapon 2");
+	AddUShort("Armor");
+	AddUShort("Shield");
+	AddUShort("Pants");
+	AddUShort("Boots");
+    AddUShort("Custome Boots");
+    AddUShort("Custome Pants");	
+    AddUShort("Custome Armor");
+	AddUShort("Custome Hat");
+	AddUShort("Custome Pet");
+	AddUShort("Custome Glasses");
+	AddUShort("Custome Weapon 1");
+	AddUShort("Custome Weapon 2");
+    AddUShort("Custome Back");      
+    AddUShort("Custome Armor 2");
+	AddUShort("Custome Tail"); 
+	AddUShort("Costume Pet");
+	AddUShort("Unk");		
 }

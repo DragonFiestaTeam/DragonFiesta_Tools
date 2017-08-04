@@ -1,6 +1,6 @@
 using(ScriptAPI)
 {
-	AddField("AccountName",16);
-	AddField("Password",18);
-	AddField("ClientArts",20);
+	AddField("Username",18);
+	AddField("Password",16);
+	AddField("Verify",20);
 }

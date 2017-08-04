@@ -1,8 +1,8 @@
 using(ScriptAPI)
 {
-AddByte("State");
-AddField("ip",16);
-	AddUShort("port");
-	AddInt("AccID");
-	AddField("unq",60);
+    AddByte("World Status");
+    AddField("World IPv4",16);
+	AddUShort("World Port");
+	AddInt("Account ID");
+	AddField("Connection Hash",60);
 }

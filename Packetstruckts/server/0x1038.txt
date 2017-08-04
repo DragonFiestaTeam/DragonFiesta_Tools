@@ -1,23 +1,23 @@
 using(ScriptAPI)
 {
-	AddInt("ID");
+	AddUInt("ID");
 	AddField("NAME",20);
 	AddByte("Slot");
 	AddByte("level");
 	AddLong("EXP");
-	AddInt("unk");
+	AddUInt("unk");
 	AddUShort("StonesHP");
 	AddUShort("StonesSP");
-	AddInt("HP");
-	AddInt("SP");
-	AddInt("unk");
-	AddInt("Fame");
+	AddUInt("HP");
+	AddUInt("SP");
+	AddUInt("LightPower");
+	AddUInt("Fame");
 	AddLong("Money");
 
 	AddField("MapName",12);	
 	
-	AddInt("PosX");
-	AddInt("PosY");
+	AddUInt("PosX");
+	AddUInt("PosY");
 	AddByte("Rot");
 	AddByte("STrBoni");
 	AddByte("endBoni");
@@ -27,7 +27,7 @@ using(ScriptAPI)
 	
 	AddUShort("unk");
 	
-	AddInt("Killpoints");
+	AddUInt("Killpoints");
 	
 	AddField("Unk",7);
 	

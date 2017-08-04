@@ -1,8 +1,10 @@
-using (ScriptAPI) {
-	count = AddByte("charcount");
-for(i=0; i<count; i++)
-	{
-	AddField("Name",16);
-	AddByte("isOnline");
-	}
+using (ScriptAPI)
+{
+	AddByte("Count");
+    AddField("Char Name",20);
+	AddByte("is Conncetd (Bool)");
+	AddByte("Is Ready (Bool)");
+	AddField("Char Name",20);
+	AddByte("is Conncetd (Bool)");
+	AddByte("Is Ready (Bool)");
 }

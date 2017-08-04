@@ -1,12 +1,11 @@
 using(ScriptAPI)
 {
-count = AddUShort("UpdateCount");
+    count = AddUShort("UpdateCount");
 	
-for(i=0; i<count; i++)
-{
-	AddUShort("KeyId");
-	AddByte("RubyCubeGameState");
-	AddField("KeyChar",1);
-}
-	
+    for(i=0; i<count; i++)
+    {
+    	AddUShort("KeyId");
+	    AddByte("RubyCubeGameState");
+	    AddField("KeyChar",1);
+    }	
 }

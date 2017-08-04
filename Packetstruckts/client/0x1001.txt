@@ -1,4 +1,4 @@
 using(ScriptAPI)
 {
-AddByte("CharSlot");
+    AddByte("CharSlot");
 }
